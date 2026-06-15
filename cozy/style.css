@@ -1,58 +1,86 @@
-/* Cozylore — shared styles for the cozy-home content site */
+/* Cozylore — editorial cozy-home design system */
 :root {
   color-scheme: light;
-  --bg: #faf6f1;
-  --card: #fffdfb;
-  --ink: #2c2622;
-  --muted: #7a6f66;
-  --accent: #b5784f;
-  --accent-soft: #f2e3d6;
-  --line: #ece2d8;
-  --max: 760px;
+  --bg: #f7f3ee;
+  --card: #fffdfa;
+  --ink: #221d19;
+  --muted: #8a7c70;
+  --accent: #a8643c;
+  --accent-deep: #8f5230;
+  --accent-soft: #f0e2d5;
+  --line: #e9ddd0;
+  --max: 1080px;
+  --read: 720px;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --ui: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  font-family: "Iowan Old Style", Georgia, "Times New Roman", serif;
+  font-family: var(--ui);
   margin: 0;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.7;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-header.site,
-footer.site {
-  font-family: system-ui, -apple-system, sans-serif;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Top navigation */
+.eyebrow {
+  font-family: var(--ui);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+/* ---------- Header ---------- */
 header.site {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(247, 243, 238, 0.82);
+  backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--line);
-  background: var(--card);
 }
 header.site .inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 18px 20px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 header.site a.brand {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.45rem;
   letter-spacing: -0.01em;
   color: var(--ink);
   text-decoration: none;
 }
 header.site nav a {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
   color: var(--muted);
   text-decoration: none;
-  margin-left: 18px;
-  font-size: 0.95rem;
+  margin-left: 22px;
 }
 header.site nav a:hover {
   color: var(--accent);
@@ -61,140 +89,207 @@ header.site nav a:hover {
 main {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 20px 60px;
+  padding: 0 24px 72px;
 }
 
-/* Hero */
+/* ---------- Hero ---------- */
 .hero {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 84px 28px;
-  margin: 26px 0 40px;
-  border-radius: 22px;
+  min-height: 62vh;
+  padding: 80px 28px;
+  margin: 26px 0 56px;
+  border-radius: 26px;
   overflow: hidden;
   color: #fff;
-  background-image: linear-gradient(rgba(54, 38, 28, 0.42), rgba(54, 38, 28, 0.58)),
+  background-image: linear-gradient(rgba(40, 26, 18, 0.34), rgba(40, 26, 18, 0.62)),
     url("https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260615_104651_fb210856-9cbc-4b23-b486-f3e3e24f20aa.png");
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 38%;
+}
+.hero .hero-inner {
+  max-width: 620px;
+}
+.hero .eyebrow {
+  color: rgba(255, 255, 255, 0.85);
 }
 .hero h1 {
-  font-size: 2.6rem;
-  margin: 0 0 14px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.3rem, 6vw, 4.1rem);
+  line-height: 1.04;
   letter-spacing: -0.02em;
-  color: #fff;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  margin: 0 0 18px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.32);
 }
-.hero p {
+.hero .hero-sub {
+  font-size: clamp(1rem, 2.4vw, 1.22rem);
   color: rgba(255, 255, 255, 0.94);
-  font-size: 1.18rem;
-  max-width: 540px;
-  margin: 0 auto;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 auto 28px;
+  max-width: 500px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+}
+.hero-cta {
+  display: inline-block;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 30px;
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
-/* Article typography */
-article h1 {
-  font-size: 2.1rem;
-  line-height: 1.25;
-  margin: 0 0 8px;
+/* ---------- Section heading ---------- */
+.section-head {
+  margin: 0 0 26px;
 }
-article .meta {
-  font-family: system-ui, -apple-system, sans-serif;
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-bottom: 28px;
-}
-article h2 {
-  font-size: 1.5rem;
-  margin: 38px 0 10px;
-}
-article h3 {
-  font-size: 1.2rem;
-  margin: 26px 0 6px;
-}
-article img.lead {
-  width: 100%;
-  max-height: 440px;
-  object-fit: cover;
-  display: block;
-  border-radius: 14px;
-  margin: 8px 0 28px;
-}
-article a {
-  color: var(--accent);
+.section-head h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
-/* Post grid (home) */
+/* ---------- Post grid ---------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 22px;
-  margin-top: 10px;
+  gap: 28px;
+  margin-top: 4px;
 }
 .post-card {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .post-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(120, 90, 60, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(120, 84, 52, 0.16);
 }
 .post-card .thumb {
-  height: 190px;
+  height: 230px;
   background: linear-gradient(160deg, var(--accent-soft), #f7ede2);
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.4rem;
+  transition: transform 0.4s ease;
+}
+.post-card:hover .thumb {
+  transform: scale(1.05);
 }
 .post-card .body {
-  padding: 16px 18px 20px;
+  padding: 20px 22px 24px;
+}
+.post-card .kicker {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
 .post-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.15rem;
-  font-family: "Iowan Old Style", Georgia, serif;
+  font-family: var(--display);
+  font-weight: 600;
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  line-height: 1.25;
 }
 .post-card p {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
-  font-family: system-ui, sans-serif;
 }
 
-/* Product / affiliate callout */
+/* ---------- Article ---------- */
+article {
+  max-width: var(--read);
+  margin: 0 auto;
+}
+article h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+}
+article .meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 26px;
+}
+article h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  margin: 42px 0 12px;
+}
+article h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.22rem;
+  margin: 28px 0 6px;
+}
+article p,
+article li {
+  font-size: 1.07rem;
+}
+article img.lead {
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px;
+  margin: 8px 0 32px;
+}
+article a {
+  color: var(--accent);
+}
+
+/* ---------- Affiliate pick ---------- */
 .pick {
-  background: var(--card);
+  background: linear-gradient(180deg, #fffdfa, #fbf4ec);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
-  padding: 16px 18px;
-  margin: 22px 0;
-  font-family: system-ui, sans-serif;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin: 26px 0;
+  box-shadow: 0 6px 20px rgba(120, 84, 52, 0.06);
 }
 .pick .label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--accent);
   font-weight: 700;
 }
 .pick h4 {
-  margin: 4px 0 6px;
-  font-size: 1.05rem;
+  font-family: var(--display);
+  font-weight: 600;
+  margin: 6px 0 6px;
+  font-size: 1.15rem;
 }
 .pick p {
-  margin: 0 0 12px;
-  font-size: 0.95rem;
+  margin: 0 0 14px;
+  font-size: 0.96rem;
   color: var(--muted);
 }
 .pick a.cta {
@@ -202,84 +297,95 @@ article a {
   background: var(--accent);
   color: #fff;
   text-decoration: none;
-  padding: 9px 18px;
+  padding: 11px 22px;
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 600;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.pick a.cta:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
 }
 
-/* Ad slot */
+/* ---------- Ad slot ---------- */
 .ad-slot {
-  margin: 30px 0;
-  padding: 20px;
+  margin: 34px 0;
+  padding: 22px;
   text-align: center;
   border: 1px dashed var(--line);
-  border-radius: 10px;
+  border-radius: 14px;
   color: var(--muted);
-  font-family: system-ui, sans-serif;
-  font-size: 0.8rem;
-  background: #fff;
+  font-size: 0.78rem;
+  background: var(--card);
 }
 
-/* Email capture */
+/* ---------- Subscribe ---------- */
 .subscribe {
   background: var(--accent-soft);
-  border-radius: 14px;
-  padding: 28px;
+  border-radius: 20px;
+  padding: 40px 32px;
   text-align: center;
-  margin: 40px 0;
-  font-family: system-ui, sans-serif;
+  margin: 56px 0;
 }
 .subscribe h3 {
-  margin: 0 0 6px;
-  font-family: "Iowan Old Style", Georgia, serif;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.7rem;
+  margin: 0 0 8px;
 }
 .subscribe p {
   color: var(--muted);
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 .subscribe form {
   display: flex;
-  gap: 8px;
-  max-width: 420px;
+  gap: 10px;
+  max-width: 440px;
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: center;
 }
 .subscribe input {
   flex: 1;
-  min-width: 200px;
-  padding: 12px 14px;
+  min-width: 210px;
+  padding: 13px 16px;
   border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.95rem;
+  font-family: var(--ui);
 }
 .subscribe button {
-  padding: 12px 22px;
+  padding: 13px 26px;
   border: none;
   border-radius: 999px;
   background: var(--accent);
   color: #fff;
   font-weight: 600;
+  font-family: var(--ui);
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+.subscribe button:hover {
+  background: var(--accent-deep);
 }
 
-/* FAQ */
+/* ---------- FAQ ---------- */
 .faq details {
   border-bottom: 1px solid var(--line);
-  padding: 14px 0;
-  font-family: system-ui, sans-serif;
+  padding: 16px 0;
 }
 .faq summary {
   cursor: pointer;
   font-weight: 600;
+  font-size: 1.02rem;
 }
 .faq p {
   color: var(--muted);
-  margin: 8px 0 0;
+  margin: 10px 0 0;
 }
 
-/* Footer */
+/* ---------- Footer ---------- */
 footer.site {
   border-top: 1px solid var(--line);
   background: var(--card);
@@ -289,25 +395,14 @@ footer.site {
 footer.site .inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 26px 20px;
+  padding: 32px 24px;
   text-align: center;
 }
 footer.site a {
   color: var(--muted);
 }
 
-/* --- Global safety + mobile (iPhone) optimization --- */
-html {
-  -webkit-text-size-adjust: 100%; /* stop iOS auto-zooming text */
-}
-body {
-  overflow-x: hidden; /* no sideways scroll on small screens */
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-
+/* ---------- Mobile (iPhone) ---------- */
 @media (max-width: 640px) {
   header.site .inner {
     flex-direction: column;
@@ -316,57 +411,34 @@ img {
     text-align: center;
   }
   header.site nav a {
-    margin: 0 9px;
+    margin: 0 10px;
   }
-
   main {
-    padding: 0 16px 48px;
+    padding: 0 18px 56px;
   }
-
   .hero {
-    padding: 56px 20px;
-    margin: 16px 0 30px;
-    border-radius: 18px;
+    min-height: 56vh;
+    padding: 60px 22px;
+    margin: 16px 0 40px;
+    border-radius: 20px;
   }
-  .hero h1 {
-    font-size: 1.95rem;
-  }
-  .hero p {
-    font-size: 1.05rem;
-  }
-
-  /* one comfortable column of cards on phones */
   .grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 20px;
   }
   .post-card .thumb {
-    height: 210px;
+    height: 220px;
   }
-
-  article h1 {
-    font-size: 1.7rem;
-  }
-  article h2 {
-    font-size: 1.3rem;
-  }
-  article img.lead {
-    max-height: 320px;
-  }
-
   .subscribe {
-    padding: 24px 18px;
+    padding: 30px 20px;
   }
   .subscribe input,
   .subscribe button {
     min-width: 0;
     width: 100%;
   }
-
-  /* comfortable tap target for affiliate buttons */
   .pick a.cta {
     display: block;
     text-align: center;
-    padding: 13px 18px;
   }
 }
