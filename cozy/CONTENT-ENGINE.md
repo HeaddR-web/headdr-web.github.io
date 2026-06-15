@@ -27,6 +27,8 @@ without manual work. It can be driven by the `/loop` skill or a scheduled Claude
 - Never fabricate specific product specs, prices, reviews, or statistics.
 - Keep affiliate/ad/newsletter spots as placeholders until the owner adds real IDs.
 - Keep everything inside `/cozy/`.
+- **Pin/article images must be at least 1000px wide** (Pinterest recommends min 1000px). When generating
+  pin images in 2:3 portrait, use **2k resolution** — 1k/2:3 only yields ~848px wide, which Pinterest flags.
 - When the backlog is empty, propose 10 new long-tail, affiliate-friendly topics, append them to
   README.md's backlog, then continue.
 
