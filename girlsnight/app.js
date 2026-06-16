@@ -27,7 +27,7 @@
       name: "Games",
       emoji: "🎲",
       blurb: "Ice-breakers, party card games and a little friendly chaos.",
-      img: IMG + "hf_20260615_161819_184c86f8-7b13-4286-9ae9-d22eba7d4181.png",
+      img: IMG + "hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.png",
       guide: "posts/girls-night-games.html",
       picks: [
         { id: "g1", name: "Party card game (adults)", q: "Partyspiel Karten Erwachsene" },
@@ -40,7 +40,7 @@
       name: "Drinks",
       emoji: "🍸",
       blurb: "Signature cocktails, bubbly and everything to pour them in.",
-      img: IMG + "hf_20260615_161820_622fbb45-9400-4dd4-b1df-c391b1d7f91f.png",
+      img: IMG + "hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png",
       guide: "posts/girls-night-drinks.html",
       picks: [
         { id: "d1", name: "Cocktail shaker set", q: "Cocktail Shaker Set Edelstahl" },
@@ -53,7 +53,7 @@
       name: "Snacks",
       emoji: "🍫",
       blurb: "Grazing boards, sweet treats and bottomless popcorn.",
-      img: IMG + "hf_20260615_163559_030a2811-cea7-4dd4-8262-e40dd10832dc.jpeg",
+      img: IMG + "hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
       guide: "posts/girls-night-snacks.html",
       picks: [
         { id: "s1", name: "Grazing / charcuterie board", q: "Servierbrett Holz gross" },
@@ -66,7 +66,7 @@
       name: "Deko & Themes",
       emoji: "🎀",
       blurb: "Balloon arches, neon glow and a sparkly themed table.",
-      img: IMG + "hf_20260615_163600_b85fc10c-37e0-42c4-8ae9-38bdedfaabaf.jpeg",
+      img: IMG + "hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png",
       guide: "posts/girls-night-themes.html",
       picks: [
         { id: "t1", name: "Pink balloon arch kit", q: "Luftballon Girlande Set rosa" },
@@ -79,7 +79,7 @@
       name: "Pamper & Spa",
       emoji: "💅",
       blurb: "Face masks, robes and a full at-home spa moment.",
-      img: IMG + "hf_20260615_161824_657729c5-d58b-4150-8616-4615a11f2173.png",
+      img: IMG + "hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.png",
       guide: "posts/girls-night-pamper-spa.html",
       picks: [
         { id: "p1", name: "Face mask set", q: "Gesichtsmasken Set Tuchmasken" },
@@ -92,7 +92,7 @@
       name: "Movie Night",
       emoji: "🎬",
       blurb: "A projector, cosy blankets and a big bowl of popcorn.",
-      img: IMG + "hf_20260615_161825_5ce93708-e414-43a1-b0cc-df3c561765b7.jpeg",
+      img: IMG + "hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa.png",
       guide: "posts/girls-night-movie-night.html",
       picks: [
         { id: "m1", name: "Mini projector", q: "Mini Beamer Full HD" },
