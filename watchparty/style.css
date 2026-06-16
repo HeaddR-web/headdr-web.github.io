@@ -836,3 +836,9 @@ footer.site a {
     width: 100%;
   }
 }
+
+/* ---------- Simplified category view (direct Amazon links per pick) ---------- */
+.picks li { align-items: center; }
+.picks .pick-name { display: flex; flex-direction: column; }
+.pick-desc { display: block; color: var(--muted); font-size: 0.76rem; margin-top: 2px; line-height: 1.35; }
+a.add-btn { text-decoration: none; }
