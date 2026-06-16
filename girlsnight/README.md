@@ -1,5 +1,9 @@
 # Girls Night HQ — girls-night planning site (income engine #2)
 
+> **Stand Juni 2026:** Teil der **Hosting HQ**-Plattform (Portal im Root + Hubs `watchparty/`, `cocktailabend/`).
+> Inhalte **auf Deutsch / DACH** (zu `amazon.de`). Builder = **vereinfachte Kategorie-Ansicht mit direkten
+> Amazon-Links** (kein Add-to-Liste/Tracker mehr).
+
 A reader-supported content + tool site in the **girls night / party planning** niche. Same money model as
 Cozylore, with a warm, elegant **hosting** look — cream & beige, soft terracotta-rose and sand accents, brushed
 gold (light theme; the deliberate contrast to Cozylore's calm tone is the warm entertaining vibe, not loudness).
