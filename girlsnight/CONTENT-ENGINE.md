@@ -1,5 +1,12 @@
 # Girls Night HQ content engine — recurring task spec
 
+> **Aktueller Stand (Juni 2026):** Girls Night HQ ist ein Hub unter der **Hosting HQ**-Plattform
+> (Portal im Root, weitere Hubs: `watchparty/`, `cocktailabend/`). **Inhalte auf Deutsch (Zielmarkt DACH)**,
+> passend zu den `amazon.de`-Affiliate-Links (`tag=cozylore-21`). Die Startseite nutzt die
+> **vereinfachte Kategorie-Ansicht**: `app.js` rendert pro Kategorie kuratierte Picks, jeder Pick ist ein
+> **direkter Amazon-Link** (kein „Liste bauen"/Tracker mehr; `name`/`desc`/`q` pro Pick). Artikel weiter mit
+> `.pick`-Boxen, Ad-Slot, Newsletter, JSON-LD (`inLanguage: "de"`), Anker auf `#kategorien`.
+
 This file is the instruction the automation runs **each cycle** to publish a new article without manual work.
 It can be driven by the `/loop` skill or a scheduled Claude Code web session.
 
