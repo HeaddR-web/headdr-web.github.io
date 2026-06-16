@@ -61,7 +61,7 @@ posts, add a pin to `girlsnight/pins/queue.json`, commit & push. Never touch the
 
 High-intent, affiliate-friendly, strong Pinterest pull:
 
-- Galentine's Day Party Ideas
+- ~~Galentine's Day Party Ideas~~ ✅ published → `posts/girls-night-galentines.html`
 - Girls Night In Ideas on a Budget
 - Bachelorette / Hen Party Night-In Ideas
 - 30 Truth or Dare Questions for Girls Night
