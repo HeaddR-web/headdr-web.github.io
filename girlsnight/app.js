@@ -30,9 +30,9 @@
       img: IMG + "hf_20260615_161819_184c86f8-7b13-4286-9ae9-d22eba7d4181.png",
       guide: "posts/girls-night-games.html",
       picks: [
-        { id: "g1", name: "Party card game (adults)", q: "party card game adults" },
-        { id: "g2", name: "Truth or dare / conversation game", q: "truth or dare game adults" },
-        { id: "g3", name: "Drinking game set", q: "drinking game set" }
+        { id: "g1", name: "Party card game (adults)", q: "Partyspiel Karten Erwachsene" },
+        { id: "g2", name: "Truth or dare / conversation game", q: "Wahrheit oder Pflicht Kartenspiel" },
+        { id: "g3", name: "Drinking game set", q: "Trinkspiel Set Party" }
       ]
     },
     {
@@ -43,9 +43,9 @@
       img: IMG + "hf_20260615_161820_622fbb45-9400-4dd4-b1df-c391b1d7f91f.png",
       guide: "posts/girls-night-drinks.html",
       picks: [
-        { id: "d1", name: "Cocktail shaker set", q: "cocktail shaker set" },
-        { id: "d2", name: "Champagne / cocktail glasses", q: "champagne coupe glasses set" },
-        { id: "d3", name: "Cocktail mixer kit", q: "cocktail mixer syrup set" }
+        { id: "d1", name: "Cocktail shaker set", q: "Cocktail Shaker Set Edelstahl" },
+        { id: "d2", name: "Champagne / cocktail glasses", q: "Sektglaeser Coupe Set" },
+        { id: "d3", name: "Cocktail mixer kit", q: "Cocktail Sirup Set" }
       ]
     },
     {
@@ -56,9 +56,9 @@
       img: IMG + "hf_20260615_163559_030a2811-cea7-4dd4-8262-e40dd10832dc.jpeg",
       guide: "posts/girls-night-snacks.html",
       picks: [
-        { id: "s1", name: "Grazing / charcuterie board", q: "grazing board serving platter" },
-        { id: "s2", name: "Popcorn maker", q: "popcorn maker" },
-        { id: "s3", name: "Chocolate gift box", q: "chocolate gift box" }
+        { id: "s1", name: "Grazing / charcuterie board", q: "Servierbrett Holz gross" },
+        { id: "s2", name: "Popcorn maker", q: "Popcornmaschine Heissluft" },
+        { id: "s3", name: "Chocolate gift box", q: "Pralinen Geschenkbox" }
       ]
     },
     {
@@ -69,9 +69,9 @@
       img: IMG + "hf_20260615_163600_b85fc10c-37e0-42c4-8ae9-38bdedfaabaf.jpeg",
       guide: "posts/girls-night-themes.html",
       picks: [
-        { id: "t1", name: "Pink balloon arch kit", q: "pink balloon arch kit" },
-        { id: "t2", name: "Disco ball / party lights", q: "disco ball party light" },
-        { id: "t3", name: "LED neon sign", q: "led neon sign room" }
+        { id: "t1", name: "Pink balloon arch kit", q: "Luftballon Girlande Set rosa" },
+        { id: "t2", name: "Disco ball / party lights", q: "Discokugel LED Partylicht" },
+        { id: "t3", name: "LED neon sign", q: "LED Neonschild Wand" }
       ]
     },
     {
@@ -82,9 +82,9 @@
       img: IMG + "hf_20260615_161824_657729c5-d58b-4150-8616-4615a11f2173.png",
       guide: "posts/girls-night-pamper-spa.html",
       picks: [
-        { id: "p1", name: "Face mask set", q: "face mask set skincare" },
-        { id: "p2", name: "Spa headband + scrunchies", q: "spa headband set" },
-        { id: "p3", name: "Nail polish set", q: "nail polish set" }
+        { id: "p1", name: "Face mask set", q: "Gesichtsmasken Set Tuchmasken" },
+        { id: "p2", name: "Spa headband + scrunchies", q: "Spa Stirnband Set" },
+        { id: "p3", name: "Nail polish set", q: "Nagellack Set" }
       ]
     },
     {
@@ -95,9 +95,9 @@
       img: IMG + "hf_20260615_161825_5ce93708-e414-43a1-b0cc-df3c561765b7.jpeg",
       guide: "posts/girls-night-movie-night.html",
       picks: [
-        { id: "m1", name: "Mini projector", q: "mini projector" },
-        { id: "m2", name: "Soft throw blankets", q: "soft throw blanket" },
-        { id: "m3", name: "Popcorn bowl set", q: "popcorn bowl set" }
+        { id: "m1", name: "Mini projector", q: "Mini Beamer Full HD" },
+        { id: "m2", name: "Soft throw blankets", q: "Kuscheldecke weich gross" },
+        { id: "m3", name: "Popcorn bowl set", q: "Popcorn Schalen Set" }
       ]
     }
   ];
