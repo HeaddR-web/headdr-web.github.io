@@ -1,7 +1,8 @@
 # Girls Night HQ — girls-night planning site (income engine #2)
 
 A reader-supported content + tool site in the **girls night / party planning** niche. Same money model as
-Cozylore, deliberately a different look (glam "night" vibe — deep plum, hot-pink→purple gradients, gold, sparkle).
+Cozylore, with a warm, elegant **hosting** look — cream & beige, soft terracotta-rose and sand accents, brushed
+gold (light theme; the deliberate contrast to Cozylore's calm tone is the warm entertaining vibe, not loudness).
 It makes money two ways, with **no store and no products to ship**:
 
 1. **Display ads** (Google AdSense → later Ezoic/Mediavine as traffic grows)

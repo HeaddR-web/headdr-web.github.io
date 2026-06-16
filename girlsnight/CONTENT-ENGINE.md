@@ -29,10 +29,10 @@ It can be driven by the `/loop` skill or a scheduled Claude Code web session.
 - Never fabricate specific product specs, prices, reviews, or statistics.
 - Keep affiliate/ad/newsletter spots as placeholders/searches until the owner adds real product links.
 - Keep everything inside `/girlsnight/`.
-- Keep the glam "night" voice: fun, warm, hype — but useful. This is the deliberate contrast to Cozylore's calm tone.
-- **Pin/article images must be at least 1000px wide.** Reuse the existing 2k Higgsfield images, or generate new
-  ones in the same style (prompts: "girls night … hot pink and purple … glam … no text"). Square 1:1 @ 2k or
-  2:3 @ 2k both clear Pinterest's 1000px minimum.
+- Keep the voice fun, warm and encouraging — but useful. Think elegant hosting, not loud nightclub.
+- **Pin/article images must be at least 1000px wide.** Generate new ones in the site's warm hosting style
+  (prompts: "girls night / hosting … warm beige & cream, soft terracotta-rose and gold accents, elegant,
+  cozy chic … no text"). Square 1:1 @ 2k or 2:3 @ 2k both clear Pinterest's 1000px minimum.
 - When the backlog is empty, propose 10 new long-tail, affiliate-friendly girls-night topics, append them to
   README.md's backlog, then continue.
 

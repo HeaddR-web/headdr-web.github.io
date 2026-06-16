@@ -1,20 +1,22 @@
-/* Girls Night HQ — glam "night" design system (deep plum · hot pink→purple · gold · sparkle) */
+/* Girls Night HQ — warm "hosting" design system (cream · beige · terracotta-rose · sand · soft gold) */
 :root {
-  color-scheme: dark;
-  --bg: #160726;
-  --bg-2: #1f0b35;
-  --card: #260f40;
-  --card-2: #2e1450;
-  --ink: #f8ecff;
-  --muted: #c6a6e0;
-  --pink: #ff3d8b;
-  --pink-deep: #e02a72;
-  --purple: #a855f7;
-  --gold: #f6c945;
-  --grad: linear-gradient(120deg, #ff3d8b 0%, #a855f7 100%);
-  --grad-soft: linear-gradient(120deg, rgba(255, 61, 139, 0.16), rgba(168, 85, 247, 0.16));
-  --line: rgba(255, 255, 255, 0.12);
-  --line-soft: rgba(255, 255, 255, 0.07);
+  color-scheme: light;
+  --bg: #f7f1e8;
+  --bg-2: #efe6d9;
+  --card: #fffdf9;
+  --card-2: #f4ece0;
+  --ink: #3e362e;
+  --ink-strong: #2a241e;
+  --muted: #8c7c6a;
+  /* accent names kept for compatibility — now a warm terracotta-rose + sand palette */
+  --pink: #be7a6b;
+  --pink-deep: #a5604f;
+  --purple: #cba67b;
+  --gold: #a9824a;
+  --grad: linear-gradient(120deg, #c98b7a 0%, #d8b892 100%);
+  --grad-soft: linear-gradient(120deg, rgba(201, 139, 122, 0.12), rgba(216, 184, 146, 0.16));
+  --line: rgba(62, 54, 46, 0.14);
+  --line-soft: rgba(62, 54, 46, 0.07);
   --max: 1120px;
   --read: 720px;
   --display: "Playfair Display", Georgia, "Times New Roman", serif;
@@ -33,9 +35,9 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(1100px 520px at 12% -8%, rgba(255, 61, 139, 0.18), transparent 60%),
-    radial-gradient(1000px 600px at 100% 0%, rgba(168, 85, 247, 0.2), transparent 58%),
-    radial-gradient(900px 700px at 50% 120%, rgba(246, 201, 69, 0.07), transparent 60%),
+    radial-gradient(1100px 520px at 12% -8%, rgba(201, 139, 122, 0.16), transparent 60%),
+    radial-gradient(1000px 600px at 100% 0%, rgba(216, 184, 146, 0.22), transparent 58%),
+    radial-gradient(900px 700px at 50% 120%, rgba(169, 130, 74, 0.08), transparent 60%),
     var(--bg);
   background-attachment: fixed;
   line-height: 1.75;
@@ -47,7 +49,7 @@ img {
   height: auto;
 }
 a {
-  color: var(--pink);
+  color: var(--pink-deep);
 }
 
 .eyebrow {
@@ -60,7 +62,7 @@ a {
   margin: 0 0 14px;
 }
 .sparkle {
-  filter: drop-shadow(0 0 6px rgba(246, 201, 69, 0.5));
+  filter: drop-shadow(0 0 6px rgba(169, 130, 74, 0.4));
 }
 
 /* ---------- Header ---------- */
@@ -68,8 +70,8 @@ header.site {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(22, 7, 38, 0.78);
-  backdrop-filter: saturate(150%) blur(12px);
+  background: rgba(247, 241, 232, 0.82);
+  backdrop-filter: saturate(140%) blur(12px);
   border-bottom: 1px solid var(--line);
 }
 header.site .inner {
@@ -87,10 +89,7 @@ header.site a.brand {
   font-size: 1.5rem;
   letter-spacing: -0.01em;
   text-decoration: none;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--pink-deep);
   white-space: nowrap;
 }
 header.site nav {
@@ -115,7 +114,7 @@ header.site nav a:hover {
 header.site nav a.nav-cta {
   color: #fff;
   background: var(--grad);
-  box-shadow: 0 6px 18px rgba(255, 61, 139, 0.32);
+  box-shadow: 0 6px 18px rgba(190, 122, 107, 0.28);
 }
 .nav-count {
   display: inline-block;
@@ -123,7 +122,7 @@ header.site nav a.nav-cta {
   padding: 0 5px;
   margin-left: 4px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(62, 54, 46, 0.12);
   font-size: 0.72rem;
   line-height: 18px;
   text-align: center;
@@ -148,18 +147,18 @@ main {
   border-radius: 28px;
   overflow: hidden;
   color: #fff;
-  background-image: linear-gradient(rgba(22, 7, 38, 0.5), rgba(22, 7, 38, 0.78)),
+  background-image: linear-gradient(rgba(61, 53, 46, 0.32), rgba(61, 53, 46, 0.56)),
     var(--hero-img);
   background-size: cover;
   background-position: center 42%;
   border: 1px solid var(--line);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 30px 70px rgba(61, 53, 46, 0.2);
 }
 .hero .hero-inner {
   max-width: 640px;
 }
 .hero .eyebrow {
-  color: var(--gold);
+  color: #f3dcc3;
 }
 .hero h1 {
   font-family: var(--display);
@@ -168,10 +167,10 @@ main {
   line-height: 1.03;
   letter-spacing: -0.01em;
   margin: 0 0 18px;
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
 }
 .hero h1 .glow {
-  background: linear-gradient(120deg, #ff7eb3, #c98bff);
+  background: linear-gradient(120deg, #f6dcc9, #ecd1a4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -181,7 +180,7 @@ main {
   color: rgba(255, 255, 255, 0.94);
   margin: 0 auto 30px;
   max-width: 520px;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
 }
 .btn-primary {
   display: inline-block;
@@ -195,12 +194,12 @@ main {
   border: none;
   cursor: pointer;
   font-family: var(--ui);
-  box-shadow: 0 14px 34px rgba(255, 61, 139, 0.4);
+  box-shadow: 0 14px 30px rgba(190, 122, 107, 0.36);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 44px rgba(255, 61, 139, 0.5);
+  box-shadow: 0 18px 40px rgba(190, 122, 107, 0.46);
 }
 
 /* ---------- Progress tracker ---------- */
@@ -208,13 +207,13 @@ main {
   position: sticky;
   top: 64px;
   z-index: 20;
-  background: linear-gradient(180deg, rgba(46, 20, 80, 0.95), rgba(38, 15, 64, 0.95));
+  background: linear-gradient(180deg, rgba(255, 253, 249, 0.94), rgba(244, 236, 224, 0.94));
   backdrop-filter: blur(10px);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 16px 22px;
   margin: 0 0 36px;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 14px 30px rgba(61, 53, 46, 0.1);
 }
 .tracker .row {
   display: flex;
@@ -228,7 +227,7 @@ main {
   font-size: 0.98rem;
 }
 .tracker .label b {
-  color: var(--gold);
+  color: var(--pink-deep);
 }
 .tracker .hint {
   color: var(--muted);
@@ -238,7 +237,7 @@ main {
   margin-top: 12px;
   height: 12px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(62, 54, 46, 0.1);
   overflow: hidden;
   border: 1px solid var(--line-soft);
 }
@@ -284,15 +283,16 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 24px rgba(61, 53, 46, 0.05);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 .cat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 52px rgba(168, 85, 247, 0.22);
+  box-shadow: 0 22px 46px rgba(190, 122, 107, 0.2);
 }
 .cat-card.is-planned {
   border-color: var(--pink);
-  box-shadow: 0 0 0 1px var(--pink), 0 22px 52px rgba(255, 61, 139, 0.22);
+  box-shadow: 0 0 0 1px var(--pink), 0 22px 46px rgba(190, 122, 107, 0.22);
 }
 .cat-card .cover {
   position: relative;
@@ -304,17 +304,18 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 35%, rgba(38, 15, 64, 0.9));
+  background: linear-gradient(180deg, transparent 35%, rgba(61, 53, 46, 0.72));
 }
 .cat-card .cover .tag {
   position: absolute;
   left: 14px;
   bottom: 12px;
   z-index: 2;
+  color: #fff;
   font-family: var(--display);
   font-weight: 700;
   font-size: 1.4rem;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
 }
 .cat-card .cover .done {
   position: absolute;
@@ -374,13 +375,13 @@ main {
   text-decoration: none;
 }
 .picks .pick-name a:hover {
-  color: var(--pink);
+  color: var(--pink-deep);
 }
 .add-btn {
   flex: none;
   border: 1px solid var(--pink);
   background: transparent;
-  color: var(--pink);
+  color: var(--pink-deep);
   font-family: var(--ui);
   font-weight: 700;
   font-size: 0.8rem;
@@ -418,6 +419,7 @@ main {
   border-radius: 24px;
   padding: 28px 26px;
   margin: 18px 0 0;
+  box-shadow: 0 10px 30px rgba(61, 53, 46, 0.06);
 }
 .mynight h2 {
   font-family: var(--display);
@@ -495,7 +497,7 @@ main {
   padding: 2px 4px;
 }
 .mynight li button.remove:hover {
-  color: var(--pink);
+  color: var(--pink-deep);
 }
 .mynight .toolbar {
   display: flex;
@@ -517,7 +519,7 @@ main {
 }
 .btn-ghost:hover {
   border-color: var(--pink);
-  color: var(--pink);
+  color: var(--pink-deep);
 }
 .mynight .tiny {
   margin-top: 14px;
@@ -539,11 +541,12 @@ main {
   text-decoration: none;
   color: inherit;
   display: block;
+  box-shadow: 0 8px 24px rgba(61, 53, 46, 0.05);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .post-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 44px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 18px 40px rgba(190, 122, 107, 0.2);
 }
 .post-card .thumb {
   height: 210px;
@@ -616,10 +619,10 @@ article h3 {
 article p,
 article li {
   font-size: 1.07rem;
-  color: #ece0f5;
+  color: #4a4138;
 }
 article strong {
-  color: #fff;
+  color: var(--ink-strong);
 }
 article img.lead {
   width: 100%;
@@ -631,7 +634,7 @@ article img.lead {
   border: 1px solid var(--line);
 }
 article a {
-  color: var(--pink);
+  color: var(--pink-deep);
 }
 .backlink {
   display: inline-block;
@@ -676,7 +679,7 @@ article a {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 700;
-  box-shadow: 0 8px 22px rgba(255, 61, 139, 0.3);
+  box-shadow: 0 8px 20px rgba(190, 122, 107, 0.3);
   transition: transform 0.15s ease;
 }
 .pick a.cta:hover {
@@ -730,7 +733,7 @@ article a {
   border-radius: 999px;
   font-size: 0.95rem;
   font-family: var(--ui);
-  background: var(--bg-2);
+  background: var(--card);
   color: var(--ink);
 }
 .subscribe input::placeholder {
@@ -765,7 +768,7 @@ article a {
 /* ---------- Footer ---------- */
 footer.site {
   border-top: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(62, 54, 46, 0.04);
   color: var(--muted);
   font-size: 0.85rem;
 }
@@ -791,7 +794,7 @@ footer.site a {
   font-size: 0.9rem;
   padding: 12px 22px;
   border-radius: 999px;
-  box-shadow: 0 14px 34px rgba(255, 61, 139, 0.45);
+  box-shadow: 0 14px 30px rgba(190, 122, 107, 0.4);
   opacity: 0;
   pointer-events: none;
   z-index: 50;
