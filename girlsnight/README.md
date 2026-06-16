@@ -11,7 +11,7 @@ It makes money two ways, with **no store and no products to ship**:
 Traffic comes from **Google SEO** (slow, compounding) **+ Pinterest** (fast — reuses the same publishing engine
 as Cozylore; this niche is huge on Pinterest).
 
-It lives entirely in `/girlsnight/` so it never touches the root `index.html` (HeaddR Wallpapers) or `/cozy/`.
+It lives entirely in `/girlsnight/` as one hub under the **Hosting HQ** portal (root `index.html`); it does not touch `/cozy/`.
 
 ---
 
