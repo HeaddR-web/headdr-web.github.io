@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Girls Night HQ — Plan the Ultimate Girls Night In</title>
+    <title>Girls Night HQ — Den ultimativen Mädelsabend planen</title>
     <meta
       name="description"
-      content="Build the ultimate girls night in minutes: games, cocktails, snacks, decorations, pamper-spa and movie night. Pick from each category and get your ready-to-shop list."
+      content="Plane den ultimativen Mädelsabend: Spiele, Cocktails, Snacks, Deko, Pflege & Filmabend — kuratiert nach Kategorie mit direkten Amazon-Links, plus Guides für jeden Teil des Abends."
     />
     <link rel="canonical" href="https://headdr-web.github.io/girlsnight/" />
-    <meta property="og:title" content="Girls Night HQ — Plan the Ultimate Girls Night In" />
-    <meta property="og:description" content="Pick games, drinks, snacks, decor, pamper and movie night — and build your ready-to-shop list." />
+    <meta property="og:title" content="Girls Night HQ — Den ultimativen Mädelsabend planen" />
+    <meta property="og:description" content="Spiele, Drinks, Snacks, Deko, Pflege & Filmabend — alles für den Mädelsabend, nach Kategorie sortiert." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,7 +28,8 @@
         "@type": "WebSite",
         "name": "Girls Night HQ",
         "url": "https://headdr-web.github.io/girlsnight/",
-        "description": "Plan the ultimate girls night in: games, drinks, snacks, decor, pamper and movie night, with a build-your-own shopping list."
+        "inLanguage": "de",
+        "description": "Plane den ultimativen Mädelsabend: Spiele, Drinks, Snacks, Deko, Pflege und Filmabend, kuratiert nach Kategorie mit direkten Amazon-Links."
       }
     </script>
   </head>
@@ -37,11 +38,10 @@
       <div class="inner">
         <a class="brand" href="index.html">✨ Girls Night HQ</a>
         <nav>
-          <a href="index.html">Home</a>
+          <a href="../index.html">Hosting HQ</a>
+          <a href="#kategorien">Ausstattung</a>
           <a href="#guides">Guides</a>
-          <a href="#mynight">My Night <span class="nav-count" id="nav-count">0</span></a>
-          <a class="nav-cta" href="#build">Build your night</a>
-          <a href="disclosure.html">About</a>
+          <a href="disclosure.html">Über uns</a>
         </nav>
       </div>
     </header>
@@ -52,90 +52,74 @@
         style="--hero-img: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394.png')"
       >
         <div class="hero-inner">
-          <p class="eyebrow">Hosting HQ · for the girls</p>
-          <h1>Build the <span class="glow">ultimate</span> girls night.</h1>
+          <p class="eyebrow">Hosting HQ · Mädelsabend</p>
+          <h1>Plan den <span class="glow">ultimativen</span> Mädelsabend.</h1>
           <p class="hero-sub">
-            Games, cocktails, snacks, decor, pamper and a movie — pick your favourites from each category and we'll
-            turn them into one ready-to-shop list. Plan a whole night in five minutes. 💖
+            Spiele, Cocktails, Snacks, Deko, Pflege und ein Film — alles für den perfekten Mädelsabend zuhause,
+            kuratiert nach Kategorie mit direkten Links. In fünf Minuten geplant. 💖
           </p>
-          <a class="btn-primary" href="#build">Start building →</a>
+          <a class="btn-primary" href="#kategorien">Zur Ausstattung →</a>
         </div>
       </section>
 
-      <!-- Progress tracker -->
-      <div class="tracker" id="tracker">
-        <div class="row">
-          <span class="label">Your night: <b id="tracker-count">0/6</b> categories planned</span>
-          <span class="hint" id="tracker-hint">Pick from each category to plan the perfect night.</span>
-        </div>
-        <div class="bar"><span id="bar-fill"></span></div>
-      </div>
-
-      <!-- Build your night -->
-      <section id="build">
+      <!-- Ausstattung nach Kategorie -->
+      <section id="kategorien">
         <div class="section-head">
-          <p class="eyebrow">Step 1 · Build it</p>
-          <h2>Pick your vibe, category by category</h2>
-          <p>Tap <strong>+ Add</strong> on anything you love. Each category you touch fills your progress bar — and
-            everything lands in <strong>My Night</strong> below as a shopping list.</p>
+          <p class="eyebrow">Alles für den Abend</p>
+          <h2>Was du brauchst — nach Kategorie</h2>
+          <p>Pro Kategorie unsere kuratierten Ideen, jede mit kurzer Begründung und <strong>direktem Link zu
+            Amazon</strong>. Einfach finden, klicken, fertig.</p>
         </div>
         <div class="build-grid" id="build-grid">
-          <!-- rendered by app.js -->
+          <!-- von app.js gerendert -->
           <noscript>
             <p style="color: var(--muted)">
-              The interactive night-builder needs JavaScript. You can still browse every guide:
-              <a href="posts/girls-night-games.html">Games</a>,
+              Die Kategorie-Ansicht braucht JavaScript. Du kannst trotzdem alle Guides lesen:
+              <a href="posts/girls-night-games.html">Spiele</a>,
               <a href="posts/girls-night-drinks.html">Drinks</a>,
               <a href="posts/girls-night-snacks.html">Snacks</a>,
               <a href="posts/girls-night-themes.html">Deko &amp; Themes</a>,
-              <a href="posts/girls-night-pamper-spa.html">Pamper &amp; Spa</a>,
-              <a href="posts/girls-night-movie-night.html">Movie Night</a>.
+              <a href="posts/girls-night-pamper-spa.html">Pflege &amp; Spa</a>,
+              <a href="posts/girls-night-movie-night.html">Filmabend</a>.
             </p>
           </noscript>
         </div>
       </section>
 
-      <!-- My Night -->
-      <section id="mynight" class="mynight">
-        <h2>🛍️ My Night</h2>
-        <p class="sub">Your personal plan + shopping list. Saved on this device, ready whenever you are.</p>
-        <div id="mynight-body"><!-- rendered by app.js --></div>
-      </section>
-
-      <div class="ad-slot">Ad slot — leaderboard (728×90). Renders once AdSense is connected.</div>
+      <div class="ad-slot">Werbeplatz — Leaderboard (728×90). Erscheint, sobald AdSense aktiv ist.</div>
 
       <!-- Guides -->
       <section id="guides">
         <div class="section-head">
-          <p class="eyebrow">Step 2 · Get inspired</p>
-          <h2>Girls night guides &amp; ideas</h2>
-          <p>Deep-dives for every part of the night — themes, recipes, games and pamper rituals worth stealing.</p>
+          <p class="eyebrow">Lass dich inspirieren</p>
+          <h2>Mädelsabend-Guides &amp; Ideen</h2>
+          <p>Tiefe Guides für jeden Teil des Abends — Themen, Rezepte, Spiele und Pflege-Rituale zum Stehlen.</p>
         </div>
         <div class="grid">
-          <a class="post-card" href="posts/girls-night-budget.html">
-            <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102603_03681df2-32a0-4d07-bf48-dc7d36d87325.png')"></div>
-            <div class="body">
-              <span class="kicker">On a Budget</span>
-              <h3>Girls Night In Ideas on a Budget: 20 Cheap, Fun Things to Do</h3>
-              <p>Free activities, DIY decor and easy snacks — a brilliant night in for next to nothing.</p>
-            </div>
-          </a>
-
           <a class="post-card" href="posts/girls-night-galentines.html">
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14.png')"></div>
             <div class="body">
               <span class="kicker">Galentine's</span>
-              <h3>Galentine's Day Party Ideas: How to Host the Best Galentine's</h3>
-              <p>Themes, food, drinks, games and gift bags for the ultimate ladies-celebrating-ladies night on 13 February.</p>
+              <h3>Galentine's Day Party-Ideen</h3>
+              <p>Themen, Essen, Drinks, Spiele &amp; Goodie-Bags für den ultimativen Ladies-Abend am 13. Februar.</p>
+            </div>
+          </a>
+
+          <a class="post-card" href="posts/girls-night-budget.html">
+            <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e.png')"></div>
+            <div class="body">
+              <span class="kicker">Budget</span>
+              <h3>Mädelsabend-Ideen mit kleinem Budget</h3>
+              <p>Kostenlose Aktivitäten, DIY-Deko &amp; einfache Snacks — ein toller Abend für fast nichts.</p>
             </div>
           </a>
 
           <a class="post-card" href="posts/girls-night-games.html">
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.png')"></div>
             <div class="body">
-              <span class="kicker">Games</span>
-              <h3>21 Girls Night Games That Actually Get Everyone Laughing</h3>
-              <p>From no-prop ice-breakers to chaotic party card games — the games that make the night.</p>
+              <span class="kicker">Spiele</span>
+              <h3>21 Spiele für den Mädelsabend, die alle zum Lachen bringen</h3>
+              <p>Von No-Prop-Eisbrechern bis zu chaotischen Kartenspielen — die Spiele, die den Abend machen.</p>
             </div>
           </a>
 
@@ -143,8 +127,8 @@
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png')"></div>
             <div class="body">
               <span class="kicker">Drinks</span>
-              <h3>Girls Night Cocktails &amp; Mocktails Everyone Will Love</h3>
-              <p>Easy crowd-pleasers, a signature drink and zero-proof options — plus the kit to make them.</p>
+              <h3>Cocktails &amp; Mocktails, die alle lieben</h3>
+              <p>Einfache Crowd-Pleaser, ein Signature-Drink und alkoholfreie Optionen — plus das Kit dazu.</p>
             </div>
           </a>
 
@@ -152,8 +136,8 @@
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png')"></div>
             <div class="body">
               <span class="kicker">Snacks</span>
-              <h3>Easy Girls Night Snacks &amp; a Show-Stopping Grazing Board</h3>
-              <p>Sweet, salty and make-ahead — how to build a grazing board that looks way harder than it is.</p>
+              <h3>Einfache Snacks &amp; ein Grazing-Board zum Angeben</h3>
+              <p>Süß, salzig &amp; vorzubereiten — ein Board, das mehr hermacht, als es Arbeit ist.</p>
             </div>
           </a>
 
@@ -161,38 +145,38 @@
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png')"></div>
             <div class="body">
               <span class="kicker">Deko &amp; Themes</span>
-              <h3>12 Girls Night Theme &amp; Decoration Ideas</h3>
-              <p>Pick a theme and run with it — balloon arches, neon glow and a sparkly table in minutes.</p>
+              <h3>12 Themen- &amp; Deko-Ideen für den Mädelsabend</h3>
+              <p>Such dir ein Thema: Ballonbögen, Neon-Glow und ein funkelnder Tisch in Minuten.</p>
             </div>
           </a>
 
           <a class="post-card" href="posts/girls-night-pamper-spa.html">
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.png')"></div>
             <div class="body">
-              <span class="kicker">Pamper &amp; Spa</span>
-              <h3>The At-Home Pamper &amp; Spa Night, Step by Step</h3>
-              <p>Face masks, mani-pedis and a robe-and-candles ritual that turns the living room into a spa.</p>
+              <span class="kicker">Pflege &amp; Spa</span>
+              <h3>Der Spa- &amp; Pflegeabend zuhause, Schritt für Schritt</h3>
+              <p>Gesichtsmasken, Mani-Pedi und ein Bademantel-Kerzen-Ritual, das aus dem Wohnzimmer ein Spa macht.</p>
             </div>
           </a>
 
           <a class="post-card" href="posts/girls-night-movie-night.html">
             <div class="thumb" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa.png')"></div>
             <div class="body">
-              <span class="kicker">Movie Night</span>
-              <h3>The Ultimate Girls Movie Night Setup</h3>
-              <p>Projector or TV, cosy blankets, popcorn bar and a watchlist — how to do movie night right.</p>
+              <span class="kicker">Filmabend</span>
+              <h3>Das ultimative Filmabend-Setup für Mädels</h3>
+              <p>Beamer oder TV, kuschelige Decken, Popcorn-Bar und eine Watchlist — so geht Filmabend richtig.</p>
             </div>
           </a>
         </div>
       </section>
 
       <div class="subscribe">
-        <h3>Get a new girls night idea every week</h3>
-        <p>One short email: a theme, a cocktail and a game worth trying. No spam, ever.</p>
-        <!-- NEWSLETTER: replace action="#" with your beehiiv/MailerLite embed form action -->
+        <h3>Jede Woche eine neue Mädelsabend-Idee</h3>
+        <p>Eine kurze Mail: ein Thema, ein Cocktail und ein Spiel zum Ausprobieren. Kein Spam, versprochen.</p>
+        <!-- NEWSLETTER: action="#" durch dein beehiiv/MailerLite-Formular ersetzen -->
         <form action="#" method="post">
-          <input type="email" name="email" placeholder="your@email.com" required />
-          <button type="submit">Join free</button>
+          <input type="email" name="email" placeholder="deine@email.de" required />
+          <button type="submit">Kostenlos anmelden</button>
         </form>
       </div>
     </main>
@@ -200,14 +184,12 @@
     <footer class="site">
       <div class="inner">
         <p>
-          Girls Night HQ is reader-supported. Some links are affiliate links — see our
-          <a href="disclosure.html">disclosure &amp; privacy policy</a>.
+          Girls Night HQ ist leser-finanziert. Manche Links sind Affiliate-Links — siehe unsere
+          <a href="disclosure.html">Offenlegung &amp; Datenschutz</a>.
         </p>
-        <p>© <span id="y"></span> Girls Night HQ</p>
+        <p>© <span id="y"></span> Girls Night HQ · <a href="../index.html">Hosting HQ</a></p>
       </div>
     </footer>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="app.js"></script>
     <script>

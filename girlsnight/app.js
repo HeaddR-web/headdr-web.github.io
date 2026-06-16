@@ -1,193 +1,146 @@
-/* Girls Night HQ — "Build your night" gamification engine.
-   Pure static JS + localStorage. No backend, no tracking.
-   Affiliate links use the Amazon Associates tag cozylore-21. */
+/* Girls Night HQ — Ausstattung nach Kategorie mit direkten Amazon-Links.
+   Reines statisches JS (nur Rendering, kein State). Affiliate-Tag: cozylore-21. */
 (function () {
   "use strict";
 
   var AFF_TAG = "cozylore-21";
-  var STORE_KEY = "girlsnight.plan.v1";
 
-  // Amazon search affiliate link builder (no fake product names / prices).
   function amz(query) {
-    return (
-      "https://www.amazon.de/s?k=" +
-      encodeURIComponent(query) +
-      "&tag=" +
-      AFF_TAG
-    );
+    return "https://www.amazon.de/s?k=" + encodeURIComponent(query) + "&tag=" + AFF_TAG;
   }
 
-  // Category data — covers (Higgsfield glam images), guides and curated picks.
-  var IMG =
-    "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/";
+  var IMG = "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/";
 
   var CATEGORIES = [
     {
       key: "games",
-      name: "Games",
+      name: "Spiele",
       emoji: "🎲",
-      blurb: "Ice-breakers, party card games and a little friendly chaos.",
+      blurb: "Eisbrecher, Party-Kartenspiele und ein bisschen Chaos.",
       img: IMG + "hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.png",
       guide: "posts/girls-night-games.html",
       picks: [
-        { id: "g1", name: "Party card game (adults)", q: "Partyspiel Karten Erwachsene" },
-        { id: "g2", name: "Truth or dare / conversation game", q: "Wahrheit oder Pflicht Kartenspiel" },
-        { id: "g3", name: "Drinking game set", q: "Trinkspiel Set Party" }
+        { name: "Party-Kartenspiel (Erwachsene)", desc: "Der einfachste Eisbrecher des Abends.", q: "Partyspiel Karten Erwachsene" },
+        { name: "Wahrheit oder Pflicht (Deck)", desc: "Klassiker ohne Nachdenken.", q: "Wahrheit oder Pflicht Kartenspiel" },
+        { name: "„Wer kennt mich am besten?\"", desc: "Für enge Freundinnen.", q: "Wer kennt mich am besten Spiel" },
+        { name: "Trinkspiel-Set", desc: "Bringt sofort Stimmung.", q: "Trinkspiel Set Party" },
+        { name: "Zeichen- & Rate-Spiel", desc: "Chaotisch und sehr fotogen.", q: "Zeichenspiel Partyspiel" }
       ]
     },
     {
       key: "drinks",
       name: "Drinks",
       emoji: "🍸",
-      blurb: "Signature cocktails, bubbly and everything to pour them in.",
+      blurb: "Signature-Cocktails, Sekt und alles zum Servieren.",
       img: IMG + "hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png",
       guide: "posts/girls-night-drinks.html",
       picks: [
-        { id: "d1", name: "Cocktail shaker set", q: "Cocktail Shaker Set Edelstahl" },
-        { id: "d2", name: "Champagne / cocktail glasses", q: "Sektglaeser Coupe Set" },
-        { id: "d3", name: "Cocktail mixer kit", q: "Cocktail Sirup Set" }
+        { name: "Cocktail-Shaker-Set", desc: "Macht jeden Drink zum Event.", q: "Cocktail Shaker Set Edelstahl" },
+        { name: "Coupé-/Cocktailgläser", desc: "Edel und wiederverwendbar.", q: "Sektglaeser Coupe Set" },
+        { name: "Getränkespender", desc: "Self-Service für Batch-Cocktails.", q: "Getraenkespender mit Zapfhahn" },
+        { name: "Cocktail-Sirup-Set", desc: "Im Handumdrehen neue Drinks.", q: "Cocktail Sirup Set" },
+        { name: "Eiswürfelform XXL", desc: "Eis ist immer zuerst leer.", q: "Eiswuerfelform gross Silikon" }
       ]
     },
     {
       key: "snacks",
       name: "Snacks",
       emoji: "🍫",
-      blurb: "Grazing boards, sweet treats and bottomless popcorn.",
+      blurb: "Grazing-Boards, süße Häppchen und Popcorn ohne Ende.",
       img: IMG + "hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
       guide: "posts/girls-night-snacks.html",
       picks: [
-        { id: "s1", name: "Grazing / charcuterie board", q: "Servierbrett Holz gross" },
-        { id: "s2", name: "Popcorn maker", q: "Popcornmaschine Heissluft" },
-        { id: "s3", name: "Chocolate gift box", q: "Pralinen Geschenkbox" }
+        { name: "Servierbrett (groß)", desc: "Die Basis für ein Grazing-Board.", q: "Servierbrett Holz gross" },
+        { name: "Etagere", desc: "Macht aus Snacks ein Buffet.", q: "Etagere Servierstaender" },
+        { name: "Dip-Schalen-Set", desc: "Süß, salzig, alles getrennt.", q: "Dip Schalen Set" },
+        { name: "Popcornmaschine", desc: "Frisches Popcorn für den Filmabend.", q: "Popcornmaschine Heissluft" },
+        { name: "Pralinen-Geschenkbox", desc: "Das süße Highlight.", q: "Pralinen Geschenkbox" }
       ]
     },
     {
       key: "themes",
       name: "Deko & Themes",
       emoji: "🎀",
-      blurb: "Balloon arches, neon glow and a sparkly themed table.",
+      blurb: "Ballon-Girlanden, Lichterketten und ein hübsch gedeckter Tisch.",
       img: IMG + "hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png",
       guide: "posts/girls-night-themes.html",
       picks: [
-        { id: "t1", name: "Pink balloon arch kit", q: "Luftballon Girlande Set rosa" },
-        { id: "t2", name: "Disco ball / party lights", q: "Discokugel LED Partylicht" },
-        { id: "t3", name: "LED neon sign", q: "LED Neonschild Wand" }
+        { name: "Luftballon-Girlande (Set)", desc: "Der Foto-Hintergrund des Abends.", q: "Luftballon Girlande Set rosa" },
+        { name: "LED-Lichterkette warmweiß", desc: "Sofort gemütliche Stimmung.", q: "LED Lichterkette warmweiss innen" },
+        { name: "Discokugel / Partylicht", desc: "Macht jeden Raum zur Tanzfläche.", q: "Discokugel LED Partylicht" },
+        { name: "LED-Neonschild", desc: "Wirkt wie eine echte Location.", q: "LED Neonschild Wand" },
+        { name: "Konfetti & Tischdeko", desc: "Die schnellen 5-Minuten-Akzente.", q: "Tischdeko Set Party rosa" }
       ]
     },
     {
       key: "pamper",
-      name: "Pamper & Spa",
+      name: "Pflege & Spa",
       emoji: "💅",
-      blurb: "Face masks, robes and a full at-home spa moment.",
+      blurb: "Gesichtsmasken, Bademäntel und ein Spa-Moment für daheim.",
       img: IMG + "hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.png",
       guide: "posts/girls-night-pamper-spa.html",
       picks: [
-        { id: "p1", name: "Face mask set", q: "Gesichtsmasken Set Tuchmasken" },
-        { id: "p2", name: "Spa headband + scrunchies", q: "Spa Stirnband Set" },
-        { id: "p3", name: "Nail polish set", q: "Nagellack Set" }
+        { name: "Gesichtsmasken-Set", desc: "Der Spa-Klassiker für alle.", q: "Gesichtsmasken Set Tuchmasken" },
+        { name: "Spa-Stirnband & Scrunchies", desc: "Bequem und süß auf Fotos.", q: "Spa Stirnband Set" },
+        { name: "Nagellack-Set", desc: "Mani-Pedi-Station für daheim.", q: "Nagellack Set" },
+        { name: "Fußbad / Fußpflege-Set", desc: "Wellness bis in die Zehen.", q: "Fussbad Set Wellness" },
+        { name: "Duftkerzen-Set", desc: "Die richtige Stimmung & Duft.", q: "Duftkerzen Set" }
       ]
     },
     {
       key: "movie",
-      name: "Movie Night",
+      name: "Filmabend",
       emoji: "🎬",
-      blurb: "A projector, cosy blankets and a big bowl of popcorn.",
+      blurb: "Ein Beamer, kuschelige Decken und eine große Schüssel Popcorn.",
       img: IMG + "hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa.png",
       guide: "posts/girls-night-movie-night.html",
       picks: [
-        { id: "m1", name: "Mini projector", q: "Mini Beamer Full HD" },
-        { id: "m2", name: "Soft throw blankets", q: "Kuscheldecke weich gross" },
-        { id: "m3", name: "Popcorn bowl set", q: "Popcorn Schalen Set" }
+        { name: "Mini-Beamer (Full HD)", desc: "Macht das Wohnzimmer zum Kino.", q: "Mini Beamer Full HD" },
+        { name: "Kuscheldecken (weich, groß)", desc: "Das gemütliche Nest.", q: "Kuscheldecke weich gross" },
+        { name: "Popcorn-Schalen-Set", desc: "Weil Popcorn Pflicht ist.", q: "Popcorn Schalen Set" },
+        { name: "Sitzsack / Bodenkissen", desc: "Extra Plätze zum Lümmeln.", q: "Sitzsack gross" },
+        { name: "Sternenhimmel-Projektor", desc: "Stimmungslicht für den Filmabend.", q: "Sternenhimmel Projektor LED" }
       ]
     }
   ];
 
-  // Flat lookup of every pick by id.
-  var PICKS = {};
-  CATEGORIES.forEach(function (cat) {
-    cat.picks.forEach(function (p) {
-      PICKS[p.id] = { id: p.id, name: p.name, q: p.q, cat: cat.key, catName: cat.name };
-    });
-  });
-
-  // ---- state ----
-  function load() {
-    try {
-      var raw = localStorage.getItem(STORE_KEY);
-      var arr = raw ? JSON.parse(raw) : [];
-      return Array.isArray(arr) ? arr.filter(function (id) { return PICKS[id]; }) : [];
-    } catch (e) {
-      return [];
-    }
-  }
-  function save(arr) {
-    try {
-      localStorage.setItem(STORE_KEY, JSON.stringify(arr));
-    } catch (e) {}
-  }
-  var plan = load();
-
-  function has(id) {
-    return plan.indexOf(id) !== -1;
-  }
-  function plannedCategories() {
-    var set = {};
-    plan.forEach(function (id) {
-      set[PICKS[id].cat] = true;
-    });
-    return Object.keys(set);
-  }
-
-  // ---- rendering ----
-  function el(html) {
-    var d = document.createElement("div");
-    d.innerHTML = html.trim();
-    return d.firstChild;
-  }
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
   }
+  function el(html) {
+    var d = document.createElement("div");
+    d.innerHTML = html.trim();
+    return d.firstChild;
+  }
 
-  function renderBuild() {
+  function render() {
     var grid = document.getElementById("build-grid");
     if (!grid) return;
     grid.innerHTML = "";
-    var planned = plannedCategories();
     CATEGORIES.forEach(function (cat) {
-      var isPlanned = planned.indexOf(cat.key) !== -1;
       var picksHtml = cat.picks
         .map(function (p) {
-          var added = has(p.id);
           return (
             '<li>' +
             '<span class="pick-name">' +
             esc(p.name) +
-            '<br><a href="' +
+            '<small class="pick-desc">' +
+            esc(p.desc) +
+            "</small></span>" +
+            '<a class="add-btn" href="' +
             amz(p.q) +
-            '" rel="sponsored nofollow" target="_blank">view on Amazon →</a></span>' +
-            '<button class="add-btn' +
-            (added ? " added" : "") +
-            '" data-pick="' +
-            p.id +
-            '">' +
-            (added ? "✓ Added" : "+ Add") +
-            "</button>" +
+            '" rel="sponsored nofollow" target="_blank">Amazon →</a>' +
             "</li>"
           );
         })
         .join("");
       var card = el(
-        '<article class="cat-card' +
-          (isPlanned ? " is-planned" : "") +
-          '" data-cat="' +
-          cat.key +
-          '">' +
+        '<article class="cat-card">' +
           '<div class="cover" style="background-image:url(\'' +
           cat.img +
           "')\">" +
-          '<span class="done">✓ Planned</span>' +
           '<span class="tag">' +
           cat.emoji +
           " " +
@@ -203,9 +156,9 @@
           "</ul>" +
           '<a class="guide-link" href="' +
           cat.guide +
-          '">Read the full ' +
+          '">Zum kompletten ' +
           esc(cat.name) +
-          " guide →</a>" +
+          "-Guide →</a>" +
           "</div>" +
           "</article>"
       );
@@ -213,153 +166,5 @@
     });
   }
 
-  function renderMyNight() {
-    var wrap = document.getElementById("mynight-body");
-    if (!wrap) return;
-    if (!plan.length) {
-      wrap.innerHTML =
-        '<div class="empty">Your night is empty so far. Tap <b>+ Add</b> on the picks above to start building your shopping list. ✨</div>';
-      return;
-    }
-    var html = "";
-    CATEGORIES.forEach(function (cat) {
-      var items = cat.picks.filter(function (p) {
-        return has(p.id);
-      });
-      if (!items.length) return;
-      html += '<div class="group"><h3>' + cat.emoji + " " + esc(cat.name) + "</h3><ul>";
-      items.forEach(function (p) {
-        html +=
-          '<li><span class="name">' +
-          esc(p.name) +
-          '</span><span class="actions">' +
-          '<a class="shop" href="' +
-          amz(p.q) +
-          '" rel="sponsored nofollow" target="_blank">Shop →</a>' +
-          '<button class="remove" data-remove="' +
-          p.id +
-          '" aria-label="Remove">×</button>' +
-          "</span></li>";
-      });
-      html += "</ul></div>";
-    });
-    html +=
-      '<div class="toolbar">' +
-      '<button class="btn-ghost" id="copy-list">📋 Copy my list</button>' +
-      '<button class="btn-ghost" id="clear-list">Clear all</button>' +
-      "</div>" +
-      '<p class="tiny">Saved on this device only. As an Amazon Associate we earn from qualifying purchases — at no extra cost to you.</p>';
-    wrap.innerHTML = html;
-  }
-
-  function updateTracker() {
-    var total = CATEGORIES.length;
-    var done = plannedCategories().length;
-    var pct = Math.round((done / total) * 100);
-    var bar = document.getElementById("bar-fill");
-    if (bar) bar.style.width = pct + "%";
-    var lbl = document.getElementById("tracker-count");
-    if (lbl) lbl.textContent = done + "/" + total;
-    var hint = document.getElementById("tracker-hint");
-    if (hint) {
-      hint.textContent =
-        done === 0
-          ? "Pick from each category to plan the perfect night."
-          : done === total
-          ? "Your night is fully planned — go grab the list! 🎉"
-          : "Nice — " + (total - done) + " categories to go.";
-    }
-    var navc = document.getElementById("nav-count");
-    if (navc) navc.textContent = plan.length;
-  }
-
-  function refresh() {
-    renderBuild();
-    renderMyNight();
-    updateTracker();
-  }
-
-  // ---- toast ----
-  var toastTimer;
-  function toast(msg) {
-    var t = document.getElementById("toast");
-    if (!t) return;
-    t.textContent = msg;
-    t.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () {
-      t.classList.remove("show");
-    }, 1800);
-  }
-
-  // ---- actions ----
-  function addPick(id) {
-    if (!PICKS[id] || has(id)) return;
-    plan.push(id);
-    save(plan);
-    refresh();
-    toast("Added to your night ✨");
-  }
-  function removePick(id) {
-    var i = plan.indexOf(id);
-    if (i === -1) return;
-    plan.splice(i, 1);
-    save(plan);
-    refresh();
-  }
-  function clearAll() {
-    if (!plan.length) return;
-    if (!confirm("Clear your whole night?")) return;
-    plan = [];
-    save(plan);
-    refresh();
-    toast("Cleared");
-  }
-  function copyList() {
-    if (!plan.length) return;
-    var lines = ["My Girls Night HQ list:", ""];
-    CATEGORIES.forEach(function (cat) {
-      var items = cat.picks.filter(function (p) {
-        return has(p.id);
-      });
-      if (!items.length) return;
-      lines.push(cat.emoji + " " + cat.name);
-      items.forEach(function (p) {
-        lines.push("  - " + p.name + " — " + amz(p.q));
-      });
-      lines.push("");
-    });
-    lines.push("Built at https://headdr-web.github.io/girlsnight/");
-    var text = lines.join("\n");
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(
-        function () {
-          toast("List copied 📋");
-        },
-        function () {
-          window.prompt("Copy your list:", text);
-        }
-      );
-    } else {
-      window.prompt("Copy your list:", text);
-    }
-  }
-
-  // ---- delegated events ----
-  document.addEventListener("click", function (e) {
-    var addBtn = e.target.closest("[data-pick]");
-    if (addBtn) {
-      addPick(addBtn.getAttribute("data-pick"));
-      return;
-    }
-    var rm = e.target.closest("[data-remove]");
-    if (rm) {
-      removePick(rm.getAttribute("data-remove"));
-      return;
-    }
-    if (e.target.id === "clear-list") clearAll();
-    if (e.target.id === "copy-list") copyList();
-  });
-
-  document.addEventListener("DOMContentLoaded", refresh);
+  document.addEventListener("DOMContentLoaded", render);
 })();
