@@ -17,7 +17,7 @@
       name: "Bar-Ausstattung",
       emoji: "🍸",
       blurb: "Das Werkzeug, mit dem aus deiner Küche eine Hausbar wird.",
-      img: IMG + "hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png",
+      img: IMG + "hf_20260618_154209_c552fe72-9c08-4cf4-80bb-d214f4ee3d85.png",
       guide: "posts/cocktailabend-zuhause.html",
       picks: [
         { name: "Cocktail-Shaker-Set", desc: "Das Herzstück jeder Hausbar.", q: "Cocktail Shaker Set Edelstahl" },
@@ -62,7 +62,7 @@
       name: "Snacks & Fingerfood",
       emoji: "🫒",
       blurb: "Kleine Häppchen, die perfekt zum Aperitif passen.",
-      img: IMG + "hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
+      img: IMG + "hf_20260618_154211_e1c275b4-48dc-4942-93bc-c1b677ccfc2f.png",
       guide: "posts/cocktailabend-zuhause.html",
       picks: [
         { name: "Servierbrett (groß)", desc: "Für ein schickes Grazing-Board.", q: "Servierbrett Holz gross" },
@@ -77,7 +77,7 @@
       name: "Deko & Ambiente",
       emoji: "✨",
       blurb: "Licht, Duft und ein Barwagen, der die Stimmung macht.",
-      img: IMG + "hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png",
+      img: IMG + "hf_20260618_154212_b3e4b2ab-03c2-480c-9bde-5d37be0528cd.png",
       guide: "posts/cocktailabend-zuhause.html",
       picks: [
         { name: "LED-Lichterkette warmweiß", desc: "Sofort gemütliche Bar-Stimmung.", q: "LED Lichterkette warmweiss innen" },
