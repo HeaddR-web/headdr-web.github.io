@@ -1,4 +1,4 @@
-/* Hosting HQ — Motion-Schicht (Scroll-Reveal). Vanilla JS, kein Build.
+/* BeThatHost — Motion-Schicht (Scroll-Reveal). Vanilla JS, kein Build.
    Respektiert prefers-reduced-motion und degradiert sauber (ohne JS bleibt alles sichtbar). */
 (function () {
   "use strict";

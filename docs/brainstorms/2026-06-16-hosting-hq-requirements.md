@@ -1,4 +1,4 @@
-# Hosting HQ — umbrella hosting platform · requirements
+# BeThatHost — umbrella hosting platform · requirements
 
 **Date:** 2026-06-16 · **Status:** brainstorm complete, ready for planning · **Scope:** Deep — product
 
@@ -7,7 +7,7 @@ have to invent product behaviour. Repo-relative paths throughout.
 
 ## Problem / context
 
-`girlsnight/` (Girls Night HQ) proved the model: a glam, single-occasion hosting hub with an
+`girlsnight/` (BeThatHost) proved the model: a glam, single-occasion hosting hub with an
 interactive "Build your night" planner + SEO articles + Amazon affiliate + Pinterest. The owner wants
 to generalise it into a **multi-occasion hosting platform** so one engine serves many entertaining
 niches instead of one. The current "Girls Night" brand can't be the umbrella — it excludes guys'
@@ -15,13 +15,13 @@ nights and reads female-only.
 
 ## Decision (locked this session)
 
-- **New umbrella brand: "Hosting HQ"** — a portal that sits above many occasion hubs. (Already hinted
-  by the existing eyebrow "Hosting HQ · for the girls" in `girlsnight/`.)
+- **New umbrella brand: "BeThatHost"** — a portal that sits above many occasion hubs. (Already hinted
+  by the existing eyebrow "BeThatHost · for the girls" in `girlsnight/`.)
 - **Homepage = occasion picker.** A new visitor first chooses a hosting occasion, then lands in that
   occasion's full hub (hero + builder + articles), i.e. everything already built for Girls Night.
 - **Each occasion is its own hub**, cloned from the proven `girlsnight/` template (own `app.js`
-  `CATEGORIES`, own articles, own pins). **Girls Night HQ becomes one hub among many.**
-- **Untouched:** root `index.html` (HeaddR Wallpapers) and `/cozy/` (Cozylore). Hosting HQ is additive.
+  `CATEGORIES`, own articles, own pins). **BeThatHost becomes one hub among many.**
+- **Untouched:** root `index.html` (HeaddR Wallpapers) and `/cozy/` (Cozylore). BeThatHost is additive.
 
 ## Users
 
@@ -45,8 +45,8 @@ first-class hubs and let drink/game variants be strong *articles/categories with
 ## Scope
 
 **In scope (v1):**
-- New `Hosting HQ` portal page (occasion picker) at a new path (e.g. `host/`), since root is taken.
-- Re-home Girls Night HQ as the first hub and link it from the portal.
+- New `BeThatHost` portal page (occasion picker) at a new path (e.g. `host/`), since root is taken.
+- Re-home BeThatHost as the first hub and link it from the portal.
 - Build the next 1–2 occasion hubs from the template to prove "multi-hub".
 - Shared visual system (the warm beige hosting theme already in `girlsnight/style.css`).
 
@@ -69,8 +69,8 @@ first-class hubs and let drink/game variants be strong *articles/categories with
 
 ## Success criteria
 
-- A visitor can land on the Hosting HQ portal, pick an occasion, and reach a complete hub in one click.
-- Girls Night HQ works unchanged as a hub under the portal.
+- A visitor can land on the BeThatHost portal, pick an occasion, and reach a complete hub in one click.
+- BeThatHost works unchanged as a hub under the portal.
 - At least one *new* occasion hub is live and structurally identical (builder + ≥3 articles + pins).
 - Adding a future occasion is a repeatable, documented step (extend `CONTENT-ENGINE.md`).
 

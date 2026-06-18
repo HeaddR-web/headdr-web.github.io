@@ -1,6 +1,6 @@
-# Girls Night HQ — girls-night planning site (income engine #2)
+# BeThatHost — girls-night planning site (income engine #2)
 
-> **Stand Juni 2026:** Teil der **Hosting HQ**-Plattform (Portal im Root + Hubs `watchparty/`, `cocktailabend/`).
+> **Stand Juni 2026:** Teil der **BeThatHost**-Plattform (Portal im Root + Hubs `watchparty/`, `cocktailabend/`).
 > Inhalte **auf Deutsch / DACH** (zu `amazon.de`). Builder = **vereinfachte Kategorie-Ansicht mit direkten
 > Amazon-Links** (kein Add-to-Liste/Tracker mehr).
 
@@ -15,7 +15,7 @@ It makes money two ways, with **no store and no products to ship**:
 Traffic comes from **Google SEO** (slow, compounding) **+ Pinterest** (fast — reuses the same publishing engine
 as Cozylore; this niche is huge on Pinterest).
 
-It lives entirely in `/girlsnight/` as one hub under the **Hosting HQ** portal (root `index.html`); it does not touch `/cozy/`.
+It lives entirely in `/girlsnight/` as one hub under the **BeThatHost** portal (root `index.html`); it does not touch `/cozy/`.
 
 ---
 

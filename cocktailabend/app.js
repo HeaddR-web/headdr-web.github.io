@@ -1,4 +1,4 @@
-/* Cocktailabend HQ — Ausstattung nach Kategorie mit direkten Amazon-Links.
+/* BeThatHost — Ausstattung nach Kategorie mit direkten Amazon-Links.
    Reines statisches JS (nur Rendering, kein State). Affiliate-Tag: cozylore-21. */
 (function () {
   "use strict";
