@@ -1,6 +1,6 @@
-# Girls Night HQ content engine — recurring task spec
+# BeThatHost content engine — recurring task spec
 
-> **Aktueller Stand (Juni 2026):** Girls Night HQ ist ein Hub unter der **Hosting HQ**-Plattform
+> **Aktueller Stand (Juni 2026):** BeThatHost ist ein Hub unter der **BeThatHost**-Plattform
 > (Portal im Root, weitere Hubs: `watchparty/`, `cocktailabend/`). **Inhalte auf Deutsch (Zielmarkt DACH)**,
 > passend zu den `amazon.de`-Affiliate-Links (`tag=cozylore-21`). Die Startseite nutzt die
 > **vereinfachte Kategorie-Ansicht**: `app.js` rendert pro Kategorie kuratierte Picks, jeder Pick ist ein

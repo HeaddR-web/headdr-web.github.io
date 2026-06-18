@@ -1,4 +1,4 @@
-/* Hosting HQ — Motion-Schicht (edel + lebendig, performant).
+/* BeThatHost — Motion-Schicht (edel + lebendig, performant).
    Respektiert prefers-reduced-motion. Greift site-weit über /assets/motion.css. */
 
 html { scroll-behavior: smooth; }
