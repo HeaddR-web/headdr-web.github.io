@@ -76,7 +76,7 @@ first-class hubs and let drink/game variants be strong *articles/categories with
 
 ## Open questions (for planning / owner)
 
-- **Q1 — Domain:** stay on `headdr-web.github.io/host/…` for now, or buy a custom hosting-brand domain?
+- **Q1 — Domain:** stay on `bethathost.de/host/…` for now, or buy a custom hosting-brand domain?
 - **Q2 — Occasion grouping:** which of the overlapping evening themes (cocktail/wine/games) are
   full hubs vs. articles inside a broader hub? (Resolve before mass-cloning.)
 - **Q3 — First wave:** which 1–2 occasions to build right after the portal? Recommendation by leverage:
