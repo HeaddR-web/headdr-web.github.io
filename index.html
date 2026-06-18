@@ -83,16 +83,19 @@
       }
       header.site .inner {
         max-width: var(--max); margin: 0 auto; padding: 16px 28px;
-        display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+        display: flex; align-items: baseline; justify-content: space-between;
+        gap: 8px 16px; flex-wrap: wrap;
       }
       .brand {
         font-family: var(--display); font-weight: 800; font-size: 1.5rem;
         letter-spacing: -0.02em; text-decoration: none; color: var(--ink);
+        white-space: nowrap;
       }
       .brand b { color: var(--rose); font-style: italic; font-weight: 700; }
+      header.site nav { display: flex; flex-wrap: wrap; gap: 2px 20px; }
       header.site nav a {
         font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em;
-        font-weight: 600; color: var(--muted); text-decoration: none; margin-left: 22px;
+        font-weight: 600; color: var(--muted); text-decoration: none; padding: 6px 0;
       }
       header.site nav a:hover { color: var(--rose); }
 
@@ -183,9 +186,19 @@
       footer.site a:hover { color: var(--rose); }
 
       @media (max-width: 760px) {
+        .wrap { padding: 0 20px; }
+        header.site .inner { padding: 13px 20px; }
         .occ-row { grid-template-columns: 1fr; gap: 18px; padding: 36px 0; }
         .occ-row:nth-child(even) .occ-media { order: 0; }
-        .hero { padding: 54px 0 20px; }
+        /* Bild zuerst auf dem Handy — Pinterest-Besucher kommen für die Optik */
+        .occ-media { order: -1; }
+        .hero { padding: 52px 0 20px; }
+        footer.site .inner { flex-direction: column; gap: 8px; }
+      }
+      @media (max-width: 420px) {
+        .wrap { padding: 0 16px; }
+        .hero h1 { font-size: clamp(2.4rem, 13vw, 3rem); }
+        .occ-body p { font-size: 1rem; }
       }
 
       /* Hero-Eintritt (gestaffelt) */
@@ -293,7 +306,7 @@
 
     <footer class="site">
       <div class="inner">
-        <span>© <span id="y"></span> BeThatHost · leser-finanziert, manche Links sind Affiliate-Links</span>
+        <span>© <span id="y"></span> BeThatHost · leser-finanziert · die meisten Links sind Affiliate-Links</span>
         <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
       </div>
     </footer>

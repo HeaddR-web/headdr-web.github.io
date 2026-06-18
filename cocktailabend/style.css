@@ -805,8 +805,12 @@ footer.site a {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- Mobile (Pinterest-Traffic ist überwiegend mobil → muss perfekt sein) ---------- */
 @media (max-width: 640px) {
+  /* background-attachment:fixed ruckelt/repaintet auf Mobile (v.a. iOS) → abschalten */
+  body {
+    background-attachment: scroll;
+  }
   header.site .inner {
     flex-direction: column;
     gap: 10px;
@@ -816,10 +820,13 @@ footer.site a {
     padding: 0 16px 56px;
   }
   .hero {
-    min-height: 58vh;
-    padding: 60px 22px;
-    margin: 16px 0 18px;
+    min-height: 56vh;
+    padding: 56px 20px;
+    margin: 14px 0 18px;
     border-radius: 20px;
+  }
+  .hero .hero-sub {
+    margin-bottom: 26px;
   }
   .tracker {
     top: 0;
@@ -830,10 +837,29 @@ footer.site a {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+  /* Größere Tap-Ziele (Richtwert 44px) für Daumen-Bedienung */
+  .btn-primary {
+    padding: 15px 30px;
+  }
+  .add-btn {
+    padding: 10px 15px;
+    font-size: 0.84rem;
+  }
+  .picks li {
+    padding: 11px 11px 11px 14px;
+  }
+  .pick a.cta,
+  .mynight li a.shop {
+    padding: 13px 24px;
+  }
+  .subscribe {
+    padding: 32px 20px;
+  }
   .subscribe input,
   .subscribe button {
     min-width: 0;
     width: 100%;
+    padding: 15px 18px;
   }
 }
 
