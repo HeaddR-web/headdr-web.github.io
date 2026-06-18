@@ -1,0 +1,42 @@
+# Hosting HQ — bethathost.de
+
+> Deutschsprachige Plattform zum Planen von Veranstaltungen & Abenden zuhause. Pro Anlass kuratierte Kategorien mit direkt verlinkten Produktempfehlungen und ausführliche Guides. Marken-/Money-Modell: Affiliate (Amazon, amazon.de) + Display-Werbung.
+
+## Rubriken
+- [Mädelsabend (Girls Night)](https://bethathost.de/girlsnight/): Spiele, Cocktails, Snacks, Deko, Pflege & Filmabend
+- [WM- / Fußball-Watch-Party](https://bethathost.de/watchparty/): Beamer-Setup, Snacks, Getränke, schwarz-rot-gold Fan-Deko, Tippspiel
+- [Cocktailabend](https://bethathost.de/cocktailabend/): Hausbar, Gläser, Zutaten, Snacks, Ambiente
+- [Gemütliches Zuhause (Cozylore)](https://bethathost.de/cozy/): Warmes Licht, Kerzen & cozy Wohn-Ideen
+
+## Guides
+- https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html
+- https://bethathost.de/cozy/posts/best-cozy-candles.html
+- https://bethathost.de/cozy/posts/best-cozy-rugs.html
+- https://bethathost.de/cozy/posts/best-warm-light-bulbs-cozy-glow.html
+- https://bethathost.de/cozy/posts/cheap-cozy-decor-under-25.html
+- https://bethathost.de/cozy/posts/coziest-throw-blankets.html
+- https://bethathost.de/cozy/posts/cozy-apartment-in-winter.html
+- https://bethathost.de/cozy/posts/cozy-balcony-ideas.html
+- https://bethathost.de/cozy/posts/cozy-bathroom-spa-ideas.html
+- https://bethathost.de/cozy/posts/cozy-bedroom-aesthetic-on-a-budget.html
+- https://bethathost.de/cozy/posts/cozy-bedroom-lighting-ideas.html
+- https://bethathost.de/cozy/posts/cozy-bookshelf-styling.html
+- https://bethathost.de/cozy/posts/cozy-desk-setup-ideas.html
+- https://bethathost.de/cozy/posts/cozy-entryway-ideas.html
+- https://bethathost.de/cozy/posts/cozy-fall-decor-ideas.html
+- https://bethathost.de/cozy/posts/cozy-kitchen-ideas.html
+- https://bethathost.de/cozy/posts/cozy-living-room-ideas-small-apartments.html
+- https://bethathost.de/cozy/posts/cozy-minimalist-bedroom.html
+- https://bethathost.de/cozy/posts/cozy-reading-nook-ideas.html
+- https://bethathost.de/cozy/posts/cozy-rental-ideas.html
+- https://bethathost.de/cozy/posts/hygge-living-habits.html
+- https://bethathost.de/cozy/posts/warm-paint-colors-cozy-room.html
+- https://bethathost.de/girlsnight/posts/girls-night-budget.html
+- https://bethathost.de/girlsnight/posts/girls-night-drinks.html
+- https://bethathost.de/girlsnight/posts/girls-night-galentines.html
+- https://bethathost.de/girlsnight/posts/girls-night-games.html
+- https://bethathost.de/girlsnight/posts/girls-night-movie-night.html
+- https://bethathost.de/girlsnight/posts/girls-night-pamper-spa.html
+- https://bethathost.de/girlsnight/posts/girls-night-snacks.html
+- https://bethathost.de/girlsnight/posts/girls-night-themes.html
+- https://bethathost.de/watchparty/posts/world-cup-watch-party.html
