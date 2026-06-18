@@ -20,7 +20,7 @@
       name: "Bildschirm & Setup",
       emoji: "📺",
       blurb: "Großes Bild, großer Sound — mach das Wohnzimmer zum Stadion.",
-      img: IMG + "hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa.png",
+      img: IMG + "hf_20260618_151141_1eb7f076-2c9f-4a92-9133-307761760f8c.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
         { name: "Mini-Beamer (Full HD)", desc: "Macht aus jeder Wand eine Großleinwand.", q: "Mini Beamer Full HD" },
@@ -35,7 +35,7 @@
       name: "Essen & Snacks",
       emoji: "🌮",
       blurb: "Nachos, Wings & Fingerfood, das man ohne Tor-Verpassen schnappt.",
-      img: IMG + "hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
+      img: IMG + "hf_20260618_151400_aed3e59f-6306-4ada-9f78-fb7904cf9f2a.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
         { name: "Snack- & Dip-Schalen", desc: "Alles griffbereit auf dem Tisch.", q: "Snackschalen Set Party" },
@@ -50,7 +50,7 @@
       name: "Getränke",
       emoji: "🍺",
       blurb: "Kaltes Bier, Softdrinks & eine Selbstbedienungs-Station.",
-      img: IMG + "hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png",
+      img: IMG + "hf_20260618_151145_231825c6-7ada-4dc3-8b88-1bfb2db1d4f3.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
         { name: "Getränke-Kühlbox", desc: "Hält Bier & Softdrinks eiskalt.", q: "Getraenkekuehler Box gross" },
@@ -65,7 +65,7 @@
       name: "Deko & Fan-Gear",
       emoji: "🇩🇪",
       blurb: "Fahnen, Wimpelketten & Fan-Gear in schwarz-rot-gold.",
-      img: IMG + "hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png",
+      img: IMG + "hf_20260618_151154_afcd59b6-7195-447f-9f07-601ef2ce0468.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
         { name: "Deutschland-Fahne (groß)", desc: "Der Hingucker hinter dem Bildschirm.", q: "Deutschland Fahne gross" },
@@ -80,7 +80,7 @@
       name: "Tippspiel & Spiele",
       emoji: "🏆",
       blurb: "Spielplan an die Wand, ein Tippspiel und ein Spiel für die Halbzeit.",
-      img: IMG + "hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.png",
+      img: IMG + "hf_20260618_151157_71d1e854-e938-414d-9df0-8b654ee30799.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
         { name: "WM-Spielplan-Poster", desc: "Alle Spiele & Ergebnisse im Blick.", q: "Fussball Spielplan Poster" },
@@ -125,7 +125,7 @@
         })
         .join("");
       var card = el(
-        '<article class="cat-card">' +
+        '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
           '<div class="cover" style="background-image:url(\'' +
           cat.img +
           "')\">" +
@@ -150,6 +150,12 @@
       );
       grid.appendChild(card);
     });
+
+    // Pinterest-Deeplinks: nach dem Rendern direkt zur angesteuerten Kategorie springen (#cat-…)
+    if (location.hash) {
+      var t = document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView();
+    }
   }
 
   document.addEventListener("DOMContentLoaded", render);

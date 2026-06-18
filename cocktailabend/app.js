@@ -122,7 +122,7 @@
         })
         .join("");
       var card = el(
-        '<article class="cat-card">' +
+        '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
           '<div class="cover" style="background-image:url(\'' +
           cat.img +
           "')\">" +
@@ -147,6 +147,12 @@
       );
       grid.appendChild(card);
     });
+
+    // Pinterest-Deeplinks: nach dem Rendern direkt zur angesteuerten Kategorie springen (#cat-…)
+    if (location.hash) {
+      var t = document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView();
+    }
   }
 
   document.addEventListener("DOMContentLoaded", render);

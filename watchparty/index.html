@@ -34,6 +34,17 @@
       }
     </script>
       <link rel="stylesheet" href="/assets/motion.css" />
+    <style>
+      /* WM-Theme — schwarz-rot-gold Akzente (nur Watch-Party-Hub) */
+      .wm-stripe { height: 6px; background: linear-gradient(90deg, #1a1a1a 0 33.34%, #d11e1e 33.34% 66.67%, #f2c14e 66.67% 100%); }
+      .hero .eyebrow { color: #f4c95d; letter-spacing: 0.24em; }
+      .hero h1 .glow { background: linear-gradient(120deg, #f4c95d, #ffe9a8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #kategorien .section-head h2 { display: inline-block; }
+      #kategorien .section-head h2::after {
+        content: ""; display: block; width: 92px; height: 5px; margin-top: 12px; border-radius: 3px;
+        background: linear-gradient(90deg, #1a1a1a 0 33.34%, #d11e1e 33.34% 66.67%, #f2c14e 66.67% 100%);
+      }
+    </style>
   </head>
   <body>
     <header class="site">
@@ -47,6 +58,7 @@
         </nav>
       </div>
     </header>
+    <div class="wm-stripe"></div>
 
     <main>
       <section
