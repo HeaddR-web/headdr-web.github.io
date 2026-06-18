@@ -24,7 +24,7 @@
 
   // Statische Elemente, die beim Reinscrollen eingeblendet werden.
   var SEL =
-    ".section-head, .post-card, .occ, .pick, .subscribe, .ad-slot, " +
+    ".section-head, .post-card, .occ, .occ-row, .pick, .subscribe, .ad-slot, " +
     "article > p, article > ul, article > h2, .chip, img.lead";
 
   function reveal(el, i) {
