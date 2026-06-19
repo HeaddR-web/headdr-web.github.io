@@ -1,16 +1,37 @@
 [
   {
-    "title": "Den perfekten Cocktailabend zuhause planen",
-    "description": "Alles für den perfekten Cocktailabend zuhause: Hausbar-Basics, ein Signature-Drink zum Vorbereiten, alkoholfreie Optionen, die richtigen Gläser, Snacks und Ambiente. #cocktailabend #cocktails #hosting #partyzuhause #aperol",
-    "link": "https://bethathost.de/cocktailabend/",
-    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_170508_7fcabce5-2573-474e-881a-ea2123bde7e3.png",
+    "title": "Die perfekte Hausbar einrichten: das Basis-Set",
+    "description": "Shaker, Jigger, Barlöffel & Co. — alles, womit aus deiner Küche eine Hausbar wird, mit direkten Links. #hausbar #cocktails #cocktailabend #barzuhause #homebar",
+    "link": "https://bethathost.de/cocktailabend/#cat-bar",
+    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_083544_82ec0f0c-0ddf-4d7c-8271-34e25a7ae736.png",
     "published": false
   },
   {
-    "title": "Cocktailabend zuhause: Hausbar, Drinks & Deko",
-    "description": "So wird der Cocktailabend zuhause zum Erlebnis: Shaker-Set, schicke Gläser, ein Batch-Signature-Drink, alkoholfreie Mocktails, Fingerfood und Stimmungslicht. #cocktails #cocktailabend #mocktails #hosting #barzuhause",
-    "link": "https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html",
-    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_170510_5ff5ca06-fdfb-4288-9e95-2d27a1f57d66.png",
+    "title": "Die richtigen Gläser für jeden Cocktail",
+    "description": "Coupé, Tumbler und Longdrink: welche Gläser jeden Drink zum Erlebnis machen. #cocktailgläser #cocktails #cocktailabend #barzuhause #hosting",
+    "link": "https://bethathost.de/cocktailabend/#cat-glasses",
+    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_083546_b5af7ab2-6b65-42f3-8b3d-95de037136cb.png",
+    "published": false
+  },
+  {
+    "title": "Sirupe, Bitters & Filler für richtig gute Drinks",
+    "description": "Die Zutaten, die deine Cocktails auf Bar-Niveau heben — plus alkoholfreie Optionen. #cocktails #mixology #cocktailabend #mocktails #barzuhause",
+    "link": "https://bethathost.de/cocktailabend/#cat-mixer",
+    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_083548_3af02951-d940-40c6-a776-8492e58785fa.png",
+    "published": false
+  },
+  {
+    "title": "Aperitivo-Snacks zum Cocktailabend",
+    "description": "Oliven, Nüsse, Käse und ein Grazing-Board, das perfekt zum Aperitif passt. #aperitivo #cocktailabend #fingerfood #snacks #hosting",
+    "link": "https://bethathost.de/cocktailabend/#cat-snacks",
+    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_083557_59b1e97a-de82-429a-a87c-6fd36ab745e3.png",
+    "published": false
+  },
+  {
+    "title": "Das richtige Ambiente für den Cocktailabend",
+    "description": "Kerzen, warmes Licht und ein schöner Barwagen — so wird der Cocktailabend zum Erlebnis. #cocktailabend #ambiente #barcart #hosting #cozy",
+    "link": "https://bethathost.de/cocktailabend/#cat-ambiente",
+    "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_083600_8b88b7ca-749c-46e9-b732-b745e38bb030.png",
     "published": false
   }
 ]
