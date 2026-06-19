@@ -108,22 +108,8 @@
     if (!grid) return;
     grid.innerHTML = "";
     CATEGORIES.forEach(function (cat) {
-      var picksHtml = cat.picks
-        .map(function (p) {
-          return (
-            '<li>' +
-            '<span class="pick-name">' +
-            esc(p.name) +
-            '<small class="pick-desc">' +
-            esc(p.desc) +
-            "</small></span>" +
-            '<a class="add-btn" href="' +
-            amz(p.q) +
-            '" rel="sponsored nofollow" target="_blank">Amazon →</a>' +
-            "</li>"
-          );
-        })
-        .join("");
+      var hero = cat.picks[0];
+      var more = cat.picks.length - 1;
       var card = el(
         '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
           '<div class="cover" style="background-image:url(\'' +
@@ -139,12 +125,21 @@
           '<p class="blurb">' +
           esc(cat.blurb) +
           "</p>" +
-          '<ul class="picks">' +
-          picksHtml +
-          "</ul>" +
-          '<a class="guide-link" href="' +
-          cat.guide +
-          '">Zum kompletten Watch-Party-Guide →</a>' +
+          '<div class="hero-pick">' +
+          '<span class="hp-label">Unser Pick</span>' +
+          '<span class="hp-name">' +
+          esc(hero.name) +
+          "</span>" +
+          '<span class="hp-desc">' +
+          esc(hero.desc) +
+          "</span>" +
+          '<a class="hp-btn" href="' +
+          amz(hero.q) +
+          '" rel="sponsored nofollow" target="_blank">Auf Amazon ansehen →</a>' +
+          "</div>" +
+          (more > 0
+            ? '<a class="guide-link" href="' + cat.guide + '">' + more + " weitere Ideen im Guide →</a>"
+            : '<a class="guide-link" href="' + cat.guide + '">Zum Guide →</a>') +
           "</div>" +
           "</article>"
       );
