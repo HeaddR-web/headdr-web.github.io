@@ -50,7 +50,7 @@
       img: IMG + "hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
       guide: "posts/girls-night-snacks.html",
       picks: [
-        { name: "Servierbrett (groß)", desc: "Die Basis für ein Grazing-Board.", q: "Servierbrett Holz gross" },
+        { name: "Servierbrett (groß)", desc: "Charcuterie- & Grazing-Boards sind DER Mädelsabend-Snack — sieht aus wie ein Buffet, ist in 10 Min. angerichtet.", q: "Servierbrett Holz gross" },
         { name: "Etagere", desc: "Macht aus Snacks ein Buffet.", q: "Etagere Servierstaender" },
         { name: "Dip-Schalen-Set", desc: "Süß, salzig, alles getrennt.", q: "Dip Schalen Set" },
         { name: "Popcornmaschine", desc: "Frisches Popcorn für den Filmabend.", q: "Popcornmaschine Heissluft" },
@@ -100,6 +100,19 @@
         { name: "Popcorn-Schalen-Set", desc: "Weil Popcorn Pflicht ist.", q: "Popcorn Schalen Set" },
         { name: "Sitzsack / Bodenkissen", desc: "Extra Plätze zum Lümmeln.", q: "Sitzsack gross" },
         { name: "Sternenhimmel-Projektor", desc: "Stimmungslicht für den Filmabend.", q: "Sternenhimmel Projektor LED" }
+      ]
+    },
+    {
+      key: "fotos",
+      name: "Fotos & Erinnerungen",
+      emoji: "📸",
+      blurb: "Sofortbilder, die jede mit nach Hause nimmt — das Must-have für den Mädelsabend.",
+      img: IMG + "hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0.jpeg",
+      guide: "posts/pyjama-party.html",
+      picks: [
+        { name: "Sofortbildkamera", desc: "Der Mädelsabend-Klassiker schlechthin — jede klebt ihr Foto später ins Album. Sofort verschenkbar.", q: "Sofortbildkamera Instax" },
+        { name: "Foto-Requisiten / Photobooth-Set", desc: "Brillen, Schilder & Co. für die albernsten Bilder.", q: "Fotobox Requisiten Set Party" },
+        { name: "Foto-Klammern & Lichterkette", desc: "Bilder direkt aufhängen statt verstecken.", q: "Foto Klammern Lichterkette" }
       ]
     }
   ];
