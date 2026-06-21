@@ -1,5 +1,5 @@
 extends Node2D
-## MORPH — Core-Loop-Prototyp
+## MORPH — Core-Loop-Prototyp (v2)
 ## Inspiriert von MECCHA CHAMELEON, aber: du verwandelst dich in OBJEKTE
 ## und musst die Tarnung danach von Hand anpassen (Blend-Mechanik).
 ##
@@ -21,8 +21,16 @@ const ROUND_TIME := 75.0
 
 const SEEKER_SPEED := 90.0
 const VIEW_RANGE := 280.0
-const VIEW_HALF_ANGLE := 0.60        # ~34° Halböffnung
+const VIEW_HALF_ANGLE := 0.60         # ~34° Halböffnung
 const SUSPICION_MAX := 100.0
+const INVESTIGATE_AT := 32.0          # ab hier wird der Seeker misstrauisch
+const ALERT_AT := 70.0                # ab hier rennt er gezielt hin
+const INVESTIGATE_SPEED_MULT := 0.55  # langsamer beim Untersuchen
+const STARE_DISTANCE := 130.0         # hält Abstand und glotzt
+
+const MORPH_SEEN_PENALTY := 30.0      # vor seinen Augen verwandeln = auffällig
+const OUT_OF_PLACE_DIST := 230.0      # Objekt am falschen Ort?
+const OUT_OF_PLACE_RISK := 22.0
 
 # Objekt-Typen: Farbe, Form ("box"/"circle"), Größe
 var TYPES := {
@@ -58,6 +66,7 @@ var moving := false
 # ---------------------------------------------------------------------------
 var seeker_pos := Vector2(560, 120)
 var seeker_facing := Vector2(1, 0)
+var seeker_state := "patrol"  # "patrol" | "investigate" | "alert"
 var waypoints := [
 	Vector2(160, 150), Vector2(960, 150),
 	Vector2(960, 460), Vector2(160, 460), Vector2(560, 300),
@@ -65,6 +74,8 @@ var waypoints := [
 var wp_index := 0
 var suspicion := 0.0
 var player_visible := false
+var last_seen := Vector2.ZERO
+var has_last_seen := false
 
 # ---------------------------------------------------------------------------
 # Spiel-Status
@@ -72,15 +83,83 @@ var player_visible := false
 var time_left := ROUND_TIME
 var state := "play"           # "play" | "win" | "lose"
 var prev_keys := {}
+var was_scared := false       # für den "Beinahe erwischt"-Effekt
+var relief_flash := 0.0       # blauer Aufatmen-Flash
 
 func _ready() -> void:
 	prev_keys = {KEY_F: false, KEY_SPACE: false, KEY_ENTER: false}
+	if OS.has_environment("MORPH_SELFTEST"):
+		_run_selftest()
+
+# Headless-Balance-Tests (nur via MORPH_SELFTEST aktiv; nie im echten Spiel).
+func _run_selftest() -> void:
+	var dt := 1.0 / 60.0
+	var counts := [0, 0]  # [passed, failed] — Array (Referenztyp), damit Lambdas korrekt zaehlen
+
+	# Hilfsfunktion: Seeker fix auf Spieler ausrichten und N Frames erkennen lassen
+	var run_visible := func(frames: int) -> void:
+		seeker_pos = player_pos + Vector2(150, 0)
+		seeker_facing = (player_pos - seeker_pos).normalized()
+		for _i in frames:
+			seeker_pos = player_pos + Vector2(150, 0)
+			seeker_facing = (player_pos - seeker_pos).normalized()
+			_update_detection(dt)
+
+	var check := func(name: String, cond: bool) -> void:
+		if cond:
+			counts[0] += 1
+			print("  [PASS] ", name)
+		else:
+			counts[1] += 1
+			print("  [FAIL] ", name, "  (suspicion=", suspicion, " state=", state, ")")
+
+	print("=== MORPH SELFTEST ===")
+
+	# A) Perfekte Tarnung, eingefroren, am richtigen Ort -> unsichtbar
+	_reset(); morphed_type = "Kiste"; shade_error = 0.0; frozen = true
+	player_pos = Vector2(180, 150)
+	run_visible.call(600)
+	check.call("Perfekte Tarnung ueberlebt langes Anstarren", state == "play" and suspicion < 5.0)
+
+	# B) Perfekte Tarnung, aber Seeker steht direkt davor (Nah-Inspektion)
+	_reset(); morphed_type = "Kiste"; shade_error = 0.0; frozen = true
+	player_pos = Vector2(180, 150)
+	seeker_pos = player_pos + Vector2(80, 0)  # < 95px
+	seeker_facing = (player_pos - seeker_pos).normalized()
+	for _i in 600:
+		seeker_pos = player_pos + Vector2(80, 0)
+		seeker_facing = (player_pos - seeker_pos).normalized()
+		_update_detection(dt)
+	check.call("Perfekte Tarnung ueberlebt Nah-Inspektion", state == "play" and suspicion < 5.0)
+
+	# C) Weisser Blob im Blickfeld -> wird erwischt
+	_reset(); morphed_type = ""; player_pos = Vector2(400, 300)
+	run_visible.call(200)
+	check.call("Weisser Blob wird enttarnt", state == "lose")
+
+	# D) Gut getarnt, aber in Bewegung -> wird erwischt
+	_reset(); morphed_type = "Kiste"; shade_error = 0.0; frozen = false; moving = true
+	player_pos = Vector2(180, 150)
+	run_visible.call(300)
+	check.call("Bewegung trotz Tarnung wird bestraft", state == "lose")
+
+	# E) Perfekt getarnt + eingefroren, aber am voellig falschen Ort -> auffaellig
+	_reset(); morphed_type = "Kiste"; shade_error = 0.0; frozen = true
+	player_pos = Vector2(100, 520)  # weit weg von jeder Kiste
+	check.call("Erkennt 'Objekt am falschen Ort'", _dist_to_same_type() > OUT_OF_PLACE_DIST)
+	run_visible.call(400)
+	check.call("Falscher Ort wird mit der Zeit enttarnt", state == "lose")
+
+	print("=== RESULT: ", counts[0], " passed, ", counts[1], " failed ===")
+	_reset()
+	get_tree().quit(1 if counts[1] > 0 else 0)
 
 func _process(delta: float) -> void:
 	if state == "play":
 		_handle_input(delta)
 		_update_seeker(delta)
 		_update_detection(delta)
+		relief_flash = max(0.0, relief_flash - delta)
 		time_left -= delta
 		if time_left <= 0.0:
 			time_left = 0.0
@@ -130,6 +209,9 @@ func _handle_input(delta: float) -> void:
 		frozen = not frozen
 
 func _try_morph() -> void:
+	# Sich direkt im Blickfeld zu verwandeln ist riskant.
+	if player_visible:
+		suspicion = min(SUSPICION_MAX, suspicion + MORPH_SEEN_PENALTY)
 	# nächstgelegenes Objekt im Radius suchen
 	var best := -1
 	var best_d := MORPH_RADIUS
@@ -160,12 +242,37 @@ func _player_color() -> Color:
 	var tgt := Color.WHITE if shade_error > 0.0 else Color.BLACK
 	return base.lerp(tgt, t)
 
+func _dist_to_same_type() -> float:
+	# Abstand zum nächsten ECHTEN Objekt gleichen Typs (Positions-Skill).
+	if morphed_type == "":
+		return 0.0
+	var best := 1e9
+	for p in props:
+		if p.type == morphed_type:
+			best = min(best, player_pos.distance_to(p.pos))
+	return best
+
 # ---------------------------------------------------------------------------
 # Seeker
 # ---------------------------------------------------------------------------
 func _update_seeker(delta: float) -> void:
-	var target: Vector2 = waypoints[wp_index]
-	var to_t := target - seeker_pos
+	# Reagiert der Seeker auf Verdacht? -> untersuchen statt stur patrouillieren.
+	if suspicion >= INVESTIGATE_AT and has_last_seen:
+		seeker_state = "alert" if suspicion >= ALERT_AT else "investigate"
+		var fdir := last_seen - seeker_pos
+		if fdir.length() > 1.0:
+			seeker_facing = fdir.normalized()        # dreht sich zur verdächtigen Stelle
+		var spd := SEEKER_SPEED * INVESTIGATE_SPEED_MULT
+		if seeker_state == "alert":
+			spd = SEEKER_SPEED                        # im Alarm geht's schneller hin
+		if seeker_pos.distance_to(last_seen) > STARE_DISTANCE:
+			seeker_pos += seeker_facing * spd * delta # nähert sich, bleibt aber auf Distanz
+		return
+
+	# Normale Patrouille
+	seeker_state = "patrol"
+	var wp: Vector2 = waypoints[wp_index]
+	var to_t := wp - seeker_pos
 	if to_t.length() < 8.0:
 		wp_index = (wp_index + 1) % waypoints.size()
 	else:
@@ -182,22 +289,39 @@ func _update_detection(delta: float) -> void:
 		var ang: float = abs(seeker_facing.angle_to(to_p.normalized()))
 		if ang <= VIEW_HALF_ANGLE:
 			player_visible = true
+			last_seen = player_pos
+			has_last_seen = true
 
 	if player_visible:
 		var risk := 0.0
 		if morphed_type == "":
-			risk = 65.0                      # weißer Blob = sofort verdächtig
+			risk = 65.0                              # weißer Blob = sofort verdächtig
 		else:
-			if moving:        risk += 48.0   # Bewegung im Blickfeld
-			if not frozen:    risk += 10.0   # nicht eingefroren wirkt "lebendig"
-			risk += (1.0 - _blend()) * 42.0  # schlechte Tarnung
-		if dist < 95.0:
-			risk += 25.0                     # Seeker inspiziert aus der Nähe
+			if moving:     risk += 48.0              # Bewegung im Blickfeld
+			if not frozen: risk += 10.0              # nicht eingefroren wirkt "lebendig"
+			risk += (1.0 - _blend()) * 42.0          # schlechte Tarnung
+			# Objekt am falschen Ort (kein gleiches in der Nähe) = verdächtig
+			if _dist_to_same_type() > OUT_OF_PLACE_DIST:
+				risk += OUT_OF_PLACE_RISK
+			# Nah-Inspektion bestraft NUR unsaubere Tarnung -> perfekte Tarnung
+			# übersteht selbst eine Inspektion aus nächster Nähe.
+			if dist < 95.0:
+				risk += 24.0 * (1.0 - _blend())
 		suspicion += risk * delta
 	else:
-		suspicion -= 28.0 * delta            # vergisst langsam wieder
+		suspicion -= 28.0 * delta                    # vergisst langsam wieder
+		if suspicion <= 0.1:
+			has_last_seen = false                    # Spur verloren -> zurück auf Patrouille
 
 	suspicion = clamp(suspicion, 0.0, SUSPICION_MAX)
+
+	# "Beinahe erwischt"-Dopamin: war hoch, jetzt sicher abgeklungen
+	if suspicion > 62.0:
+		was_scared = true
+	if was_scared and suspicion < 22.0 and not player_visible:
+		was_scared = false
+		relief_flash = 0.7
+
 	if suspicion >= SUSPICION_MAX:
 		state = "lose"
 
@@ -206,10 +330,16 @@ func _reset() -> void:
 	morphed_type = ""
 	shade_error = 0.0
 	frozen = false
+	moving = false
 	seeker_pos = Vector2(560, 120)
 	seeker_facing = Vector2(1, 0)
+	seeker_state = "patrol"
 	wp_index = 0
 	suspicion = 0.0
+	player_visible = false
+	has_last_seen = false
+	was_scared = false
+	relief_flash = 0.0
 	time_left = ROUND_TIME
 	state = "play"
 
@@ -224,6 +354,10 @@ func _draw() -> void:
 	# Sichtkegel des Seekers
 	_draw_view_cone()
 
+	# Wenn der Seeker untersucht: Linie zur verdächtigen Stelle
+	if seeker_state != "patrol" and has_last_seen:
+		draw_line(seeker_pos, last_seen, Color(1.0, 0.5, 0.2, 0.35), 2.0)
+
 	# Objekte im Raum
 	for p in props:
 		_draw_shape(p.pos, p.type, TYPES[p.type].color, false)
@@ -237,8 +371,16 @@ func _draw() -> void:
 	# Seeker
 	draw_circle(seeker_pos, 16.0, Color(0.90, 0.25, 0.25))
 	draw_circle(seeker_pos + seeker_facing * 10.0, 5.0, Color.WHITE)
+	_draw_seeker_mood()
 
 	_draw_hud()
+
+func _draw_seeker_mood() -> void:
+	var font := ThemeDB.fallback_font
+	if seeker_state == "alert":
+		draw_string(font, seeker_pos + Vector2(-6, -24), "!", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Color(1.0, 0.3, 0.3))
+	elif seeker_state == "investigate":
+		draw_string(font, seeker_pos + Vector2(-6, -22), "?", HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Color(1.0, 0.85, 0.3))
 
 func _draw_shape(pos: Vector2, type: String, color: Color, is_player: bool) -> void:
 	var meta: Dictionary = TYPES[type]
@@ -285,15 +427,23 @@ func _draw_hud() -> void:
 	var fill := Color(0.3, 0.85, 0.3).lerp(Color(0.95, 0.2, 0.2), frac)
 	draw_rect(Rect2(bar.position, Vector2(bar.size.x * frac, bar.size.y)), fill, true)
 	draw_rect(bar, Color(0.5, 0.5, 0.55), false, 2.0)
-	draw_string(font, Vector2(820, 12), "Verdacht", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.WHITE)
+	draw_string(font, Vector2(820, 12), "Verdacht (%s)" % seeker_state,
+		HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.WHITE)
 
 	# Steuerungs-Hinweis unten
 	draw_string(font, Vector2(50, 600),
 		"Pfeile = Bewegen   F = Verwandeln   Q/E = Tarnung anpassen   Leertaste = Pose einfrieren",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(0.75, 0.75, 0.8))
 	draw_string(font, Vector2(50, 624),
-		"Tipp: In ein Objekt verwandeln, mit Q/E auf 100% Blend bringen, dann einfrieren wenn der Seeker schaut.",
+		"Tipp: Nah an gleiche Objekte stellen, auf 100% Blend bringen, einfrieren wenn der Kegel kommt.",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(0.6, 0.6, 0.65))
+
+	# "Beinahe erwischt"-Flash
+	if relief_flash > 0.0:
+		var a: float = clamp(relief_flash / 0.7, 0.0, 1.0)
+		draw_rect(Rect2(0, 0, 1152, 648), Color(0.3, 0.6, 1.0, 0.18 * a), true)
+		draw_string(font, Vector2(500, 90), "Puh! Gerade so...",
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 26, Color(0.8, 0.9, 1.0, a))
 
 	# End-Screens
 	if state != "play":

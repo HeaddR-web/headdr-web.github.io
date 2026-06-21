@@ -41,10 +41,20 @@ und etwas nicht stimmt:
 - **Weißer Blob** im Blickfeld → sofort verdächtig.
 - **Bewegung** im Blickfeld → hoher Verdacht.
 - **Schlechter Blend** (Tarnung nicht angepasst) → mittlerer Verdacht.
-- **Eingefroren + 100 % Blend + als Objekt getarnt** → praktisch unsichtbar.
+- **Objekt am falschen Ort** (z. B. ein Fass mitten im leeren Raum) → verdächtig.
+- **Eingefroren + 100 % Blend + am richtigen Ort** → praktisch unsichtbar,
+  übersteht sogar eine Inspektion aus nächster Nähe.
 
-Optimaler Loop: nah an ein Objekt → **F** → mit **Q/E** auf 100 % Blend →
+Optimaler Loop: nah an **gleichartige** Objekte → **F** → mit **Q/E** auf 100 % Blend →
 rechtzeitig **Leertaste** zum Einfrieren, wenn der Kegel auf dich schwenkt.
+
+### Der Seeker reagiert (v2)
+
+Er patrouilliert nicht mehr stur. Steigt der Verdacht, **dreht er sich zur
+verdächtigen Stelle, wird langsamer und starrt** (Status `investigate` → `alert`,
+mit `?`/`!` über dem Kopf). Hältst du dann perfekt still und getarnt, sinkt der
+Verdacht wieder, er dreht ab — und du bekommst den **„Puh, gerade so..."-Flash**.
+Genau dieser Beinahe-erwischt-Moment ist das, was wir testen wollen.
 
 ## Was dieser Prototyp bewusst NICHT hat
 
@@ -53,6 +63,21 @@ rechtzeitig **Leertaste** zum Einfrieren, wenn der Kegel auf dich schwenkt.
 - Seeker-„Anstupsen"/Reveal-Animation, Mass-Budget, Comeback-Mechanik
 
 Das sind die nächsten Ausbaustufen aus dem Brainstorm — siehe Roadmap unten.
+
+## Qualität / Tests
+
+Der Prototyp wurde mit **Godot 4.3 headless** gegengeprüft (kompiliert + rendert
+fehlerfrei mit echtem OpenGL-Renderer). Zusätzlich gibt es ein kleines
+**Balance-Testharness**, das die Design-Annahmen automatisch verifiziert:
+
+```bash
+MORPH_SELFTEST=1 godot --headless --path .
+```
+
+Prüft u. a.: Überlebt perfekte Tarnung das Anstarren und eine Nah-Inspektion?
+Wird ein laufender Blob zuverlässig enttarnt? Bestraft „Bewegung trotz Tarnung"
+und „Objekt am falschen Ort"? Aktuell **6/6 PASS**. Der Test läuft nur mit der
+`MORPH_SELFTEST`-Umgebungsvariable, im normalen Spiel ist er inaktiv.
 
 ## Warum dieser Twist (Design-Kern)
 
@@ -66,7 +91,17 @@ kreativen Tarnen**. Wir fusionieren beides:
 
 Zwei Skill-Ebenen = doppelt so viele Beinahe-Enttarnungen = mehr Clip-Momente.
 
-## Roadmap (nach bestandenem Fun-Test)
+## Roadmap
+
+Erledigt in v2:
+
+- [x] Seeker reagiert auf Verdacht (investigate/alert, dreht sich hin, starrt)
+- [x] „Objekt am falschen Ort" wird bestraft (Positions-Skill)
+- [x] Perfekte Tarnung übersteht Nah-Inspektion (Fantasie-Fix)
+- [x] „Beinahe erwischt"-Feedback (Relief-Flash)
+- [x] Automatisiertes Balance-Testharness
+
+Als Nächstes (nach bestandenem Fun-Test):
 
 - [ ] Anpassung ausbauen: Farbe **und** Muster/Textur, nicht nur Helligkeit
 - [ ] „Mass-Budget": großes Objekt = besseres Versteck, aber träge/auffällig
