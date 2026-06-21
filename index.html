@@ -144,10 +144,11 @@
         border-top: 1px solid var(--line); padding-top: 18px; margin: 0 0 10px;
       }
       .occ-row {
-        display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 5vw, 70px);
+        display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 5vw, 70px);
         align-items: center; padding: 46px 0; border-bottom: 1px solid var(--line);
       }
-      .occ-row:nth-child(even) .occ-media { order: -1; }
+      /* Einheitlich: Bild immer zuerst (links), dann Text — kein Zickzack mehr */
+      .occ-media { order: -1; }
       .occ-num {
         font-family: var(--display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;
         color: transparent; -webkit-text-stroke: 1.3px var(--rose); display: block; margin-bottom: 8px;
@@ -201,8 +202,7 @@
         .wrap { padding: 0 20px; }
         header.site .inner { padding: 13px 20px; }
         .occ-row { grid-template-columns: 1fr; gap: 18px; padding: 36px 0; }
-        .occ-row:nth-child(even) .occ-media { order: 0; }
-        /* Bild zuerst auf dem Handy — Pinterest-Besucher kommen für die Optik */
+        /* Bild zuerst auf dem Handy — einheitlich */
         .occ-media { order: -1; }
         .hero { padding: 52px 0 20px; }
         footer.site .inner { flex-direction: column; gap: 8px; }
