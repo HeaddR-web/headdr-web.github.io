@@ -1,0 +1,16 @@
+; Godot 4 project file — MORPH (MECCHA-CHAMELEON-inspired prototype)
+; Open this folder in Godot 4.3+ and press F5 to play.
+
+config_version=5
+
+[application]
+
+config/name="MORPH — Core Loop Prototype"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.3")
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/stretch/mode="canvas_items"
