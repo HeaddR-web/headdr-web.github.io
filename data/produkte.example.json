@@ -1,0 +1,26 @@
+{
+  "_hinweis": "Beispiel-Schema für echte Amazon-Produktkarten. asin/titel/preis/bild_api/prime werden später vom Build (scripts/build-amazon-cards.mjs) aus der Amazon-API gefüllt. Bis dahin greifen eigenes_bild + suchlink (Fallback).",
+  "seite": "/gartenparty/",
+  "produkte": [
+    {
+      "slot": "Outdoor-Lichterkette",
+      "asin": "",
+      "suchlink": "https://www.amazon.de/s?k=Lichterkette+aussen+warmweiss+wetterfest&tag=cozylore-21",
+      "eigenes_bild": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260622_091354_593cd1f2-eea0-45c1-abcc-da114bd9e929.jpeg",
+      "titel": null,
+      "preis": null,
+      "bild_api": null,
+      "prime": null
+    },
+    {
+      "slot": "Getränkespender mit Zapfhahn",
+      "asin": "",
+      "suchlink": "https://www.amazon.de/s?k=Getraenkespender+Glas+Zapfhahn+Holzstaender&tag=cozylore-21",
+      "eigenes_bild": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260622_091418_4cd04775-3c1d-46d4-be17-73e602eacb78.png",
+      "titel": null,
+      "preis": null,
+      "bild_api": null,
+      "prime": null
+    }
+  ]
+}
