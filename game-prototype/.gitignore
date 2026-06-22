@@ -1,5 +1,0 @@
-# Godot 4 cache / export artifacts
-.godot/
-export.cfg
-export_presets.cfg
-*.translation
