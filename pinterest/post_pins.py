@@ -59,6 +59,13 @@ def main():
 
     cfg = load("config.json", {})
     pins = load("pins.json", [])
+    # Zusaetzliche Pins, die nur im Notion-Tracker leben (alte offene Pins),
+    # mit aufnehmen — nach Link dedupliziert.
+    seen_links = {p["link"] for p in pins}
+    for extra in load("extra_notion_pins.json", []):
+        if extra.get("link") and extra["link"] not in seen_links:
+            seen_links.add(extra["link"])
+            pins.append(extra)
     ledger = load("posted.json", {})  # link -> {pin_id, ts}
 
     todo = [p for p in pins if p["link"] not in ledger]
