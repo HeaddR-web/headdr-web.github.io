@@ -1,0 +1,107 @@
+[
+  {
+    "id": "home",
+    "title": "Jede Feier planen, für jeden Anlass",
+    "description": "Wähl deinen Anlass — Mädelsabend, WM-Party, Cocktailabend und mehr — und bau dir in Minuten eine fertige Einkaufsliste.",
+    "link": "https://bethathost.de/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394.png"
+  },
+  {
+    "id": "girlsnight",
+    "title": "Den ultimativen Mädelsabend planen",
+    "description": "Spiele, Drinks, Snacks, Deko, Pflege & Filmabend — alles für den Mädelsabend, nach Kategorie sortiert.",
+    "link": "https://bethathost.de/girlsnight/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394.png"
+  },
+  {
+    "id": "watchparty",
+    "title": "Die ultimative WM-Party zuhause",
+    "description": "Beamer-Setup, Snacks, Getränke, schwarz-rot-gold Deko und ein Tippspiel — alles für die WM-Party, nach Kategorie sortiert.",
+    "link": "https://bethathost.de/watchparty/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_152657_1bb48609-783b-42a8-883c-c35ea268b938.jpeg"
+  },
+  {
+    "id": "cocktailabend",
+    "title": "Den perfekten Cocktailabend zuhause",
+    "description": "Bar-Ausstattung, Gläser, Zutaten, Snacks & Deko — alles für den Cocktailabend, nach Kategorie sortiert.",
+    "link": "https://bethathost.de/cocktailabend/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_170508_7fcabce5-2573-474e-881a-ea2123bde7e3.png"
+  },
+  {
+    "id": "brunch",
+    "title": "Sonntags Family Brunch: planen & ausstatten",
+    "description": "Etagere, Waffeleisen, Kaffeebereiter & ein schön gedeckter Tisch — alles für den entspannten Sonntags-Brunch.",
+    "link": "https://bethathost.de/brunch/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_120912_2dbd9786-2b7a-4452-8891-56359da6d0ed.png"
+  },
+  {
+    "id": "geburtstag",
+    "title": "Geburtstag zuhause feiern: Deko, Torte & Ideen",
+    "description": "Ballon-Girlande, Tortenplatte, Lichter & Spiele — alles für den Geburtstag zuhause, mit konkreten Empfehlungen.",
+    "link": "https://bethathost.de/geburtstag/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_131510_f42e1582-c5cf-4d92-ae84-da14ae5d3a58.jpeg"
+  },
+  {
+    "id": "spa-abend",
+    "title": "Spa-Abend zuhause: Wellness-Ideen & Ausstattung",
+    "description": "Kerzen, Masken, Badebomben, Bademantel & Tee — alles für den Spa-Abend zuhause, mit konkreten Empfehlungen.",
+    "link": "https://bethathost.de/spa-abend/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_131513_ca67c668-3988-47a8-ae10-e0a8c84dbc1b.jpeg"
+  },
+  {
+    "id": "valentinstag",
+    "title": "Valentinstag zuhause: Date Night romantisch planen",
+    "description": "Kerzen, gedeckter Tisch für zwei, Fondue & Sekt und eine süße Überraschung — alles für die Date Night zuhause.",
+    "link": "https://bethathost.de/valentinstag/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_140133_9c245de8-e0ad-4025-b377-83f15b85672d.jpeg"
+  },
+  {
+    "id": "saison-deko",
+    "title": "Saison-Deko für Herbst & Winter: gemütlich einrichten",
+    "description": "Warmes Licht, Kuscheldecken, Trockenblumen & Kerzen — alles für gemütliche Herbst- und Winter-Deko.",
+    "link": "https://bethathost.de/saison-deko/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_140138_00ae988e-b750-41e0-86e7-6276d357ee01.png"
+  },
+  {
+    "id": "spieleabend",
+    "title": "Spieleabend zuhause: Ideen & Ausstattung",
+    "description": "Spiele, Snacks, gemütliche Runde & Extras — alles für den perfekten Spieleabend zuhause.",
+    "link": "https://bethathost.de/spieleabend/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260620_212746_90574813-49c7-4027-b869-be1ce11d3546.png"
+  },
+  {
+    "id": "grillabend",
+    "title": "Grillabend im Garten: Ausstattung & Ideen",
+    "description": "Grill, Besteck, Outdoor-Geschirr, Kühlbox & Lichterketten — alles für den entspannten Grillabend.",
+    "link": "https://bethathost.de/grillabend/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260620_212748_255f306a-9b4d-449b-8296-828d7f87638c.png"
+  },
+  {
+    "id": "gartenparty",
+    "title": "Gartenparty planen: Deko, Licht & Ausstattung für draußen",
+    "description": "Lichterketten, Sonnenschutz, Getränkespender, Kühlbox, Bluetooth-Box & Sommerdeko — alles für die perfekte Gartenparty.",
+    "link": "https://bethathost.de/gartenparty/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260622_073533_1cc48a50-52c6-4dab-9aa2-368e6b282561.png"
+  },
+  {
+    "id": "mexiko-fiesta",
+    "title": "Mexikanische Fiesta: Taco- & Margarita-Party planen",
+    "description": "Papel Picado, Taco-Buffet, Margaritas & Piñata — alles für die mexikanische Mottoparty zuhause.",
+    "link": "https://bethathost.de/mexiko-fiesta/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260622_141557_17a3f7dd-36d4-4092-bf09-d51a051852fb.png"
+  },
+  {
+    "id": "jga",
+    "title": "JGA planen: Junggesellinnenabschied-Ideen, Deko & Spiele",
+    "description": "Team-Bride-Outfits, Deko, Spiele & Survival-Kit — alles für den Junggesellinnenabschied, motto-exakt mit direkten Links.",
+    "link": "https://bethathost.de/jga/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260622_142023_04fcad01-cbb9-4345-851f-e298d7c79728.png"
+  },
+  {
+    "id": "hawaii-tiki",
+    "title": "Hawaii-Party planen: Tiki-Deko, Drinks & Outfits",
+    "description": "Leis, Tiki-Deko, tropische Drinks & Outfits — alles für die Hawaii-/Luau-Party, motto-exakt mit direkten Links.",
+    "link": "https://bethathost.de/hawaii-tiki/",
+    "image": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260623_162413_2e180fd4-e250-4835-96e5-ee7e07cd6b31.jpeg"
+  }
+]

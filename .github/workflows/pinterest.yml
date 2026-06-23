@@ -1,0 +1,52 @@
+name: Pinterest Auto-Post
+
+# Postet automatisch neue Pins ueber die offizielle Pinterest-API.
+# Sicherheit: Es wird NUR real gepostet, wenn die Repo-Variable PINTEREST_LIVE = "true"
+# gesetzt ist UND das Secret PINTEREST_ACCESS_TOKEN existiert. Sonst laeuft alles im
+# DRY-RUN (zeigt nur an, was passieren wuerde).
+
+on:
+  workflow_dispatch: {}        # manuell ausloesbar (Actions-Tab -> Run workflow)
+  schedule:
+    - cron: "0 13 * * 1,4"     # Mo & Do, 13:00 UTC — ein paar Pins pro Woche
+
+permissions:
+  contents: write              # um das Ledger (posted.json) zurueckzuschreiben
+
+concurrency:
+  group: pinterest-auto-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Abhaengigkeiten
+        run: pip install -r pinterest/requirements.txt
+
+      - name: Pins aus den Seiten erzeugen
+        run: python pinterest/extract_pins.py
+
+      - name: Neue Pins posten
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_LIVE: ${{ vars.PINTEREST_LIVE }}
+        run: python pinterest/post_pins.py
+
+      - name: Ledger zuruckschreiben
+        run: |
+          if ! git diff --quiet -- pinterest/posted.json pinterest/pins.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add pinterest/posted.json pinterest/pins.json
+            git commit -m "chore(pinterest): Ledger & Pins aktualisiert [skip ci]"
+            git push
+          else
+            echo "Keine Aenderungen am Ledger."
+          fi

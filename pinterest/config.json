@@ -1,0 +1,23 @@
+{
+  "base_url": "https://bethathost.de",
+  "board_name": "Party & Gastgeben Ideen",
+  "posts_per_run": 2,
+  "pages": [
+    "index.html",
+    "girlsnight/index.html",
+    "watchparty/index.html",
+    "cocktailabend/index.html",
+    "cozy/index.html",
+    "brunch/index.html",
+    "geburtstag/index.html",
+    "spa-abend/index.html",
+    "valentinstag/index.html",
+    "saison-deko/index.html",
+    "spieleabend/index.html",
+    "grillabend/index.html",
+    "gartenparty/index.html",
+    "mexiko-fiesta/index.html",
+    "jga/index.html",
+    "hawaii-tiki/index.html"
+  ]
+}
