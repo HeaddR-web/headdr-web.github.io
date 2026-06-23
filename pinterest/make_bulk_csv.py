@@ -7,31 +7,38 @@ Pinterest Business -> Erstellen -> "Bulk create Pins" -> diese Datei hochladen.
 Pinterest-Spalten: Title | Media URL | Pinterest board | Thumbnail |
                     Description | Link | Publish date | Keywords
 
-- Liest pins.json (von extract_pins.py).
-- Liest den Status aus dem Notion-Tracker ("📌 Pinterest Pins"): standardmaessig
-  kommen NUR Pins mit Status = "Offen" in die CSV. So landen bereits hochgeladene
-  oder geplante Pins nicht erneut im Bulk-Upload.
-- Verteilt die Pins zeitversetzt (Standard: 2/Tag, ab morgen), damit es natuerlich
-  wirkt. Mit --now wird die Publish-Spalte leer gelassen (alle sofort).
-
-Notion-Anbindung
+Quellen der Pins
 ----------------
-Der Status wird ueber die offizielle Notion-API gelesen. Dafuer:
+- pins.json            : die Landing-Page-Pins (von extract_pins.py).
+- extra_notion_pins.json: zusaetzliche Pins, die nur im Notion-Tracker leben
+                          (z. B. aeltere Kategorie-/Content-Pins), als Snapshot.
+
+Status aus Notion
+-----------------
+In die CSV kommen NUR offene Pins (Status = "Offen"):
+- MIT NOTION_TOKEN: Der Status wird live ueber die offizielle Notion-API gelesen.
+  Standardmaessig werden alle offenen Pins direkt aus Notion gezogen (Titel,
+  Bild-URL, Beschreibung, Link) — so sind auch alte, noch nicht hochgeladene
+  Pins automatisch dabei, ohne dass sie in pins.json stehen muessen.
+- OHNE NOTION_TOKEN (oder --no-notion): Es wird der lokale Snapshot
+  (pins.json + extra_notion_pins.json) exportiert. Dieser Snapshot bildet den
+  aktuell offenen Stand ab.
+
+Notion-Anbindung einrichten:
   1. Interne Notion-Integration anlegen (notion.so/my-integrations) und die
      Datenbank "📌 Pinterest Pins" mit ihr teilen.
   2. Den Integrations-Token als Umgebungsvariable NOTION_TOKEN setzen
-     (in GitHub Actions: als Secret).
-Die Datenbank-ID und die Property-Namen stehen in config.json.
+     (in GitHub Actions: als Secret). DB-ID/Property-Namen stehen in config.json.
 
-Ist kein Token gesetzt (oder --no-notion), werden ALLE Pins exportiert
-(Verhalten wie frueher) und es wird eine Warnung ausgegeben. Mit --strict
-bricht das Skript stattdessen ab, wenn Notion nicht erreichbar ist.
+Verteilt die Pins zeitversetzt (Standard: 2/Tag, ab morgen). Mit --now wird die
+Publish-Spalte leer gelassen (alle sofort).
 """
 import argparse
 import csv
 import datetime as dt
 import json
 import os
+import re
 
 import requests
 
@@ -40,7 +47,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NOTION_API = "https://api.notion.com/v1"
 NOTION_VERSION = "2022-06-28"
 
-# Schlagworte je Seite fuer bessere Auffindbarkeit (Pinterest "Keywords")
+# Schlagworte je Landing-Page fuer bessere Auffindbarkeit (Pinterest "Keywords")
 KEYWORDS = {
     "home": "party planen, gastgeben, feier ideen, deko",
     "girlsnight": "mädelsabend, girls night, deko, cocktails, spiele",
@@ -68,12 +75,47 @@ def _norm(url):
     return (url or "").strip().rstrip("/")
 
 
-def fetch_open_links(cfg, status_value):
-    """Liest aus dem Notion-Tracker die Links aller Pins mit dem gewuenschten
-    Status (Standard: "Offen"). Gibt ein Set normalisierter Links zurueck.
+def _hashtags_to_keywords(description):
+    """Fallback: aus #hashtags der Beschreibung eine Keyword-Liste bauen."""
+    tags = re.findall(r"#(\w+)", description or "")
+    return ", ".join(tags[:6])
 
-    Wirft eine Exception, wenn Token/DB fehlen oder die API einen Fehler liefert
-    – der Aufrufer entscheidet ueber Fallback vs. Abbruch.
+
+def load_local_pins():
+    """pins.json + optional extra_notion_pins.json zusammenfuehren (nach Link dedupliziert)."""
+    pins = []
+    with open(os.path.join(HERE, "pins.json"), encoding="utf-8") as f:
+        pins.extend(json.load(f))
+    extra_path = os.path.join(HERE, "extra_notion_pins.json")
+    if os.path.exists(extra_path):
+        with open(extra_path, encoding="utf-8") as f:
+            pins.extend(json.load(f))
+    seen, out = set(), []
+    for p in pins:
+        key = _norm(p.get("link"))
+        if key and key not in seen:
+            seen.add(key)
+            out.append(p)
+    return out
+
+
+def keyword_for(pin, link_to_local=None):
+    """Keywords ermitteln: explizit > KEYWORDS[id] > Beschreibungs-Hashtags."""
+    if pin.get("keywords"):
+        return pin["keywords"]
+    kw = KEYWORDS.get(pin.get("id", ""), "")
+    if not kw and link_to_local is not None:
+        local = link_to_local.get(_norm(pin.get("link")))
+        if local:
+            kw = local.get("keywords") or KEYWORDS.get(local.get("id", ""), "")
+    return kw or _hashtags_to_keywords(pin.get("description", ""))
+
+
+def fetch_open_pins(cfg, status_value):
+    """Liest alle offenen Pins direkt aus dem Notion-Tracker (volle Datensaetze).
+
+    Wirft eine Exception, wenn Token/DB fehlen oder die API einen Fehler liefert –
+    der Aufrufer entscheidet ueber Fallback vs. Abbruch.
     """
     token = os.environ.get("NOTION_TOKEN")
     database_id = cfg.get("notion_database_id")
@@ -84,6 +126,9 @@ def fetch_open_links(cfg, status_value):
 
     status_prop = cfg.get("notion_status_property", "Status")
     link_prop = cfg.get("notion_link_property", "Ziel-Link")
+    title_prop = cfg.get("notion_title_property", "Titel")
+    image_prop = cfg.get("notion_image_property", "Bild-URL")
+    desc_prop = cfg.get("notion_desc_property", "Beschreibung")
 
     headers = {
         "Authorization": f"Bearer {token}",
@@ -95,7 +140,18 @@ def fetch_open_links(cfg, status_value):
         "page_size": 100,
     }
 
-    links = set()
+    def _text(prop):
+        if not prop:
+            return ""
+        if prop.get("type") == "title":
+            return "".join(t.get("plain_text", "") for t in prop.get("title", []))
+        if prop.get("type") == "rich_text":
+            return "".join(t.get("plain_text", "") for t in prop.get("rich_text", []))
+        if prop.get("type") == "url":
+            return prop.get("url") or ""
+        return ""
+
+    pins = []
     while True:
         r = requests.post(
             f"{NOTION_API}/databases/{database_id}/query",
@@ -104,15 +160,21 @@ def fetch_open_links(cfg, status_value):
         r.raise_for_status()
         data = r.json()
         for row in data.get("results", []):
-            prop = row.get("properties", {}).get(link_prop, {})
-            link = prop.get("url")
-            if link:
-                links.add(_norm(link))
+            props = row.get("properties", {})
+            link = _text(props.get(link_prop))
+            if not link:
+                continue
+            pins.append({
+                "title": _text(props.get(title_prop)),
+                "image": _text(props.get(image_prop)),
+                "description": _text(props.get(desc_prop)),
+                "link": link,
+            })
         if data.get("has_more"):
             payload["start_cursor"] = data["next_cursor"]
         else:
             break
-    return links
+    return pins
 
 
 def main():
@@ -123,7 +185,7 @@ def main():
     ap.add_argument("--status", default=None,
                     help="Welcher Notion-Status exportiert wird (Standard: config.notion_open_status)")
     ap.add_argument("--no-notion", action="store_true",
-                    help="Notion-Status ignorieren und ALLE Pins exportieren")
+                    help="Notion-API ignorieren und den lokalen Snapshot exportieren")
     ap.add_argument("--strict", action="store_true",
                     help="Abbrechen, wenn Notion nicht erreichbar ist (statt Fallback)")
     args = ap.parse_args()
@@ -133,24 +195,24 @@ def main():
     board = args.board or cfg.get("board_name", "Pins")
     status_value = args.status or cfg.get("notion_open_status", "Offen")
 
-    with open(os.path.join(HERE, "pins.json"), encoding="utf-8") as f:
-        pins = json.load(f)
+    local = load_local_pins()
+    link_to_local = {_norm(p.get("link")): p for p in local}
 
-    # --- Notion-Status: nur offene Pins behalten ---
-    if args.no_notion:
-        print("Notion-Filter deaktiviert (--no-notion): alle Pins werden exportiert.")
-    else:
+    # --- Pin-Quelle bestimmen ---
+    pins = None
+    if not args.no_notion:
         try:
-            open_links = fetch_open_links(cfg, status_value)
-            before = len(pins)
-            pins = [p for p in pins if _norm(p.get("link")) in open_links]
-            print(f"Notion: {len(pins)}/{before} Pins mit Status '{status_value}' "
-                  f"werden exportiert.")
+            pins = fetch_open_pins(cfg, status_value)
+            print(f"Notion: {len(pins)} offene Pins (Status '{status_value}') live gelesen.")
         except Exception as e:  # noqa: BLE001 - bewusst breit, Fallback gewuenscht
             if args.strict:
                 raise
             print(f"WARN: Notion nicht gelesen ({e}). "
-                  f"Fallback: ALLE Pins werden exportiert.")
+                  f"Fallback: lokaler Snapshot (pins.json + extra_notion_pins.json).")
+    if pins is None:
+        pins = local
+        if args.no_notion:
+            print(f"Lokaler Snapshot (--no-notion): {len(pins)} Pins.")
 
     # Zeitplan: ab morgen, taeglich um 10:00 und 16:00 (je nach per-day)
     slots = [10, 16, 13, 19, 8][: max(1, args.per_day)]
@@ -172,7 +234,7 @@ def main():
             "Description": p["description"],
             "Link": p["link"],
             "Publish date": publish,
-            "Keywords": KEYWORDS.get(p["id"], ""),
+            "Keywords": keyword_for(p, link_to_local),
         })
 
     out = os.path.join(HERE, "pinterest_bulk.csv")

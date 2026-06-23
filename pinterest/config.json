@@ -5,6 +5,9 @@
   "notion_database_id": "438e8b3c-9e93-4015-b053-e70d037019d4",
   "notion_status_property": "Status",
   "notion_link_property": "Ziel-Link",
+  "notion_title_property": "Titel",
+  "notion_image_property": "Bild-URL",
+  "notion_desc_property": "Beschreibung",
   "notion_open_status": "Offen",
   "pages": [
     "index.html",
