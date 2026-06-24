@@ -65,4 +65,51 @@ durch **Humor & eigenen Winkel**.
 
 ---
 
-_Idee notiert: 2026-06-24. Nächster Review: wenn die Auslöse-Bedingung erfüllt ist._
+---
+
+## 📚 Recherche-Ergebnisse (Stand 2026-06-24, mit Quellen)
+
+> Echte Recherche, nicht aus dem Bauch. Diese Fakten ändern die Bewertung an einer Stelle
+> deutlich (Recht). Vor jedem Start hier nochmal reinschauen.
+
+### ⚖️ Recht: härter als gedacht — der Disclaimer schützt NICHT
+Das ist der wichtigste Fund. BaFin + ESMA haben ein **Finfluencer-Merkblatt** veröffentlicht:
+- Gilt für **jeden**, der öffentlich Anlageempfehlungen oder Werbung für Finanzprodukte postet — **unabhängig von Reichweite, Beruf oder Gewinnabsicht.** Hobby-Investoren und Micro-Influencer ausdrücklich eingeschlossen.
+- Anlageempfehlungen fallen unter die **Marktmissbrauchsverordnung (MAR)**: Fakten von Meinung trennen, Interessenkonflikte offenlegen, **Name + Berufsbezeichnung** angeben, Risiken so deutlich wie Chancen.
+- Werden **konkrete Produkte aktiv beworben** (Call-to-Action / Provisions-Bindung), kann das als **Anlagevermittlung/-beratung** gelten → **BaFin-Erlaubnis nötig.**
+- ❗ **Der beliebte Satz „Das ist keine Anlageberatung" schützt laut BaFin NICHT.**
+- Man haftet für seinen Content — auch als Laie.
+- Besonders kritisch: CFDs, Forex, Futures, volatile Kryptos.
+
+→ **Konsequenz:** Ein unbeaufsichtigter Bot, der Aktien-„Analysen" raushaut, ist rechtlich brandgefährlich. Wenn überhaupt, dann **reine Bildung/Unterhaltung, keine konkreten Calls, mit Mensch-Check + ggf. anwaltlicher Vorabprüfung.**
+
+### 📊 Sättigung: voll, aber mit Winkel schlagbar
+- DE-Top-10-Finfluencer auf Instagram je **>200.000 Follower**; ~24 über 100.000 (Spitze: @immo.tommy ~833k, @professorfinanzen ~652k, Stand Juni 2025).
+- Studie (Swiss Finance Institute): **ungelernte** Finfluencer haben mehr Follower/Einfluss als erfahrene → es gewinnt **Persönlichkeit/Reichweite, nicht Fachtiefe.** Das bestätigt: der Humor-/Persona-Winkel ist der Hebel.
+- Faceless-Finanz-Nische gilt als **übersättigt mit generischem Content** — aber monetarisiert gut bei klarem, engem Winkel. Die meisten Faceless-Accounts verdienen **nichts**, weil sie zu früh aufgeben oder keinen Conversion-Pfad haben.
+
+### 🔌 Instagram-Automatik: machbar, aber mit Auflagen
+- Reels per API posten geht **nur mit Instagram-BUSINESS-Account** (Creator wird nicht unterstützt).
+- Format: 9:16, **5–90 Sek.**, H.264/HEVC.
+- Braucht **Meta App Review** für `instagram_business_basic` + `instagram_business_content_publish` (je eigener Review mit Screencast, ~2–4 Wochen).
+- Ablauf: Container anlegen → Status pollen → publishen. Video muss als **öffentliche URL** erreichbar sein.
+- Limit: **100 API-Posts / 24 h** (Reels + Stories zusammen). Mehr als genug.
+
+### 🧰 Higgsfield-Pipeline: bereits getestet ✅
+- Text-zu-Video-Modell `kling3_0_turbo`, 9:16, 5 Sek. kostet nur **~7,5 Credits** — sehr günstig pro Reel.
+- Proof-of-Concept-Reel (Party-Content) wurde am 2026-06-24 generiert → der Video-Funnel funktioniert technisch. (Siehe `docs/strategie/reels-experiment.md`.)
+
+### Quellen
+- [BaFin/ESMA Finfluencer-Merkblatt (business-leaders.net)](https://www.business-leaders.net/factsheet-fuer-finfluencer-neue-leitplanken-fuer-finanzcontent-in-social-media/)
+- [ESMA Finfluencer-Factsheet (PDF, DE)](https://www.esma.europa.eu/sites/default/files/2026-01/DE_Germany_de_-_Finfluencers_factsheet.pdf)
+- [BaFin-Merkblatt Anlageberatung](https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Merkblatt/mb_250210_anlageberatung.html)
+- [Kennzeichnungspflichten bei Anlageempfehlungen (Laoutoumai)](https://www.laoutoumai.de/rechtsgebiete/influencer-und-recht/80-phaenomen-finfluencer-kennzeichnungspflichten-bei-anlageempfehlungen-auf-social-media)
+- [Größte Finfluencer Deutschlands (Das Investment)](https://www.dasinvestment.com/die-groessten-finfluencer-deutschlands/)
+- [Top Finance Influencers Germany (HypeAuditor)](https://hypeauditor.com/top-instagram-finance-economics-germany/)
+- [Truth About Monetizing Faceless Content 2026 (Medium)](https://medium.com/write-a-catalyst/the-truth-about-monetizing-faceless-content-on-instagram-in-2026-72d825e41a34)
+- [Instagram Reels API Publishing Guide 2026 (Postproxy)](https://postproxy.dev/blog/instagram-reels-api-publishing-guide/)
+- [Meta: Publish Content (offizielle Doku)](https://developers.facebook.com/docs/instagram-platform/content-publishing/)
+
+---
+
+_Idee notiert: 2026-06-24. Recherche ergänzt: 2026-06-24. Nächster Review: wenn die Auslöse-Bedingung erfüllt ist._
