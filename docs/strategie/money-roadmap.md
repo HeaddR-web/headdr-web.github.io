@@ -24,6 +24,19 @@ alles um **Traffic → Klicks → erste Verkäufe**. Alles andere ist nachrangig
 
 Wir sind bei Schritt 1–2. Hier muss die ganze Energie rein.
 
+### 🧭 Der UX-Nordstern: Einkaufen so leicht wie möglich machen
+
+> Jede Seite und jeder Pin hat **eine Aufgabe**: dem Besucher das Einkaufen für seine Party
+> **erleichtern** — vermitteln *und* ermöglichen. Wenn eine Änderung das Kaufen nicht
+> leichter macht, ist sie nachrangig.
+
+Konkrete Regeln, an denen wir jede Seite messen:
+- **Alles direkt kaufbar, kein Suchen:** Jedes empfohlene Produkt = ein direkter Amazon-Link auf der Seite. (Umgesetzt 2026-06-24: Kategorie-Karten zeigen jetzt die *komplette* Liste, nicht nur einen Pick — Themen Watchparty, Cocktailabend, Girlsnight.)
+- **Ein klarer Top-Pick pro Kategorie** (Vertrauen) **+ die volle Liste darunter** (Vollständigkeit).
+- **Pin → genau die richtige Stelle:** Pins zeigen auf die Kategorie-Anker-URL, nicht auf die Startseite.
+- **Kein Tab-Chaos / keine Sackgassen:** der Weg vom Ankommen bis zum Amazon-Klick ist kurz.
+- **Offene Idee (Stufe 2):** „Meine Party-Liste" — Produkte über Kategorien hinweg sammeln und auf einen Schlag öffnen (CSS dafür liegt schon bereit: `.mynight`).
+
 ---
 
 ## 🥇 Priorität 1: Traffic-Maschine am Laufen halten (Pinterest)

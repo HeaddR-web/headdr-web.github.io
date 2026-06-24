@@ -138,8 +138,24 @@
           '" rel="sponsored nofollow" target="_blank">Auf Amazon ansehen →</a>' +
           "</div>" +
           (more > 0
-            ? '<a class="guide-link" href="' + cat.guide + '">' + more + " weitere Ideen im Guide →</a>"
-            : '<a class="guide-link" href="' + cat.guide + '">Zum Guide →</a>') +
+            ? '<p class="picks-label">Die komplette Liste — direkt shoppen:</p>' +
+              '<ul class="picks">' +
+              cat.picks
+                .slice(1)
+                .map(function (p) {
+                  return (
+                    '<li><span class="pick-name">' +
+                    esc(p.name) +
+                    "</span>" +
+                    '<a class="add-btn" href="' +
+                    amz(p.q) +
+                    '" rel="sponsored nofollow" target="_blank">Ansehen</a></li>'
+                  );
+                })
+                .join("") +
+              "</ul>"
+            : "") +
+          '<a class="guide-link" href="' + cat.guide + '">Mehr Ideen &amp; Anleitung im Guide →</a>' +
           "</div>" +
           "</article>"
       );
