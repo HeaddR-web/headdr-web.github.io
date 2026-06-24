@@ -75,13 +75,13 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 | girlsnight | A | ✅ Vorbild |
 | cozy | B | ❌ angleichen (Cozylore → BeThatHost) |
 | gartenparty | C | ✅ migriert (2026-06-24) |
-| geburtstag | C | ❌ angleichen |
+| geburtstag | C | ✅ migriert (2026-06-24) |
 | grillabend | C | ✅ migriert (2026-06-24) |
 | saison-deko | C | ❌ angleichen |
 | spa-abend | C | ❌ angleichen |
-| spieleabend | C | ❌ angleichen |
+| spieleabend | C | ✅ migriert (2026-06-24) |
 | valentinstag | C | ❌ angleichen |
-| brunch | C | ❌ angleichen |
+| brunch | C | ✅ migriert (2026-06-24) |
 | hawaii-tiki | minimal | ❌ angleichen |
 | jga | minimal | ❌ angleichen |
 | mexiko-fiesta | minimal | ❌ angleichen |
