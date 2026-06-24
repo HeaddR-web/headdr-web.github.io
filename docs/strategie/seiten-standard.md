@@ -62,8 +62,8 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 - Video gehört auf Social (Pinterest/Reels) als Traffic-Quelle, nicht als Seiten-Ballast.
 - Interne Links: jede Seite verlinkt 2–3 verwandte Seiten/Guides.
 
-## 8. Bekannte Abweichungen (bewusst, dokumentiert)
-- `cozy/` ist die Sub-Marke **„Cozylore"** mit eigener Optik/englischen Labels. → **Entscheidung offen:** angleichen oder bewusst eigenständig lassen?
+## 8. Bekannte Abweichungen
+- `cozy/` war die Sub-Marke „Cozylore". **Entscheidung 2026-06-24: wird an BeThatHost angeglichen** (eine Marke, ein Look, deutsche Labels).
 
 ---
 
@@ -73,10 +73,10 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 | watchparty | A | ✅ Vorbild |
 | cocktailabend | A | ✅ Vorbild |
 | girlsnight | A | ✅ Vorbild |
-| cozy | B | ⚠️ Sub-Marke (Entscheidung offen) |
-| gartenparty | C | ❌ angleichen |
+| cozy | B | ❌ angleichen (Cozylore → BeThatHost) |
+| gartenparty | C | ✅ migriert (2026-06-24) |
 | geburtstag | C | ❌ angleichen |
-| grillabend | C | ❌ angleichen |
+| grillabend | C | ✅ migriert (2026-06-24) |
 | saison-deko | C | ❌ angleichen |
 | spa-abend | C | ❌ angleichen |
 | spieleabend | C | ❌ angleichen |

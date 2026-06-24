@@ -26,7 +26,7 @@ zuhause. Pro Anlass kuratierte Produktempfehlungen + Guides. Statische Seite auf
   **Keine erfundenen** Produktnamen/Preise/ASINs. Keine selbst gehosteten Amazon-Bilder.
 - Seite bleibt **statisch & schnell** (Core Web Vitals). **Keine** schweren Videos auf der
   Website „für SEO" — Video gehört auf Social (Pinterest/Reels) als Traffic-Quelle.
-- Markenname „BeThatHost", deutsche Labels. Ausnahme: `cozy/` = Sub-Marke „Cozylore".
+- Markenname „BeThatHost", deutsche Labels. (`cozy/` wird ebenfalls angeglichen.)
 - Jede neue Seite kommt in `sitemap.xml`; jeder Artikel verlinkt 2–3 verwandte Seiten.
 
 ## Wo was steht
