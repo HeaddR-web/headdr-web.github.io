@@ -77,10 +77,10 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 | gartenparty | C | ✅ migriert (2026-06-24) |
 | geburtstag | C | ✅ migriert (2026-06-24) |
 | grillabend | C | ✅ migriert (2026-06-24) |
-| saison-deko | C | ❌ angleichen |
-| spa-abend | C | ❌ angleichen |
+| saison-deko | C | ✅ migriert (2026-06-24) |
+| spa-abend | C | ✅ migriert (2026-06-24) |
 | spieleabend | C | ✅ migriert (2026-06-24) |
-| valentinstag | C | ❌ angleichen |
+| valentinstag | C | ✅ migriert (2026-06-24) |
 | brunch | C | ✅ migriert (2026-06-24) |
 | hawaii-tiki | minimal | ❌ angleichen |
 | jga | minimal | ❌ angleichen |
