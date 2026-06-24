@@ -63,7 +63,7 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 - Interne Links: jede Seite verlinkt 2–3 verwandte Seiten/Guides.
 
 ## 8. Bekannte Abweichungen
-- `cozy/` war die Sub-Marke „Cozylore". **Entscheidung 2026-06-24: wird an BeThatHost angeglichen** (eine Marke, ein Look, deutsche Labels).
+- `cozy/` war die englische Sub-Marke „Cozylore" (21 Deko-Artikel). **Entscheidung 2026-06-24: von BeThatHost abgekoppelt.** Alle Verweise (Startseite, Navigation, Cross-Links, `sitemap.xml`, `llms.txt`) wurden entfernt; die Dateien bleiben im Repo erhalten. Begründung: englisch + Thema Wohn-Deko statt Party → gehört nicht auf die deutsche Party-Seite. Kann später eine eigene Domain bekommen. **Nicht wieder verlinken.**
 
 ---
 
@@ -73,7 +73,7 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 | watchparty | A | ✅ Vorbild |
 | cocktailabend | A | ✅ Vorbild |
 | girlsnight | A | ✅ Vorbild |
-| cozy | B | ❌ angleichen (Cozylore → BeThatHost) |
+| cozy | B | 🔌 abgekoppelt (2026-06-24) — Dateien bleiben, nicht mehr verlinkt |
 | gartenparty | C | ✅ migriert (2026-06-24) |
 | geburtstag | C | ✅ migriert (2026-06-24) |
 | grillabend | C | ✅ migriert (2026-06-24) |
