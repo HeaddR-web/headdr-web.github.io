@@ -82,10 +82,11 @@ Gerendert aus `app.js` → `CATEGORIES`. **Pflicht-Verhalten (UX-Nordstern „Ei
 | spieleabend | C | ✅ migriert (2026-06-24) |
 | valentinstag | C | ✅ migriert (2026-06-24) |
 | brunch | C | ✅ migriert (2026-06-24) |
-| hawaii-tiki | minimal | ❌ angleichen |
-| jga | minimal | ❌ angleichen |
-| mexiko-fiesta | minimal | ❌ angleichen |
+| hawaii-tiki | Motto | ✅ migriert (2026-06-24) |
+| jga | Motto | ✅ migriert (2026-06-24) |
+| mexiko-fiesta | Motto | ✅ migriert (2026-06-24) |
 
-> Reihenfolge der Migration: erst saisonale/traffic-starke Seiten. Jede migrierte Seite hier abhaken.
+> ✅ **Migration abgeschlossen (2026-06-24):** Alle Anlass-/Motto-Seiten folgen dem Standard.
+> cozy ist bewusst abgekoppelt. Neue Seiten folgen ab jetzt von Anfang an diesem Bauplan.
 
 _Standard festgelegt: 2026-06-24._
