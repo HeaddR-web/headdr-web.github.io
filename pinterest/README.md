@@ -25,9 +25,15 @@ nutzt stattdessen die offizielle API.
    für deinen eigenen Account.
 3. **Board anlegen** auf Pinterest mit dem Namen aus `config.json`
    (`"board_name"`), Standard: **„Party & Gastgeben Ideen"**. Namen ggf. anpassen.
-4. Im GitHub-Repo unter **Settings → Secrets and variables → Actions**:
-   - **Secret** `PINTEREST_ACCESS_TOKEN` = dein Token
-   - **Variable** `PINTEREST_LIVE` = `true`  (Schalter: ohne ihn bleibt alles DRY-RUN)
+4. **Token erzeugen** geht bequem mit `python pinterest/get_token.py` (führt durch
+   den OAuth-Flow und gibt Access- **und** Refresh-Token aus).
+5. Im GitHub-Repo unter **Settings → Secrets and variables → Actions**:
+   - **Empfohlen (läuft nie ab):** Secrets `PINTEREST_APP_ID`,
+     `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Der Workflow holt sich
+     pro Lauf selbst einen frischen Access-Token aus dem Refresh-Token.
+   - **Einfach (läuft ~30 Tage ab):** stattdessen Secret `PINTEREST_ACCESS_TOKEN`.
+   - In beiden Fällen: **Variable** `PINTEREST_LIVE` = `true`
+     (Schalter: ohne ihn bleibt alles DRY-RUN)
 
 ## Erst testen, dann scharf schalten
 - **DRY-RUN (Standard):** Solange `PINTEREST_LIVE` ≠ `true` oder kein Token da ist,

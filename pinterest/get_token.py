@@ -97,11 +97,16 @@ def main():
     print("ACCESS-TOKEN  (-> GitHub-Secret PINTEREST_ACCESS_TOKEN):\n")
     print("   " + tok.get("access_token", "?"))
     if tok.get("refresh_token"):
-        print("\nREFRESH-TOKEN (gut aufbewahren, fuer spaetere Erneuerung):\n")
+        print("\nREFRESH-TOKEN (empfohlen — laeuft nie ab):\n")
         print("   " + tok["refresh_token"])
-    print("\nNaechster Schritt: Access-Token im Repo unter")
-    print("Settings -> Secrets and variables -> Actions als PINTEREST_ACCESS_TOKEN")
-    print("hinterlegen und Variable PINTEREST_LIVE = true setzen.")
+    print("\n--- Im Repo hinterlegen: Settings -> Secrets and variables -> Actions ---")
+    print("Empfohlen (Auto-Refresh, kein Ablauf): diese 3 Secrets setzen")
+    print("   PINTEREST_APP_ID       = deine App-ID")
+    print("   PINTEREST_APP_SECRET   = dein App-Secret")
+    print("   PINTEREST_REFRESH_TOKEN= der Refresh-Token oben")
+    print("Alternativ (einfach, laeuft ~30 Tage ab):")
+    print("   PINTEREST_ACCESS_TOKEN = der Access-Token oben")
+    print("In beiden Faellen zusaetzlich: Variable PINTEREST_LIVE = true")
 
 
 if __name__ == "__main__":

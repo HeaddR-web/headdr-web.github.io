@@ -10,6 +10,7 @@
 Benoetigt: Umgebungsvariable PINTEREST_ACCESS_TOKEN (GitHub-Secret).
 Nur Standardbibliothek + requests.
 """
+import base64
 import json
 import os
 import sys
@@ -19,6 +20,44 @@ import requests
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 API = "https://api.pinterest.com/v5"
+TOKEN_URL = f"{API}/oauth/token"
+
+
+def refresh_access_token(app_id, app_secret, refresh_token):
+    """Holt mit dem Refresh-Token einen frischen Access-Token (Pinterest v5).
+
+    Refresh-Tokens sind langlebig (~1 Jahr); Access-Tokens nur ~30 Tage. So muss
+    nie wieder ein Access-Token manuell erneuert werden. Wirft bei Fehler.
+    """
+    basic = base64.b64encode(f"{app_id}:{app_secret}".encode()).decode()
+    r = requests.post(
+        TOKEN_URL,
+        headers={"Authorization": f"Basic {basic}",
+                 "Content-Type": "application/x-www-form-urlencoded"},
+        data={"grant_type": "refresh_token", "refresh_token": refresh_token},
+        timeout=30,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"Token-Refresh fehlgeschlagen ({r.status_code}): {r.text[:300]}")
+    return r.json().get("access_token", "")
+
+
+def resolve_access_token():
+    """Access-Token bestimmen: direktes Secret ODER frisch via Refresh-Token.
+
+    Rueckgabe (token, quelle). token == "" bedeutet: nicht konfiguriert -> DRY-RUN.
+    Bei vorhandenen Refresh-Credentials, die aber scheitern, wird die Exception
+    durchgereicht (echter Fehler statt stillem DRY-RUN).
+    """
+    direct = os.environ.get("PINTEREST_ACCESS_TOKEN", "").strip()
+    if direct:
+        return direct, "Secret PINTEREST_ACCESS_TOKEN"
+    app_id = os.environ.get("PINTEREST_APP_ID", "").strip()
+    app_secret = os.environ.get("PINTEREST_APP_SECRET", "").strip()
+    refresh_token = os.environ.get("PINTEREST_REFRESH_TOKEN", "").strip()
+    if app_id and app_secret and refresh_token:
+        return refresh_access_token(app_id, app_secret, refresh_token), "Refresh-Token"
+    return "", "nicht konfiguriert"
 
 
 def load(name, default):
@@ -53,8 +92,14 @@ def resolve_board(session, name):
 
 
 def main():
-    token = os.environ.get("PINTEREST_ACCESS_TOKEN", "").strip()
     live = os.environ.get("PINTEREST_LIVE", "").strip().lower() == "true"
+    try:
+        token, token_source = resolve_access_token()
+    except Exception as e:  # noqa: BLE001 - Refresh-Fehler klar melden
+        print(f"FEHLER beim Token-Refresh: {e}", file=sys.stderr)
+        if live:
+            sys.exit(1)
+        token, token_source = "", "Refresh fehlgeschlagen"
     dry = not live or not token
 
     cfg = load("config.json", {})
@@ -74,8 +119,10 @@ def main():
 
     print(f"Pins gesamt: {len(pins)} | schon gepostet: {len(ledger)} | "
           f"offen: {len(todo)} | dieser Lauf: {len(batch)} (max {cap})")
+    if not dry:
+        print(f"Token-Quelle: {token_source}")
     if dry:
-        why = "PINTEREST_LIVE != 'true'" if token else "kein PINTEREST_ACCESS_TOKEN"
+        why = "PINTEREST_LIVE != 'true'" if token else f"kein Token ({token_source})"
         print(f"== DRY-RUN ({why}) — es wird NICHTS gepostet ==")
         for p in batch:
             print(f"  + [{p['id']}] {p['title']}  ->  {p['link']}")
