@@ -27,7 +27,7 @@ Repo: `headdr-web/headdr-web.github.io`. Kein Build-Step — reines HTML/CSS/JS.
 1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>`, meta description, canonical,
    og-Tags, **Article + FAQPage JSON-LD**, Fonts-Link, `/assets/style.css`, `/assets/motion.css`, AdSense.
 2. `<header class="site">`: Brand `<a class="brand" href="/">BeThatHost</a>` + Nav mit genau
-   zwei Links: `Alle Anlässe` → `../index.html`, `Über uns` → `/ueber-uns.html`.
+   zwei Links: `Alle Anlässe` → `/`, `Über uns` → `/ueber-uns.html` (absolute Pfade, einheitlich auf allen Ebenen).
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
    Intro, thematische Abschnitte mit `<div class="pick">`-Karten, ein `<div class="ad-slot">`, `<div class="subscribe">`.
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`).
@@ -44,8 +44,10 @@ Form `https://www.amazon.de/s?k=<suchbegriff>&tag=cozylore-21`.
 5. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
-`pinterest/` enthält die Pipeline. Single Source of Truth ist die Notion-DB **„📌 Pinterest Pins"**.
-`pinterest/make_bulk_csv.py` erzeugt die Bulk-Upload-CSV. Details: `pinterest/README.md`.
+- **Live-Posten (automatisch):** `.github/workflows/pinterest-publish.yml` + `scripts/pinterest_publish.py`
+  posten geplant aus den `*/pins/queue.json` über die offizielle API (Refresh-Token, Pro-Board-Logik).
+- **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
+- Inhaltlicher Tracker / Single Source of Truth: Notion-DB **„📌 Pinterest Pins"**. Details: `pinterest/README.md`.
 
 ## Workflow / Konventionen
 - **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin).
