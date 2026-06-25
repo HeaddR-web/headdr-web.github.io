@@ -38,7 +38,7 @@
       img: IMG + "hf_20260618_151400_aed3e59f-6306-4ada-9f78-fb7904cf9f2a.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
-        { name: "Snack- & Dip-Schalen", desc: "Alles griffbereit auf dem Tisch.", q: "Snackschalen Set Party" },
+        { name: "Snack- & Dip-Schalen", desc: "Alles griffbereit auf dem Tisch.", q: "Snack Dip Schalen Set" },
         { name: "Tortilla-Chips (Großpackung)", desc: "Die Basis für die Nacho-Schlacht.", q: "Tortilla Chips Grosspackung" },
         { name: "Nacho-Käsesauce", desc: "Warm, cremig, Spieltag-Pflicht.", q: "Nacho Kaesesauce" },
         { name: "Hot-Dog-Maker", desc: "Selbstbau-Station für die Halbzeit.", q: "Hot Dog Maker" },
