@@ -1,0 +1,27 @@
+name: "Neue Anlass-/Motto-Seite"
+description: "Eine neue BeThatHost-Seite anfordern (Anlass oder Mottoparty)."
+title: "[Seite] "
+labels: ["content", "claude"]
+body:
+  - type: input
+    id: thema
+    attributes:
+      label: Thema / Titel
+      placeholder: "z. B. Casino-/James-Bond-Abend"
+    validations:
+      required: true
+  - type: dropdown
+    id: typ
+    attributes:
+      label: Typ
+      options: ["Anlass", "Mottoparty"]
+    validations:
+      required: true
+  - type: textarea
+    id: picks
+    attributes:
+      label: Gewünschte Produkt-Picks / Abschnitte
+      placeholder: "z. B. Pokerset, Deko, Dresscode, Casino-Snacks, Cocktails …"
+  - type: markdown
+    attributes:
+      value: "Schreibe **@claude** in einen Kommentar, damit der Agent die Seite nach `CLAUDE.md` baut."

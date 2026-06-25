@@ -1,0 +1,27 @@
+name: Consistency Check
+
+# Guardrail: blockt Design-Inkonsistenz automatisch bei jedem Push/PR.
+# Prüft u.a.: nur eine zentrale /assets/style.css, keine Playfair/Inter-Reste,
+# einheitliche Stylesheet-Pfade und Titel-Form. Logik: scripts/check-consistency.sh
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "**/*.html"
+      - "assets/style.css"
+      - "scripts/check-consistency.sh"
+  pull_request:
+    paths:
+      - "**/*.html"
+      - "assets/style.css"
+      - "scripts/check-consistency.sh"
+  workflow_dispatch: {}
+
+jobs:
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Konsistenz-Check
+        run: bash scripts/check-consistency.sh

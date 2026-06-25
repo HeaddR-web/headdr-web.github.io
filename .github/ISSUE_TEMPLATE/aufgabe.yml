@@ -1,0 +1,20 @@
+name: "Aufgabe / Fix"
+description: "Allgemeine Aufgabe, Korrektur oder Verbesserung."
+title: "[Task] "
+labels: ["claude"]
+body:
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was soll passieren?
+      placeholder: "Beschreibe Aufgabe oder Problem möglichst konkret."
+    validations:
+      required: true
+  - type: input
+    id: betroffen
+    attributes:
+      label: Betroffene Seiten/Dateien (optional)
+      placeholder: "z. B. jga/index.html, assets/style.css"
+  - type: markdown
+    attributes:
+      value: "Schreibe **@claude** in einen Kommentar, damit der GitHub-Agent übernimmt."
