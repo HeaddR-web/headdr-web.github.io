@@ -3,6 +3,43 @@
 (function () {
   "use strict";
 
+  // ---------- Kategorie-Schnellnavigation (Chips) ----------
+  // Baut aus den gerenderten Kategorie-Karten eine Sprung-Navigation oberhalb des Grids.
+  // Läuft bewusst UNABHÄNGIG von der Motion-Schicht (auch bei prefers-reduced-motion).
+  document.addEventListener("DOMContentLoaded", function () {
+    var grid = document.getElementById("build-grid");
+    if (!grid) return;
+
+    function buildCatNav() {
+      if (document.querySelector(".cat-nav")) return true;
+      var cards = grid.querySelectorAll(".cat-card");
+      if (!cards.length) return false;
+      var nav = document.createElement("nav");
+      nav.className = "cat-nav";
+      nav.setAttribute("aria-label", "Kategorien");
+      Array.prototype.forEach.call(cards, function (card) {
+        if (!card.id) return;
+        var tag = card.querySelector(".tag");
+        var a = document.createElement("a");
+        a.className = "cat-chip";
+        a.href = "#" + card.id;
+        a.textContent = tag ? tag.textContent.trim() : card.id;
+        nav.appendChild(a);
+      });
+      grid.parentNode.insertBefore(nav, grid);
+      return true;
+    }
+
+    // Karten werden von app.js erst nach dem Laden eingefügt → kurz nachfassen.
+    if (!buildCatNav()) {
+      var tries = 0;
+      var iv = setInterval(function () {
+        tries++;
+        if (buildCatNav() || tries > 20) clearInterval(iv);
+      }, 50);
+    }
+  });
+
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (!("IntersectionObserver" in window)) return;
 
