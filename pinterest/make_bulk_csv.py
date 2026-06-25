@@ -111,6 +111,17 @@ def keyword_for(pin, link_to_local=None):
     return kw or _hashtags_to_keywords(pin.get("description", ""))
 
 
+def merge_keywords(base, extras):
+    """Globale Keywords anhaengen, ohne Duplikate (case-insensitive), Reihenfolge erhalten."""
+    out, seen = [], set()
+    for kw in [k.strip() for k in base.split(",")] + list(extras):
+        k = kw.strip()
+        if k and k.lower() not in seen:
+            seen.add(k.lower())
+            out.append(k)
+    return ", ".join(out)
+
+
 def fetch_open_pins(cfg, status_value):
     """Liest alle offenen Pins direkt aus dem Notion-Tracker (volle Datensaetze).
 
@@ -234,7 +245,8 @@ def main():
             "Description": p["description"],
             "Link": p["link"],
             "Publish date": publish,
-            "Keywords": keyword_for(p, link_to_local),
+            "Keywords": merge_keywords(keyword_for(p, link_to_local),
+                                       cfg.get("global_keywords", [])),
         })
 
     out = os.path.join(HERE, "pinterest_bulk.csv")
