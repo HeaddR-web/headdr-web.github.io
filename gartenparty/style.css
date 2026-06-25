@@ -347,6 +347,12 @@ main {
   font-size: 0.92rem;
   margin: 0 0 14px;
 }
+.cat-card .picks-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 2px 0 8px;
+}
 .picks {
   list-style: none;
   margin: 0 0 14px;
@@ -915,50 +921,4 @@ a.add-btn { text-decoration: none; }
 .hero-pick .hp-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 26px rgba(190, 122, 107, 0.4);
-}
-
-/* ---------- Produktkarten mit Bild (Flaggschiff Gartenparty) ---------- */
-.pick {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-.pick .pick-photo {
-  flex: 0 0 190px;
-  width: 190px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 10px;
-  box-shadow: 0 6px 16px rgba(120, 90, 70, 0.08);
-}
-.pick .pick-photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 8px;
-}
-.pick .pick-text {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.pick .pick-text > :first-child {
-  margin-top: 0;
-}
-.pick .pick-text p {
-  margin-bottom: 14px;
-}
-@media (max-width: 640px) {
-  .pick {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-  }
-  .pick .pick-photo {
-    flex-basis: auto;
-    width: 100%;
-    max-width: 260px;
-    margin: 0 auto;
-  }
 }

@@ -38,7 +38,7 @@
       img: IMG + "hf_20260618_151400_aed3e59f-6306-4ada-9f78-fb7904cf9f2a.png",
       guide: "posts/world-cup-watch-party.html",
       picks: [
-        { name: "Snack- & Dip-Schalen", desc: "Alles griffbereit auf dem Tisch.", q: "Snackschalen Set Party" },
+        { name: "Snack- & Dip-Schalen", desc: "Alles griffbereit auf dem Tisch.", q: "Snack Dip Schalen Set" },
         { name: "Tortilla-Chips (Großpackung)", desc: "Die Basis für die Nacho-Schlacht.", q: "Tortilla Chips Grosspackung" },
         { name: "Nacho-Käsesauce", desc: "Warm, cremig, Spieltag-Pflicht.", q: "Nacho Kaesesauce" },
         { name: "Hot-Dog-Maker", desc: "Selbstbau-Station für die Halbzeit.", q: "Hot Dog Maker" },
@@ -138,8 +138,24 @@
           '" rel="sponsored nofollow" target="_blank">Auf Amazon ansehen →</a>' +
           "</div>" +
           (more > 0
-            ? '<a class="guide-link" href="' + cat.guide + '">' + more + " weitere Ideen im Guide →</a>"
-            : '<a class="guide-link" href="' + cat.guide + '">Zum Guide →</a>') +
+            ? '<p class="picks-label">Die komplette Liste — direkt shoppen:</p>' +
+              '<ul class="picks">' +
+              cat.picks
+                .slice(1)
+                .map(function (p) {
+                  return (
+                    '<li><span class="pick-name">' +
+                    esc(p.name) +
+                    "</span>" +
+                    '<a class="add-btn" href="' +
+                    amz(p.q) +
+                    '" rel="sponsored nofollow" target="_blank">Ansehen</a></li>'
+                  );
+                })
+                .join("") +
+              "</ul>"
+            : "") +
+          '<a class="guide-link" href="' + cat.guide + '">Mehr Ideen &amp; Anleitung im Guide →</a>' +
           "</div>" +
           "</article>"
       );

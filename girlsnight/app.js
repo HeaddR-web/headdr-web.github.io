@@ -69,7 +69,7 @@
         { name: "LED-Lichterkette warmweiß", desc: "Sofort gemütliche Stimmung.", q: "LED Lichterkette warmweiss innen" },
         { name: "Discokugel / Partylicht", desc: "Macht jeden Raum zur Tanzfläche.", q: "Discokugel LED Partylicht" },
         { name: "LED-Neonschild", desc: "Wirkt wie eine echte Location.", q: "LED Neonschild Wand" },
-        { name: "Konfetti & Tischdeko", desc: "Die schnellen 5-Minuten-Akzente.", q: "Tischdeko Set Party rosa" }
+        { name: "Konfetti & Tischdeko", desc: "Die schnellen 5-Minuten-Akzente.", q: "Konfetti Tischdeko Set rosa" }
       ]
     },
     {
@@ -81,7 +81,7 @@
       guide: "posts/girls-night-pamper-spa.html",
       picks: [
         { name: "Gesichtsmasken-Set", desc: "Der Spa-Klassiker für alle.", q: "Gesichtsmasken Set Tuchmasken" },
-        { name: "Spa-Stirnband & Scrunchies", desc: "Bequem und süß auf Fotos.", q: "Spa Stirnband Set" },
+        { name: "Spa-Stirnband & Scrunchies", desc: "Bequem und süß auf Fotos.", q: "Spa Stirnband Scrunchies Set" },
         { name: "Nagellack-Set", desc: "Mani-Pedi-Station für daheim.", q: "Nagellack Set" },
         { name: "Fußbad / Fußpflege-Set", desc: "Wellness bis in die Zehen.", q: "Fussbad Set Wellness" },
         { name: "Duftkerzen-Set", desc: "Die richtige Stimmung & Duft.", q: "Duftkerzen Set" }
@@ -111,7 +111,7 @@
       guide: "posts/pyjama-party.html",
       picks: [
         { name: "Sofortbildkamera", desc: "Der Mädelsabend-Klassiker schlechthin — jede klebt ihr Foto später ins Album. Sofort verschenkbar.", q: "Sofortbildkamera Instax" },
-        { name: "Foto-Requisiten / Photobooth-Set", desc: "Brillen, Schilder & Co. für die albernsten Bilder.", q: "Fotobox Requisiten Set Party" },
+        { name: "Foto-Requisiten / Photobooth-Set", desc: "Brillen, Schilder & Co. für die albernsten Bilder.", q: "Photobooth Requisiten Set Party" },
         { name: "Foto-Klammern & Lichterkette", desc: "Bilder direkt aufhängen statt verstecken.", q: "Foto Klammern Lichterkette" }
       ]
     }
@@ -163,8 +163,24 @@
           '" rel="sponsored nofollow" target="_blank">Auf Amazon ansehen →</a>' +
           "</div>" +
           (more > 0
-            ? '<a class="guide-link" href="' + cat.guide + '">' + more + " weitere Ideen im Guide →</a>"
-            : '<a class="guide-link" href="' + cat.guide + '">Zum Guide →</a>') +
+            ? '<p class="picks-label">Die komplette Liste — direkt shoppen:</p>' +
+              '<ul class="picks">' +
+              cat.picks
+                .slice(1)
+                .map(function (p) {
+                  return (
+                    '<li><span class="pick-name">' +
+                    esc(p.name) +
+                    "</span>" +
+                    '<a class="add-btn" href="' +
+                    amz(p.q) +
+                    '" rel="sponsored nofollow" target="_blank">Ansehen</a></li>'
+                  );
+                })
+                .join("") +
+              "</ul>"
+            : "") +
+          '<a class="guide-link" href="' + cat.guide + '">Mehr Ideen &amp; Anleitung im Guide →</a>' +
           "</div>" +
           "</article>"
       );
