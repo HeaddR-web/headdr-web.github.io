@@ -19,8 +19,8 @@
   --line-soft: rgba(62, 54, 46, 0.07);
   --max: 1120px;
   --read: 720px;
-  --display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --ui: "Inter", system-ui, -apple-system, sans-serif;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --ui: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -917,8 +917,8 @@ a.add-btn { text-decoration: none; }
   box-shadow: 0 12px 26px rgba(190, 122, 107, 0.4);
 }
 
-/* ---------- Produktkarten mit Bild (Flaggschiff Gartenparty) ---------- */
-.pick {
+/* ---------- Produktkarten mit Bild (optional, via .pick-photo) ---------- */
+.pick:has(.pick-photo) {
   display: flex;
   gap: 22px;
   align-items: center;
@@ -950,7 +950,7 @@ a.add-btn { text-decoration: none; }
   margin-bottom: 14px;
 }
 @media (max-width: 640px) {
-  .pick {
+  .pick:has(.pick-photo) {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
