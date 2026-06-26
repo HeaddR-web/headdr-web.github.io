@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>BeThatHost — KPI-Cockpit (intern)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4ede1; --paper: #fffdf9; --ink: #241f1a; --muted: #8a7a68;
+        --rose: #b9543f; --rose-deep: #963f2e; --gold: #a9824a;
+        --line: rgba(36, 31, 26, 0.16);
+        --display: "Fraunces", Georgia, serif; --ui: "Hanken Grotesk", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { font-family: var(--ui); margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 22px 80px; }
+      h1 { font-family: var(--display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 4px; letter-spacing: -0.01em; }
+      h2 { font-family: var(--display); font-weight: 600; font-size: 1.3rem; margin: 38px 0 14px; }
+      .sub { color: var(--muted); margin: 0 0 8px; }
+      .tag { display: inline-block; font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; color: var(--rose); }
+
+      .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+      a.card { display: block; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; text-decoration: none; color: inherit; transition: transform .12s ease, box-shadow .12s ease, border-color .12s; }
+      a.card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(120,90,70,.14); border-color: var(--rose); }
+      a.card .t { font-weight: 700; font-size: 1.02rem; }
+      a.card .d { color: var(--muted); font-size: .86rem; margin-top: 3px; }
+      a.card .arrow { color: var(--rose); font-weight: 700; }
+
+      .glance { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+      .stat { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+      .stat .n { font-family: var(--display); font-weight: 700; font-size: 2rem; color: var(--rose-deep); line-height: 1; }
+      .stat .l { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+      .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-top: 14px; }
+      form.kpi { display: grid; grid-template-columns: repeat(6, 1fr) auto; gap: 8px; align-items: end; }
+      form.kpi label { display: flex; flex-direction: column; font-size: .72rem; color: var(--muted); gap: 4px; font-weight: 600; }
+      form.kpi input { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; width: 100%; }
+      form.kpi button { font: inherit; font-weight: 700; padding: 9px 16px; border: none; border-radius: 999px; background: var(--rose); color: #fff; cursor: pointer; }
+      form.kpi button:hover { background: var(--rose-deep); }
+      @media (max-width: 760px) { form.kpi { grid-template-columns: 1fr 1fr; } }
+
+      table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: .92rem; }
+      th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+      th { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+      td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+      tfoot td { font-weight: 700; border-top: 2px solid var(--line); }
+      .del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; line-height: 1; }
+      .del:hover { color: var(--rose); }
+      .tools { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+      .tools button { font: inherit; font-weight: 600; font-size: .86rem; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; cursor: pointer; }
+      .tools button:hover { border-color: var(--rose); color: var(--rose); }
+      .empty { color: var(--muted); padding: 14px 0; }
+      .note { color: var(--muted); font-size: .82rem; margin-top: 10px; }
+      ul.todo { list-style: none; padding: 0; margin: 0; }
+      ul.todo li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+      ul.todo li::before { content: "☐ "; color: var(--rose); font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <span class="tag">Intern · nicht indexiert</span>
+      <h1>BeThatHost — KPI-Cockpit</h1>
+      <p class="sub">Alle Kennzahlen an einem Ort. Die Live-Daten liegen in den verlinkten Tools; der Tracker unten ist dein wöchentlicher Schnappschuss.</p>
+
+      <h2>Dashboards öffnen</h2>
+      <div class="cards">
+        <a class="card" href="https://dash.cloudflare.com/" target="_blank" rel="noopener">
+          <div class="t">Cloudflare Web Analytics <span class="arrow">→</span></div>
+          <div class="d">Besucher, Seitenaufrufe, Referrer, Top-Seiten</div>
+        </a>
+        <a class="card" href="https://www.google.com/adsense/" target="_blank" rel="noopener">
+          <div class="t">Google AdSense <span class="arrow">→</span></div>
+          <div class="d">Anzeigen-Umsatz, Impressionen, RPM · ca-pub-4473022510510415</div>
+        </a>
+        <a class="card" href="https://partnernet.amazon.de/home" target="_blank" rel="noopener">
+          <div class="t">Amazon PartnerNet <span class="arrow">→</span></div>
+          <div class="d">Klicks, Bestellungen, Provision · Tag cozylore-21</div>
+        </a>
+        <a class="card" href="https://analytics.pinterest.com/" target="_blank" rel="noopener">
+          <div class="t">Pinterest Analytics <span class="arrow">→</span></div>
+          <div class="d">Impressionen & Klicks auf Pins</div>
+        </a>
+        <a class="card" href="https://search.google.com/search-console" target="_blank" rel="noopener">
+          <div class="t">Google Search Console <span class="arrow">→</span></div>
+          <div class="d">Suchanfragen, Klicks, Impressionen, Indexierung</div>
+        </a>
+        <a class="card" href="https://github.com/HeaddR-web/headdr-web.github.io/actions" target="_blank" rel="noopener">
+          <div class="t">GitHub Actions <span class="arrow">→</span></div>
+          <div class="d">CI-Guardrail, Pinterest-Auto-Post, @claude-Agent</div>
+        </a>
+      </div>
+
+      <h2>Site auf einen Blick</h2>
+      <div class="glance">
+        <div class="stat"><div class="n">12</div><div class="l">Anlässe</div></div>
+        <div class="stat"><div class="n">4</div><div class="l">Mottopartys</div></div>
+        <div class="stat"><div class="n">15</div><div class="l">Blog-Posts</div></div>
+        <div class="stat"><div class="n">5</div><div class="l">Kaufratgeber</div></div>
+        <div class="stat"><div class="n">~65</div><div class="l">Seiten gesamt</div></div>
+      </div>
+      <p class="note">Stand 26.06.2026. Marke Cozylore (cozy/) wird separat geführt.</p>
+
+      <h2>KPI-Tracker (wöchentlich)</h2>
+      <div class="panel">
+        <form class="kpi" id="kpiForm" autocomplete="off">
+          <label>Datum<input type="date" name="datum" required /></label>
+          <label>Besucher<input type="number" name="besucher" min="0" placeholder="0" /></label>
+          <label>Seitenaufrufe<input type="number" name="views" min="0" placeholder="0" /></label>
+          <label>AdSense €<input type="number" name="adsense" min="0" step="0.01" placeholder="0,00" /></label>
+          <label>Affiliate €<input type="number" name="affiliate" min="0" step="0.01" placeholder="0,00" /></label>
+          <label>Notiz<input type="text" name="notiz" placeholder="z. B. Top-Seite, Aktion" /></label>
+          <button type="submit">+ Hinzufügen</button>
+        </form>
+
+        <table id="kpiTable">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th class="num">Besucher</th>
+              <th class="num">Seitenaufrufe</th>
+              <th class="num">AdSense €</th>
+              <th class="num">Affiliate €</th>
+              <th class="num">Umsatz €</th>
+              <th>Notiz</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="kpiBody"></tbody>
+          <tfoot id="kpiFoot"></tfoot>
+        </table>
+
+        <div class="tools">
+          <button type="button" id="exportCsv">CSV exportieren</button>
+          <button type="button" id="clearAll">Alle löschen</button>
+        </div>
+        <p class="note">Daten werden lokal in deinem Browser gespeichert (localStorage) — geräte-/browsergebunden, nicht öffentlich. Für geräteübergreifend später: halb-automatische Variante mit Cloudflare-API.</p>
+      </div>
+
+      <h2>Noch zu aktivieren</h2>
+      <ul class="todo">
+        <li><strong>ANTHROPIC_API_KEY</strong> als Repo-Secret → der <code>@claude</code>-Agent arbeitet auf GitHub</li>
+        <li><strong>Pinterest-Secrets</strong> (Refresh-Token &amp; Board-IDs) → automatisches Pin-Posting</li>
+        <li><strong>Google Search Console</strong> verifizieren &amp; Sitemap einreichen (bethathost.de/sitemap.xml)</li>
+        <li><strong>GA4</strong> optional einbinden für Funnel-/Verhaltensdaten</li>
+        <li><strong>AdSense</strong>: Anzeigen aktiv? Sonst bleiben die <code>ad-slot</code>-Platzhalter leer</li>
+      </ul>
+    </div>
+
+    <script>
+      const KEY = "bethathost_kpis_v1";
+      const body = document.getElementById("kpiBody");
+      const foot = document.getElementById("kpiFoot");
+      const fmt = (n) => (isNaN(n) ? 0 : n).toLocaleString("de-DE");
+      const eur = (n) => (isNaN(n) ? 0 : n).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } };
+      const save = (rows) => localStorage.setItem(KEY, JSON.stringify(rows));
+
+      function render() {
+        const rows = load().sort((a, b) => (a.datum < b.datum ? 1 : -1));
+        body.innerHTML = "";
+        if (!rows.length) {
+          body.innerHTML = '<tr><td colspan="8" class="empty">Noch keine Einträge — trag oben deinen ersten Wochen-Snapshot ein.</td></tr>';
+          foot.innerHTML = "";
+          return;
+        }
+        let sB = 0, sV = 0, sA = 0, sF = 0;
+        rows.forEach((r) => {
+          const ad = +r.adsense || 0, af = +r.affiliate || 0, rev = ad + af;
+          sB += +r.besucher || 0; sV += +r.views || 0; sA += ad; sF += af;
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            `<td>${r.datum}</td>` +
+            `<td class="num">${fmt(+r.besucher || 0)}</td>` +
+            `<td class="num">${fmt(+r.views || 0)}</td>` +
+            `<td class="num">${eur(ad)}</td>` +
+            `<td class="num">${eur(af)}</td>` +
+            `<td class="num">${eur(rev)}</td>` +
+            `<td>${(r.notiz || "").replace(/[<>]/g, "")}</td>` +
+            `<td><button class="del" title="Löschen" data-id="${r.id}">×</button></td>`;
+          body.appendChild(tr);
+        });
+        foot.innerHTML =
+          `<tr><td>Summe</td><td class="num">${fmt(sB)}</td><td class="num">${fmt(sV)}</td>` +
+          `<td class="num">${eur(sA)}</td><td class="num">${eur(sF)}</td><td class="num">${eur(sA + sF)}</td><td></td><td></td></tr>`;
+      }
+
+      document.getElementById("kpiForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const f = e.target;
+        const row = {
+          id: Date.now() + "" + Math.floor(performance.now()),
+          datum: f.datum.value,
+          besucher: f.besucher.value, views: f.views.value,
+          adsense: f.adsense.value, affiliate: f.affiliate.value,
+          notiz: f.notiz.value,
+        };
+        const rows = load(); rows.push(row); save(rows); render(); f.reset();
+      });
+
+      body.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("del")) return;
+        save(load().filter((r) => r.id !== e.target.dataset.id)); render();
+      });
+
+      document.getElementById("clearAll").addEventListener("click", () => {
+        if (confirm("Wirklich alle KPI-Einträge löschen?")) { save([]); render(); }
+      });
+
+      document.getElementById("exportCsv").addEventListener("click", () => {
+        const rows = load().sort((a, b) => (a.datum < b.datum ? 1 : -1));
+        const head = ["Datum", "Besucher", "Seitenaufrufe", "AdSense_EUR", "Affiliate_EUR", "Umsatz_EUR", "Notiz"];
+        const lines = [head.join(",")].concat(
+          rows.map((r) => {
+            const ad = +r.adsense || 0, af = +r.affiliate || 0;
+            return [r.datum, r.besucher || 0, r.views || 0, ad, af, ad + af, '"' + (r.notiz || "").replace(/"/g, '""') + '"'].join(",");
+          })
+        );
+        const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = "bethathost-kpis.csv"; a.click();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
