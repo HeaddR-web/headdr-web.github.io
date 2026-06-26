@@ -36,6 +36,13 @@ Repo: `headdr-web/headdr-web.github.io`. Kein Build-Step — reines HTML/CSS/JS.
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,
 Form `https://www.amazon.de/s?k=<suchbegriff>&tag=cozylore-21`.
 
+## Produkt-Picks — Realitäts-Regel
+Picks sind **realistische, bezahlbare Impuls-/Mitnahmekäufe fürs Gastgeben** (Deko, Gläser,
+Snack-Zubehör, Spiele, Fanartikel, Verbrauchsmaterial). **Keine geplanten Big-Ticket-Anschaffungen**
+(Beamer, teure Elektronik, Großmöbel) als „Unser Pick" mit direktem Kauf-CTA — niemand kauft so etwas
+spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit Link zum passenden
+**Kaufratgeber** (`/ratgeber/…`, Label „Optional", CTA „Zum Kaufratgeber →"), nicht als Amazon-Direktlink.
+
 ## Neue Anlass-/Motto-Seite anlegen
 1. Ordner + `index.html` exakt nach obiger Anatomie.
 2. Hero-Bild (3:2, querformat), als `og:image` und Lead.
