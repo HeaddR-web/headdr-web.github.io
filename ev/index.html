@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STROMER — Kuratierte E-Autos bis 80.000 €</title>
+<meta name="description" content="Eine kuratierte, designorientierte Übersicht aktueller Elektroautos mit Brutto-Listenpreis bis ca. 80.000 €. Persönliches Recherche-Tool.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0c;
+    --bg-soft:#0f1113;
+    --line:rgba(255,255,255,.10);
+    --line-strong:rgba(255,255,255,.22);
+    --ink:#f4f5f1;
+    --muted:#8b8f8a;
+    --muted-2:#5f635e;
+    --acc:#d6ff3f;       /* voltaic lime */
+    --acc-ink:#0a0b0c;
+    --ui:'Space Grotesk',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --pad:clamp(20px,5vw,72px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--ui);
+    -webkit-font-smoothing:antialiased;line-height:1.45;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--acc);color:var(--acc-ink)}
+  a{color:inherit}
+
+  /* ---------- atmospheric backdrop ---------- */
+  .glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60vw 60vw at 85% -10%, rgba(214,255,63,.10), transparent 60%),
+      radial-gradient(50vw 50vw at -10% 110%, rgba(80,120,255,.08), transparent 60%);
+  }
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .wrap{position:relative;z-index:1}
+
+  /* ---------- top bar ---------- */
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px var(--pad);border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:30;
+    backdrop-filter:blur(14px);background:rgba(10,11,12,.72);
+  }
+  .mark{font-weight:700;letter-spacing:.34em;font-size:13px}
+  .mark b{color:var(--acc)}
+  .top .small{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(56px,11vw,150px) var(--pad) clamp(34px,5vw,60px);max-width:1500px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.34em;color:var(--acc);
+    text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .kicker::before{content:"";width:42px;height:1px;background:var(--acc);display:inline-block}
+  h1{
+    font-weight:600;letter-spacing:-.03em;line-height:.92;
+    font-size:clamp(50px,12vw,168px);
+  }
+  h1 .stroke{
+    -webkit-text-stroke:1.4px var(--ink);color:transparent;
+  }
+  h1 em{font-style:italic;color:var(--acc)}
+  .lede{
+    margin-top:30px;max-width:62ch;font-size:clamp(16px,1.7vw,20px);
+    color:var(--muted);
+  }
+  .lede b{color:var(--ink);font-weight:500}
+
+  /* ---------- live readout strip ---------- */
+  .readout{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin-top:clamp(40px,6vw,72px);
+  }
+  .readout div{background:var(--bg);padding:20px var(--pad) 20px 0;padding-left:0}
+  .readout{padding:0 var(--pad)}
+  .readout .cell{background:var(--bg);padding:20px 0}
+  .readout .num{font-family:var(--mono);font-weight:700;font-size:clamp(24px,3.4vw,38px);letter-spacing:-.02em}
+  .readout .lab{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-top:4px}
+  .readout .num em{font-style:normal;color:var(--acc)}
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:sticky;top:57px;z-index:20;
+    background:rgba(10,11,12,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:18px var(--pad);
+    display:flex;flex-wrap:wrap;gap:22px 34px;align-items:flex-end;
+  }
+  .cgroup{display:flex;flex-direction:column;gap:9px;min-width:0}
+  .cgroup>span.t{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--muted-2);text-transform:uppercase}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;
+    padding:7px 13px;border:1px solid var(--line-strong);border-radius:999px;
+    background:transparent;color:var(--muted);cursor:pointer;transition:.18s;white-space:nowrap;
+  }
+  .chip:hover{color:var(--ink);border-color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:500}
+
+  /* budget slider */
+  .budget{min-width:240px;flex:1 1 260px}
+  .budget .val{font-family:var(--mono);font-size:13px;color:var(--ink)}
+  .budget .val b{color:var(--acc);font-weight:700}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line-strong);
+    margin-top:14px;cursor:pointer;border-radius:2px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--acc);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--acc);
+  }
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border:3px solid var(--bg);border-radius:50%;background:var(--acc)}
+
+  /* ---------- list ---------- */
+  .listhead,.row{
+    display:grid;
+    grid-template-columns:54px minmax(220px,2.4fr) 1.1fr 1fr 1fr .9fr 1fr 30px;
+    gap:18px;align-items:center;
+    padding:0 var(--pad);
+  }
+  .listhead{
+    height:46px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted-2);text-transform:uppercase;
+    position:sticky;top:121px;background:var(--bg);z-index:10;
+  }
+  .listhead .sort{cursor:pointer;display:inline-flex;gap:6px;align-items:center;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
+  .listhead .sort:hover{color:var(--ink)}
+  .listhead .sort.active{color:var(--acc)}
+  .listhead .sort .ar{opacity:.6}
+
+  .row{
+    border-bottom:1px solid var(--line);min-height:94px;position:relative;
+    cursor:pointer;transition:background .2s,padding .2s;
+  }
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--acc);transition:width .2s}
+  .row:hover{background:var(--bg-soft)}
+  .row:hover::before{width:3px}
+  .row .idx{font-family:var(--mono);font-size:13px;color:var(--muted-2)}
+  .row .name b{display:block;font-size:clamp(17px,2vw,22px);font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  .row .name s{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;display:block;margin-top:4px;letter-spacing:.02em}
+  .row .seg{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .row .m{font-family:var(--mono);font-size:15px;letter-spacing:-.01em}
+  .row .m u{text-decoration:none;display:block;font-size:10px;color:var(--muted-2);letter-spacing:.08em;margin-top:2px;text-transform:uppercase}
+  .row .price b{font-family:var(--mono);font-size:17px;color:var(--acc);font-weight:700;letter-spacing:-.02em}
+  .row .exp{font-family:var(--mono);color:var(--muted-2);justify-self:end;transition:.2s;font-size:18px;line-height:1}
+  .row.open .exp{transform:rotate(45deg);color:var(--acc)}
+
+  /* expanded panel */
+  .detail{display:none;padding:4px var(--pad) 34px;border-bottom:1px solid var(--line);background:var(--bg-soft)}
+  .detail.show{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .detail-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;max-width:1100px;margin-left:72px}
+  .detail .note{font-size:16px;color:var(--ink);line-height:1.6;max-width:54ch}
+  .detail .note .q{color:var(--acc);font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:10px}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);align-self:start}
+  .specs div{background:var(--bg);padding:12px 14px}
+  .specs .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase}
+  .specs .v{font-family:var(--mono);font-size:14px;margin-top:3px}
+  .cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--acc);border-bottom:1px solid var(--acc);padding-bottom:3px}
+  .cta:hover{gap:14px;transition:gap .2s}
+
+  .empty{padding:80px var(--pad);text-align:center;color:var(--muted);font-family:var(--mono);font-size:14px;display:none}
+
+  /* ---------- footer ---------- */
+  footer{padding:60px var(--pad) 80px;border-top:1px solid var(--line);margin-top:30px}
+  footer p{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);max-width:80ch;line-height:1.7;letter-spacing:.02em}
+  footer .big{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1080px){
+    .listhead{display:none}
+    .row{grid-template-columns:40px 1fr auto;grid-template-areas:
+      "idx name price" "idx meta meta";row-gap:12px;padding-top:18px;padding-bottom:18px;min-height:0}
+    .row .idx{grid-area:idx;align-self:start;padding-top:4px}
+    .row .name{grid-area:name}
+    .row .price{grid-area:price;justify-self:end;text-align:right}
+    .row .seg,.row .exp{display:none}
+    .row .metaflow{grid-area:meta;display:flex;flex-wrap:wrap;gap:10px 22px}
+    .row .m u{display:inline;margin:0 0 0 4px}
+    .row .m{display:flex;align-items:baseline;gap:4px}
+    .detail-grid{grid-template-columns:1fr;margin-left:0;gap:22px}
+    .detail{padding-left:var(--pad)}
+  }
+  @media(max-width:560px){
+    .readout{grid-template-columns:1fr 1fr}
+    .controls{top:55px}
+  }
+  /* metaflow hidden on desktop (inline cells used instead) */
+  .row .metaflow{display:none}
+  @media(max-width:1080px){.row>.m.deskonly{display:none}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">STROM<b>·</b>ER</div>
+    <div class="small" id="clock">PERSÖNLICHES RECHERCHE-TOOL</div>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">Elektrisch · Kuratiert · Bis 80.000 €</div>
+    <h1>Strom hat<br><em>Stil.</em> <span class="stroke">Such ihn.</span></h1>
+    <p class="lede">Keine Vergleichsportal-Tabellenwüste. Eine <b>handverlesene Auswahl</b> der begehrenswertesten Elektroautos, die du in Deutschland aktuell für einen Brutto-Listenpreis bis rund 80.000 € bekommst — sortiert nach dem, was zählt: <b>Reichweite, Leistung, Ladegeschwindigkeit, Preis</b>. Filtere, schiebe das Budget, klapp die Details auf.</p>
+
+    <div class="readout">
+      <div class="cell"><div class="num" id="rCount">–</div><div class="lab">Modelle im Filter</div></div>
+      <div class="cell"><div class="num"><em id="rPrice">–</em></div><div class="lab">Günstigster Einstieg</div></div>
+      <div class="cell"><div class="num" id="rRange">–</div><div class="lab">Max. Reichweite km</div></div>
+      <div class="cell"><div class="num" id="rPower">–</div><div class="lab">Max. Leistung PS</div></div>
+    </div>
+  </section>
+
+  <section class="controls">
+    <div class="cgroup">
+      <span class="t">Segment</span>
+      <div class="chips" id="segChips"></div>
+    </div>
+    <div class="cgroup">
+      <span class="t">Antrieb</span>
+      <div class="chips" id="driveChips"></div>
+    </div>
+    <div class="cgroup budget">
+      <span class="t">Budget · Listenpreis ab</span>
+      <div class="val">bis <b id="budgetVal">80.000 €</b></div>
+      <input type="range" id="budget" min="35000" max="80000" step="1000" value="80000">
+    </div>
+  </section>
+
+  <div class="listhead">
+    <span>#</span>
+    <button class="sort" data-k="name">Modell <span class="ar"></span></button>
+    <span>Segment</span>
+    <button class="sort" data-k="range">Reichweite <span class="ar"></span></button>
+    <button class="sort" data-k="power">Leistung <span class="ar"></span></button>
+    <button class="sort" data-k="accel">0–100 <span class="ar"></span></button>
+    <button class="sort" data-k="charge">Laden <span class="ar"></span></button>
+    <button class="sort active" data-k="price">Preis <span class="ar">↑</span></button>
+    <span></span>
+  </div>
+
+  <main id="list"></main>
+  <div class="empty" id="empty">Kein Modell passt zu diesem Filter. Budget anheben oder Filter lösen.</div>
+
+  <footer>
+    <p class="big">STROMER — gebaut am 27. Juni 2026 für den eigenen Gebrauch.</p>
+    <p>Kuratiert aus dem in Deutschland verfügbaren Angebot. Preise sind <b>ungefähre Brutto-Listen-Einstiegspreise („ab")</b> — die genannte Leistungs-/Reichweiten-Spitze bezieht sich auf die jeweils stärkste Variante, die noch grob im Budgetrahmen liegt; Ausstattung treibt den Preis. Reichweiten nach WLTP (Herstellerangabe, real meist niedriger). Stand: Anfang 2026 — vor dem Kauf <b>immer aktuelle Konfigurator-Preise prüfen</b>. Diese Seite verkauft nichts und verlinkt nur auf Hersteller-Konfiguratoren bzw. eine neutrale Suche.</p>
+  </footer>
+</div>
+
+<script>
+/* ---------------- DATEN ----------------
+   price  = Brutto-Listenpreis "ab" (€)
+   range  = max. WLTP-Reichweite sinnvoller Variante (km)
+   power  = Leistung der stärksten budgettauglichen Variante (PS)
+   accel  = 0–100 km/h dieser Variante (s)
+   charge = DC-Ladespitze (kW)
+   batt   = nutzbare/Brutto-Batterie grob (kWh)
+   v800   = 800-Volt-Architektur?
+*/
+const CARS = [
+  {brand:"Hyundai", model:"Ioniq 6", variant:"77,4 kWh RWD / AWD", seg:"Limousine", drive:"RWD/AWD",
+   price:43900, range:614, power:325, accel:5.1, charge:233, batt:77, v800:true,
+   note:"Aerodynamik-Skulptur mit cw 0,21 — sieht aus wie nichts sonst auf der Straße. RWD läuft am weitesten, der AWD-Twin (325 PS) bleiht ein wenig Druck.", facelift:"„N Line" schärft die Optik ohne Aufpreis-Wahnsinn."},
+
+  {brand:"Hyundai", model:"Ioniq 5 N", variant:"84 kWh AWD · 650 PS", seg:"Performance", drive:"AWD",
+   price:74900, range:448, power:650, accel:3.4, charge:240, batt:84, v800:true,
+   note:"Der Spielverderber für teure Sportwagen: 650 PS, simulierte Gangschaltung, Drift-Modus, echtes Spurt-Spielzeug. Pixel-Retro-Look mit Breitbau.", facelift:"Einziger „Hot Hatch"-EV, der wirklich nach Rennstrecke schreit."},
+
+  {brand:"Kia", model:"EV6 GT", variant:"84 kWh AWD · 585 PS", seg:"Performance", drive:"AWD",
+   price:72990, range:424, power:585, accel:3.5, charge:240, batt:84, v800:true,
+   note:"Schwestermodell zum Ioniq 5 N auf gleicher 800-V-Basis, aber als geducktes Crossover-Coupé. Neon-Akzente, brachiale Beschleunigung, alltagstauglicher Kofferraum.", facelift:"Facelift 2025 mit neuer Front und 84-kWh-Akku."},
+
+  {brand:"Tesla", model:"Model 3", variant:"Highland · bis Performance 460 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:42990, range:629, power:460, accel:3.1, charge:250, batt:79, v800:false,
+   note:"„Highland"-Redesign glättete Front und Innenraum zur cleanen Designikone. Performance-Variante (≈60 k) rennt in 3,1 s — und das Supercharger-Netz bleibt der Komfort-Trumpf.", facelift:"Long Range RWD kommt am weitesten (629 km)."},
+
+  {brand:"BMW", model:"i4", variant:"eDrive40 / M50 · bis 544 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:58300, range:590, power:544, accel:3.9, charge:205, batt:81, v800:false,
+   note:"Das Gran Coupé, das sich am wenigsten nach „E-Auto-Kompromiss" anfühlt. eDrive40 ist der vernünftige Reichweiten-Held, der M50 (544 PS) der heimliche Sprinter.", facelift:"Klassische Limousinen-Proportionen statt SUV-Hochbau."},
+
+  {brand:"BMW", model:"i5", variant:"eDrive40 · 340 PS", seg:"Limousine", drive:"RWD",
+   price:70600, range:582, power:340, accel:6.0, charge:205, batt:84, v800:false,
+   note:"Business-Class in elektrisch: ruhig, breit, makellos verarbeitet. Der eDrive40 bleibt im Budget — der M60 nicht, aber den braucht man für die Souveränität nicht.", facelift:"Auch als Touring (Kombi) — selten in der E-Welt."},
+
+  {brand:"Polestar", model:"4", variant:"Long Range · bis 544 PS AWD", seg:"SUV-Coupé", drive:"RWD/AWD",
+   price:61900, range:620, power:544, accel:3.8, charge:200, batt:94, v800:false,
+   note:"Das Auto ohne Heckscheibe — stattdessen Kamera + Display. Polarisierend, kompromisslos minimalistisch, und innen eines der schönsten Cockpits dieser Liste.", facelift:"Großer 100-kWh-Akku, ernsthafte Reichweite."},
+
+  {brand:"Polestar", model:"2", variant:"Long Range Single · 299 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:50775, range:655, power:299, accel:6.2, charge:205, batt:82, v800:false,
+   note:"Skandinavischer Purismus, scharfe Kanten, kein Gramm Zierrat. Das RWD-Update brachte mehr Reichweite und besseres Fahrwerk — der unterschätzte Schönling.", facelift:"655 km Reichweite — Bestwert im Kompakt-Limousinen-Feld."},
+
+  {brand:"Audi", model:"A6 Sportback e-tron", variant:"performance · bis 380 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:66300, range:756, power:380, accel:5.4, charge:270, batt:95, v800:true,
+   note:"Der Effizienz-König: bis zu 756 km WLTP, cw 0,21, 800-V-Schnellladen bis 270 kW. Fließheck-Eleganz, die teurer aussieht als sie ist.", facelift:"Reichweiten-Referenz dieser ganzen Liste."},
+
+  {brand:"Audi", model:"Q6 e-tron", variant:"quattro · bis 387 PS", seg:"SUV", drive:"RWD/AWD",
+   price:68800, range:625, power:387, accel:5.9, charge:270, batt:95, v800:true,
+   note:"Die PPE-Plattform, die auch den Macan EV trägt — nur tausende Euro günstiger. Premium-SUV mit 800 V, top Ladekurve und ruhigem, präzisem Auftritt.", facelift:"Technik-Zwilling des Porsche Macan EV, im Budget."},
+
+  {brand:"Mercedes", model:"CLA EV", variant:"250+ / 350 4MATIC", seg:"Limousine", drive:"RWD/AWD",
+   price:55000, range:792, power:354, accel:4.9, charge:320, batt:85, v800:true,
+   note:"Die neue MMA-Plattform: 800 V, bis ~320 kW laden, bis zu 792 km WLTP. Effizienz-Wunderkind mit Sternchen-Glamour und Mini-Verbrauch.", facelift:"Lädt mit am schnellsten in dieser Liste (~320 kW)."},
+
+  {brand:"Genesis", model:"GV60", variant:"Sport Plus · 490 PS", seg:"SUV-Coupé", drive:"RWD/AWD",
+   price:56310, range:517, power:490, accel:4.0, charge:240, batt:77, v800:true,
+   note:"Die Luxus-Marke, die kaum jemand auf dem Schirm hat — und genau das macht sie sexy. Kristall-Kugel-Schalthebel, 800 V, 490-PS-Boost. Exklusivität ohne Aufpreis-Ego.", facelift:"Seltenheitswert: du bist garantiert der Einzige im Parkhaus."},
+
+  {brand:"Volkswagen", model:"ID.7", variant:"Pro S · 286 PS", seg:"Limousine", drive:"RWD",
+   price:56520, range:709, power:286, accel:6.5, charge:200, batt:86, v800:false,
+   note:"VWs erwachsenste E-Limousine: groß, leise, mit 709 km Reichweite ein echter Langstrecken-Gleiter. Auch als Tourer (Kombi) zu haben.", facelift:"Vernunft-Schöngeist mit Oberklasse-Platzangebot."},
+
+  {brand:"Cupra", model:"Tavascan", variant:"VZ · 340 PS AWD", seg:"SUV-Coupé", drive:"RWD/AWD",
+   price:53900, range:568, power:340, accel:5.5, charge:185, batt:77, v800:false,
+   note:"Kupfer-Akzente, aggressives Coupé-Dach, scharfes Cockpit — das vielleicht emotionalste Auto aus dem VW-Konzern-Baukasten. VZ liefert 340 PS Allrad.", facelift:"Design-Statement zum vernünftigen Preis."},
+
+  {brand:"BYD", model:"Seal", variant:"Excellence AWD · 530 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:44990, range:570, power:530, accel:3.8, charge:150, batt:83, v800:false,
+   note:"Der Preis-Leistungs-Hammer: 530 PS Allrad und 3,8 s für unter 50 k. „Ocean Aesthetics"-Design, Blade-Akku ab Werk. Laden nur mittelschnell — sonst kaum Schwächen.", facelift:"Meiste Beschleunigung pro Euro in dieser Liste."},
+
+  {brand:"Zeekr", model:"001", variant:"Long Range / Performance", seg:"Shooting Brake", drive:"RWD/AWD",
+   price:59490, range:656, power:544, accel:3.8, charge:200, batt:100, v800:true,
+   note:"Shooting-Brake-Silhouette, 100-kWh-Akku, edles Interieur — Geely-Speerspitze gegen die deutschen Platzhirsche. Üppig ausgestattet schon ab Werk.", facelift:"Riesiger 100-kWh-Akku, Lounge-Innenraum."},
+
+  {brand:"NIO", model:"ET5 Touring", variant:"100 kWh · 490 PS", seg:"Shooting Brake", drive:"AWD",
+   price:49900, range:560, power:490, accel:4.0, charge:140, batt:100, v800:false,
+   note:"Der Kombi-Exot mit Battery-Swap-Option: in Minuten den vollen Akku tauschen statt laden. Sinnlich gezeichnet, 490 PS serienmäßig Allrad.", facelift:"Akku-Tausch statt Ladesäule — ein eigenes Ökosystem."},
+
+  {brand:"Volvo", model:"EX30", variant:"Twin Motor Perf. · 428 PS", seg:"Kompakt-SUV", drive:"RWD/AWD",
+   price:36590, range:476, power:428, accel:3.6, charge:153, batt:69, v800:false,
+   note:"Klein, schnell, schwedisch-clean. 428 PS im Mini-SUV bedeuten 3,6 s — und das günstigste Auto der Liste. Reduziertes Interieur, ein einziger zentraler Screen.", facelift:"Günstigster Einstieg & dichteste Fun-pro-Euro-Rate."}
+];
+
+/* ---------------- STATE ---------------- */
+const fmtPrice = n => n.toLocaleString('de-DE') + ' €';
+let sortKey = 'price', sortDir = 1; // 1 asc, -1 desc
+let fSeg = new Set(), fDrive = new Set(), maxBudget = 80000;
+let openIdx = null;
+
+const list = document.getElementById('list');
+const empty = document.getElementById('empty');
+
+/* build chips */
+const segs = [...new Set(CARS.map(c=>c.seg))].sort();
+const drives = ['RWD','AWD'];
+function makeChips(id, values, set){
+  const box = document.getElementById(id);
+  box.innerHTML = values.map(v=>`<button class="chip" data-v="${v}" aria-pressed="false">${v}</button>`).join('');
+  box.addEventListener('click', e=>{
+    const b = e.target.closest('.chip'); if(!b) return;
+    const v = b.dataset.v;
+    if(set.has(v)){set.delete(v);b.setAttribute('aria-pressed','false');}
+    else{set.add(v);b.setAttribute('aria-pressed','true');}
+    render();
+  });
+}
+makeChips('segChips', segs, fSeg);
+makeChips('driveChips', drives, fDrive);
+
+/* budget */
+const budget = document.getElementById('budget');
+budget.addEventListener('input', ()=>{
+  maxBudget = +budget.value;
+  document.getElementById('budgetVal').textContent = fmtPrice(maxBudget);
+  render();
+});
+
+/* sorting */
+document.querySelectorAll('.listhead .sort').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const k = btn.dataset.k;
+    if(sortKey===k){ sortDir*=-1; }
+    else { sortKey=k; sortDir = (k==='price'||k==='accel'||k==='name')?1:-1; }
+    document.querySelectorAll('.listhead .sort').forEach(b=>{
+      b.classList.toggle('active', b.dataset.k===sortKey);
+      b.querySelector('.ar').textContent = b.dataset.k===sortKey ? (sortDir===1?'↑':'↓') : '';
+    });
+    render();
+  });
+});
+
+function passes(c){
+  if(c.price > maxBudget) return false;
+  if(fSeg.size && !fSeg.has(c.seg)) return false;
+  if(fDrive.size){
+    const has = [...fDrive].some(d=>c.drive.includes(d));
+    if(!has) return false;
+  }
+  return true;
+}
+
+function render(){
+  let data = CARS.filter(passes);
+  data.sort((a,b)=>{
+    let va=a[sortKey], vb=b[sortKey];
+    if(sortKey==='name'){ va=a.brand+a.model; vb=b.brand+b.model; return va.localeCompare(vb)*sortDir; }
+    return (va-vb)*sortDir;
+  });
+
+  // readouts
+  document.getElementById('rCount').textContent = String(data.length).padStart(2,'0');
+  document.getElementById('rPrice').textContent = data.length ? (Math.min(...data.map(c=>c.price))/1000).toFixed(0)+'k' : '—';
+  document.getElementById('rRange').textContent = data.length ? Math.max(...data.map(c=>c.range)) : '—';
+  document.getElementById('rPower').textContent = data.length ? Math.max(...data.map(c=>c.power)) : '—';
+
+  empty.style.display = data.length ? 'none':'block';
+
+  list.innerHTML = data.map((c,i)=>{
+    const id = CARS.indexOf(c);
+    const open = openIdx===id;
+    return `
+    <div class="row ${open?'open':''}" data-id="${id}">
+      <div class="idx">${String(i+1).padStart(2,'0')}</div>
+      <div class="name">
+        <b>${c.brand} ${c.model}</b>
+        <s>${c.variant}${c.v800?' · 800 V':''}</s>
+        <div class="metaflow">
+          <span class="m">${c.range}<u>km</u></span>
+          <span class="m">${c.power}<u>PS</u></span>
+          <span class="m">${c.accel.toFixed(1)}<u>s 0–100</u></span>
+          <span class="m">${c.charge}<u>kW</u></span>
+        </div>
+      </div>
+      <div class="seg">${c.seg}</div>
+      <div class="m deskonly">${c.range}<u>WLTP km</u></div>
+      <div class="m deskonly">${c.power}<u>PS max</u></div>
+      <div class="m deskonly">${c.accel.toFixed(1)}<u>s</u></div>
+      <div class="m deskonly">${c.charge}<u>kW DC</u></div>
+      <div class="price"><b>${fmtPrice(c.price)}</b></div>
+      <div class="exp">+</div>
+    </div>
+    <div class="detail ${open?'show':''}" data-detail="${id}">
+      <div class="detail-grid">
+        <div class="note">
+          <span class="q">Warum drauf?</span>
+          ${c.note} <br><br><span style="color:var(--muted)">${c.facelift}</span>
+        </div>
+        <div class="specs">
+          <div><div class="k">Listenpreis ab</div><div class="v">${fmtPrice(c.price)}</div></div>
+          <div><div class="k">Reichweite</div><div class="v">${c.range} km</div></div>
+          <div><div class="k">Leistung</div><div class="v">${c.power} PS</div></div>
+          <div><div class="k">0–100 km/h</div><div class="v">${c.accel.toFixed(1)} s</div></div>
+          <div><div class="k">DC-Laden</div><div class="v">${c.charge} kW${c.v800?' · 800 V':''}</div></div>
+          <div><div class="k">Batterie</div><div class="v">≈ ${c.batt} kWh</div></div>
+          <div><div class="k">Antrieb</div><div class="v">${c.drive}</div></div>
+          <div><div class="k">Segment</div><div class="v">${c.seg}</div></div>
+        </div>
+      </div>
+      <a class="cta" href="https://www.google.com/search?q=${encodeURIComponent(c.brand+' '+c.model+' Konfigurator Preis')}" target="_blank" rel="noopener noreferrer">Konfigurator &amp; aktueller Preis →</a>
+    </div>`;
+  }).join('');
+}
+
+/* expand/collapse (event delegation) */
+list.addEventListener('click', e=>{
+  if(e.target.closest('.cta')) return;
+  const row = e.target.closest('.row'); if(!row) return;
+  const id = +row.dataset.id;
+  openIdx = (openIdx===id) ? null : id;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
