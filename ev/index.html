@@ -105,7 +105,13 @@
   .d-hero h1{text-align:center;font-size:clamp(38px,7vw,86px);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-top:8px}
   .d-hero .tg{text-align:center;font-size:clamp(15px,1.7vw,19px);color:var(--muted);margin-top:14px}
   .d-hero img{display:block;width:min(90%,980px);margin:6px auto -2%;
-    filter:drop-shadow(0 34px 46px rgba(20,26,32,.12))}
+    filter:drop-shadow(0 34px 46px rgba(20,26,32,.12));transition:opacity .25s}
+  .gallery{display:flex;gap:10px;justify-content:center;margin:14px 0 6px}
+  .gallery button{width:88px;height:56px;border:1px solid var(--line);border-radius:11px;background:#fff;
+    padding:5px;cursor:pointer;transition:border-color .18s;display:flex;align-items:center;justify-content:center}
+  .gallery button img{max-width:100%;max-height:100%;object-fit:contain}
+  .gallery button:hover{border-color:var(--line-2)}
+  .gallery button.on{border-color:var(--ink)}
 
   .d-body{max-width:1040px;margin:0 auto;padding:clamp(30px,5vw,60px) clamp(20px,4vw,40px) 100px}
   .d-price{text-align:center;margin-bottom:clamp(34px,5vw,56px)}
@@ -198,6 +204,7 @@
     <img id="dImg" alt="">
   </div>
   <div class="d-body">
+    <div class="gallery" id="dGallery"></div>
     <div class="d-price">
       <div class="big" id="dPrice"></div>
       <div class="sub" id="dPriceSub"></div>
@@ -340,6 +347,30 @@ const CARS = [
    note:"Xpengs Model-Y-Gegner mit 800-Volt-Technik, die in rund 20 Minuten lädt, und einem für die Klasse riesigen Tech-Paket. Offiziell in Deutschland erhältlich, scharf gezeichnet und preislich aggressiv."}
 ];
 
+const LINKS={
+  "hyundai-ioniq-6":"https://www.hyundai.com/de/de/modelle/ioniq-6.html",
+  "hyundai-ioniq-5-n":"https://www.hyundai.com/de/de/modelle/ioniq-5-n.html",
+  "kia-ev6-gt":"https://www.kia.com/de/modelle/ev6-gt/",
+  "tesla-model-3":"https://www.tesla.com/de_de/model3/design",
+  "bmw-i4":"https://www.bmw.de/de/neufahrzeuge/i/i4.html",
+  "bmw-i5":"https://www.bmw.de/de/neufahrzeuge/i/i5.html",
+  "polestar-4":"https://www.polestar.com/de/polestar-4/",
+  "polestar-2":"https://www.polestar.com/de/polestar-2/",
+  "audi-a6-etron":"https://www.audi.de/de/brand/de/neuwagen/a6/a6-sportback-e-tron.html",
+  "audi-q6-etron":"https://www.audi.de/de/brand/de/neuwagen/q6/q6-e-tron.html",
+  "mercedes-cla":"https://www.mercedes-benz.de/passengercars/models/saloon/cla-electric/overview.html",
+  "genesis-gv60":"https://www.genesis.com/de/de/models/gv60.html",
+  "vw-id7":"https://www.volkswagen.de/de/modelle/id7.html",
+  "cupra-tavascan":"https://www.cupraofficial.de",
+  "byd-seal":"https://www.byd.com/de/car/seal",
+  "zeekr-001":"https://www.zeekr.eu/de-de",
+  "nio-et5":"https://www.nio.com/de_DE/et5-touring",
+  "volvo-ex30":"https://www.volvocars.com/de/cars/ex30-electric/",
+  "ford-mustang-mach-e":"https://www.ford.de/pkw-modelle/mustang-mach-e",
+  "alpine-a290":"https://www.alpinecars.com/de/modelle/alpine-a290/",
+  "porsche-macan":"https://www.porsche.com/germany/models/macan/macan-electric-models/",
+  "xpeng-g6":"https://www.xpeng.com/de/g6"
+};
 const fmt = n => "≈ " + n.toLocaleString('de-DE') + " €";
 let sortKey = 'price';
 
@@ -407,10 +438,18 @@ function openDetail(slug){
   document.getElementById('sTime').innerHTML=`${c.time}<small>min</small>`;
   document.getElementById('dNote').textContent=c.note;
   document.getElementById('dChips').innerHTML=c.equip.map(e=>`<span>${e}</span>`).join('');
-  const q=encodeURIComponent(`${c.brand} ${c.model} Konfigurator`);
+  const link=LINKS[c.slug]||('https://www.google.com/search?q='+encodeURIComponent(c.brand+' '+c.model));
   document.getElementById('dCta').innerHTML=
-    `<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener noreferrer">Zum Konfigurator →</a>`+
-    `<a class="ghost" href="https://www.google.com/search?q=${encodeURIComponent(c.brand+' '+c.model+' Test')}" target="_blank" rel="noopener noreferrer">Testberichte</a>`;
+    `<a href="${link}" target="_blank" rel="noopener noreferrer">Zum Hersteller →</a>`+
+    `<a class="ghost" href="https://www.google.com/search?q=${encodeURIComponent(c.brand+' '+c.model+' Test 2026')}" target="_blank" rel="noopener noreferrer">Testberichte</a>`;
+  const g=document.getElementById('dGallery');
+  const views=[['img/'+c.slug+'.webp','Front'],['img/'+c.slug+'-r.webp','Heck']];
+  g.innerHTML=views.map((v,i)=>`<button class="${i===0?'on':''}" data-src="${v[0]}" title="${v[1]}"><img src="${v[0]}" alt="${v[1]}"></button>`).join('');
+  g.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+    const im=document.getElementById('dImg'); im.style.opacity=0;
+    setTimeout(()=>{im.src=btn.dataset.src;im.style.opacity=1;},120);
+    g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===btn));
+  }));
   detail.classList.add('open'); detail.scrollTop=0; document.body.style.overflow='hidden';
 }
 function closeDetail(){ detail.classList.remove('open'); if(window.innerWidth>900) document.body.style.overflow='hidden'; else document.body.style.overflow=''; }
