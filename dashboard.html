@@ -97,22 +97,6 @@
         </a>
       </div>
 
-      <h2>Live · Cloudflare <span id="liveStand" style="font-weight:400;font-size:.78rem;color:var(--muted);"></span></h2>
-      <p class="sub" id="liveMsg">Lade Live-Daten…</p>
-      <div class="glance" id="liveStats" style="display:none;"></div>
-      <div class="panel" id="liveLists" style="display:none; margin-top:14px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:26px;">
-          <div>
-            <strong>Top-Seiten (7 Tage)</strong>
-            <ol id="liveTopPages" style="margin:10px 0 0; padding-left:20px; font-size:.9rem;"></ol>
-          </div>
-          <div>
-            <strong>Top-Quellen (7 Tage)</strong>
-            <ol id="liveTopRefs" style="margin:10px 0 0; padding-left:20px; font-size:.9rem;"></ol>
-          </div>
-        </div>
-      </div>
-
       <h2>Site auf einen Blick</h2>
       <div class="glance">
         <div class="stat"><div class="n">12</div><div class="l">Anlässe</div></div>
@@ -156,7 +140,7 @@
           <button type="button" id="exportCsv">CSV exportieren</button>
           <button type="button" id="clearAll">Alle löschen</button>
         </div>
-        <p class="note">Daten werden lokal in deinem Browser gespeichert (localStorage) — geräte-/browsergebunden, nicht öffentlich. Für geräteübergreifend später: halb-automatische Variante mit Cloudflare-API.</p>
+        <p class="note">Daten werden lokal in deinem Browser gespeichert (localStorage) — geräte-/browsergebunden, nicht öffentlich.</p>
       </div>
 
       <h2>Noch zu aktivieren</h2>
@@ -244,38 +228,6 @@
       });
 
       render();
-
-      // ---- Live-Daten (Cloudflare via data/metrics.json) ----
-      (function fetchLive() {
-        const msg = document.getElementById("liveMsg");
-        const statsEl = document.getElementById("liveStats");
-        const listsEl = document.getElementById("liveLists");
-        const stand = document.getElementById("liveStand");
-        const stat = (n, l) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`;
-        fetch("/data/metrics.json?_=" + Date.now())
-          .then((r) => (r.ok ? r.json() : Promise.reject()))
-          .then((m) => {
-            if (!m || m.status !== "ok" || !m.ranges || !m.ranges["7d"]) {
-              msg.innerHTML = "Noch keine Live-Daten. Sobald die Cloudflare-Secrets gesetzt sind (siehe Checkliste unten), erscheinen hier Besucher, Aufrufe und Top-Seiten — täglich automatisch aktualisiert.";
-              return;
-            }
-            const d7 = m.ranges["7d"], d30 = m.ranges["30d"] || { visits: 0, views: 0 };
-            statsEl.innerHTML =
-              stat(fmt(d7.visits), "Besucher · 7 Tage") +
-              stat(fmt(d7.views), "Aufrufe · 7 Tage") +
-              stat(fmt(d30.visits), "Besucher · 30 Tage") +
-              stat(fmt(d30.views), "Aufrufe · 30 Tage");
-            document.getElementById("liveTopPages").innerHTML =
-              (m.topPages || []).map((p) => `<li>${p.path} <span style="color:var(--muted)">— ${fmt(p.views)}</span></li>`).join("") || "<li>—</li>";
-            document.getElementById("liveTopRefs").innerHTML =
-              (m.topReferrers || []).map((r) => `<li>${r.host} <span style="color:var(--muted)">— ${fmt(r.views)}</span></li>`).join("") || "<li>—</li>";
-            stand.textContent = "Stand: " + (m.updated ? new Date(m.updated).toLocaleString("de-DE") : "—");
-            msg.style.display = "none"; statsEl.style.display = ""; listsEl.style.display = "";
-          })
-          .catch(() => {
-            msg.innerHTML = "Live-Daten noch nicht verfügbar (data/metrics.json fehlt). Der KPI-Metrics-Workflow erzeugt sie beim ersten Lauf.";
-          });
-      })();
     </script>
   </body>
 </html>
