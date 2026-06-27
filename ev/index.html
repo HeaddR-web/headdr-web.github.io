@@ -235,7 +235,7 @@
     <div class="cgroup budget">
       <span class="t">Budget · Listenpreis ab</span>
       <div class="val">bis <b id="budgetVal">80.000 €</b></div>
-      <input type="range" id="budget" min="35000" max="80000" step="1000" value="80000">
+      <input type="range" id="budget" min="34000" max="80000" step="1000" value="80000">
     </div>
   </section>
 
@@ -255,8 +255,8 @@
   <div class="empty" id="empty">Kein Modell passt zu diesem Filter. Budget anheben oder Filter lösen.</div>
 
   <footer>
-    <p class="big">STROMER — gebaut am 27. Juni 2026 für den eigenen Gebrauch.</p>
-    <p>Kuratiert aus dem in Deutschland verfügbaren Angebot. Preise sind <b>ungefähre Brutto-Listen-Einstiegspreise („ab")</b> — die genannte Leistungs-/Reichweiten-Spitze bezieht sich auf die jeweils stärkste Variante, die noch grob im Budgetrahmen liegt; Ausstattung treibt den Preis. Reichweiten nach WLTP (Herstellerangabe, real meist niedriger). Stand: Anfang 2026 — vor dem Kauf <b>immer aktuelle Konfigurator-Preise prüfen</b>. Diese Seite verkauft nichts und verlinkt nur auf Hersteller-Konfiguratoren bzw. eine neutrale Suche.</p>
+    <p class="big">STROMER — gebaut am 27. Juni 2026 für den eigenen Gebrauch · Daten verifiziert Juni 2026.</p>
+    <p>Kuratiert aus dem in Deutschland verfügbaren Angebot. Preise sind <b>Brutto-Listen-Einstiegspreise („ab“)</b> — die genannte Leistungs-/Reichweiten-Spitze bezieht sich auf die jeweils stärkste Variante, die noch im Budgetrahmen liegt (Details siehe Aufklapp-Notiz je Modell); Ausstattung treibt den Preis. Reichweiten nach WLTP (Herstellerangabe, real meist niedriger). Recherchiert &amp; gegengeprüft im Juni 2026 über Hersteller-Konfiguratoren, ADAC-Autokatalog und electrive — Preise ändern sich laufend, vor dem Kauf <b>immer den aktuellen Konfigurator prüfen</b> (Link je Modell). Diese Seite verkauft nichts.</p>
   </footer>
 </div>
 
@@ -271,77 +271,77 @@
    v800   = 800-Volt-Architektur?
 */
 const CARS = [
-  {brand:"Hyundai", model:"Ioniq 6", variant:"77,4 kWh RWD / AWD", seg:"Limousine", drive:"RWD/AWD",
-   price:43900, range:614, power:325, accel:5.1, charge:233, batt:77, v800:true,
-   note:"Aerodynamik-Skulptur mit cw 0,21 — sieht aus wie nichts sonst auf der Straße. RWD läuft am weitesten, der AWD-Twin (325 PS) bleiht ein wenig Druck.", facelift:"„N Line" schärft die Optik ohne Aufpreis-Wahnsinn."},
+  {brand:"Hyundai", model:"Ioniq 6", variant:"84 kWh · RWD bis 680 km / AWD 325 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:45550, range:680, power:325, accel:5.1, charge:233, batt:84, v800:true,
+   note:"Aerodynamik-Skulptur mit cw 0,21 — sieht aus wie nichts sonst auf der Straße. Der reichweitenstarke RWD ist der Vernunft-Held, der AWD-Twin (325 PS) bringt Allrad-Druck.", facelift:"Facelift 2026: größerer 84-kWh-Akku, bis 680 km, Basis ab 45.550 €. Daneben gibt es jetzt einen separaten Ioniq 6 N (650 PS, ab 75.900 €)."},
 
-  {brand:"Hyundai", model:"Ioniq 5 N", variant:"84 kWh AWD · 650 PS", seg:"Performance", drive:"AWD",
-   price:74900, range:448, power:650, accel:3.4, charge:240, batt:84, v800:true,
-   note:"Der Spielverderber für teure Sportwagen: 650 PS, simulierte Gangschaltung, Drift-Modus, echtes Spurt-Spielzeug. Pixel-Retro-Look mit Breitbau.", facelift:"Einziger „Hot Hatch"-EV, der wirklich nach Rennstrecke schreit."},
+  {brand:"Hyundai", model:"Ioniq 5 N", variant:"84 kWh AWD · 650 PS (N Grin Boost)", seg:"Performance", drive:"AWD",
+   price:75900, range:448, power:650, accel:3.4, charge:240, batt:84, v800:true,
+   note:"Der Spielverderber für teure Sportwagen: 609 PS Dauer / 650 PS im Boost, simulierte Gangschaltung, Drift-Modus, echtes Spurt-Spielzeug. Pixel-Retro-Look mit Breitbau.", facelift:"Einzige Ausstattung, ab 75.900 € — kratzt knapp an der 80k-Grenze. 800 V, 10–80 % in ~18 Min."},
 
-  {brand:"Kia", model:"EV6 GT", variant:"84 kWh AWD · 585 PS", seg:"Performance", drive:"AWD",
-   price:72990, range:424, power:585, accel:3.5, charge:240, batt:84, v800:true,
-   note:"Schwestermodell zum Ioniq 5 N auf gleicher 800-V-Basis, aber als geducktes Crossover-Coupé. Neon-Akzente, brachiale Beschleunigung, alltagstauglicher Kofferraum.", facelift:"Facelift 2025 mit neuer Front und 84-kWh-Akku."},
+  {brand:"Kia", model:"EV6 GT", variant:"84 kWh AWD · 650 PS (Launch Control)", seg:"Performance", drive:"AWD",
+   price:69990, range:450, power:650, accel:3.5, charge:258, batt:84, v800:true,
+   note:"Schwestermodell zum Ioniq 5 N auf gleicher 800-V-Basis, aber als geducktes Crossover-Coupé. Neon-Akzente, Driftmodus, brachiale Beschleunigung, alltagstauglicher Kofferraum.", facelift:"Facelift 2025/26: neuer 84-kWh-Akku, neue Front, neues Cockpit — und der Preis wurde von 72.990 auf 69.990 € GESENKT."},
 
-  {brand:"Tesla", model:"Model 3", variant:"Highland · bis Performance 460 PS", seg:"Limousine", drive:"RWD/AWD",
-   price:42990, range:629, power:460, accel:3.1, charge:250, batt:79, v800:false,
-   note:"„Highland"-Redesign glättete Front und Innenraum zur cleanen Designikone. Performance-Variante (≈60 k) rennt in 3,1 s — und das Supercharger-Netz bleibt der Komfort-Trumpf.", facelift:"Long Range RWD kommt am weitesten (629 km)."},
+  {brand:"Tesla", model:"Model 3", variant:"Standard ab · Performance AWD 627 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:36990, range:750, power:627, accel:3.4, charge:250, batt:79, v800:false,
+   note:"„Highland“-Redesign glättete Front und Innenraum zur cleanen Designikone. Performance AWD (≈59.500 €) rennt in 3,4 s — und das Supercharger-Netz bleibt der Komfort-Trumpf.", facelift:"Anfang 2026 neue, günstigere Basis „Standard“ ab 36.990 € (zzgl. ~980 € Gebühr). Max. 750 km mit „Maximale Reichweite“ RWD. 400 V."},
 
-  {brand:"BMW", model:"i4", variant:"eDrive40 / M50 · bis 544 PS", seg:"Limousine", drive:"RWD/AWD",
-   price:58300, range:590, power:544, accel:3.9, charge:205, batt:81, v800:false,
-   note:"Das Gran Coupé, das sich am wenigsten nach „E-Auto-Kompromiss" anfühlt. eDrive40 ist der vernünftige Reichweiten-Held, der M50 (544 PS) der heimliche Sprinter.", facelift:"Klassische Limousinen-Proportionen statt SUV-Hochbau."},
+  {brand:"BMW", model:"i4", variant:"eDrive40 / M60 xDrive · bis 601 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:61300, range:613, power:601, accel:3.7, charge:205, batt:84, v800:false,
+   note:"Das Gran Coupé, das sich am wenigsten nach „E-Auto-Kompromiss“ anfühlt. eDrive40 ist der vernünftige Reichweiten-Held (bis 613 km), der M60 xDrive der heimliche Sprinter.", facelift:"Facelift 07/2025: der alte M50 (544 PS) wurde durch den stärkeren M60 xDrive (601 PS, 3,7 s, ab 73.700 €) ersetzt. 400 V."},
 
   {brand:"BMW", model:"i5", variant:"eDrive40 · 340 PS", seg:"Limousine", drive:"RWD",
-   price:70600, range:582, power:340, accel:6.0, charge:205, batt:84, v800:false,
-   note:"Business-Class in elektrisch: ruhig, breit, makellos verarbeitet. Der eDrive40 bleibt im Budget — der M60 nicht, aber den braucht man für die Souveränität nicht.", facelift:"Auch als Touring (Kombi) — selten in der E-Welt."},
+   price:70900, range:627, power:340, accel:6.0, charge:205, batt:84, v800:false,
+   note:"Business-Class in elektrisch: ruhig, breit, makellos verarbeitet. Der eDrive40 bleibt im Budget — der M60 (~99.500 €) sprengt es, aber den braucht man für die Souveränität nicht.", facelift:"Auch als Touring (Kombi, ~+2.000 €) — selten in der E-Welt. 400 V."},
 
-  {brand:"Polestar", model:"4", variant:"Long Range · bis 544 PS AWD", seg:"SUV-Coupé", drive:"RWD/AWD",
-   price:61900, range:620, power:544, accel:3.8, charge:200, batt:94, v800:false,
-   note:"Das Auto ohne Heckscheibe — stattdessen Kamera + Display. Polarisierend, kompromisslos minimalistisch, und innen eines der schönsten Cockpits dieser Liste.", facelift:"Großer 100-kWh-Akku, ernsthafte Reichweite."},
+  {brand:"Polestar", model:"4", variant:"Single Motor / Long Range Dual 544 PS", seg:"SUV-Coupé", drive:"RWD/AWD",
+   price:61900, range:620, power:544, accel:3.8, charge:200, batt:100, v800:false,
+   note:"Das Auto ohne Heckscheibe — stattdessen Kamera + Display. Polarisierend, kompromisslos minimalistisch, und innen eines der schönsten Cockpits dieser Liste.", facelift:"Single Motor RWD ab 61.900 € (620 km), Long Range Dual AWD ab 69.900 € (544 PS, ~590 km). Bleibt 400 V (max. 200 kW); Options-Pakete treiben den Preis schnell über 80k."},
 
-  {brand:"Polestar", model:"2", variant:"Long Range Single · 299 PS", seg:"Limousine", drive:"RWD/AWD",
-   price:50775, range:655, power:299, accel:6.2, charge:205, batt:82, v800:false,
-   note:"Skandinavischer Purismus, scharfe Kanten, kein Gramm Zierrat. Das RWD-Update brachte mehr Reichweite und besseres Fahrwerk — der unterschätzte Schönling.", facelift:"655 km Reichweite — Bestwert im Kompakt-Limousinen-Feld."},
+  {brand:"Polestar", model:"2", variant:"Long Range Single 299 PS / Performance 476 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:48990, range:659, power:476, accel:4.2, charge:207, batt:82, v800:false,
+   note:"Skandinavischer Purismus, scharfe Kanten, kein Gramm Zierrat. Das RWD-Update brachte mehr Reichweite und besseres Fahrwerk — der unterschätzte Schönling.", facelift:"Läuft NICHT aus, weiter bestellbar (MJ2026, neuer Infotainment-Chip). 659 km gilt für Long Range Single (299 PS); Performance Pack 476 PS / ~63.490 €. 400 V."},
 
-  {brand:"Audi", model:"A6 Sportback e-tron", variant:"performance · bis 380 PS", seg:"Limousine", drive:"RWD/AWD",
-   price:66300, range:756, power:380, accel:5.4, charge:270, batt:95, v800:true,
-   note:"Der Effizienz-König: bis zu 756 km WLTP, cw 0,21, 800-V-Schnellladen bis 270 kW. Fließheck-Eleganz, die teurer aussieht als sie ist.", facelift:"Reichweiten-Referenz dieser ganzen Liste."},
+  {brand:"Audi", model:"A6 Sportback e-tron", variant:"performance 381 PS/756 km · quattro 428 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:62800, range:756, power:428, accel:4.5, charge:270, batt:95, v800:true,
+   note:"Der Effizienz-König: bis zu 756 km WLTP, cw 0,21, 800-V-Schnellladen bis 270 kW. Fließheck-Eleganz, die teurer aussieht als sie ist.", facelift:"Reichweiten-Referenz der Liste: performance (381 PS) schafft 756 km für 75.600 €; quattro (428 PS, 716 km, 4,5 s) ab 79.800 € — beide unter 80k. S6 e-tron darüber."},
 
-  {brand:"Audi", model:"Q6 e-tron", variant:"quattro · bis 387 PS", seg:"SUV", drive:"RWD/AWD",
-   price:68800, range:625, power:387, accel:5.9, charge:270, batt:95, v800:true,
-   note:"Die PPE-Plattform, die auch den Macan EV trägt — nur tausende Euro günstiger. Premium-SUV mit 800 V, top Ladekurve und ruhigem, präzisem Auftritt.", facelift:"Technik-Zwilling des Porsche Macan EV, im Budget."},
+  {brand:"Audi", model:"Q6 e-tron", variant:"quattro · bis 428 PS", seg:"SUV", drive:"RWD/AWD",
+   price:63500, range:661, power:428, accel:5.4, charge:270, batt:100, v800:true,
+   note:"Die PPE-Plattform, die auch den Porsche Macan EV trägt — nur tausende Euro günstiger. Premium-SUV mit 800 V, top Ladekurve und ruhigem, präzisem Auftritt.", facelift:"MJ2026: quattro auf 315 kW (340 kW mit Launch Control) aufgewertet, bis 661 km. quattro ab 74.700 € im Budget, SQ6 (93.800 €) darüber."},
 
-  {brand:"Mercedes", model:"CLA EV", variant:"250+ / 350 4MATIC", seg:"Limousine", drive:"RWD/AWD",
-   price:55000, range:792, power:354, accel:4.9, charge:320, batt:85, v800:true,
-   note:"Die neue MMA-Plattform: 800 V, bis ~320 kW laden, bis zu 792 km WLTP. Effizienz-Wunderkind mit Sternchen-Glamour und Mini-Verbrauch.", facelift:"Lädt mit am schnellsten in dieser Liste (~320 kW)."},
+  {brand:"Mercedes", model:"CLA EV", variant:"250+ (792 km) / 350 4MATIC 356 PS", seg:"Limousine", drive:"RWD/AWD",
+   price:55728, range:792, power:356, accel:4.9, charge:320, batt:85, v800:true,
+   note:"Die neue MMA-Plattform (nicht der alte Verbrenner-CLA): 800 V, bis ~320 kW laden, bis zu 792 km WLTP. Effizienz-Wunderkind mit Sternchen-Glamour und Mini-Verbrauch.", facelift:"Neu seit 2025. Realer Einstieg CLA 250+ ab ~55.728 € brutto (die kursierenden „46.500 €“ waren netto). CLA 350 4MATIC ab ~60.286 €. Lädt mit am schnellsten in der Liste."},
 
-  {brand:"Genesis", model:"GV60", variant:"Sport Plus · 490 PS", seg:"SUV-Coupé", drive:"RWD/AWD",
-   price:56310, range:517, power:490, accel:4.0, charge:240, batt:77, v800:true,
-   note:"Die Luxus-Marke, die kaum jemand auf dem Schirm hat — und genau das macht sie sexy. Kristall-Kugel-Schalthebel, 800 V, 490-PS-Boost. Exklusivität ohne Aufpreis-Ego.", facelift:"Seltenheitswert: du bist garantiert der Einzige im Parkhaus."},
+  {brand:"Genesis", model:"GV60", variant:"Performance AWD · 490 PS (Boost)", seg:"SUV-Coupé", drive:"RWD/AWD",
+   price:53500, range:561, power:490, accel:4.0, charge:240, batt:84, v800:true,
+   note:"Die Luxus-Marke, die kaum jemand auf dem Schirm hat — und genau das macht sie sexy. Kristall-Kugel-Schalthebel, 800 V, 490-PS-Boost. Exklusivität ohne Aufpreis-Ego.", facelift:"MJ2026-Facelift: neues Design, OLED, größerer 84-kWh-Akku, bis 561 km. Basis ab 53.500 €, Performance AWD ~74.480 €. Weiter bestellbar (jetzt unter Hyundai Motor Deutschland)."},
 
-  {brand:"Volkswagen", model:"ID.7", variant:"Pro S · 286 PS", seg:"Limousine", drive:"RWD",
-   price:56520, range:709, power:286, accel:6.5, charge:200, batt:86, v800:false,
-   note:"VWs erwachsenste E-Limousine: groß, leise, mit 709 km Reichweite ein echter Langstrecken-Gleiter. Auch als Tourer (Kombi) zu haben.", facelift:"Vernunft-Schöngeist mit Oberklasse-Platzangebot."},
+  {brand:"Volkswagen", model:"ID.7", variant:"Pro S · 286 PS · 709 km", seg:"Limousine", drive:"RWD",
+   price:54505, range:709, power:286, accel:6.6, charge:200, batt:86, v800:false,
+   note:"VWs erwachsenste E-Limousine: groß, leise, mit 709 km Reichweite ein echter Langstrecken-Gleiter. Auch als Tourer (Kombi) zu haben.", facelift:"Basis „Pro“ ab 54.505 €, der reichweitenstarke Pro S (86 kWh, 709 km) ab ~58.985 €. Reiner Heckantrieb; eine stärkere GTX-AWD-Variante existiert daneben."},
 
   {brand:"Cupra", model:"Tavascan", variant:"VZ · 340 PS AWD", seg:"SUV-Coupé", drive:"RWD/AWD",
-   price:53900, range:568, power:340, accel:5.5, charge:185, batt:77, v800:false,
-   note:"Kupfer-Akzente, aggressives Coupé-Dach, scharfes Cockpit — das vielleicht emotionalste Auto aus dem VW-Konzern-Baukasten. VZ liefert 340 PS Allrad.", facelift:"Design-Statement zum vernünftigen Preis."},
+   price:53000, range:521, power:340, accel:5.5, charge:135, batt:77, v800:false,
+   note:"Kupfer-Akzente, aggressives Coupé-Dach, scharfes Cockpit — das vielleicht emotionalste Auto aus dem VW-Konzern-Baukasten. VZ liefert 340 PS Allrad.", facelift:"VZ (4Drive) ab ~57.910 €, klar unter Budget. Schwachpunkt: DC-Ladespitze nur ~135 kW (langsamer als die Konkurrenz). Für 2027 ist ein Update angekündigt."},
 
   {brand:"BYD", model:"Seal", variant:"Excellence AWD · 530 PS", seg:"Limousine", drive:"RWD/AWD",
-   price:44990, range:570, power:530, accel:3.8, charge:150, batt:83, v800:false,
-   note:"Der Preis-Leistungs-Hammer: 530 PS Allrad und 3,8 s für unter 50 k. „Ocean Aesthetics"-Design, Blade-Akku ab Werk. Laden nur mittelschnell — sonst kaum Schwächen.", facelift:"Meiste Beschleunigung pro Euro in dieser Liste."},
+   price:47990, range:520, power:530, accel:3.8, charge:150, batt:83, v800:false,
+   note:"Der Preis-Leistungs-Hammer: 530 PS Allrad und 3,8 s. „Ocean Aesthetics“-Design, LFP-Blade-Akku ab Werk. Laden nur mittelschnell — sonst kaum Schwächen.", facelift:"Facelift 03/2026 mit Preiserhöhung: Basis jetzt ab ~47.990 €, Excellence AWD (530 PS) ab ~53.990 €. DC-Spitze nur ~150 kW (400 V) — bleibt die meiste Beschleunigung pro Euro."},
 
-  {brand:"Zeekr", model:"001", variant:"Long Range / Performance", seg:"Shooting Brake", drive:"RWD/AWD",
-   price:59490, range:656, power:544, accel:3.8, charge:200, batt:100, v800:true,
-   note:"Shooting-Brake-Silhouette, 100-kWh-Akku, edles Interieur — Geely-Speerspitze gegen die deutschen Platzhirsche. Üppig ausgestattet schon ab Werk.", facelift:"Riesiger 100-kWh-Akku, Lounge-Innenraum."},
+  {brand:"Zeekr", model:"001", variant:"Long Range RWD / Performance AWD 544 PS", seg:"Shooting Brake", drive:"RWD/AWD",
+   price:59990, range:620, power:544, accel:3.8, charge:200, batt:100, v800:false,
+   note:"Shooting-Brake-Silhouette, 100-kWh-Akku, edles, üppig ausgestattetes Interieur — Geelys Speerspitze gegen die deutschen Platzhirsche.", facelift:"Offizieller DE-Verkauf seit Dez 2025. Long Range RWD ab 59.990 € (620 km), Performance AWD 544 PS ab 65.990 € (594 km). Achtung: die DE-Autos sind 400 V / 200 kW, nicht die global beworbene 800-V-Version."},
 
-  {brand:"NIO", model:"ET5 Touring", variant:"100 kWh · 490 PS", seg:"Shooting Brake", drive:"AWD",
-   price:49900, range:560, power:490, accel:4.0, charge:140, batt:100, v800:false,
-   note:"Der Kombi-Exot mit Battery-Swap-Option: in Minuten den vollen Akku tauschen statt laden. Sinnlich gezeichnet, 490 PS serienmäßig Allrad.", facelift:"Akku-Tausch statt Ladesäule — ein eigenes Ökosystem."},
+  {brand:"NIO", model:"ET5 Touring", variant:"100 kWh AWD · 490 PS (inkl. Akku)", seg:"Shooting Brake", drive:"AWD",
+   price:59500, range:560, power:490, accel:4.0, charge:140, batt:100, v800:false,
+   note:"Der Kombi-Exot mit Battery-Swap-Option: in Minuten den vollen Akku tauschen statt laden. Sinnlich gezeichnet, 490 PS serienmäßig Allrad.", facelift:"Preise = Kauf inkl. Batterie (Basis 75 kWh ab ~59.500 €, 100 kWh AWD ab 68.500 €). Per Akku-Miete (BaaS) ab ~47.500 € + Monatsrate. Verfügbarkeit unsicher — sehr schwache Verkäufe in DE."},
 
-  {brand:"Volvo", model:"EX30", variant:"Twin Motor Perf. · 428 PS", seg:"Kompakt-SUV", drive:"RWD/AWD",
-   price:36590, range:476, power:428, accel:3.6, charge:153, batt:69, v800:false,
-   note:"Klein, schnell, schwedisch-clean. 428 PS im Mini-SUV bedeuten 3,6 s — und das günstigste Auto der Liste. Reduziertes Interieur, ein einziger zentraler Screen.", facelift:"Günstigster Einstieg & dichteste Fun-pro-Euro-Rate."}
+  {brand:"Volvo", model:"EX30", variant:"Twin Motor Performance · 428 PS", seg:"Kompakt-SUV", drive:"RWD/AWD",
+   price:34990, range:480, power:428, accel:3.6, charge:153, batt:69, v800:false,
+   note:"Klein, schnell, schwedisch-clean. 428 PS im Mini-SUV bedeuten 3,6 s — und das günstigste Auto der Liste. Reduziertes Interieur, ein einziger zentraler Screen.", facelift:"Neue Spar-Basis ab 34.990 € (49 kWh). Twin Motor Performance (428 PS, AWD) ab ~55.290 €. Für die EU jetzt in Gent/Belgien gebaut. Günstigster Einstieg & dichteste Fun-pro-Euro-Rate."}
 ];
 
 /* ---------------- STATE ---------------- */
