@@ -317,7 +317,27 @@ const CARS = [
   {slug:"volvo-ex30", brand:"Volvo", model:"EX30", seg:"Kompakt-SUV", variant:"Twin Motor Performance",
    price:60000, range:450, power:428, accel:3.6, charge:153, time:28, batt:69, drive:"AWD",
    tag:"Klein, schnell, schwedisch.", equip:["Allrad","Plus/Ultra","Harman Kardon","Pixel-LED"],
-   note:"Klein, schnell, schwedisch-clean: 428 PS im Mini-SUV bedeuten 3,6 s — und es bleibt das günstigste Auto der Liste. Reduziertes Interieur mit einem einzigen zentralen Screen, jetzt für Europa in Gent gebaut."}
+   note:"Klein, schnell, schwedisch-clean: 428 PS im Mini-SUV bedeuten 3,6 s. Reduziertes Interieur mit einem einzigen zentralen Screen, jetzt für Europa in Gent gebaut."},
+
+  {slug:"ford-mustang-mach-e", brand:"Ford", model:"Mustang Mach-E GT", seg:"Performance", variant:"GT AWD",
+   price:78000, range:490, power:487, accel:3.7, charge:150, time:33, batt:91, drive:"AWD",
+   tag:"Mustang-Emotion, elektrisch.", equip:["Allrad","MagneRide-Fahrwerk","Bang & Olufsen","Matrix-LED","Panoramadach"],
+   note:"Performance-SUV mit Mustang-Genen: 487 PS Allrad, adaptives MagneRide-Fahrwerk und ein emotionaler Auftritt, den sonst kein E-SUV der Klasse so hinbekommt. Lädt nur mittelschnell, fährt dafür spürbar sportlicher als die meisten Crossover."},
+
+  {slug:"alpine-a290", brand:"Alpine", model:"A290", seg:"Hot-Hatch", variant:"GTS",
+   price:46000, range:364, power:220, accel:6.4, charge:100, time:30, batt:52, drive:"FWD",
+   tag:"Kult-Hot-Hatch, elektrisch.", equip:["Sportfahrwerk","Brembo-Bremsen","Alpine-Telemetrie","19-Zoll"],
+   note:"Der heißeste E-Kleinwagen: Renault-5-Basis, aber mit echter Alpine-Sportabstimmung, Brembo-Bremsen und Retro-Rallye-Charme. Kein Langstrecken-Held — dafür das spielerischste und mit Abstand günstigste Auto der Liste."},
+
+  {slug:"porsche-macan", brand:"Porsche", model:"Macan Electric", seg:"SUV", variant:"Macan 4",
+   price:84000, range:516, power:408, accel:5.2, charge:270, time:21, batt:100, drive:"AWD", over:true,
+   tag:"Echter Porsche, elektrisch.", equip:["800-Volt","Matrix-LED","Bose","optional Luftfederung"],
+   note:"Der wichtigste Premium-Name der Liste: echtes Porsche-Fahrgefühl im E-SUV, 800-Volt-Technik und eine top Ladekurve. Ehrlich: schon der Macan 4 startet über 80.000 € und sprengt damit knapp dein Budget — deshalb bewusst als Ausnahme markiert."},
+
+  {slug:"xpeng-g6", brand:"Xpeng", model:"G6", seg:"SUV-Coupé", variant:"Performance AWD",
+   price:57000, range:550, power:487, accel:4.1, charge:280, time:20, batt:88, drive:"AWD",
+   tag:"800-Volt-Tesla-Jäger.", equip:["800-Volt","XPilot-Assistenz","Panoramadach","20-Zoll"],
+   note:"Xpengs Model-Y-Gegner mit 800-Volt-Technik, die in rund 20 Minuten lädt, und einem für die Klasse riesigen Tech-Paket. Offiziell in Deutschland erhältlich, scharf gezeichnet und preislich aggressiv."}
 ];
 
 const fmt = n => "≈ " + n.toLocaleString('de-DE') + " €";
@@ -344,7 +364,7 @@ function renderIndex(){
     b.addEventListener('click',()=>{location.hash=c.slug});
     index.appendChild(b);
   });
-  document.getElementById('count').textContent = CARS.length + " Stromer · ≤ 80.000 € konfiguriert";
+  document.getElementById('count').textContent = CARS.length + " Stromer · kuratiert bis ~80.000 €";
 }
 
 /* ---------- stage ---------- */
@@ -377,7 +397,8 @@ function openDetail(slug){
   document.getElementById('dPrice').textContent=fmt(c.price);
   document.getElementById('dPriceSub').textContent=`gut ausgestattet · ${c.variant} · ${c.seg} · ${c.drive}`;
   const warn=document.getElementById('dWarn');
-  if(c.tight){warn.style.display='inline-block';warn.textContent='Budget knapp — bleibt nur sparsam ausgestattet unter 80.000 €.';}
+  if(c.over){warn.style.display='block';warn.textContent='Über deinem 80.000-€-Budget — bewusst als Ausnahme aufgenommen.';}
+  else if(c.tight){warn.style.display='block';warn.textContent='Budget knapp — bleibt nur sparsam ausgestattet unter 80.000 €.';}
   else warn.style.display='none';
   document.getElementById('sRange').innerHTML=`${c.range}<small>km</small>`;
   document.getElementById('sAccel').innerHTML=`${c.accel.toFixed(1)}<small>s</small>`;
