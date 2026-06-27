@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STROMER — E-Auto-Auswahl bis 80.000 € konfiguriert</title>
+<meta name="description" content="Privates, klinisch-cleanes Recherche-Tool: kuratierte Elektroautos, die gut ausgestattet bis 80.000 € bleiben.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#171a20;
+    --muted:#5c5e62;
+    --faint:#8e9196;
+    --line:#ededef;
+    --line-2:#e0e1e3;
+    --ui:'Manrope',system-ui,-apple-system,sans-serif;
+    --nav-h:62px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;
+    line-height:1.5;font-feature-settings:"tnum";overflow:hidden}
+  ::selection{background:var(--ink);color:#fff}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+  /* ---------- nav ---------- */
+  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:40;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(20px,4vw,46px);
+    background:rgba(255,255,255,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;letter-spacing:.32em;font-size:14px}
+  .brand span{color:var(--faint)}
+  .nav .right{display:flex;align-items:center;gap:22px}
+  .nav .count{font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+  .sort{display:flex;gap:2px;background:#f1f2f3;border-radius:100px;padding:3px}
+  .sort button{font-size:11.5px;letter-spacing:.03em;color:var(--muted);padding:6px 12px;border-radius:100px;transition:.18s}
+  .sort button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
+
+  /* ---------- browser split ---------- */
+  .browser{display:grid;grid-template-columns:minmax(300px,36%) 1fr;height:100vh}
+  /* index list */
+  .index{padding-top:var(--nav-h);overflow-y:auto;border-right:1px solid var(--line);scrollbar-width:thin}
+  .index::-webkit-scrollbar{width:8px}.index::-webkit-scrollbar-thumb{background:#e2e3e5;border-radius:8px}
+  .index .lead{padding:30px clamp(20px,4vw,46px) 14px}
+  .index .lead h1{font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.05}
+  .index .lead p{font-size:13.5px;color:var(--muted);margin-top:10px;max-width:42ch}
+  .item{display:flex;align-items:center;gap:16px;width:100%;text-align:left;
+    padding:17px clamp(20px,4vw,46px);border-top:1px solid var(--line);position:relative;transition:background .15s}
+  .item:last-child{border-bottom:1px solid var(--line)}
+  .item .num{font-size:11px;color:var(--faint);width:22px;flex:0 0 auto;font-weight:500}
+  .item .txt{flex:1 1 auto;min-width:0}
+  .item .bd{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px}
+  .item .md{font-size:clamp(18px,2vw,23px);font-weight:600;letter-spacing:-.015em;line-height:1.12;transition:transform .25s ease}
+  .item .pr{font-size:13px;color:var(--muted);flex:0 0 auto;font-weight:500;font-variant-numeric:tabular-nums}
+  .item .ar{flex:0 0 auto;width:16px;opacity:0;transform:translateX(-6px);transition:.25s;color:var(--faint)}
+  .item:hover{background:#fafafb}
+  .item:hover .md,.item.active .md{transform:translateX(6px)}
+  .item:hover .ar{opacity:1;transform:translateX(0)}
+  .item.active{background:#f6f7f8}
+  .item.active::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ink)}
+
+  /* stage */
+  .stage{position:relative;overflow:hidden;
+    background:radial-gradient(120% 110% at 68% 38%, #ffffff 0%, #eef0f2 62%, #e4e6e9 100%)}
+  .stage .hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--faint);font-size:14px;letter-spacing:.04em;text-align:center;padding:0 30px}
+  .stage .car{position:absolute;top:50%;left:50%;transform:translate(-50%,-46%);
+    width:min(84%,840px);filter:drop-shadow(0 32px 42px rgba(20,26,32,.13));
+    opacity:0;will-change:transform,opacity;pointer-events:none}
+  .stage .car.in{animation:slideIn .85s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes slideIn{from{opacity:0;transform:translate(calc(-50% + 90px),-46%)}to{opacity:1;transform:translate(-50%,-46%)}}
+  .stage .plate{position:absolute;left:clamp(28px,5vw,64px);bottom:clamp(28px,6vw,60px);max-width:80%;
+    opacity:0;transition:opacity .5s .15s,transform .5s .15s;transform:translateY(10px)}
+  .stage .plate.show{opacity:1;transform:none}
+  .stage .plate .bd{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .stage .plate .md{font-size:clamp(30px,4.4vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1}
+  .stage .plate .tg{font-size:14px;color:var(--muted);margin-top:8px}
+  .stage .plate .pr{margin-top:16px;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+  .stage .plate .pr small{display:block;font-size:11.5px;color:var(--faint);font-weight:500;letter-spacing:.02em;margin-top:2px}
+  .stage .opencta{position:absolute;right:clamp(28px,5vw,64px);bottom:clamp(28px,6vw,60px);
+    border:1px solid var(--line-2);border-radius:100px;padding:11px 20px;font-size:12.5px;font-weight:600;
+    letter-spacing:.05em;background:rgba(255,255,255,.7);opacity:0;transition:.3s}
+  .stage .opencta.show{opacity:1}
+  .stage .opencta:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* ---------- detail ---------- */
+  .detail{position:fixed;inset:0;z-index:60;background:#fff;overflow-y:auto;
+    transform:translateX(100%);transition:transform .55s cubic-bezier(.16,1,.3,1);visibility:hidden}
+  .detail.open{transform:none;visibility:visible}
+  .detail .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+    padding:18px clamp(20px,4vw,46px);background:rgba(255,255,255,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .detail .back{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.02em}
+  .detail .back .a{display:inline-flex;width:30px;height:30px;border:1px solid var(--line-2);border-radius:50%;
+    align-items:center;justify-content:center;transition:.2s}
+  .detail .back:hover .a{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .detail .wm{font-size:11px;letter-spacing:.3em;color:var(--faint);font-weight:700}
+
+  .d-hero{background:radial-gradient(120% 120% at 50% 30%,#fff,#eceef1);padding:clamp(20px,4vw,40px) 0 0}
+  .d-hero .bd{text-align:center;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .d-hero h1{text-align:center;font-size:clamp(38px,7vw,86px);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-top:8px}
+  .d-hero .tg{text-align:center;font-size:clamp(15px,1.7vw,19px);color:var(--muted);margin-top:14px}
+  .d-hero img{display:block;width:min(90%,980px);margin:6px auto -2%;
+    filter:drop-shadow(0 34px 46px rgba(20,26,32,.12))}
+
+  .d-body{max-width:1040px;margin:0 auto;padding:clamp(30px,5vw,60px) clamp(20px,4vw,40px) 100px}
+  .d-price{text-align:center;margin-bottom:clamp(34px,5vw,56px)}
+  .d-price .big{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .d-price .sub{font-size:13.5px;color:var(--muted);margin-top:6px}
+  .d-price .warn{font-size:12.5px;color:var(--faint);display:block;margin-top:10px;letter-spacing:.01em}
+
+  .specs{display:grid;grid-template-columns:repeat(5,1fr);max-width:900px;margin:0 auto}
+  .specs div{padding:6px 16px;text-align:center;border-left:1px solid var(--line)}
+  .specs div:first-child{border-left:0}
+  .specs .v{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .specs .v small{font-size:13px;font-weight:600;color:var(--muted);margin-left:2px}
+  .specs .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:7px;font-weight:600}
+
+  .d-note{margin-top:clamp(34px,5vw,52px);display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  .d-note .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:12px}
+  .d-note p{font-size:16px;line-height:1.65;color:#33363b}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips span{font-size:12.5px;color:var(--muted);border:1px solid var(--line-2);border-radius:100px;padding:7px 13px}
+  .d-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(36px,5vw,52px);align-items:center}
+  .d-cta a{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;
+    padding:14px 26px;border-radius:100px;font-size:13.5px;font-weight:600;letter-spacing:.03em;transition:.2s}
+  .d-cta a.ghost{background:#fff;color:var(--ink);border:1px solid var(--line-2)}
+  .d-cta a:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(20,26,32,.16)}
+  .d-foot{max-width:1040px;margin:0 auto;padding:0 clamp(20px,4vw,40px) 70px;font-size:11.5px;color:var(--faint);line-height:1.7}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    body{overflow:auto}
+    .browser{grid-template-columns:1fr;height:auto}
+    .stage{display:none}
+    .index{height:auto;border-right:0;overflow:visible}
+    .item .ar{opacity:1;transform:none}
+    .specs{grid-template-columns:repeat(2,1fr)}
+    .d-note{grid-template-columns:1fr}
+    .nav .count{display:none}
+  }
+  @media(max-width:520px){
+    .specs{grid-template-columns:repeat(2,1fr)}
+    .sort{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="brand">STROM<span>·</span>ER</div>
+  <div class="right">
+    <span class="count" id="count"></span>
+    <div class="sort" id="sort">
+      <button data-k="price" class="on">Preis</button>
+      <button data-k="range">Reichweite</button>
+      <button data-k="power">Leistung</button>
+    </div>
+  </div>
+</header>
+
+<main class="browser">
+  <aside class="index" id="index">
+    <div class="lead">
+      <h1>Die Auswahl.</h1>
+      <p>Kuratiert, klinisch, privat. Jedes Modell bleibt gut ausgestattet unter 80.000 €. Fahr rechts mit der Maus über die Liste — tippe an für die Detailseite.</p>
+    </div>
+    <!-- items injected -->
+  </aside>
+
+  <section class="stage" id="stage">
+    <div class="hint" id="hint">Fahr über ein Modell.</div>
+    <img class="car" id="stageCar" alt="">
+    <div class="plate" id="plate">
+      <div class="bd" id="pBrand"></div>
+      <div class="md" id="pModel"></div>
+      <div class="tg" id="pTag"></div>
+      <div class="pr" id="pPrice"></div>
+    </div>
+    <button class="opencta" id="openCta">Ansehen →</button>
+  </section>
+</main>
+
+<!-- DETAIL -->
+<section class="detail" id="detail">
+  <div class="top">
+    <button class="back" id="back"><span class="a">←</span> Übersicht</button>
+    <span class="wm">STROMER</span>
+  </div>
+  <div class="d-hero">
+    <div class="bd" id="dBrand"></div>
+    <h1 id="dModel"></h1>
+    <div class="tg" id="dTag"></div>
+    <img id="dImg" alt="">
+  </div>
+  <div class="d-body">
+    <div class="d-price">
+      <div class="big" id="dPrice"></div>
+      <div class="sub" id="dPriceSub"></div>
+      <div class="warn" id="dWarn" style="display:none"></div>
+    </div>
+    <div class="specs">
+      <div><div class="v" id="sRange"></div><div class="k">Reichweite</div></div>
+      <div><div class="v" id="sAccel"></div><div class="k">0–100 km/h</div></div>
+      <div><div class="v" id="sPower"></div><div class="k">Leistung</div></div>
+      <div><div class="v" id="sCharge"></div><div class="k">DC-Laden</div></div>
+      <div><div class="v" id="sTime"></div><div class="k">10–80 %</div></div>
+    </div>
+    <div class="d-note">
+      <div>
+        <div class="lbl">Warum drauf</div>
+        <p id="dNote"></p>
+      </div>
+      <div>
+        <div class="lbl">Konfiguration</div>
+        <div class="chips" id="dChips"></div>
+      </div>
+    </div>
+    <div class="d-cta" id="dCta"></div>
+  </div>
+  <div class="d-foot">
+    Preise = realistischer Konfigurationspreis einer gut ausgestatteten Variante, Brutto, Stand Juni 2026 (Hersteller-Konfiguratoren, ADAC, electrive); je nach Optionen abweichend. Reichweite/Ladewerte nach WLTP bzw. Herstellerangabe für die genannte Variante. Bilder: neutrale Render (imagin.studio) zur einheitlichen Darstellung. Privates Tool — vor dem Kauf aktuellen Konfigurator prüfen.
+  </div>
+</section>
+
+<script>
+const CARS = [
+  {slug:"hyundai-ioniq-6", brand:"Hyundai", model:"Ioniq 6", seg:"Limousine", variant:"UNIQ 84 kWh AWD",
+   price:64000, range:583, power:325, accel:5.1, charge:233, time:18, batt:84, drive:"AWD",
+   tag:"Aerodynamik als Skulptur.", equip:["Matrix-LED","Wärmepumpe","20-Zoll","BOSE","Metallic"],
+   note:"Mit cw 0,21 sieht der Ioniq 6 aus wie nichts sonst auf der Straße. Der AWD bringt 325 PS und Allrad-Sicherheit; wer maximale Reichweite will, nimmt den RWD mit bis zu 680 km. 800-Volt-Technik lädt in rund 18 Minuten von 10 auf 80 %."},
+
+  {slug:"hyundai-ioniq-5-n", brand:"Hyundai", model:"Ioniq 5 N", seg:"Performance", variant:"AWD · 650 PS",
+   price:77000, range:448, power:650, accel:3.4, charge:240, time:18, batt:84, drive:"AWD",
+   tag:"650-PS-Rennstrecken-Spielzeug.", equip:["21-Zoll-Schmiede","N Grin Boost","Wärmepumpe","BOSE"],
+   note:"Der Spielverderber für teure Sportwagen: simulierte Gangschaltung, Drift-Modus und 650 PS im Boost. Schon ab Werk nahezu voll ausgestattet — entsprechend wenig Spielraum, nur Sonderlack kommt noch dazu.", tight:true},
+
+  {slug:"kia-ev6-gt", brand:"Kia", model:"EV6 GT", seg:"Performance", variant:"GT · 650 PS",
+   price:72000, range:450, power:650, accel:3.5, charge:258, time:18, batt:84, drive:"AWD",
+   tag:"Das Crossover, das sprintet.", equip:["GT-Vollausstattung","21-Zoll","Wärmepumpe","Metallic"],
+   note:"Gleiche 800-Volt-Basis wie der Ioniq 5 N, aber als geducktes Crossover-Coupé mit Driftmodus und Neon-Akzenten. Nach dem Facelift sogar günstiger geworden — das beste Budget-Polster im Performance-Lager."},
+
+  {slug:"tesla-model-3", brand:"Tesla", model:"Model 3", seg:"Limousine", variant:"Performance AWD",
+   price:62500, range:528, power:460, accel:3.1, charge:250, time:27, batt:79, drive:"AWD",
+   tag:"Die clean-clinische Ikone.", equip:["AWD","Performance-Sitze","Track-Modus","Premium-Lack"],
+   note:"Das Highland-Redesign machte Front und Innenraum noch reduzierter. Die Performance-Variante rennt in 3,1 s, und das Supercharger-Netz bleibt der entspannteste Lade-Komfort am Markt. Wer Reichweite über Sprint stellt, nimmt den Long Range AWD mit bis zu 750 km."},
+
+  {slug:"bmw-i4", brand:"BMW", model:"i4", seg:"Limousine", variant:"xDrive40 M Sport",
+   price:76000, range:560, power:401, accel:5.1, charge:205, time:31, batt:84, drive:"AWD",
+   tag:"Gran Coupé ohne Kompromiss.", equip:["Allrad","M Sportpaket","Driving Assist Prof.","Harman Kardon"],
+   note:"Das E-Auto, das sich am wenigsten nach Kompromiss anfühlt — klassische Limousinen-Proportionen statt SUV-Hochbau. xDrive40 verbindet Allrad und Reichweite; den 601-PS-M60 sprengt erst die Ausstattung über 80k."},
+
+  {slug:"bmw-i5", brand:"BMW", model:"i5", seg:"Limousine", variant:"eDrive40 M Sport",
+   price:79000, range:582, power:340, accel:6.0, charge:205, time:31, batt:84, drive:"RWD",
+   tag:"Business-Class unter Strom.", equip:["M Sportpaket","Komfortsitze","Driving Assist Prof.","Metallic"],
+   note:"Ruhig, breit, makellos verarbeitet — souveräne Oberklasse. Der eDrive40 bleibt gut ausgestattet knapp unter 80k; der xDrive40 reißt die Grenze, der M60 erst recht. Auch als Touring zu haben.", tight:true},
+
+  {slug:"polestar-4", brand:"Polestar", model:"4", seg:"SUV-Coupé", variant:"Long Range Dual Motor",
+   price:78000, range:590, power:544, accel:3.8, charge:200, time:30, batt:100, drive:"AWD",
+   tag:"Minimalismus ohne Heckscheibe.", equip:["Plus Pack","22 kW AC","21-Zoll","Nappa"],
+   note:"Das Auto ohne Heckscheibe — stattdessen Kamera und Display. Polarisierend, kompromisslos reduziert und mit einem der schönsten Cockpits dieser Liste. Der 100-kWh-Akku liefert ernsthafte Reichweite."},
+
+  {slug:"polestar-2", brand:"Polestar", model:"2", seg:"Limousine", variant:"Long Range Performance",
+   price:73000, range:568, power:476, accel:4.2, charge:207, time:28, batt:82, drive:"AWD",
+   tag:"Skandinavischer Purismus.", equip:["Performance Pack","Plus Pack","Pilot","Öhlins-Dämpfer"],
+   note:"Scharfe Kanten, kein Gramm Zierrat — der unterschätzte Schönling. Das Performance Pack bringt Öhlins-Fahrwerk und Brembo-Bremsen; die Single-Motor-Version schafft sparsam bis 659 km."},
+
+  {slug:"audi-a6-etron", brand:"Audi", model:"A6 Sportback e-tron", seg:"Limousine", variant:"performance",
+   price:79500, range:756, power:381, accel:5.4, charge:270, time:21, batt:95, drive:"RWD",
+   tag:"Der Effizienz-König.", equip:["Metallic","Komfortpaket","20-Zoll","Matrix-LED"],
+   note:"Reichweiten-Referenz der ganzen Liste: bis 756 km WLTP, cw 0,21, 800-Volt-Laden bis 270 kW. Fließheck-Eleganz, die teurer aussieht als sie ist. Wichtig fürs Budget: nur die performance bleibt gut ausgestattet unter 80k — der quattro nicht.", tight:true},
+
+  {slug:"audi-q6-etron", brand:"Audi", model:"Q6 e-tron", seg:"SUV", variant:"performance + S line",
+   price:78500, range:641, power:306, accel:6.6, charge:270, time:21, batt:100, drive:"RWD",
+   tag:"Macan-Technik, klüger gekauft.", equip:["S line","Matrix-LED","20-Zoll","Tech-Paket"],
+   note:"Die PPE-Plattform, die auch den Porsche Macan EV trägt — nur tausende Euro günstiger. 800 Volt, top Ladekurve, ruhiger und präziser Auftritt. Die reichweitenstarke performance passt gut ausgestattet gerade noch ins Budget."},
+
+  {slug:"mercedes-cla", brand:"Mercedes", model:"CLA EV", seg:"Limousine", variant:"350 4MATIC",
+   price:72000, range:698, power:354, accel:4.9, charge:320, time:22, batt:85, drive:"AWD",
+   tag:"Effizienz-Wunderkind mit Stern.", equip:["AMG Line","MBUX Superscreen","19-Zoll","Metallic"],
+   note:"Die neue MMA-Plattform mit 800 Volt lädt mit bis zu 320 kW am schnellsten in dieser Liste. Das sparsame 250+ schafft bis 792 km, das 350 4MATIC liefert Allrad und 354 PS — beide mit viel Luft unters 80k-Limit."},
+
+  {slug:"genesis-gv60", brand:"Genesis", model:"GV60", seg:"SUV-Coupé", variant:"Sport Plus AWD",
+   price:74480, range:501, power:490, accel:4.0, charge:240, time:18, batt:84, drive:"AWD",
+   tag:"Diskreter Luxus-Geheimtipp.", equip:["490 PS Boost","27-Zoll OLED","Nappa-Leder","fast voll"],
+   note:"Die Luxusmarke, die kaum jemand auf dem Schirm hat — genau das macht sie sexy. Kristallkugel-Schalthebel, 800 Volt, 490-PS-Boost und faktisch Vollausstattung serienmäßig. Du bist garantiert der Einzige im Parkhaus."},
+
+  {slug:"vw-id7", brand:"Volkswagen", model:"ID.7", seg:"Limousine", variant:"GTX 4MOTION",
+   price:72000, range:595, power:340, accel:5.4, charge:200, time:26, batt:86, drive:"AWD",
+   tag:"Der Langstrecken-Gleiter.", equip:["Allrad","20-Zoll Skagen","Panodach","Wärmepumpe"],
+   note:"VWs erwachsenste E-Limousine: groß, leise, oberklassig im Platzangebot. Der sportliche GTX bringt Allrad und 340 PS; der Pro S gleitet sparsam bis 709 km. Auch als Tourer-Kombi zu haben."},
+
+  {slug:"cupra-tavascan", brand:"Cupra", model:"Tavascan", seg:"SUV-Coupé", variant:"VZ 4Drive",
+   price:67000, range:521, power:340, accel:5.5, charge:135, time:30, batt:77, drive:"AWD",
+   tag:"Kupfer, Kanten, Charakter.", equip:["Allrad","Matrix-LED","Sennheiser-Sound","Sportsitze"],
+   note:"Kupfer-Akzente, aggressives Coupé-Dach, scharfes Cockpit — das vielleicht emotionalste Auto aus dem VW-Konzern-Baukasten. Einziger echter Schwachpunkt: die DC-Ladeleistung liegt nur bei rund 135 kW."},
+
+  {slug:"byd-seal", brand:"BYD", model:"Seal", seg:"Limousine", variant:"Excellence AWD",
+   price:56000, range:520, power:530, accel:3.8, charge:150, time:37, batt:83, drive:"AWD",
+   tag:"Beschleunigung pro Euro.", equip:["Allrad","Wärmepumpe","360-Kamera","HUD","Leder"],
+   note:"Der Preis-Leistungs-Hammer: 530 PS Allrad und 3,8 s, dazu ab Werk fast alles an Bord. Ocean-Aesthetics-Design und Blade-Akku. Laden nur mittelschnell — sonst kaum Schwächen und das größte Budget-Polster der Liste."},
+
+  {slug:"zeekr-001", brand:"Zeekr", model:"001", seg:"Shooting Brake", variant:"Privilege AWD",
+   price:73500, range:585, power:544, accel:3.8, charge:200, time:30, batt:100, drive:"AWD",
+   tag:"Shooting Brake der Lounge-Klasse.", equip:["Luftfederung","Yamaha-Sound","Massagesitze","22-Zoll"],
+   note:"Shooting-Brake-Silhouette, 100-kWh-Akku und ein Interieur auf Lounge-Niveau — Geelys Speerspitze gegen die deutschen Platzhirsche. Hinweis: die in Deutschland ausgelieferten Autos sind 400 Volt mit 200 kW, nicht die global beworbene 800-Volt-Version."},
+
+  {slug:"nio-et5", brand:"NIO", model:"ET5 Touring", seg:"Shooting Brake", variant:"100 kWh AWD",
+   price:68500, range:560, power:490, accel:4.0, charge:140, time:30, batt:100, drive:"AWD",
+   tag:"Akku-Tausch-Exot.", equip:["100-kWh-Akku","Battery-Swap","490 PS","Nappa"],
+   note:"Der Kombi-Exot mit Battery-Swap: in Minuten den vollen Akku tauschen statt laden. Sinnlich gezeichnet, 490 PS Allrad serienmäßig. Preis hier inklusive Batterie; per Akku-Miete günstiger im Einstieg. Verfügbarkeit in Deutschland zuletzt unsicher."},
+
+  {slug:"volvo-ex30", brand:"Volvo", model:"EX30", seg:"Kompakt-SUV", variant:"Twin Motor Performance",
+   price:60000, range:450, power:428, accel:3.6, charge:153, time:28, batt:69, drive:"AWD",
+   tag:"Klein, schnell, schwedisch.", equip:["Allrad","Plus/Ultra","Harman Kardon","Pixel-LED"],
+   note:"Klein, schnell, schwedisch-clean: 428 PS im Mini-SUV bedeuten 3,6 s. Reduziertes Interieur mit einem einzigen zentralen Screen, jetzt für Europa in Gent gebaut."},
+
+  {slug:"ford-mustang-mach-e", brand:"Ford", model:"Mustang Mach-E GT", seg:"Performance", variant:"GT AWD",
+   price:78000, range:490, power:487, accel:3.7, charge:150, time:33, batt:91, drive:"AWD",
+   tag:"Mustang-Emotion, elektrisch.", equip:["Allrad","MagneRide-Fahrwerk","Bang & Olufsen","Matrix-LED","Panoramadach"],
+   note:"Performance-SUV mit Mustang-Genen: 487 PS Allrad, adaptives MagneRide-Fahrwerk und ein emotionaler Auftritt, den sonst kein E-SUV der Klasse so hinbekommt. Lädt nur mittelschnell, fährt dafür spürbar sportlicher als die meisten Crossover."},
+
+  {slug:"alpine-a290", brand:"Alpine", model:"A290", seg:"Hot-Hatch", variant:"GTS",
+   price:46000, range:364, power:220, accel:6.4, charge:100, time:30, batt:52, drive:"FWD",
+   tag:"Kult-Hot-Hatch, elektrisch.", equip:["Sportfahrwerk","Brembo-Bremsen","Alpine-Telemetrie","19-Zoll"],
+   note:"Der heißeste E-Kleinwagen: Renault-5-Basis, aber mit echter Alpine-Sportabstimmung, Brembo-Bremsen und Retro-Rallye-Charme. Kein Langstrecken-Held — dafür das spielerischste und mit Abstand günstigste Auto der Liste."},
+
+  {slug:"porsche-macan", brand:"Porsche", model:"Macan Electric", seg:"SUV", variant:"Macan 4",
+   price:84000, range:516, power:408, accel:5.2, charge:270, time:21, batt:100, drive:"AWD", over:true,
+   tag:"Echter Porsche, elektrisch.", equip:["800-Volt","Matrix-LED","Bose","optional Luftfederung"],
+   note:"Der wichtigste Premium-Name der Liste: echtes Porsche-Fahrgefühl im E-SUV, 800-Volt-Technik und eine top Ladekurve. Ehrlich: schon der Macan 4 startet über 80.000 € und sprengt damit knapp dein Budget — deshalb bewusst als Ausnahme markiert."},
+
+  {slug:"xpeng-g6", brand:"Xpeng", model:"G6", seg:"SUV-Coupé", variant:"Performance AWD",
+   price:57000, range:550, power:487, accel:4.1, charge:280, time:20, batt:88, drive:"AWD",
+   tag:"800-Volt-Tesla-Jäger.", equip:["800-Volt","XPilot-Assistenz","Panoramadach","20-Zoll"],
+   note:"Xpengs Model-Y-Gegner mit 800-Volt-Technik, die in rund 20 Minuten lädt, und einem für die Klasse riesigen Tech-Paket. Offiziell in Deutschland erhältlich, scharf gezeichnet und preislich aggressiv."}
+];
+
+const fmt = n => "≈ " + n.toLocaleString('de-DE') + " €";
+let sortKey = 'price';
+
+/* ---------- build index ---------- */
+const index = document.getElementById('index');
+const bySlug = Object.fromEntries(CARS.map(c=>[c.slug,c]));
+
+function sorted(){
+  const arr = CARS.slice();
+  arr.sort((a,b)=> sortKey==='price' ? a.price-b.price : b[sortKey]-a[sortKey]);
+  return arr;
+}
+function renderIndex(){
+  index.querySelectorAll('.item').forEach(n=>n.remove());
+  sorted().forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='item'; b.dataset.slug=c.slug;
+    b.innerHTML=`<span class="num">${String(i+1).padStart(2,'0')}</span>
+      <span class="txt"><span class="bd">${c.brand}</span><span class="md">${c.model}</span></span>
+      <span class="pr">${fmt(c.price)}</span><span class="ar">→</span>`;
+    b.addEventListener('mouseenter',()=>showStage(c.slug));
+    b.addEventListener('click',()=>{location.hash=c.slug});
+    index.appendChild(b);
+  });
+  document.getElementById('count').textContent = CARS.length + " Stromer · kuratiert bis ~80.000 €";
+}
+
+/* ---------- stage ---------- */
+const stageCar=document.getElementById('stageCar'), plate=document.getElementById('plate'),
+      hint=document.getElementById('hint'), openCta=document.getElementById('openCta');
+let current=null;
+function showStage(slug){
+  const c=bySlug[slug]; if(!c) return; current=slug;
+  hint.style.display='none';
+  stageCar.classList.remove('in'); void stageCar.offsetWidth;
+  stageCar.src=`img/${c.slug}.webp`; stageCar.alt=`${c.brand} ${c.model}`;
+  stageCar.classList.add('in');
+  document.getElementById('pBrand').textContent=c.brand;
+  document.getElementById('pModel').textContent=c.model;
+  document.getElementById('pTag').textContent=c.tag;
+  document.getElementById('pPrice').innerHTML=`${fmt(c.price)}<small>konfiguriert · ${c.variant}</small>`;
+  plate.classList.add('show'); openCta.classList.add('show');
+  index.querySelectorAll('.item').forEach(n=>n.classList.toggle('active',n.dataset.slug===slug));
+}
+openCta.addEventListener('click',()=>{ if(current) location.hash=current; });
+
+/* ---------- detail ---------- */
+const detail=document.getElementById('detail');
+function openDetail(slug){
+  const c=bySlug[slug]; if(!c){closeDetail();return;}
+  document.getElementById('dBrand').textContent=c.brand;
+  document.getElementById('dModel').textContent=c.model;
+  document.getElementById('dTag').textContent=c.tag;
+  const img=document.getElementById('dImg'); img.src=`img/${c.slug}.webp`; img.alt=`${c.brand} ${c.model}`;
+  document.getElementById('dPrice').textContent=fmt(c.price);
+  document.getElementById('dPriceSub').textContent=`gut ausgestattet · ${c.variant} · ${c.seg} · ${c.drive}`;
+  const warn=document.getElementById('dWarn');
+  if(c.over){warn.style.display='block';warn.textContent='Über deinem 80.000-€-Budget — bewusst als Ausnahme aufgenommen.';}
+  else if(c.tight){warn.style.display='block';warn.textContent='Budget knapp — bleibt nur sparsam ausgestattet unter 80.000 €.';}
+  else warn.style.display='none';
+  document.getElementById('sRange').innerHTML=`${c.range}<small>km</small>`;
+  document.getElementById('sAccel').innerHTML=`${c.accel.toFixed(1)}<small>s</small>`;
+  document.getElementById('sPower').innerHTML=`${c.power}<small>PS</small>`;
+  document.getElementById('sCharge').innerHTML=`${c.charge}<small>kW</small>`;
+  document.getElementById('sTime').innerHTML=`${c.time}<small>min</small>`;
+  document.getElementById('dNote').textContent=c.note;
+  document.getElementById('dChips').innerHTML=c.equip.map(e=>`<span>${e}</span>`).join('');
+  const q=encodeURIComponent(`${c.brand} ${c.model} Konfigurator`);
+  document.getElementById('dCta').innerHTML=
+    `<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener noreferrer">Zum Konfigurator →</a>`+
+    `<a class="ghost" href="https://www.google.com/search?q=${encodeURIComponent(c.brand+' '+c.model+' Test')}" target="_blank" rel="noopener noreferrer">Testberichte</a>`;
+  detail.classList.add('open'); detail.scrollTop=0; document.body.style.overflow='hidden';
+}
+function closeDetail(){ detail.classList.remove('open'); if(window.innerWidth>900) document.body.style.overflow='hidden'; else document.body.style.overflow=''; }
+document.getElementById('back').addEventListener('click',()=>{ history.pushState('', document.title, location.pathname+location.search); closeDetail(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && detail.classList.contains('open')){history.pushState('',document.title,location.pathname+location.search);closeDetail();} });
+
+function route(){ const s=location.hash.replace('#',''); if(s && bySlug[s]) openDetail(s); else closeDetail(); }
+window.addEventListener('hashchange',route);
+
+/* sort */
+document.getElementById('sort').addEventListener('click',e=>{
+  const btn=e.target.closest('button'); if(!btn) return;
+  sortKey=btn.dataset.k;
+  document.querySelectorAll('#sort button').forEach(b=>b.classList.toggle('on',b===btn));
+  renderIndex(); if(current) index.querySelectorAll('.item').forEach(n=>n.classList.toggle('active',n.dataset.slug===current));
+});
+
+/* init */
+renderIndex();
+showStage(sorted()[0].slug);
+route();
+</script>
+</body>
+</html>
