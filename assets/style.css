@@ -917,6 +917,38 @@ a.add-btn { text-decoration: none; }
   box-shadow: 0 12px 26px rgba(190, 122, 107, 0.4);
 }
 
+/* ---------- Preis- & Bewertungs-Chips (Pick-Karten, JS + statisch) ---------- */
+.hp-meta,
+.pick-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin: 0 0 14px;
+}
+.hp-price,
+.pick-price {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink-strong, var(--ink));
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+.hp-rating,
+.pick-rating {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.hp-rating small,
+.pick-rating small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
 /* ---------- Produktkarten mit Bild (optional, via .pick-photo) ---------- */
 .pick:has(.pick-photo) {
   display: flex;
