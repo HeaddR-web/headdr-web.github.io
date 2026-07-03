@@ -1,0 +1,730 @@
+[
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "1. Serviere wie ein Buffet",
+    "product": "Servier-Etagere",
+    "query": "Etagere Servierstaender 3 Etagen"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "1. Serviere wie ein Buffet",
+    "product": "Brunch-Geschirr-Set",
+    "query": "Fruehstuecksgeschirr Set"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "2. Die Highlights: Waffeln &amp; Eier",
+    "product": "Waffeleisen",
+    "query": "Waffeleisen"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "2. Die Highlights: Waffeln &amp; Eier",
+    "product": "Eierkocher",
+    "query": "Eierkocher"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "3. Getränke: Kaffee &amp; Mimosas",
+    "product": "French Press / Kaffeebereiter",
+    "query": "French Press Kaffeebereiter"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "3. Getränke: Kaffee &amp; Mimosas",
+    "product": "Glaskaraffe",
+    "query": "Glaskaraffe Saft Set"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "4. Der schön gedeckte Tisch",
+    "product": "Tischläufer (Leinen) fürs Brunch-Buffet",
+    "query": "Tischlaeufer Leinen natur Brunch"
+  },
+  {
+    "page": "brunch",
+    "render": "static",
+    "category": "4. Der schön gedeckte Tisch",
+    "product": "Stoffservietten (Baumwolle) fürs Frühstück",
+    "query": "Stoffservietten Baumwolle Set natur"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "1. Deko &amp; Dresscode",
+    "product": "Casino-Deko-Set (schwarz-gold)",
+    "query": "Casino Deko Set schwarz gold Party"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "1. Deko &amp; Dresscode",
+    "product": "Fliege & 007-Accessoires",
+    "query": "Fliege Herren schwarz Set"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "2. Pokerset &amp; Spiele",
+    "product": "Pokerset im Koffer (Chips & Karten)",
+    "query": "Pokerset Koffer Chips Karten"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "2. Pokerset &amp; Spiele",
+    "product": "Mini-Roulette-Set",
+    "query": "Roulette Set Mini Party"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "3. Bond-Drinks",
+    "product": "Martini-Gläser-Set",
+    "query": "Martini Glaeser Set"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "3. Bond-Drinks",
+    "product": "Cocktail-Shaker-Set",
+    "query": "Cocktail Shaker Set Edelstahl"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "4. Spielgeld &amp; Foto-Extras",
+    "product": "Spielgeld / Casino-Dollars",
+    "query": "Spielgeld Dollar Scheine Bundel"
+  },
+  {
+    "page": "casino",
+    "render": "static",
+    "category": "4. Spielgeld &amp; Foto-Extras",
+    "product": "Casino-Foto-Requisiten",
+    "query": "Foto Requisiten Casino Photo Booth"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "1. Deko, die sofort wirkt",
+    "product": "Luftballon-Girlande (Set)",
+    "query": "Luftballon Girlande Geburtstag"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "1. Deko, die sofort wirkt",
+    "product": "Happy-Birthday-Banner",
+    "query": "Happy Birthday Banner Girlande"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "2. Die Torte in Szene setzen",
+    "product": "Tortenplatte / Etagere",
+    "query": "Tortenplatte mit Haube"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "2. Die Torte in Szene setzen",
+    "product": "Geburtstagskerzen",
+    "query": "Geburtstagskerzen"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "3. Stimmung &amp; Musik",
+    "product": "LED-Lichterkette warmweiß (innen)",
+    "query": "LED Lichterkette warmweiss innen Zimmer"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "4. Unterhaltung &amp; kleine Geschenke",
+    "product": "Party-Kartenspiel",
+    "query": "Partyspiel Erwachsene Geburtstag"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "4. Unterhaltung &amp; kleine Geschenke",
+    "product": "Foto-Requisiten-Set (Photo-Booth)",
+    "query": "Photo Booth Requisiten Geburtstag"
+  },
+  {
+    "page": "geburtstag",
+    "render": "static",
+    "category": "4. Unterhaltung &amp; kleine Geschenke",
+    "product": "Goodie-Bags",
+    "query": "Goodie Bags Geburtstag"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "1. Das Grill-Setup",
+    "product": "Kompakter Holzkohlegrill",
+    "query": "Holzkohlegrill Kugelgrill kompakt"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "1. Das Grill-Setup",
+    "product": "Grillbesteck-Set",
+    "query": "Grillbesteck Set Edelstahl"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "2. Würzen &amp; Zubereiten",
+    "product": "BBQ-Gewürz- / Rub-Set",
+    "query": "Grill Gewuerz Set BBQ"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "2. Würzen &amp; Zubereiten",
+    "product": "Grillschalen / Grillkorb",
+    "query": "Grillkorb Grillschalen"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "3. Servieren &amp; kühlen",
+    "product": "Outdoor-Geschirr-Set",
+    "query": "Outdoor Geschirr Set Melamin"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "3. Servieren &amp; kühlen",
+    "product": "Getränke-Kühlbox",
+    "query": "Kuehlbox gross"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "4. Garten-Atmosphäre",
+    "product": "Outdoor-Lichterkette (wetterfest)",
+    "query": "Lichterkette aussen warmweiss"
+  },
+  {
+    "page": "grillabend",
+    "render": "static",
+    "category": "4. Garten-Atmosphäre",
+    "product": "Outdoor-Sitzkissen für Gartenstühle",
+    "query": "Stuhlkissen Gartenstuhl wetterfest"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "1. Leis &amp; tropische Outfits",
+    "product": "Hawaii-Blumenketten (Leis) im Set",
+    "query": "Hawaii Blumenketten Leis Set"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "1. Leis &amp; tropische Outfits",
+    "product": "Hawaiihemd & Baströcke",
+    "query": "Hawaiihemd Bastrock Kostuem"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "2. Tiki-Deko",
+    "product": "Hawaii-Deko-Set",
+    "query": "Hawaii Party Deko Set"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "2. Tiki-Deko",
+    "product": "Tiki-Fackeln für den Garten",
+    "query": "Tiki Fackeln Garten"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "3. Tropische Drinks",
+    "product": "Tiki-Becher & Cocktailschirmchen",
+    "query": "Tiki Becher Cocktailschirmchen"
+  },
+  {
+    "page": "hawaii-tiki",
+    "render": "static",
+    "category": "4. Musik &amp; Spiele",
+    "product": "Aufblasbare Deko & Limbo-Set",
+    "query": "Hawaii Limbo aufblasbare Deko"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "1. Der Team-Bride-Look",
+    "product": "Team-Bride Shirts & Schärpen",
+    "query": "Team Bride Schaerpen Set JGA"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "1. Der Team-Bride-Look",
+    "product": "Braut-Schärpe mit Schleier",
+    "query": "Braut Schaerpe Schleier JGA"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "2. Deko &amp; Foto-Requisiten",
+    "product": "JGA-Deko-Set (Roségold)",
+    "query": "JGA Deko Set rosegold"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "2. Deko &amp; Foto-Requisiten",
+    "product": "Foto-Requisiten / Photo-Booth-Set",
+    "query": "Photo Booth Requisiten JGA"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "3. Spiele &amp; Aufgaben",
+    "product": "JGA-Spiele & Aufgaben-Karten",
+    "query": "JGA Spiele Aufgaben Karten"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "3. Spiele &amp; Aufgaben",
+    "product": "Verkaufsbauchladen",
+    "query": "JGA Bauchladen"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "4. Anstoßen &amp; Survival-Kit",
+    "product": "Team-Bride Sekt-Becher zum Anstoßen",
+    "query": "Team Bride Sektbecher JGA Kunststoff"
+  },
+  {
+    "page": "jga",
+    "render": "static",
+    "category": "4. Anstoßen &amp; Survival-Kit",
+    "product": "JGA-Survival-Kit",
+    "query": "JGA Survival Kit"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "1. Deko &amp; Fiesta-Atmosphäre",
+    "product": "Papel-Picado-Wimpelketten",
+    "query": "Papel Picado Girlande Mexiko Deko"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "1. Deko &amp; Fiesta-Atmosphäre",
+    "product": "Mexiko-Deko-Set (Kaktus & Chili)",
+    "query": "Mexiko Party Deko Set"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "2. Das Taco-Buffet",
+    "product": "Taco-Halter-Set",
+    "query": "Taco Halter Set"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "2. Das Taco-Buffet",
+    "product": "Buntes Fiesta-Partygeschirr",
+    "query": "Mexiko Partygeschirr Set bunt"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "3. Margaritas &amp; Drinks",
+    "product": "Margarita-Gläser-Set",
+    "query": "Margarita Glaeser Set"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "3. Margaritas &amp; Drinks",
+    "product": "Cocktail-Set für Margaritas",
+    "query": "Cocktail Shaker Set Margarita"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "4. Fiesta-Extras &amp; Spaß",
+    "product": "Piñata",
+    "query": "Pinata Mexiko Kaktus Party"
+  },
+  {
+    "page": "mexiko-fiesta",
+    "render": "static",
+    "category": "4. Fiesta-Extras &amp; Spaß",
+    "product": "Sombreros & Accessoires",
+    "query": "Sombrero Mexiko Party Accessoires"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "1. Warmes Licht statt greller Lampe",
+    "product": "Duftkerzen-Set",
+    "query": "Duftkerzen Set Herbst"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "1. Warmes Licht statt greller Lampe",
+    "product": "Warmweiße Glühbirnen",
+    "query": "LED Gluehbirne E27 warmweiss 2700K"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "2. Kuschelige Textilien",
+    "product": "Strick-Kuscheldecke",
+    "query": "Strick Kuscheldecke grob gross Sofa"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "2. Kuschelige Textilien",
+    "product": "Dekokissen-Set",
+    "query": "Dekokissen Set Herbst Erdtoene"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "3. Natürliche Akzente",
+    "product": "Trockenblumen / Pampasgras",
+    "query": "Trockenblumen Strauss Pampasgras natur"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "3. Natürliche Akzente",
+    "product": "Türkranz (Herbst/Winter)",
+    "query": "Tuerkranz Herbst"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "4. Stimmungslicht ohne Risiko",
+    "product": "LED-Kerzen (flammenlos)",
+    "query": "LED Kerzen flammenlos Timer Set"
+  },
+  {
+    "page": "saison-deko",
+    "render": "static",
+    "category": "4. Stimmungslicht ohne Risiko",
+    "product": "LED-Lichterkette warmweiß",
+    "query": "LED Lichterkette warmweiss innen"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "1. Die Atmosphäre",
+    "product": "Duftkerzen-Set",
+    "query": "Duftkerzen Set"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "1. Die Atmosphäre",
+    "product": "LED-Lichterkette warmweiß",
+    "query": "LED Lichterkette warmweiss batterie innen"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "2. Gesichtspflege",
+    "product": "Gesichtsmasken-Set",
+    "query": "Gesichtsmasken Set Tuchmasken"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "2. Gesichtspflege",
+    "product": "Gesichtsroller (Jade)",
+    "query": "Gesichtsroller Jade Set"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "2. Gesichtspflege",
+    "product": "Augenpads",
+    "query": "Augenpads Hydrogel"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "3. Bad &amp; Körper",
+    "product": "Badebomben-Set",
+    "query": "Badebomben Set"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "3. Bad &amp; Körper",
+    "product": "Weicher Bademantel",
+    "query": "Bademantel weich Damen"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "3. Bad &amp; Körper",
+    "product": "Fußbad-Salz & Badezusatz",
+    "query": "Fussbad Salz entspannend"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "4. Hände &amp; Entspannung",
+    "product": "Maniküre-Set",
+    "query": "Manikuere Set"
+  },
+  {
+    "page": "spa-abend",
+    "render": "static",
+    "category": "4. Hände &amp; Entspannung",
+    "product": "Entspannungstee",
+    "query": "Entspannungstee Kraeutertee Bio"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "1. Die Spiele",
+    "product": "Brettspiel-Klassiker",
+    "query": "Gesellschaftsspiel Erwachsene Spieleabend ab 4 Spieler"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "1. Die Spiele",
+    "product": "Party-Kartenspiel",
+    "query": "Partyspiel Kartenspiel Erwachsene Gruppe"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "2. Snacks zum Knabbern",
+    "product": "Snackschalen-Set",
+    "query": "Snackschalen Set Dip Schalen Party"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "2. Snacks zum Knabbern",
+    "product": "Knabber-Mix-Box",
+    "query": "Knabber Mix Box Chips salzig Party"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "3. Die gemütliche Runde",
+    "product": "LED-Lichterkette warmweiß",
+    "query": "LED Lichterkette warmweiss innen"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "3. Die gemütliche Runde",
+    "product": "Bodenkissen",
+    "query": "Bodenkissen gross Sitzkissen Boden"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "4. Für die Wettkämpfer",
+    "product": "Quiz- / Wissensspiel",
+    "query": "Quizspiel Wissensspiel Erwachsene Gruppe"
+  },
+  {
+    "page": "spieleabend",
+    "render": "static",
+    "category": "4. Für die Wettkämpfer",
+    "product": "Trinkspiel-Set",
+    "query": "Trinkspiel Set Erwachsene"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "1. Die romantische Atmosphäre",
+    "product": "Duftkerzen-Set",
+    "query": "Duftkerzen Set romantisch Rose"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "1. Die romantische Atmosphäre",
+    "product": "LED-Lichterkette warmweiß (Herzen)",
+    "query": "LED Lichterkette warmweiss Herzen Batterie"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "2. Der gedeckte Tisch für zwei",
+    "product": "Kerzenständer-Set",
+    "query": "Kerzenstaender Set gold Tischdeko"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "2. Der gedeckte Tisch für zwei",
+    "product": "Infinity-Rosenbox",
+    "query": "Infinity Rosenbox"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "3. Dinner &amp; Drinks",
+    "product": "Sektgläser-Set (2er, für zwei)",
+    "query": "Sektglaeser 2er Set Hochzeit Valentinstag"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "4. Die süße Überraschung",
+    "product": "Pralinen-Geschenkbox",
+    "query": "Pralinen Geschenkbox"
+  },
+  {
+    "page": "valentinstag",
+    "render": "static",
+    "category": "4. Die süße Überraschung",
+    "product": "Sternenhimmel-Projektor",
+    "query": "Sternenhimmel Projektor LED"
+  },
+  {
+    "page": "cocktailabend",
+    "render": "js-hero",
+    "category": "Bar-Ausstattung",
+    "product": "Cocktail-Shaker-Set",
+    "query": "Cocktail Shaker Set Edelstahl"
+  },
+  {
+    "page": "cocktailabend",
+    "render": "js-hero",
+    "category": "Gläser & Servieren",
+    "product": "Coupé-Gläser-Set",
+    "query": "Sektglaeser Coupe Set"
+  },
+  {
+    "page": "cocktailabend",
+    "render": "js-hero",
+    "category": "Zutaten & Mixer",
+    "product": "Cocktail-Sirup-Set",
+    "query": "Cocktail Sirup Set"
+  },
+  {
+    "page": "cocktailabend",
+    "render": "js-hero",
+    "category": "Snacks & Fingerfood",
+    "product": "Servierbrett (groß)",
+    "query": "Servierbrett Holz gross"
+  },
+  {
+    "page": "cocktailabend",
+    "render": "js-hero",
+    "category": "Deko & Ambiente",
+    "product": "LED-Lichterkette warmweiß",
+    "query": "LED Lichterkette warmweiss innen"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Spiele",
+    "product": "Party-Kartenspiel (Erwachsene)",
+    "query": "Partyspiel Karten Erwachsene"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Drinks",
+    "product": "Cocktail-Shaker-Set",
+    "query": "Cocktail Shaker Set Edelstahl"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Snacks",
+    "product": "Servierbrett (groß)",
+    "query": "Servierbrett Holz gross"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Deko & Themes",
+    "product": "Luftballon-Girlande (Set)",
+    "query": "Luftballon Girlande Set rosa"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Pflege & Spa",
+    "product": "Gesichtsmasken-Set",
+    "query": "Gesichtsmasken Set Tuchmasken"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Filmabend",
+    "product": "Mini-Beamer (Full HD)",
+    "query": "Mini Beamer Full HD"
+  },
+  {
+    "page": "girlsnight",
+    "render": "js-hero",
+    "category": "Fotos & Erinnerungen",
+    "product": "Sofortbildkamera",
+    "query": "Sofortbildkamera Instax"
+  },
+  {
+    "page": "watchparty",
+    "render": "js-hero",
+    "category": "Bildschirm & Setup",
+    "product": "Mini-Beamer (Full HD)",
+    "query": "Mini Beamer Full HD"
+  },
+  {
+    "page": "watchparty",
+    "render": "js-hero",
+    "category": "Essen & Snacks",
+    "product": "Snack- & Dip-Schalen",
+    "query": "Snackschalen Set Party"
+  },
+  {
+    "page": "watchparty",
+    "render": "js-hero",
+    "category": "Getränke",
+    "product": "Getränke-Kühlbox",
+    "query": "Getraenkekuehler Box gross"
+  },
+  {
+    "page": "watchparty",
+    "render": "js-hero",
+    "category": "Deko & Fan-Gear",
+    "product": "Deutschland-Fahne (groß)",
+    "query": "Deutschland Fahne gross"
+  },
+  {
+    "page": "watchparty",
+    "render": "js-hero",
+    "category": "Tippspiel & Spiele",
+    "product": "WM-Spielplan-Poster",
+    "query": "Fussball Spielplan Poster"
+  }
+]

@@ -101,13 +101,13 @@
         "key": "fotos",
         "name": "Fotos & Erinnerungen",
         "emoji": "📸",
-        "blurb": "Sofortbilder, die jede mit nach Hause nimmt — das Must-have für den Mädelsabend.",
+        "blurb": "Sofortbilder, die jede mit nach Hause nimmt, das Must-have für den Mädelsabend.",
         "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0.jpeg",
         "guide": "posts/pyjama-party.html",
         "products": [
             {
                 "name": "Sofortbildkamera",
-                "desc": "Der Mädelsabend-Klassiker schlechthin — jede klebt ihr Foto später ins Album.",
+                "desc": "Der Mädelsabend-Klassiker schlechthin, jede klebt ihr Foto später ins Album.",
                 "asin": "B0C2J34N8G"
             }
         ]
@@ -146,7 +146,7 @@
       var card = el(
         '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
           '<div class="cover" style="background-image:url(\'' + cat.img + "')\">" +
-          '<span class="tag">' + cat.emoji + " " + esc(cat.name) + "</span>" +
+          '<span class="tag">' + esc(cat.name) + "</span>" +
           "</div>" +
           '<div class="cat-body">' +
           '<p class="blurb">' + esc(cat.blurb) + "</p>" +

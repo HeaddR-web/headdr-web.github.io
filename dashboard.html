@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>BeThatHost — KPI-Cockpit (intern)</title>
+    <title>BeThatHost, KPI-Cockpit (intern)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,7 +70,7 @@
   <body>
     <div class="wrap">
       <span class="tag">Intern · nicht indexiert</span>
-      <h1>BeThatHost — KPI-Cockpit</h1>
+      <h1>BeThatHost, KPI-Cockpit</h1>
       <p class="sub">Alle Kennzahlen an einem Ort. Die Live-Daten liegen in den verlinkten Tools; der Tracker unten ist dein wöchentlicher Schnappschuss.</p>
 
       <h2>Dashboards öffnen</h2>
@@ -144,7 +144,7 @@
           <button type="button" id="exportCsv">CSV exportieren</button>
           <button type="button" id="clearAll">Alle löschen</button>
         </div>
-        <p class="note">Daten werden lokal in deinem Browser gespeichert (localStorage) — geräte-/browsergebunden, nicht öffentlich.</p>
+        <p class="note">Daten werden lokal in deinem Browser gespeichert (localStorage), geräte-/browsergebunden, nicht öffentlich.</p>
       </div>
 
       <h2>Noch zu aktivieren</h2>
@@ -170,7 +170,7 @@
         const rows = load().sort((a, b) => (a.datum < b.datum ? 1 : -1));
         body.innerHTML = "";
         if (!rows.length) {
-          body.innerHTML = '<tr><td colspan="8" class="empty">Noch keine Einträge — trag oben deinen ersten Wochen-Snapshot ein.</td></tr>';
+          body.innerHTML = '<tr><td colspan="8" class="empty">Noch keine Einträge, trag oben deinen ersten Wochen-Snapshot ein.</td></tr>';
           foot.innerHTML = "";
           return;
         }

@@ -91,7 +91,7 @@
       var card = el(
         '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
           '<div class="cover" style="background-image:url(\'' + cat.img + "')\">" +
-          '<span class="tag">' + cat.emoji + " " + esc(cat.name) + "</span>" +
+          '<span class="tag">' + esc(cat.name) + "</span>" +
           "</div>" +
           '<div class="cat-body">' +
           '<p class="blurb">' + esc(cat.blurb) + "</p>" +

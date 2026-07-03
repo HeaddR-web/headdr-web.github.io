@@ -1,0 +1,29 @@
+seite,kategorie,pick_position,produktname,asin,preis,bewertung_sterne,bewertung_anzahl,amazon_suchbegriff
+# Anleitung: pick_position=1 = das Produkt, das aktuell als Karte ("Unser Pick") auf der Seite erscheint.
+# Fülle asin (z.B. B07XYZ1234), preis (z.B. "ab 14,99 €"), bewertung_sterne (z.B. 4,6) und bewertung_anzahl (z.B. 2310) aus.
+# Leere Felder sind ok — dann bleibt der Such-Link / kein Chip. Sobald asin gesetzt ist, wird ein direkter Produktlink (/dp/ASIN) gebaut.
+cocktailabend,Bar-Ausstattung,1,Cocktail-Shaker-Set,,,,,Cocktail Shaker Set Edelstahl
+cocktailabend,Bar-Ausstattung,2,Barmaß (Jigger),,,,,Barmass Jigger Edelstahl
+cocktailabend,Bar-Ausstattung,3,Barlöffel & Stößel,,,,,Barloeffel Stoessel Set
+cocktailabend,Bar-Ausstattung,4,Getränkespender mit Zapfhahn,,,,,Getraenkespender mit Zapfhahn
+cocktailabend,Bar-Ausstattung,5,Eiswürfelform XXL,,,,,Eiswuerfelform gross Silikon
+cocktailabend,Gläser & Servieren,1,Coupé-Gläser-Set,,,,,Sektglaeser Coupe Set
+cocktailabend,Gläser & Servieren,2,Highball-/Longdrink-Gläser,,,,,Longdrink Glaeser Set
+cocktailabend,Gläser & Servieren,3,Tumbler-Gläser,,,,,Whisky Tumbler Glaeser Set
+cocktailabend,Gläser & Servieren,4,Serviertablett,,,,,Serviertablett gold
+cocktailabend,Gläser & Servieren,5,Cocktailspieße & Strohhalme,,,,,Cocktailspiesse Strohhalme wiederverwendbar
+cocktailabend,Zutaten & Mixer,1,Cocktail-Sirup-Set,,,,,Cocktail Sirup Set
+cocktailabend,Zutaten & Mixer,2,Bitters-Set,,,,,Cocktail Bitter Set
+cocktailabend,Zutaten & Mixer,3,Tonic & Filler,,,,,Tonic Water Set
+cocktailabend,Zutaten & Mixer,4,Alkoholfreie Aperitifs,,,,,alkoholfreier Aperitif
+cocktailabend,Zutaten & Mixer,5,Garnitur-Set (getrocknete Früchte),,,,,Cocktail Garnitur getrocknete Fruechte
+cocktailabend,Snacks & Fingerfood,1,Servierbrett (groß),,,,,Servierbrett Holz gross
+cocktailabend,Snacks & Fingerfood,2,Dip-Schalen-Set,,,,,Dip Schalen Set
+cocktailabend,Snacks & Fingerfood,3,Etagere,,,,,Etagere Servierstaender
+cocktailabend,Snacks & Fingerfood,4,Käsemesser-Set,,,,,Kaesemesser Set
+cocktailabend,Snacks & Fingerfood,5,Cocktail-Servietten,,,,,Cocktailservietten
+cocktailabend,Deko & Ambiente,1,LED-Lichterkette warmweiß,,,,,LED Lichterkette warmweiss innen
+cocktailabend,Deko & Ambiente,2,Duftkerzen-Set,,,,,Duftkerzen Set
+cocktailabend,Deko & Ambiente,3,Cocktail-Karte / Tafel,,,,,Cocktailkarte Tafel Deko
+cocktailabend,Deko & Ambiente,4,Barwagen,,,,,Barwagen gold
+cocktailabend,Deko & Ambiente,5,Tischläufer (Leinen),,,,,Tischlaeufer Leinen

@@ -1,10 +1,10 @@
-/* BeThatHost — Motion-Schicht (edel + lebendig, performant).
+/* BeThatHost — Motion-Schicht (ruhig, performant).
    Respektiert prefers-reduced-motion. Greift site-weit über /assets/motion.css. */
 
-html { scroll-behavior: smooth; }
-
-/* ---------- Scroll-Reveal (JS vergibt .reveal-init, dann .is-visible) ---------- */
 @media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* ---------- Scroll-Reveal (JS vergibt .reveal-init, dann .is-visible) ---------- */
   .reveal-init {
     opacity: 0;
     transform: translateY(22px);
@@ -30,42 +30,10 @@ html { scroll-behavior: smooth; }
     to { opacity: 1; transform: none; }
   }
 
-  /* Schimmer auf dem hervorgehobenen Hero-Wort */
-  .hero h1 .glow {
-    background-size: 220% auto;
-    animation: hhqGlow 7s ease-in-out infinite;
-  }
-  @keyframes hhqGlow {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 120% center; }
-  }
-
   /* Portal-Kacheln: sanfter Bild-Zoom bei Hover (eigene Ebene = sicher) */
   .occ .bg { transition: transform 0.5s cubic-bezier(0.22, 0.7, 0.2, 1); }
   .occ:hover .bg { transform: scale(1.06); }
 }
-
-/* ---------- Feiner Button-Glanz (dezent, immer aktiv) ---------- */
-.btn-primary,
-.pick a.cta {
-  position: relative;
-  overflow: hidden;
-}
-.btn-primary::after,
-.pick a.cta::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -130%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.6s ease;
-  pointer-events: none;
-}
-.btn-primary:hover::after,
-.pick a.cta:hover::after { left: 140%; }
 
 /* ---------- Etwas mehr Tiefe bei Karten-Hover ---------- */
 .post-card, .cat-card, .occ {
