@@ -4,8 +4,8 @@
 KEINE API, KEIN Selenium, KEIN Warten auf Freigabe:
 Pinterest Business -> Erstellen -> "Bulk create Pins" -> diese Datei hochladen.
 
-Pinterest-Spalten: Title | Media URL | Pinterest board | Thumbnail |
-                    Description | Link | Publish date | Keywords
+Pinterest-Spalten (deutsches Konto-Template): Title | Medien-URL | Pinterest board |
+                    Miniaturansicht | Beschreibung | Link | Publish date | Keywords
 
 - Liest pins.json (von extract_pins.py).
 - Verteilt die Pins zeitversetzt (Standard: 2/Tag, ab morgen), damit es natuerlich
@@ -38,8 +38,8 @@ KEYWORDS = {
     "hawaii-tiki": "hawaii party, tiki party, luau, sommerparty, mottoparty",
 }
 
-HEADER = ["Title", "Media URL", "Pinterest board", "Thumbnail",
-          "Description", "Link", "Publish date", "Keywords"]
+HEADER = ["Title", "Medien-URL", "Pinterest board", "Miniaturansicht",
+          "Beschreibung", "Link", "Publish date", "Keywords"]
 
 
 def main():
@@ -70,10 +70,10 @@ def main():
                 "%Y-%m-%dT%H:%M:%S")
         rows.append({
             "Title": p["title"],
-            "Media URL": p["image"],
+            "Medien-URL": p["image"],
             "Pinterest board": board,
-            "Thumbnail": "",
-            "Description": p["description"],
+            "Miniaturansicht": "",
+            "Beschreibung": p["description"],
             "Link": p["link"],
             "Publish date": publish,
             "Keywords": KEYWORDS.get(p["id"], ""),
