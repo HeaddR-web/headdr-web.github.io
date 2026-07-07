@@ -1,0 +1,48 @@
+name: RSS-Feed aktualisieren
+
+# Haelt feed.xml aktuell, damit Pinterests "Auto-Publish aus RSS-Feed" neue
+# Seiten automatisch findet. Logik: scripts/make_feed.py (liest sitemap.xml +
+# og:-Tags jeder Seite, kein API-Token noetig).
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "sitemap.xml"
+      - "**/*.html"
+      - "scripts/make_feed.py"
+  schedule:
+    - cron: "0 6 * * *"   # taeglich ~06:00 UTC, Sicherheitsnetz
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feed
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: feed.xml generieren
+        run: python3 scripts/make_feed.py
+
+      - name: Commit bei Änderung
+        run: |
+          if [[ -n "$(git status --porcelain feed.xml)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add feed.xml
+            git commit -m "feed: aktualisieren [skip ci]"
+            git push
+          else
+            echo "feed.xml unveraendert."
+          fi

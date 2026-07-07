@@ -1,51 +1,62 @@
-# Pinterest Auto-Post
+# Pinterest — drei Wege, Pins zu posten
 
-Postet automatisch neue Pins von **bethathost.de** auf Pinterest — über die
-**offizielle Pinterest-API (v5)**, ausgeführt von **GitHub Actions**.
-Kein Browser, kein gespeichertes Passwort, ToS-konform.
+Drei parallele Wege, denselben kuratierten Content (`*/pins/queue.json`,
+`pinterest/pins.json`) auf Pinterest zu bringen. Alle drei sind ToS-konform —
+kein Browser, kein gespeichertes Passwort, kein Selenium.
 
-## Warum nicht der Selenium-Bot?
-Der ursprünglich angefragte `PinterestBulkPostBot` steuert einen echten Chrome
-und braucht manuelles Login. Das ist für **unbeaufsichtigte Automatisierung**
-ungeeignet (Captchas, Sperr-Risiko durch gespeicherte Sessions). Diese Lösung
-nutzt stattdessen die offizielle API.
+## Weg 1 — RSS-Auto-Publish (empfohlen, kein API-Token nötig)
+Pinterest kann selbst einen RSS-Feed abonnieren und daraus automatisch Pins
+erstellen — ganz ohne Entwickler-App, ohne OAuth, ohne Secrets.
 
-## Wie es funktioniert
-1. `extract_pins.py` liest aus jeder Seite (`config.json` → `pages`) die
-   OpenGraph-Daten (Titel, Beschreibung, Bild, Link) und schreibt `pins.json`.
-2. `post_pins.py` postet pro Lauf max. `posts_per_run` **neue** Pins und merkt
-   sich Gepostetes in `posted.json` (kein Doppelposten).
-3. Der Workflow `.github/workflows/pinterest.yml` läuft per Zeitplan (Mo & Do)
-   oder manuell und schreibt das Ledger zurück ins Repo.
+1. `scripts/make_feed.py` liest `pinterest/pins.json` (Cover-Pin je Seite) und
+   alle `*/pins/queue.json` (kuratierte Kategorie-Pins mit Hashtags) und
+   schreibt `feed.xml` im Repo-Root (RSS 2.0).
+2. `.github/workflows/feed.yml` hält `feed.xml` automatisch aktuell — bei jedem
+   Push, der Seiten/Sitemap/Queues ändert, plus täglich als Sicherheitsnetz.
+3. Einmalig bei Pinterest verknüpfen (Desktop, Business-Konto mit verifizierter
+   Domain nötig — haben wir bereits):
+   Einstellungen → **Mehrere Pins gleichzeitig erstellen** → **Automatisch
+   veröffentlichen** → **RSS-Feed verknüpfen** → `https://bethathost.de/feed.xml`
+   einfügen → Ziel-Pinnwand wählen → Speichern.
+4. Danach übernimmt Pinterest selbst: neue/aktualisierte Feed-Einträge werden
+   **innerhalb von 24 Stunden** zu Pins (ältester Inhalt zuerst, max. 200/Tag).
 
-## Einmalige Einrichtung (einziger manueller Schritt)
-1. **Pinterest-App anlegen:** <https://developers.pinterest.com/> → „Connect app".
-   App erstellen, Scopes `boards:read`, `pins:read`, `pins:write` aktivieren.
-2. **Access-Token erzeugen** (über den OAuth-Flow der App). Es genügt ein Token
-   für deinen eigenen Account.
-3. **Board anlegen** auf Pinterest mit dem Namen aus `config.json`
-   (`"board_name"`), Standard: **„Party & Gastgeben Ideen"**. Namen ggf. anpassen.
-4. Im GitHub-Repo unter **Settings → Secrets and variables → Actions**:
-   - **Secret** `PINTEREST_ACCESS_TOKEN` = dein Token
-   - **Variable** `PINTEREST_LIVE` = `true`  (Schalter: ohne ihn bleibt alles DRY-RUN)
+Details: <https://help.pinterest.com/de/business/article/auto-publish-pins-from-your-rss-feed>
 
-## Erst testen, dann scharf schalten
-- **DRY-RUN (Standard):** Solange `PINTEREST_LIVE` ≠ `true` oder kein Token da ist,
-  wird **nichts** gepostet — der Lauf zeigt nur, was er tun würde.
-- Lokal testen: `python pinterest/extract_pins.py && python pinterest/post_pins.py`
-- Live schalten: Variable `PINTEREST_LIVE=true` setzen. Erst dann postet der
-  nächste Lauf (Zeitplan oder „Run workflow" im Actions-Tab) echte Pins.
+**Achtung Duplikate:** Wenn Inhalte aus `feed.xml` bereits einmal manuell per
+Bulk-CSV (Weg 3) hochgeladen wurden, erstellt Pinterest beim Verknüpfen des
+Feeds trotzdem neue Pins dafür — es gibt keine automatische Dopplungs-Prüfung
+zwischen den drei Wegen. Vor dem Verknüpfen im Notion-Tracker prüfen, was schon
+„Hochgeladen" ist, und diese Einträge ggf. vorübergehend aus den Queues nehmen.
 
-## Einstellungen (`config.json`)
-| Feld            | Bedeutung                                                  |
-|-----------------|------------------------------------------------------------|
-| `base_url`      | Domain der Website                                          |
-| `board_name`    | Ziel-Board (per Name; wird automatisch zur ID aufgelöst)   |
-| `board_id`      | optional: Board-ID direkt (überschreibt `board_name`)      |
-| `posts_per_run` | Pins pro Lauf (klein halten, wirkt natürlicher) — Standard 2|
-| `pages`         | Liste der Seiten, aus denen Pins erzeugt werden            |
+## Weg 2 — Live-API-Posten (geplant, braucht Pinterest-Entwickler-App)
+1. `scripts/pinterest_publish.py` postet die nächsten unveröffentlichten Pins
+   aus allen `*/pins/queue.json` über die offizielle Pinterest-API (v5) und
+   markiert sie als `"published": true` (kein Doppelposten).
+2. `.github/workflows/pinterest-publish.yml` läuft 2×/Tag (09:00 & 17:00 UTC)
+   oder manuell und committet die aktualisierten Queues zurück.
+3. Einrichtung: Pinterest-Entwickler-App unter
+   <https://developers.pinterest.com/> anlegen, OAuth-Refresh-Token erzeugen,
+   dann als **Repo-Secrets** hinterlegen:
+   - `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`
+   - `PINTEREST_BOARD_ID` (Standard-Board) + optional
+     `PINTEREST_BOARD_ID_<SITE>` (z. B. `PINTEREST_BOARD_ID_GIRLSNIGHT`) für
+     Board-Overrides pro Ordner.
+   Fehlen Secrets, bricht der Lauf sauber mit einer Meldung ab (kein Absturz).
+
+## Weg 3 — Einmaliger Bulk-Upload (manuell, für Nachzügler)
+`pinterest/make_bulk_csv.py` erzeugt `pinterest_bulk.csv` im Format von
+Pinterests **„Bulk-Pins erstellen"**-Import (Pinterest Business → Erstellen →
+„Bulk create Pins"). Spalten **wörtlich englisch** halten — `Title, Media URL,
+Pinterest board, Thumbnail, Description, Link, Publish date, Keywords` — auch
+bei deutschsprachigem Konto (getestet: deutsche Spaltennamen wie „Medien-URL"
+führen zu „Fehlende Media-URL" für jede Zeile).
+
+## Inhaltlicher Tracker
+Single Source of Truth für den redaktionellen Stand: Notion-DB
+**„📌 Pinterest Pins"** (Status `Offen`/`Hochgeladen`/`Geplant`). Neue Pin-Ideen
+dort anlegen, dann `*/pins/queue.json` entsprechend ergänzen.
 
 ## Tipp: bessere Pin-Bilder
-Pinterest bevorzugt **vertikale 2:3-Bilder**. Aktuell werden die `og:image`
-(quer, 3:2) verwendet — funktioniert, ist aber nicht optimal. Auf Wunsch
-erzeuge ich pro Seite ein eigenes vertikales Pin-Bild und hänge dessen URL an.
+Pinterest bevorzugt **vertikale 2:3-Bilder**. Aktuell werden die querformatigen
+`og:image`/Queue-Bilder (3:2) verwendet — funktioniert, ist aber nicht optimal.
