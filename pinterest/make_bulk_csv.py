@@ -4,8 +4,14 @@
 KEINE API, KEIN Selenium, KEIN Warten auf Freigabe:
 Pinterest Business -> Erstellen -> "Bulk create Pins" -> diese Datei hochladen.
 
-Pinterest-Spalten (deutsches Konto-Template): Title | Medien-URL | Pinterest board |
-                    Miniaturansicht | Beschreibung | Link | Publish date | Keywords
+Pinterest-Spalten: Title | Media URL | Pinterest board | Thumbnail |
+                    Description | Link | Publish date | Keywords
+
+WICHTIG: Der Bulk-Importer erwartet diese Spaltennamen exakt auf Englisch —
+auch bei deutschsprachigem Konto. Die deutschen Bezeichnungen aus dem
+Hilfe-Center ("Medien-URL", "Miniaturansicht", "Beschreibung") sind nur
+übersetzte Beschreibungen, keine gültigen Spaltenköpfe (getestet: führt zu
+"Fehlende Media-URL" für jede Zeile, obwohl die URL vorhanden ist).
 
 - Liest pins.json (von extract_pins.py).
 - Verteilt die Pins zeitversetzt (Standard: 2/Tag, ab morgen), damit es natuerlich
@@ -38,8 +44,8 @@ KEYWORDS = {
     "hawaii-tiki": "hawaii party, tiki party, luau, sommerparty, mottoparty",
 }
 
-HEADER = ["Title", "Medien-URL", "Pinterest board", "Miniaturansicht",
-          "Beschreibung", "Link", "Publish date", "Keywords"]
+HEADER = ["Title", "Media URL", "Pinterest board", "Thumbnail",
+          "Description", "Link", "Publish date", "Keywords"]
 
 
 def main():
@@ -70,10 +76,10 @@ def main():
                 "%Y-%m-%dT%H:%M:%S")
         rows.append({
             "Title": p["title"],
-            "Medien-URL": p["image"],
+            "Media URL": p["image"],
             "Pinterest board": board,
-            "Miniaturansicht": "",
-            "Beschreibung": p["description"],
+            "Thumbnail": "",
+            "Description": p["description"],
             "Link": p["link"],
             "Publish date": publish,
             "Keywords": KEYWORDS.get(p["id"], ""),
