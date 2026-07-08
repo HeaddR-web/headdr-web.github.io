@@ -1,0 +1,37 @@
+/* Self-hosted Fonts (Fraunces, Hanken Grotesk, Inter) — latin-Subset.
+   Ersetzt den direkten Google-Fonts-CDN-Link (fonts.googleapis.com/fonts.gstatic.com).
+   Grund: DSGVO Art. 6 — Laden vom Google-CDN uebertraegt die Besucher-IP an Google-
+   Server ohne Rechtsgrundlage/Einwilligung (vgl. LG Muenchen I, Urt. v. 20.01.2022,
+   Az. 3 O 17493/20). Self-Hosting vermeidet den Drittanbieter-Kontakt komplett. */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/fraunces-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/hanken-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/assets/fonts/inter.woff2") format("woff2");
+}

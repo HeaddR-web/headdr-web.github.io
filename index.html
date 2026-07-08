@@ -18,14 +18,8 @@
     <meta property="og:description" content="Wähl deinen Anlass, Mädelsabend, WM-Party, Cocktailabend und mehr, und bau dir in Minuten eine fertige Einkaufsliste." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <meta name="google-adsense-account" content="ca-pub-4473022510510415" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4473022510510415" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/motion.css" />
     <script type="application/ld+json">
       {
@@ -201,6 +195,11 @@
       footer.site .inner { max-width: var(--max); margin: 0 auto; padding: 32px 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
       footer.site a { color: var(--muted); }
       footer.site a:hover { color: var(--rose); }
+      footer.site .cookie-settings-link {
+        display: block; margin: 0 0 10px; font: inherit; font-size: 0.85rem; color: var(--muted);
+        background: none; border: none; padding: 0; text-decoration: underline; cursor: pointer;
+      }
+      footer.site .cookie-settings-link:hover { color: var(--rose); }
 
       @media (max-width: 760px) {
         .wrap { padding: 0 20px; }
@@ -456,6 +455,7 @@
 
     <footer class="site">
       <div class="inner">
+        <button type="button" class="cookie-settings-link" onclick="window.bthOpenConsentSettings &amp;&amp; window.bthOpenConsentSettings()">Cookie-Einstellungen</button>
         <span>© <span id="y"></span> BeThatHost · leser-finanziert · die meisten Links sind Affiliate-Links</span>
         <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
       </div>
@@ -468,7 +468,7 @@
       <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b2da89691d7342dc8bd69c24d7a7a775"}'></script>
     <!-- End Cloudflare Web Analytics -->
-      <!-- Pinterest Save-Button (Hover) -->
-    <script async defer src="https://assets.pinterest.com/js/pinit.js" data-pin-hover="true"></script>
+    <!-- Cookie-Consent-Layer (laedt AdSense/Pinterest erst nach Opt-in) -->
+    <script src="/js/consent.js" defer></script>
   </body>
 </html>
