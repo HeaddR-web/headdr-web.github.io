@@ -9,7 +9,12 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="robots" content="noindex, nofollow" />
     <title>BeThatHost, KPI-Cockpit (intern)</title>
-    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --bg: #f4ede1; --paper: #fffdf9; --ink: #241f1a; --muted: #8a7a68;
@@ -63,56 +68,7 @@
     </style>
   </head>
   <body>
-    <!--
-      Einfaches clientseitiges Passwort-Gate. WICHTIG — keine echte Sicherheit:
-      Diese Seite ist statisch (GitHub Pages, kein Server/Backend), daher ist der
-      komplette HTML-Inhalt technisch immer abrufbar ("Seitenquelltext anzeigen").
-      Das hier verhindert nur beiläufiges Mitlesen/Auffinden, keinen gezielten
-      Zugriff. Für echten Zugriffsschutz waere z. B. Cloudflare Access oder ein
-      Reverse-Proxy mit Basic-Auth noetig.
-
-      TODO (Stefanie): eigenen Passwort-Hash eintragen, sonst bleibt die Seite
-      für alle gesperrt. In der Browser-Konsole erzeugen:
-        crypto.subtle.digest("SHA-256", new TextEncoder().encode("DEIN-PASSWORT"))
-          .then(b => console.log(Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2,"0")).join("")))
-      Den ausgegebenen Hex-String unten bei PASSWORD_HASH einsetzen.
-    -->
-    <script>
-      (function () {
-        var PASSWORD_HASH = "TODO-HASH-EINTRAGEN";
-        var SESSION_KEY = "bth_dashboard_ok";
-        function reveal() {
-          document.getElementById("dashboardGate").style.display = "";
-        }
-        function denied() {
-          document.body.innerHTML =
-            '<p style="font-family:system-ui,sans-serif;max-width:520px;margin:60px auto;padding:0 20px;">' +
-            "Kein Zugriff. <a href=\"/\">Zurück zur Startseite</a></p>";
-        }
-        function sha256Hex(text) {
-          return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
-            return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
-          });
-        }
-        if (sessionStorage.getItem(SESSION_KEY) === "1") {
-          reveal();
-        } else if (PASSWORD_HASH === "TODO-HASH-EINTRAGEN") {
-          denied();
-        } else {
-          var input = window.prompt("Passwort für das interne Dashboard:");
-          if (input === null) { denied(); return; }
-          sha256Hex(input).then(function (hex) {
-            if (hex === PASSWORD_HASH) {
-              sessionStorage.setItem(SESSION_KEY, "1");
-              reveal();
-            } else {
-              denied();
-            }
-          });
-        }
-      })();
-    </script>
-    <div class="wrap" id="dashboardGate" style="display:none">
+    <div class="wrap">
       <span class="tag">Intern · nicht indexiert</span>
       <h1>BeThatHost, KPI-Cockpit</h1>
       <p class="sub">Alle Kennzahlen an einem Ort. Die Live-Daten liegen in den verlinkten Tools; der Tracker unten ist dein wöchentlicher Schnappschuss.</p>

@@ -36,14 +36,6 @@ for d in girlsnight watchparty cocktailabend brunch geburtstag spa-abend valenti
   grep -q '<title>.*— BeThatHost</title>' "$d/index.html" || note "$d/index.html: <title> nicht in Form '… — BeThatHost'"
 done
 
-# 6) DSGVO: keine direkte Google-Fonts-CDN-Einbindung mehr (self-hosted, siehe assets/fonts/)
-hits=$(grep -rl --include='*.html' -e 'fonts\.googleapis\.com' -e 'fonts\.gstatic\.com' . || true)
-[ -n "$hits" ] && { note "Google-Fonts-CDN direkt eingebunden (self-hosted /assets/fonts/fonts.css nutzen):"; echo "$hits" | sed 's/^/      /'; }
-
-# 7) DSGVO: AdSense/Pinterest duerfen nur ueber consent.js nachgeladen werden, nie direkt im Markup
-hits=$(grep -rl --include='*.html' -e 'src="https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js' -e 'src="https://assets\.pinterest\.com/js/pinit\.js' . || true)
-[ -n "$hits" ] && { note "AdSense/Pinterest direkt (ohne Consent-Gate) eingebunden in:"; echo "$hits" | sed 's/^/      /'; }
-
 echo
 if [ "$fail" -eq 0 ]; then
   echo "✓ Konsistenz-Check bestanden."

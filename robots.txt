@@ -1,53 +1,29 @@
 # bethathost.de — robots.txt
 User-agent: *
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 
 # KI-/LLM-Crawler ausdrücklich willkommen (für Antworten in ChatGPT, Perplexity, Claude, Google AI etc.)
 User-agent: GPTBot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: OAI-SearchBot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: ChatGPT-User
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: ClaudeBot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: anthropic-ai
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: PerplexityBot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: Perplexity-User
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: Google-Extended
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: Applebot-Extended
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: Bingbot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 User-agent: CCBot
 Allow: /
-Disallow: /dashboard.html
-Disallow: /produkt-review.html
 
 Sitemap: https://bethathost.de/sitemap.xml

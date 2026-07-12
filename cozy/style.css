@@ -401,21 +401,6 @@ footer.site .inner {
 footer.site a {
   color: var(--muted);
 }
-footer.site .cookie-settings-link {
-  display: block;
-  margin: 0 0 10px;
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--muted);
-  background: none;
-  border: none;
-  padding: 0;
-  text-decoration: underline;
-  cursor: pointer;
-}
-footer.site .cookie-settings-link:hover {
-  color: var(--rose, #a5604f);
-}
 
 /* ---------- Mobile (iPhone) ---------- */
 @media (max-width: 640px) {
