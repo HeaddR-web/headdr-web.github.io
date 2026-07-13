@@ -51,10 +51,14 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
 5. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
-- **Live-Posten (automatisch):** `.github/workflows/pinterest-publish.yml` + `scripts/pinterest_publish.py`
+- **RSS-Auto-Publish (Standardweg):** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
+  `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
+- **Live-Posten (automatisch, optional):** `.github/workflows/pinterest-publish.yml` + `scripts/pinterest_publish.py`
   posten geplant aus den `*/pins/queue.json` über die offizielle API (Refresh-Token, Pro-Board-Logik).
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
 - Inhaltlicher Tracker / Single Source of Truth: Notion-DB **„📌 Pinterest Pins"**. Details: `pinterest/README.md`.
+- **Bildformat — eiserne Regel:** Jedes neue Pin-Bild ist **vertikal 2:3** (z. B. 848×1264). Nie Quer-Bilder
+  (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
 
 ## Workflow / Konventionen
 - **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin).

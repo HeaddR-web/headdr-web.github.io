@@ -57,6 +57,14 @@ Single Source of Truth für den redaktionellen Stand: Notion-DB
 **„📌 Pinterest Pins"** (Status `Offen`/`Hochgeladen`/`Geplant`). Neue Pin-Ideen
 dort anlegen, dann `*/pins/queue.json` entsprechend ergänzen.
 
-## Tipp: bessere Pin-Bilder
-Pinterest bevorzugt **vertikale 2:3-Bilder**. Aktuell werden die querformatigen
-`og:image`/Queue-Bilder (3:2) verwendet — funktioniert, ist aber nicht optimal.
+## Pflicht: Bildformat für jeden neuen Pin
+**Jedes neue Pin-Bild MUSS vertikal im Seitenverhältnis 2:3 sein** (z. B.
+848×1264 oder 1000×1500). Das ist das von Pinterest empfohlene Format und wird
+im Feed/Algorithmus bevorzugt ausgespielt — kein Ausnahmefall, keine
+Wiederverwendung von Quer-Bildern (og:image, Hero-Bilder, 3:2/16:9 o. ä.).
+
+Bei Bildgenerierung (z. B. Higgsfield `generate_image`): immer explizit
+`aspect_ratio: "2:3"` setzen. Bereits bestehende Quer-Bilder in `pins.json`
+(die ursprünglichen 15 Cover-Pins) sind historisch bedingt noch 3:2 — bei
+Gelegenheit durch neue 2:3-Versionen ersetzen, aber **kein neuer Pin darf
+mehr mit Querformat angelegt werden.**
