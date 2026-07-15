@@ -42,7 +42,10 @@ zwischen den drei Wegen. Vor dem Verknüpfen im Notion-Tracker prüfen, was scho
    - `PINTEREST_BOARD_ID` (Standard-Board) + optional
      `PINTEREST_BOARD_ID_<SITE>` (z. B. `PINTEREST_BOARD_ID_GIRLSNIGHT`) für
      Board-Overrides pro Ordner.
-   Fehlen Secrets, bricht der Lauf sauber mit einer Meldung ab (kein Absturz).
+   Fehlen Secrets (Standard, solange Weg 2 nicht eingerichtet ist), beendet sich
+   der Lauf sauber mit einer Meldung im Log — **kein Fehler, kein rotes X, keine
+   Fehler-Mail**. Dieser Weg ist komplett optional; solange Weg 1 (RSS) läuft,
+   muss hier nichts eingerichtet werden.
 
 ## Weg 3 — Einmaliger Bulk-Upload (manuell, für Nachzügler)
 `pinterest/make_bulk_csv.py` erzeugt `pinterest_bulk.csv` im Format von
