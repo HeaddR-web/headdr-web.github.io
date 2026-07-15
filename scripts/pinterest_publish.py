@@ -104,7 +104,7 @@ def main() -> int:
     ]
     if missing:
         print(f"Missing secrets: {', '.join(missing)}. Add them in repo Settings → Secrets.")
-        return 1
+        return 0
 
     queue_files = find_queue_files()
     if not queue_files:
