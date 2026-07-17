@@ -11,8 +11,16 @@ Quellen (dieselben wie fuer die Pinterest-API-Pipeline / Notion-Tracker):
                                 (dieselben Inhalte, die pinterest_publish.py
                                  ueber die offizielle API posten wuerde)
 
-pubDate wird aus sitemap.xml (lastmod der Seite) abgeleitet, sonst aus dem
-letzten Git-Commit der Quelldatei.
+pubDate wird pro Pin ermittelt:
+  1. Datum aus dem Bild-Dateinamen (Higgsfield-Konvention "hf_YYYYMMDD_..."),
+     falls vorhanden — das ist das tatsaechliche Erstellungsdatum DES PINS.
+  2. sonst sitemap.xml (lastmod der Seite)
+  3. sonst der letzte Git-Commit der Quelldatei.
+
+Wichtig: Ohne Schritt 1 wuerden neue Kategorie-Pins faelschlich das (oft
+Wochen alte) lastmod-Datum ihrer Seite erben — RSS-Consumer wie Pinterest
+werten pubDate als "wann ist das entstanden" und ignorieren dann still neue
+Pins mit scheinbar altem Datum, statt sie zu crawlen.
 """
 import datetime as dt
 import glob
@@ -27,11 +35,20 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 MIME = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png"}
+IMAGE_DATE_RE = re.compile(r"hf_(\d{4})(\d{2})(\d{2})_")
 
 
 def mime_for(url):
     ext = os.path.splitext(url)[1].lstrip(".").lower()
     return MIME.get(ext, "image/png")
+
+
+def date_from_image(url):
+    m = IMAGE_DATE_RE.search(url)
+    if not m:
+        return None
+    year, month, day = m.groups()
+    return f"{year}-{month}-{day}"
 
 
 def load_sitemap_lastmod():
@@ -78,7 +95,7 @@ def main():
     with open(os.path.join(ROOT, "pinterest", "pins.json"), encoding="utf-8") as f:
         for p in json.load(f):
             slug = p["id"] if p["id"] != "home" else "home"
-            date = lastmod.get(slug)
+            date = date_from_image(p["image"]) or lastmod.get(slug)
             items.append({
                 "title": p["title"],
                 "link": p["link"],
@@ -90,9 +107,10 @@ def main():
     # 2) Kuratierte Kategorie-Pins aus */pins/queue.json
     for qf in sorted(glob.glob(os.path.join(ROOT, "*", "pins", "queue.json"))):
         slug = os.path.basename(os.path.dirname(os.path.dirname(qf)))
-        date = lastmod.get(slug) or git_date(os.path.relpath(qf, ROOT))
+        fallback_date = lastmod.get(slug) or git_date(os.path.relpath(qf, ROOT))
         with open(qf, encoding="utf-8") as f:
             for p in json.load(f):
+                date = date_from_image(p["image_url"]) or fallback_date
                 items.append({
                     "title": p["title"],
                     "link": p["link"],
