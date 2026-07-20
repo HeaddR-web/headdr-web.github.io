@@ -6,14 +6,15 @@ Repo arbeitet. Ziel: **Konsistenz**. Inkonsistenz ist der Hauptfehler, den es zu
 ## Was das ist
 Statische Website auf **GitHub Pages**, Domain **bethathost.de**.
 Repo: `headdr-web/headdr-web.github.io`. Kein Build-Step — reines HTML/CSS/JS.
+**Einsprachig Deutsch** — BeThatHost ist die einzige aktive Marke.
 
-## Zwei Marken — NIEMALS vermischen
-| Marke | Pfad | Sprache | Look |
-|------|------|---------|------|
-| **BeThatHost** | Root + Anlass-/Motto-Ordner | Deutsch | warm (Creme/Terrakotta/Sand), Fonts **Fraunces + Hanken Grotesk** |
-| **Cozylore** | `cozy/**` | Englisch | eigenes `cozy/style.css`, Fonts **Fraunces + Inter** |
-
-`cozy/**` ist tabu für BeThatHost-Änderungen und umgekehrt.
+## Cozylore (`cozy/**`) — abgekoppelt, seit 2026-07-20
+Cozylore war eine englischsprachige Sub-Marke, ist aber **nicht mehr Teil der Live-Seite**:
+kein Link mehr in Navigation, Startseite oder Cross-Links, nicht in `sitemap.xml`/`llms.txt`.
+Die Dateien unter `cozy/**` bleiben unverändert im Repo (nichts gelöscht, könnte später eine
+eigene Domain bekommen), werden aber **nicht mehr gepflegt oder verlinkt**. `cozy/**` bleibt
+weiterhin tabu für BeThatHost-Änderungen (eigenständiges `cozy/style.css`, Fonts Fraunces +
+Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 
 ## Design-System (BeThatHost) — eiserne Regeln
 - **Eine einzige Stylesheet-Quelle:** `/assets/style.css`. **Niemals** pro-Ordner-Kopien
@@ -65,7 +66,7 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
 - Branch je Aufgabe, **kein** Direkt-Push auf `main` ohne PR.
 - Commit-Präfixe: `content:`, `design:`, `feat:`, `fix:`, `chore:`.
 - Keine Secrets committen (API-Keys etc. liegen als GitHub-Secrets).
-- Antworten/Inhalte auf Deutsch (außer Cozylore = Englisch).
+- Antworten/Inhalte auf Deutsch (einsprachig — `cozy/**` ist abgekoppelt, siehe oben).
 
 ## Automatisierung auf GitHub
 - `@claude` in einem Issue/PR-Kommentar → der GitHub-Agent (`.github/workflows/claude.yml`) übernimmt.
