@@ -26,12 +26,12 @@ bad=$(grep -rl --include='*.html' -e 'href="../style.css"' -e 'rel="stylesheet" 
 # 4) Keine doppelte zentrale Einbindung pro Datei
 while IFS= read -r f; do
   c=$(grep -c '/assets/style.css' "$f")
-  [ "$c" -gt 1 ] && note "Doppelte /assets/style.css-Einbindung in $f ($c×)"
+  [ "$c" -gt 1 ] && note "Doppelte /assets/style.css-Einbindung in $f (${c}×)"
 done < <(grep -rl --include='*.html' '/assets/style.css' . | grep -v '^./cozy/' || true)
 
 # 5) Alle BeThatHost-Anlass-/Motto-Unterseiten enden im <title> auf "— BeThatHost"
 for d in girlsnight watchparty cocktailabend brunch geburtstag spa-abend valentinstag \
-         saison-deko spieleabend grillabend gartenparty mexiko-fiesta jga hawaii-tiki; do
+         saison-deko spieleabend grillabend gartenparty mexiko-fiesta jga hawaii-tiki casino oktoberfest; do
   [ -f "$d/index.html" ] || continue
   grep -q '<title>.*— BeThatHost</title>' "$d/index.html" || note "$d/index.html: <title> nicht in Form '… — BeThatHost'"
 done
