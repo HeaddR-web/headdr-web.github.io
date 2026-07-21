@@ -26,15 +26,23 @@ bad=$(grep -rl --include='*.html' -e 'href="../style.css"' -e 'rel="stylesheet" 
 # 4) Keine doppelte zentrale Einbindung pro Datei
 while IFS= read -r f; do
   c=$(grep -c '/assets/style.css' "$f")
-  [ "$c" -gt 1 ] && note "Doppelte /assets/style.css-Einbindung in $f ($c×)"
+  [ "$c" -gt 1 ] && note "Doppelte /assets/style.css-Einbindung in $f (${c}×)"
 done < <(grep -rl --include='*.html' '/assets/style.css' . | grep -v '^./cozy/' || true)
 
 # 5) Alle BeThatHost-Anlass-/Motto-Unterseiten enden im <title> auf "— BeThatHost"
 for d in girlsnight watchparty cocktailabend brunch geburtstag spa-abend valentinstag \
-         saison-deko spieleabend grillabend gartenparty mexiko-fiesta jga hawaii-tiki; do
+         saison-deko spieleabend grillabend gartenparty mexiko-fiesta jga hawaii-tiki casino oktoberfest; do
   [ -f "$d/index.html" ] || continue
   grep -q '<title>.*— BeThatHost</title>' "$d/index.html" || note "$d/index.html: <title> nicht in Form '… — BeThatHost'"
 done
+
+# 6) DSGVO: keine direkte Google-Fonts-CDN-Einbindung mehr (self-hosted, siehe assets/fonts/)
+hits=$(grep -rl --include='*.html' -e 'fonts\.googleapis\.com' -e 'fonts\.gstatic\.com' . || true)
+[ -n "$hits" ] && { note "Google-Fonts-CDN direkt eingebunden (self-hosted /assets/fonts/fonts.css nutzen):"; echo "$hits" | sed 's/^/      /'; }
+
+# 7) DSGVO: AdSense/Pinterest duerfen nur ueber consent.js nachgeladen werden, nie direkt im Markup
+hits=$(grep -rl --include='*.html' -e 'src="https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js' -e 'src="https://assets\.pinterest\.com/js/pinit\.js' . || true)
+[ -n "$hits" ] && { note "AdSense/Pinterest direkt (ohne Consent-Gate) eingebunden in:"; echo "$hits" | sed 's/^/      /'; }
 
 echo
 if [ "$fail" -eq 0 ]; then
