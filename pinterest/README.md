@@ -60,6 +60,24 @@ Single Source of Truth für den redaktionellen Stand: Notion-DB
 **„📌 Pinterest Pins"** (Status `Offen`/`Hochgeladen`/`Geplant`). Neue Pin-Ideen
 dort anlegen, dann `*/pins/queue.json` entsprechend ergänzen.
 
+## Pflicht: eindeutige Ziel-URL für jeden Pin
+Jeder Pin braucht eine **serverseitig eindeutige** `link`-URL. Ein `#anker` genügt **nicht**:
+URL-Fragmente werden vom Browser nie an den Server geschickt, d. h. Pinterests Crawler sieht bei
+`/casino/#cat-pokerset` und `/casino/#cat-drinks` exakt dieselbe URL `/casino/` — und verwirft die
+zusätzlichen Pins still als Duplikate.
+
+**Richtig:** zusätzlich einen Query-Parameter setzen, der tatsächlich übertragen wird:
+```
+https://bethathost.de/casino/?pin=pokerset#cat-pokerset
+```
+Die Seite lädt identisch (GitHub Pages ignoriert unbekannte Query-Parameter), der Anker scrollt
+weiterhin zum richtigen Abschnitt, und das `<link rel="canonical">` jeder Seite verhindert
+Duplicate-Content-Probleme bei Google.
+
+**Historie:** Im Juli 2026 kamen ~70 neue Pins nie bei Pinterest an, weil 106 Feed-Einträge
+serverseitig auf nur 37 URLs zeigten. Der Feed selbst war die ganze Zeit valides RSS
+(W3C-Validator: 0 Fehler) — die Ursache war ausschließlich die fehlende URL-Eindeutigkeit.
+
 ## Pflicht: Bildformat für jeden neuen Pin
 **Jedes neue Pin-Bild MUSS vertikal im Seitenverhältnis 2:3 sein** (z. B.
 848×1264 oder 1000×1500). Das ist das von Pinterest empfohlene Format und wird
