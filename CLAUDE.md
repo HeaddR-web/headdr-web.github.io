@@ -89,6 +89,12 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
   posten geplant aus den `*/pins/queue.json` über die offizielle API (Refresh-Token, Pro-Board-Logik).
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
 - Inhaltlicher Tracker / Single Source of Truth: Notion-DB **„📌 Pinterest Pins"**. Details: `pinterest/README.md`.
+- **Ziel-URL — eiserne Regel:** Jeder Pin braucht eine **serverseitig eindeutige** `link`-URL.
+  `#anker` allein reicht **nicht** — Fragmente werden nie an den Server gesendet, Pinterest sieht
+  sonst bei allen Pins einer Seite dieselbe URL und verwirft sie still als Duplikate (genau daran
+  sind im Juli 2026 ~70 Pins gescheitert). Deshalb immer zusätzlich einen Query-Parameter setzen:
+  `https://bethathost.de/casino/?pin=pokerset#cat-pokerset`. Die Seite lädt identisch, der Anker
+  scrollt weiterhin, und das `<link rel="canonical">` der Seite schützt die SEO.
 - **Bildformat — eiserne Regel:** Jedes neue Pin-Bild ist **vertikal 2:3** (z. B. 848×1264). Nie Quer-Bilder
   (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
 
