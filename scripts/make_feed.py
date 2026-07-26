@@ -105,8 +105,14 @@ def main():
             })
 
     # 2) Kuratierte Kategorie-Pins aus */pins/queue.json
+    #    cozy/ (Cozylore) ist von der Seite abgekoppelt (einsprachig Deutsch,
+    #    siehe CLAUDE.md) und wird deshalb nicht mehr in den Feed aufgenommen.
+    #    Die Queue-Datei bleibt unveraendert liegen, falls die Marke spaeter
+    #    eine eigene Domain mit eigenem Feed bekommt.
     for qf in sorted(glob.glob(os.path.join(ROOT, "*", "pins", "queue.json"))):
         slug = os.path.basename(os.path.dirname(os.path.dirname(qf)))
+        if slug == "cozy":
+            continue
         fallback_date = lastmod.get(slug) or git_date(os.path.relpath(qf, ROOT))
         with open(qf, encoding="utf-8") as f:
             for p in json.load(f):
