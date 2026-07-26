@@ -5,7 +5,7 @@
   "use strict";
 
   var AFF_TAG = "cozylore-21";
-  var IMG = "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/";
+  var IMG = "/assets/img/";
 
   // Direkter Produktlink (/dp/ASIN). Fallback auf Suche, falls mal keine ASIN.
   function aff(p) {
@@ -19,7 +19,7 @@
       name: "Bar-Ausstattung",
       emoji: "🍸",
       blurb: "Das Werkzeug, mit dem aus deiner Küche eine Hausbar wird.",
-      img: IMG + "hf_20260618_154209_c552fe72-9c08-4cf4-80bb-d214f4ee3d85.png",
+      img: IMG + "hf_20260618_154209_c552fe72-9c08-4cf4-80bb-d214f4ee3d85.jpg",
       guide: "posts/cocktailabend-zuhause.html",
       products: [
         { name: "Cocktail-Shaker-Set", desc: "Das Herzstück jeder Hausbar.", asin: "B0DG5B8TQX" },
@@ -31,7 +31,7 @@
       name: "Gläser & Servieren",
       emoji: "🥂",
       blurb: "Die richtigen Gläser machen aus jedem Drink ein Erlebnis.",
-      img: IMG + "hf_20260616_170510_5ff5ca06-fdfb-4288-9e95-2d27a1f57d66.png",
+      img: IMG + "hf_20260616_170510_5ff5ca06-fdfb-4288-9e95-2d27a1f57d66.jpg",
       guide: "posts/cocktailabend-zuhause.html",
       products: [
         { name: "Coupé-Gläser-Set", desc: "Edel für jeden Signature-Drink.", asin: "B0FRLT2KV5" },
@@ -44,7 +44,7 @@
       name: "Zutaten & Mixer",
       emoji: "🍋",
       blurb: "Sirupe, Bitters und Filler für richtig gute Drinks.",
-      img: IMG + "hf_20260616_170508_7fcabce5-2573-474e-881a-ea2123bde7e3.png",
+      img: IMG + "hf_20260616_170508_7fcabce5-2573-474e-881a-ea2123bde7e3.jpg",
       guide: "posts/cocktailabend-zuhause.html",
       products: [
         { name: "Cocktail-Sirup-Set", desc: "Im Handumdrehen neue Drinks.", asin: "B0CKTLMYJW" },
@@ -56,7 +56,7 @@
       name: "Snacks & Fingerfood",
       emoji: "🫒",
       blurb: "Kleine Häppchen, die perfekt zum Aperitif passen.",
-      img: IMG + "hf_20260618_154211_e1c275b4-48dc-4942-93bc-c1b677ccfc2f.png",
+      img: IMG + "hf_20260618_154211_e1c275b4-48dc-4942-93bc-c1b677ccfc2f.jpg",
       guide: "posts/cocktailabend-zuhause.html",
       products: [
         { name: "Servierbrett", desc: "Für ein schickes Grazing-Board.", asin: "B0H1M3Z4N7" }

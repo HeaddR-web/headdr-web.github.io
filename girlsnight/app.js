@@ -17,7 +17,7 @@
         "name": "Spiele",
         "emoji": "🎲",
         "blurb": "Eisbrecher, Party-Kartenspiele und ein bisschen Chaos.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.png",
+        "img": "/assets/img/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.jpg",
         "guide": "posts/girls-night-games.html",
         "products": [
             {
@@ -37,7 +37,7 @@
         "name": "Drinks",
         "emoji": "🍸",
         "blurb": "Signature-Cocktails, Sekt und alles zum Servieren.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.png",
+        "img": "/assets/img/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.jpg",
         "guide": "posts/girls-night-drinks.html",
         "products": [
             {
@@ -52,7 +52,7 @@
         "name": "Snacks",
         "emoji": "🍫",
         "blurb": "Grazing-Boards, süße Häppchen und Popcorn ohne Ende.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.png",
+        "img": "/assets/img/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.jpg",
         "guide": "posts/girls-night-snacks.html",
         "products": [
             {
@@ -67,7 +67,7 @@
         "name": "Deko & Themes",
         "emoji": "🎀",
         "blurb": "Ballon-Girlanden, Lichterketten und ein hübsch gedeckter Tisch.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.png",
+        "img": "/assets/img/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.jpg",
         "guide": "posts/girls-night-themes.html",
         "products": [
             {
@@ -87,7 +87,7 @@
         "name": "Pflege & Spa",
         "emoji": "💅",
         "blurb": "Gesichtsmasken, Bademäntel und ein Spa-Moment für daheim.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.png",
+        "img": "/assets/img/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.jpg",
         "guide": "posts/girls-night-pamper-spa.html",
         "products": [
             {
@@ -102,7 +102,7 @@
         "name": "Fotos & Erinnerungen",
         "emoji": "📸",
         "blurb": "Sofortbilder, die jede mit nach Hause nimmt, das Must-have für den Mädelsabend.",
-        "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0.jpeg",
+        "img": "/assets/img/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0.jpg",
         "guide": "posts/pyjama-party.html",
         "products": [
             {
