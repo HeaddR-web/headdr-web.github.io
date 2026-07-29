@@ -95,6 +95,9 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
   sind im Juli 2026 ~70 Pins gescheitert). Deshalb immer zusätzlich einen Query-Parameter setzen:
   `https://bethathost.de/casino/?pin=pokerset#cat-pokerset`. Die Seite lädt identisch, der Anker
   scrollt weiterhin, und das `<link rel="canonical">` der Seite schützt die SEO.
+- **Bild-Eindeutigkeit — eiserne Regel:** Jeder Pin braucht ein **eigenes Bild**. Pinterest lehnt
+  Pins mit bereits verwendetem Motiv ab („Doppeltes Pin-Bild", belegt beim Bulk-Upload im Juli 2026).
+  Nie dasselbe Motiv für zwei Pins wiederverwenden — auch nicht Startseite + Anlass-Seite.
 - **Bildformat — eiserne Regel:** Jedes neue Pin-Bild ist **vertikal 2:3** (z. B. 848×1264). Nie Quer-Bilder
   (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
 
