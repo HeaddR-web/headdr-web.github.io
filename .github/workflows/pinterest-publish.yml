@@ -1,17 +1,37 @@
 name: Pinterest auto-publish
 
-# Posts queued pins to Pinterest on a schedule.
-# Reads every */pins/queue.json (cozy/ and girlsnight/), publishes the next
-# unpublished pins, marks them published and commits the updated queues back.
+# Postet vorbereitete Pins ueber die offizielle Pinterest-API (v5).
+# Liest jede */pins/queue.json ausser cozy/ (abgekoppelt, siehe CLAUDE.md),
+# veroeffentlicht die naechsten offenen Pins, markiert sie als published und
+# committet die aktualisierten Queues zurueck.
+#
+# Board-Zuordnung laeuft ueber Board-NAMEN in pinterest/boards.json — das
+# Skript loest sie zur Laufzeit per API in IDs auf. Es braucht daher kein
+# Secret pro Hub, nur die drei Auth-Secrets.
 
 on:
   schedule:
-    - cron: "0 9 * * *"   # daily ~09:00 UTC
-    - cron: "0 17 * * *"  # daily ~17:00 UTC
-  workflow_dispatch:       # allows manual "Run workflow" from the Actions tab
+    - cron: "0 9 * * *"   # taeglich ~09:00 UTC
+    - cron: "0 17 * * *"  # taeglich ~17:00 UTC
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Was der Lauf tun soll"
+        type: choice
+        default: publish
+        options:
+          - publish              # normal posten
+          - doctor               # nur pruefen: Token, Boards, Queue-Stand
+          - dry-run              # zeigen, was gepostet wuerde
+          - list-boards          # alle Boards mit ID ausgeben
+          - mark-published-only  # offene Pins abhaken, OHNE zu posten
+      max:
+        description: "Max. Pins in diesem Lauf (leer = MAX_PER_RUN)"
+        type: string
+        default: ""
 
 permissions:
-  contents: write          # needed to commit the updated queue back
+  contents: write          # noetig, um die aktualisierten Queues zu committen
 
 concurrency:
   group: pinterest-publish
@@ -32,10 +52,22 @@ jobs:
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
           PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          # Optionales globales Fallback-Board, falls boards.json nicht greift.
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
-          PINTEREST_BOARD_ID_GIRLSNIGHT: ${{ secrets.PINTEREST_BOARD_ID_GIRLSNIGHT }}
-          MAX_PER_RUN: "2"
-        run: python scripts/pinterest_publish.py
+          MAX_PER_RUN: "5"
+          MODE: ${{ inputs.mode || 'publish' }}
+          MAX_OVERRIDE: ${{ inputs.max }}
+        run: |
+          # Kein "[[ … ]] && …" hier: unter "bash -e" (Actions-Standard) bricht
+          # eine AND-Liste mit falscher Bedingung den ganzen Step ab.
+          args=()
+          if [[ "$MODE" != "publish" ]]; then
+            args+=("--$MODE")
+          fi
+          if [[ -n "$MAX_OVERRIDE" ]]; then
+            args+=(--max "$MAX_OVERRIDE")
+          fi
+          python scripts/pinterest_publish.py ${args[@]+"${args[@]}"}
 
       - name: Commit updated queues
         run: |
@@ -46,5 +78,5 @@ jobs:
             git commit -m "Pinterest: mark published pins [skip ci]"
             git push
           else
-            echo "No queue changes to commit."
+            echo "Keine Queue-Aenderungen zu committen."
           fi

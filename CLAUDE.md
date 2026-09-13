@@ -85,8 +85,20 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
 ## Pinterest
 - **RSS-Auto-Publish (Standardweg):** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
   `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
-- **Live-Posten (automatisch, optional):** `.github/workflows/pinterest-publish.yml` + `scripts/pinterest_publish.py`
-  posten geplant aus den `*/pins/queue.json` über die offizielle API (Refresh-Token, Pro-Board-Logik).
+- **Live-Posten über die API (aktiv, seit 2026-09):** `.github/workflows/pinterest-publish.yml` +
+  `scripts/pinterest_publish.py` posten 2×/Tag aus den `*/pins/queue.json` über die offizielle
+  Pinterest-API v5. Die Entwickler-App ist freigeschaltet; nötig sind nur die drei Secrets
+  `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN` (Token erzeugen:
+  `scripts/pinterest_oauth.py`, läuft lokal). Board-Zuordnung über Board-**Namen** in
+  `pinterest/boards.json` — kein Secret pro Hub. Vor dem ersten scharfen Lauf immer erst die
+  Workflow-Modi `doctor` und `dry-run` benutzen.
+- **Doppelpost-Regel:** Die Queue-Dateien sind die einzige Sperre gegen doppelte Pins — was auf
+  `"published": false` steht, wird gepostet. Pins, die schon per RSS oder Bulk-CSV draußen sind,
+  stehen dort trotzdem noch auf `false`. Wer einen der anderen Wege benutzt hat, muss danach den
+  Modus `mark-published-only` laufen lassen (hakt alles ab, ohne zu posten), sonst legt die API
+  jeden dieser Pins ein zweites Mal an.
+- `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
+  `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
 - Inhaltlicher Tracker / Single Source of Truth: Notion-DB **„📌 Pinterest Pins"**. Details: `pinterest/README.md`.
 - **Ziel-URL — eiserne Regel:** Jeder Pin braucht eine **serverseitig eindeutige** `link`-URL.
