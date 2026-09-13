@@ -32,6 +32,7 @@ import base64
 import getpass
 import json
 import secrets
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -43,7 +44,11 @@ TOKEN_URL = "https://api.pinterest.com/v5/oauth/token"
 DEFAULT_REDIRECT = "http://localhost:8085/callback"
 
 # Genau die Rechte, die die Pipeline braucht — nicht mehr.
-SCOPES = "boards:read,pins:read,pins:write"
+# boards:write ist Pflicht: POST /v5/pins verlangt es, obwohl es nach
+# einem reinen Pin-Recht aussieht. Ohne das Scope antwortet die API mit
+# HTTP 401 "Missing: ['boards:write']" (so passiert am 13.09.2026 —
+# 70 Pins, 70 Fehler, kein einziger gepostet).
+SCOPES = "boards:read,boards:write,pins:read,pins:write"
 
 _received = {}
 
@@ -99,6 +104,22 @@ def exchange_code(app_id: str, app_secret: str, code: str, redirect_uri: str) ->
         raise SystemExit(f"Token-Austausch fehlgeschlagen: HTTP {exc.code} — {detail}")
 
 
+def missing_scopes(result: dict) -> list:
+    """Welche der angeforderten Scopes hat Pinterest NICHT vergeben?
+
+    Pinterest gibt die tatsaechlich erteilten Rechte im Feld ``scope`` zurueck
+    (durch Komma oder Leerzeichen getrennt). Wer beim Login ein Recht abwaehlt
+    oder eine alte Autorisierung wiederverwendet, bekommt trotzdem einen
+    gueltigen Token — der Fehler faellt sonst erst Wochen spaeter beim ersten
+    echten POST /v5/pins auf. Fehlt das Feld ganz, wird nichts behauptet.
+    """
+    raw = (result.get("scope") or "").strip()
+    if not raw:
+        return []
+    granted = {s for s in re.split(r"[,\s]+", raw) if s}
+    return [s for s in SCOPES.split(",") if s not in granted]
+
+
 def wait_for_code(port: int, state: str) -> str:
     server = HTTPServer(("localhost", port), _Handler)
     print(f"Warte auf die Weiterleitung von Pinterest (localhost:{port}) … "
@@ -152,6 +173,14 @@ def main() -> int:
     refresh = result.get("refresh_token", "")
     if not refresh:
         raise SystemExit(f"Keine refresh_token in der Antwort: {result}")
+
+    fehlend = missing_scopes(result)
+    if fehlend:
+        print("\n!! ACHTUNG: Pinterest hat diese Rechte NICHT erteilt: "
+              f"{', '.join(fehlend)}")
+        print(f"!! Erteilt wurde nur: {result.get('scope')}")
+        print("!! Ohne boards:write scheitert jedes POST /v5/pins mit HTTP 401.")
+        print("!! Diesen Token NICHT hinterlegen — Login wiederholen.")
 
     print("\n" + "=" * 68)
     print("REFRESH-TOKEN (Secret — nur in GitHub Secrets einfuegen, nirgends sonst):")

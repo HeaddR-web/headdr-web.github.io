@@ -91,7 +91,11 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
   `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Token erzeugen wahlweise
   ohne Terminal über den Workflow `pinterest-oauth.yml` (+ `scripts/pinterest_oauth_ci.py`,
   Redirect-URI `https://bethathost.de/`, schreibt das Secret selbst per API) oder lokal mit
-  `scripts/pinterest_oauth.py`. Board-Zuordnung über Board-**Namen** in
+  `scripts/pinterest_oauth.py`. **Scope-Regel:** der Token braucht
+  `boards:read,boards:write,pins:read,pins:write` — `boards:write` ist fuer `POST /v5/pins`
+  Pflicht, obwohl es nach einem reinen Board-Recht aussieht; ohne es scheitert jeder Pin mit
+  `HTTP 401 – Missing: ['boards:write']`. Der Tausch-Schritt prueft das erteilte `scope`-Feld
+  und schreibt bei einer Luecke gar kein Secret. Board-Zuordnung über Board-**Namen** in
   `pinterest/boards.json` — kein Secret pro Hub. Vor dem ersten scharfen Lauf immer erst die
   Workflow-Modi `doctor` und `dry-run` benutzen.
 - **Doppelpost-Regel:** Die Queue-Dateien sind die einzige Sperre gegen doppelte Pins — was auf

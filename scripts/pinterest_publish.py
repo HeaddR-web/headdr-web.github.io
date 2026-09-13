@@ -362,16 +362,22 @@ def main() -> int:
         print("Alle Queues abgearbeitet — keine offenen Pins.")
         return 0
 
+    attempted = 0
     posted = 0
     failed = 0
     touched: set[Path] = set()
     for qf, site, pin in pending:
-        if posted >= max_per_run:
+        # Gezaehlt werden VERSUCHE, nicht Erfolge. Sonst haelt das Limit nur
+        # den Normalbetrieb im Zaum: bei einem kaputten Token (z. B. fehlendes
+        # boards:write) steigt "posted" nie, und der Lauf klappert stattdessen
+        # die komplette Queue ab — am 13.09.2026 waren das 70 API-Calls statt 5.
+        if attempted >= max_per_run:
             break
         board_id, source = board_for(pin, site, name_to_id, board_names, default_board)
         if not board_id:
             print(f"Kein Board fuer [{site}] — uebersprungen: {pin.get('title')!r}")
             continue
+        attempted += 1
         if args.dry_run:
             print(f"[dry-run] [{site}] {pin['title']!r} → Board {board_id} ({source})")
             posted += 1
@@ -386,11 +392,30 @@ def main() -> int:
         except PinterestError as exc:
             failed += 1
             print(f"Fehlgeschlagen [{site}] {pin.get('title')!r}: {exc}")
+            # Drei Fehler ohne einen einzigen Erfolg sind kein Zufall mehr,
+            # sondern Token, Scope oder Board — weitere Versuche wuerden nur
+            # dieselbe Fehlermeldung wiederholen.
+            if failed >= 3 and posted == 0:
+                print("Drei Fehlschlaege in Folge, kein Erfolg — Abbruch. "
+                      "Ursache zuerst klaeren (Modus 'doctor').")
+                break
         time.sleep(SLEEP_BETWEEN_PINS)
 
+    # Immer schreiben, auch wenn der Lauf gleich mit Fehlercode endet: was
+    # gepostet wurde, MUSS abgehakt sein, sonst postet der naechste Lauf es
+    # ein zweites Mal.
     write_queues(queues, touched)
     print(f"Fertig. {posted} Pin(s) gepostet, {failed} Fehler, "
           f"{len(pending) - posted} noch offen.")
+
+    if failed and not posted:
+        print("\nKein einziger Pin ist durchgekommen — der Lauf gilt als "
+              "fehlgeschlagen (Exit 1), damit das nicht wochenlang gruen "
+              "vorbeilaeuft. Erste Anlaufstelle: Modus 'doctor'.")
+        return 1
+    if failed:
+        print(f"\nHinweis: {failed} Pin(s) sind nicht durchgekommen und stehen "
+              "weiter offen in der Queue.")
     return 0
 
 

@@ -70,8 +70,16 @@ jobs:
           fi
           python scripts/pinterest_publish.py ${args[@]+"${args[@]}"}
 
+      # always(): laeuft auch, wenn der Publish-Step mit Fehlercode endet oder
+      # mittendrin abstuerzt. Was bereits gepostet wurde, muss abgehakt im Repo
+      # landen — sonst postet der naechste Lauf dieselben Pins ein zweites Mal.
       - name: Commit updated queues
+        if: always()
         run: |
+          if [[ ! -d .git ]]; then
+            echo "Kein Checkout vorhanden — nichts zu committen."
+            exit 0
+          fi
           if [[ -n "$(git status --porcelain '*/pins/queue.json')" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
