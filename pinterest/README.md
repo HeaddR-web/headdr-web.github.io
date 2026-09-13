@@ -92,15 +92,19 @@ Setzt Python und einen Klon des Repos auf dem eigenen Rechner voraus.
 3. Die drei Secrets von Hand unter Settings → Secrets and variables → Actions
    anlegen.
 
-Der Refresh-Token gilt maximal ein Jahr — danach die Autorisierung wiederholen.
-Er gehoert **nie** ins Repo und nie in Chats oder Issues.
+Wie lange der Refresh-Token gilt, sagt Pinterest beim Tausch selbst — der
+Workflow gibt es am Ende aus (bei unserer App **rund 60 Tage**, Stand 09/2026,
+nicht das oft genannte Jahr). Laeuft er ab, schlaegt der Publish-Lauf mit
+„Token-Austausch fehlgeschlagen" fehl; dann einfach Schritt 1 + 2 der
+Variante A wiederholen. Der Token gehoert **nie** ins Repo und nie in Chats
+oder Issues.
 
 #### Danach: pruefen, bevor irgendetwas rausgeht
 Actions → *Pinterest auto-publish* → *Run workflow* → Modus **`doctor`**. Der
 Lauf holt einen Token, listet alle Boards des Kontos und zeigt pro Hub, wie
 viele Pins offen sind und auf welchem Board sie landen wuerden — ohne einen
-einzigen Pin zu posten. Danach Modus **`dry-run`** fuer die konkrete naechste
-Charge.
+einzigen Pin zu posten. Danach Modus **`check-duplicates`** (siehe unten) und
+erst dann **`dry-run`** fuer die konkrete naechste Charge.
 
 ### Board-Zuordnung
 `pinterest/boards.json` enthaelt Board-**Namen**, keine IDs — das Skript loest
@@ -117,10 +121,19 @@ geht auf `default`. Die exakten Namen liefert der Workflow-Modus
 Die Queue-Dateien sind die einzige Doppelpost-Sperre der API — was dort auf
 `"published": false` steht, wird gepostet. Pins, die schon ueber Weg 1 (RSS)
 oder Weg 3 (Bulk-CSV) auf Pinterest gelandet sind, stehen dort aber weiterhin
-auf `false` und wuerden ein zweites Mal angelegt. Vor dem ersten scharfen Lauf
-deshalb einmal den Modus **`mark-published-only`** ausfuehren: der hakt alle
-offenen Pins ab, **ohne** zu posten, und committet die Queues zurueck. Ab da
-postet die API nur noch, was danach wirklich neu dazukommt.
+auf `false` und wuerden ein zweites Mal angelegt.
+
+Vor dem ersten scharfen Lauf deshalb **nicht raten, sondern messen**: Modus
+**`check-duplicates`** liest die Pins der Ziel-Boards ueber die API und
+vergleicht sie mit den offenen Queue-Eintraegen (Ziel-URL ohne Fragment, sonst
+Titel). Er postet und aendert nichts, sondern sagt pro Eintrag `neu` oder
+`DOPPELT`.
+
+- Alles `DOPPELT` → Modus **`mark-published-only`** ausfuehren: hakt alle
+  offenen Pins ab, **ohne** zu posten, und committet die Queues zurueck.
+- Alles `neu` → `publish` ist gefahrlos.
+- Gemischt → die als `DOPPELT` gemeldeten Eintraege in den `queue.json` von
+  Hand auf `"published": true` setzen, dann `publish`.
 
 Fehlen die Secrets, endet der Lauf sauber mit einer Meldung im Log — kein
 Fehler, kein rotes X, keine Fehler-Mail.

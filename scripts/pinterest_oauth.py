@@ -21,7 +21,8 @@ Wichtig:
   - Der ausgegebene Refresh-Token ist ein Secret: nur in
     Repo → Settings → Secrets and variables → Actions als
     PINTEREST_REFRESH_TOKEN hinterlegen. Niemals ins Repo committen,
-    nie in Chats/Issues posten. Er gilt max. 1 Jahr, danach neu erzeugen.
+    nie in Chats/Issues posten. Pinterest gab bei unserer App rund 60 Tage
+    Gueltigkeit zurueck (Stand 09/2026) — danach neu erzeugen.
   - Ohne lokalen Browser: --no-server benutzen, die URL manuell oeffnen und den
     ``code``-Parameter aus der Redirect-URL mit --code uebergeben.
 """

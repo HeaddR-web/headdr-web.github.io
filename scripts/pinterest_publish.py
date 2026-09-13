@@ -36,6 +36,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -105,6 +106,30 @@ def list_boards(access_token: str) -> list[dict]:
         bookmark = result.get("bookmark") or ""
         if not bookmark:
             return boards
+
+
+def list_board_pins(access_token: str, board_id: str) -> list[dict]:
+    """Alle Pins eines Boards (mit Paginierung). Nur lesend."""
+    headers = {"Authorization": f"Bearer {access_token}"}
+    pins: list[dict] = []
+    bookmark = ""
+    while True:
+        url = f"{API_BASE}/boards/{board_id}/pins?page_size=100"
+        if bookmark:
+            url += "&bookmark=" + urllib.parse.quote(bookmark)
+        result = _request(url, headers=headers)
+        pins.extend(result.get("items", []))
+        bookmark = result.get("bookmark") or ""
+        if not bookmark:
+            return pins
+
+
+def norm_link(url: str) -> str:
+    """Vergleichsform einer Ziel-URL: ohne Fragment, ohne Protokoll/www, ohne
+    Slash am Ende. Query bleibt drin — genau der unterscheidet unsere Pins."""
+    url = (url or "").split("#", 1)[0].strip()
+    url = re.sub(r"^https?://(www\.)?", "", url)
+    return url.rstrip("/").lower()
 
 
 def create_pin(access_token: str, board_id: str, pin: dict) -> str:
@@ -197,6 +222,9 @@ def main() -> int:
                     help="Zeigt, welche Pins auf welchem Board landen wuerden.")
     ap.add_argument("--list-boards", action="store_true",
                     help="Alle Boards des Kontos mit ID ausgeben.")
+    ap.add_argument("--check-duplicates", action="store_true",
+                    help="Liest die Pins der Ziel-Boards und vergleicht sie mit den "
+                         "offenen Queue-Eintraegen. Postet und aendert nichts.")
     ap.add_argument("--mark-published-only", action="store_true",
                     help="Alle offenen Pins als veroeffentlicht markieren, ohne zu posten.")
     ap.add_argument("--max", type=int, default=None,
@@ -240,7 +268,7 @@ def main() -> int:
         token = get_access_token(app_id, app_secret, refresh_token)
     except PinterestError as exc:
         print(f"Token-Austausch fehlgeschlagen: {exc}")
-        print("Haeufigste Ursachen: Refresh-Token abgelaufen (max. 1 Jahr) oder fuer eine "
+        print("Haeufigste Ursachen: Refresh-Token abgelaufen (bei unserer App ca. 60 Tage) oder fuer eine "
               "andere App erzeugt. Neu erzeugen mit scripts/pinterest_oauth.py.")
         return 1
     print("Access-Token erhalten.")
@@ -278,6 +306,56 @@ def main() -> int:
         if total:
             days = -(-total // max(max_per_run, 1))
             print(f"Bei 2 Laeufen/Tag waeren das rund {-(-days // 2)} Tag(e) bis alles drausssen ist.")
+        return 0
+
+    if args.check_duplicates:
+        # Fuer jedes Ziel-Board einmal die vorhandenen Pins holen und mit den
+        # offenen Queue-Eintraegen vergleichen. Ziel: vor dem ersten scharfen
+        # Lauf sicher wissen, ob etwas doppelt rausgehen wuerde.
+        wanted: dict[str, list] = {}
+        no_board = []
+        for qf, site, pin in pending:
+            board_id, _src = board_for(pin, site, name_to_id, board_names, default_board)
+            if not board_id:
+                no_board.append((site, pin))
+                continue
+            wanted.setdefault(board_id, []).append((site, pin))
+
+        id_to_name = {b.get("id", ""): b.get("name", "") for b in boards}
+        dupes = 0
+        for board_id, entries in wanted.items():
+            label = id_to_name.get(board_id, "?")
+            try:
+                board_pins = list_board_pins(token, board_id)
+            except PinterestError as exc:
+                print(f"Board {board_id} ({label}) nicht lesbar: {exc}")
+                continue
+            existing_links = {norm_link(bp.get("link", "")) for bp in board_pins}
+            existing_links.discard("")
+            existing_titles = {(bp.get("title") or "").strip().lower() for bp in board_pins}
+            existing_titles.discard("")
+            print(f"\nBoard {board_id} ({label}): {len(board_pins)} Pin(s) vorhanden, "
+                  f"{len(entries)} offene(r) Queue-Eintrag/-Eintraege.")
+            for site, pin in entries:
+                link_hit = norm_link(pin.get("link", "")) in existing_links
+                title_hit = (pin.get("title") or "").strip().lower() in existing_titles
+                if link_hit or title_hit:
+                    dupes += 1
+                    why = "URL" if link_hit else "Titel"
+                    print(f"  DOPPELT ({why}) [{site}] {pin.get('title')!r}")
+                else:
+                    print(f"  neu           [{site}] {pin.get('title')!r}")
+        for site, pin in no_board:
+            print(f"  KEIN BOARD    [{site}] {pin.get('title')!r}")
+        print(f"\nErgebnis: {dupes} von {len(pending)} offenen Pin(s) sind schon auf dem "
+              f"Ziel-Board.")
+        if dupes == 0:
+            print("Nichts wuerde doppelt rausgehen — publish ist gefahrlos.")
+        elif dupes == len(pending):
+            print("Alle offenen Pins sind bereits draussen — mark-published-only ist richtig.")
+        else:
+            print("Gemischt — vor publish die als DOPPELT markierten Eintraege in den "
+                  "queue.json auf \"published\": true setzen.")
         return 0
 
     if not pending:

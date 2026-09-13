@@ -96,8 +96,10 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
   Workflow-Modi `doctor` und `dry-run` benutzen.
 - **Doppelpost-Regel:** Die Queue-Dateien sind die einzige Sperre gegen doppelte Pins — was auf
   `"published": false` steht, wird gepostet. Pins, die schon per RSS oder Bulk-CSV draußen sind,
-  stehen dort trotzdem noch auf `false`. Wer einen der anderen Wege benutzt hat, muss danach den
-  Modus `mark-published-only` laufen lassen (hakt alles ab, ohne zu posten), sonst legt die API
+  stehen dort trotzdem noch auf `false`. Nicht raten, sondern messen: Modus `check-duplicates`
+  liest die Pins der Ziel-Boards per API und meldet pro offenem Queue-Eintrag `neu` oder `DOPPELT`
+  (Abgleich ueber Ziel-URL ohne Fragment, sonst Titel). Ist alles doppelt, danach
+  `mark-published-only` laufen lassen (hakt alles ab, ohne zu posten), sonst legt die API
   jeden dieser Pins ein zweites Mal an.
 - `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
   `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
