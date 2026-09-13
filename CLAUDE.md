@@ -88,8 +88,10 @@ spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit
 - **Live-Posten über die API (aktiv, seit 2026-09):** `.github/workflows/pinterest-publish.yml` +
   `scripts/pinterest_publish.py` posten 2×/Tag aus den `*/pins/queue.json` über die offizielle
   Pinterest-API v5. Die Entwickler-App ist freigeschaltet; nötig sind nur die drei Secrets
-  `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN` (Token erzeugen:
-  `scripts/pinterest_oauth.py`, läuft lokal). Board-Zuordnung über Board-**Namen** in
+  `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Token erzeugen wahlweise
+  ohne Terminal über den Workflow `pinterest-oauth.yml` (+ `scripts/pinterest_oauth_ci.py`,
+  Redirect-URI `https://bethathost.de/`, schreibt das Secret selbst per API) oder lokal mit
+  `scripts/pinterest_oauth.py`. Board-Zuordnung über Board-**Namen** in
   `pinterest/boards.json` — kein Secret pro Hub. Vor dem ersten scharfen Lauf immer erst die
   Workflow-Modi `doctor` und `dry-run` benutzen.
 - **Doppelpost-Regel:** Die Queue-Dateien sind die einzige Sperre gegen doppelte Pins — was auf
