@@ -7,8 +7,9 @@ Alle Bilder mit dem üblichen Weg auf higgsfield.ai erzeugen, dann als JPG nach
 - Hero = **3:2 quer**, 1264×848. Pins = **2:3 hoch**, 848×1264.
 - **Jedes Motiv nur einmal.** Kein Pin-Bild darf dem Hero oder einem anderen Pin
   gleichen — Pinterest lehnt Wiederverwendung als „Doppeltes Pin-Bild" ab.
-  Die fünf Prompts unten sind deshalb bewusst auf fünf verschiedene Bildideen
-  gebaut: Tisch quer / Raum hoch / Buffet von oben / Deko ohne Essen / Krüge nah.
+  Die sechs Prompts unten sind deshalb bewusst auf sechs verschiedene Bildideen
+  gebaut: Tisch quer / Raum hoch / Buffet von oben / Deko ohne Essen / Krüge nah /
+  Props im Glas.
 
 ---
 
@@ -86,9 +87,9 @@ Alle Bilder mit dem üblichen Weg auf higgsfield.ai erzeugen, dann als JPG nach
 
 ---
 
-## Optional: Pin 5 — Gaudi-Extras → `?pin=extras#cat-extras`
-Der Abschnitt „4. Wiesn-Extras & Gaudi" hat noch keinen Pin. Falls du auf fünf
-gehen willst, gehört dieser Entwurf zusätzlich in `drafts.json`:
+## Pin 5 — Gaudi-Extras → `?pin=extras#cat-extras`
+*„Foto-Ecke für die Oktoberfest-Party: Props & Gaudi"*
+**Bildidee: Stillleben der Fotoecke — kein Essen, kein Bier, keine Deko-Kette.**
 
 > Fotorealistische Stillleben-Fotografie, **Hochformat 2:3**: eine Foto-Ecke für eine
 > Oktoberfest-Party. In einem Einmachglas stecken Foto-Requisiten auf Holzstäben —

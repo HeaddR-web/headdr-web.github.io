@@ -25,8 +25,16 @@
   },
   {
     "title": "Wiesn-Party Checkliste: Maßkrug, Musik & Lebkuchenherz",
-    "description": "Von der Maß bis zur Fotoecke: die komplette Checkliste für deine Oktoberfest-Party zuhause — inklusive Gaudi-Extras. #oktoberfest #wiesn #partycheckliste #masskrug #lebkuchenherz #oktoberfestzuhause",
+    "description": "Ohne Maß keine Wiesn: Glaskrüge, Blasmusik-Playlist und Lebkuchenherzen als Deko, Nachtisch und Mitgebsel in einem. #oktoberfest #wiesn #masskrug #lebkuchenherz #oktoberfestzuhause #partygetraenke",
     "link": "https://bethathost.de/oktoberfest/?pin=mass#cat-mass",
+    "image_url": "",
+    "hinweis": "image_url ergaenzen (eigenes 2:3-Motiv je Pin, nie doppelt), erst dann in queue.json schieben",
+    "published": false
+  },
+  {
+    "title": "Foto-Ecke für die Oktoberfest-Party: Props & Gaudi",
+    "description": "Schnurrbärte, Brezel-Schilder und ein Hut mit Gamsbart: die Fotoecke ist der Lacher des Abends und liefert die Bilder für die ganze Gruppe. #oktoberfest #fotoecke #photobooth #wiesnparty #mottoparty #partyideen",
+    "link": "https://bethathost.de/oktoberfest/?pin=extras#cat-extras",
     "image_url": "",
     "hinweis": "image_url ergaenzen (eigenes 2:3-Motiv je Pin, nie doppelt), erst dann in queue.json schieben",
     "published": false
