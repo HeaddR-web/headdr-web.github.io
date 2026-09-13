@@ -24,6 +24,7 @@ on:
           - doctor               # nur pruefen: Token, Boards, Queue-Stand
           - dry-run              # zeigen, was gepostet wuerde
           - list-boards          # alle Boards mit ID ausgeben
+          - check-duplicates     # abgleichen, was schon auf dem Board liegt
           - mark-published-only  # offene Pins abhaken, OHNE zu posten
       max:
         description: "Max. Pins in diesem Lauf (leer = MAX_PER_RUN)"
