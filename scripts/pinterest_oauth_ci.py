@@ -81,18 +81,46 @@ def cmd_url(args) -> int:
     return 0
 
 
-def set_repo_secret(repo: str, pat: str, name: str, value: str) -> None:
-    """Setzt ein Actions-Secret ueber die GitHub-API (libsodium-verschluesselt)."""
-    from nacl import encoding, public  # pip install pynacl
-
-    headers = {
+def _gh_headers(pat: str) -> dict:
+    return {
         "Authorization": f"Bearer {pat}",
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "bethathost-oauth-setup",
     }
-    key = _json_request(f"{GITHUB_API}/repos/{repo}/actions/secrets/public-key",
-                        headers=headers)
+
+
+def fetch_public_key(repo: str, pat: str) -> dict:
+    """Holt den Verschluesselungs-Schluessel des Repos — zugleich der Test,
+    ob der PAT ueberhaupt Secrets schreiben darf.
+
+    Wird bewusst VOR dem Pinterest-Tausch aufgerufen: der OAuth-Code ist
+    einmalig und nur Minuten gueltig. Faellt die Rechtepruefung erst danach
+    auf, ist der Code verbrannt und die ganze Autorisierung muss wiederholt
+    werden (genau das ist beim ersten Lauf passiert).
+    """
+    try:
+        return _json_request(f"{GITHUB_API}/repos/{repo}/actions/secrets/public-key",
+                             headers=_gh_headers(pat))
+    except SystemExit as exc:
+        raise SystemExit(
+            f"{exc}\n\n"
+            "GH_SECRETS_PAT darf keine Secrets schreiben. Der Pinterest-Code ist\n"
+            "deshalb NICHT eingetauscht worden und bleibt gueltig.\n\n"
+            "Fine-grained PAT (https://github.com/settings/personal-access-tokens):\n"
+            f"  Resource owner    = {repo.split('/')[0]}\n"
+            f"  Repository access = Only select repositories -> {repo.split('/')[-1]}\n"
+            "  Repository permissions -> Secrets = Read and write\n"
+            "Classic Token: Scope 'repo' genuegt.\n"
+            "Danach den Wert erneut als GH_SECRETS_PAT hinterlegen."
+        )
+
+
+def set_repo_secret(repo: str, pat: str, name: str, value: str, key: dict) -> None:
+    """Setzt ein Actions-Secret ueber die GitHub-API (libsodium-verschluesselt)."""
+    from nacl import encoding, public  # pip install pynacl
+
+    headers = _gh_headers(pat)
     sealed = public.SealedBox(
         public.PublicKey(key["key"].encode(), encoding.Base64Encoder)
     ).encrypt(value.encode())
@@ -118,6 +146,11 @@ def cmd_exchange(args) -> int:
             "Unter Settings → Secrets and variables → Actions anlegen."
         )
 
+    # Erst die Schreibrechte pruefen, dann erst den Code verbrauchen.
+    print("Pruefe Schreibrechte von GH_SECRETS_PAT …")
+    public_key = fetch_public_key(repo, pat)
+    print("  ✓ PAT darf Secrets schreiben.")
+
     creds = base64.b64encode(f"{args.app_id}:{app_secret}".encode()).decode()
     body = urllib.parse.urlencode({
         "grant_type": "authorization_code",
@@ -141,8 +174,8 @@ def cmd_exchange(args) -> int:
     print("Token erhalten.")
 
     print("\nSecrets schreiben:")
-    set_repo_secret(repo, pat, "PINTEREST_REFRESH_TOKEN", refresh)
-    set_repo_secret(repo, pat, "PINTEREST_APP_ID", args.app_id)
+    set_repo_secret(repo, pat, "PINTEREST_REFRESH_TOKEN", refresh, public_key)
+    set_repo_secret(repo, pat, "PINTEREST_APP_ID", args.app_id, public_key)
 
     exp = result.get("refresh_token_expires_in")
     if exp:
