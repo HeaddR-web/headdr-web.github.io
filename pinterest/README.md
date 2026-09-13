@@ -4,7 +4,7 @@ Drei parallele Wege, denselben kuratierten Content (`*/pins/queue.json`,
 `pinterest/pins.json`) auf Pinterest zu bringen. Alle drei sind ToS-konform —
 kein Browser, kein gespeichertes Passwort, kein Selenium.
 
-## Weg 1 — RSS-Auto-Publish (empfohlen, kein API-Token nötig)
+## Weg 1 — RSS-Auto-Publish (Fallback, kein API-Token nötig)
 Pinterest kann selbst einen RSS-Feed abonnieren und daraus automatisch Pins
 erstellen — ganz ohne Entwickler-App, ohne OAuth, ohne Secrets.
 
@@ -23,29 +23,76 @@ erstellen — ganz ohne Entwickler-App, ohne OAuth, ohne Secrets.
 
 Details: <https://help.pinterest.com/de/business/article/auto-publish-pins-from-your-rss-feed>
 
+**Stand 09/2026:** Dieser Weg hat für dieses Konto nie einen Pin erzeugt, obwohl `feed.xml`
+valides RSS ist (W3C-Validator: 0 Fehler), alle Bild-URLs mit HTTP 200 antworten und die Domain
+verifiziert ist. Warum, ließ sich von außen nicht klären — Pinterest legt keine Fetch-Logs offen.
+Seit die Entwickler-App freigeschaltet ist, ist **Weg 2 (API) der Hauptweg**; der Feed bleibt
+bestehen, sollte aber nicht gleichzeitig mit Weg 2 auf dieselbe Pinnwand verknüpft sein, sonst
+entstehen Duplikate.
+
 **Achtung Duplikate:** Wenn Inhalte aus `feed.xml` bereits einmal manuell per
 Bulk-CSV (Weg 3) hochgeladen wurden, erstellt Pinterest beim Verknüpfen des
 Feeds trotzdem neue Pins dafür — es gibt keine automatische Dopplungs-Prüfung
 zwischen den drei Wegen. Vor dem Verknüpfen im Notion-Tracker prüfen, was schon
 „Hochgeladen" ist, und diese Einträge ggf. vorübergehend aus den Queues nehmen.
 
-## Weg 2 — Live-API-Posten (geplant, braucht Pinterest-Entwickler-App)
-1. `scripts/pinterest_publish.py` postet die nächsten unveröffentlichten Pins
-   aus allen `*/pins/queue.json` über die offizielle Pinterest-API (v5) und
-   markiert sie als `"published": true` (kein Doppelposten).
-2. `.github/workflows/pinterest-publish.yml` läuft 2×/Tag (09:00 & 17:00 UTC)
-   oder manuell und committet die aktualisierten Queues zurück.
-3. Einrichtung: Pinterest-Entwickler-App unter
-   <https://developers.pinterest.com/> anlegen, OAuth-Refresh-Token erzeugen,
-   dann als **Repo-Secrets** hinterlegen:
-   - `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`
-   - `PINTEREST_BOARD_ID` (Standard-Board) + optional
-     `PINTEREST_BOARD_ID_<SITE>` (z. B. `PINTEREST_BOARD_ID_GIRLSNIGHT`) für
-     Board-Overrides pro Ordner.
-   Fehlen Secrets (Standard, solange Weg 2 nicht eingerichtet ist), beendet sich
-   der Lauf sauber mit einer Meldung im Log — **kein Fehler, kein rotes X, keine
-   Fehler-Mail**. Dieser Weg ist komplett optional; solange Weg 1 (RSS) läuft,
-   muss hier nichts eingerichtet werden.
+## Weg 2 — Live-API-Posten (aktiv, Entwickler-App ist freigeschaltet)
+`scripts/pinterest_publish.py` postet die naechsten offenen Pins aus allen
+`*/pins/queue.json` (ausser `cozy/`) ueber die offizielle Pinterest-API v5,
+markiert sie als `"published": true` und schreibt die `pin_id` dazu — dadurch
+wird nichts doppelt gepostet. `.github/workflows/pinterest-publish.yml` laeuft
+2×/Tag (09:00 & 17:00 UTC, je 5 Pins) oder manuell und committet die
+aktualisierten Queues zurueck.
+
+### Einrichtung (einmalig)
+1. **Redirect-URI eintragen.** In der Entwickler-App unter
+   <https://developers.pinterest.com/apps/> `http://localhost:8085/callback`
+   als Redirect-URI hinterlegen (exakt, inklusive Pfad).
+2. **Refresh-Token erzeugen** — lokal auf dem eigenen Rechner, nicht in Actions:
+   ```
+   python3 scripts/pinterest_oauth.py --app-id <APP-ID>
+   ```
+   Das App-Secret wird verdeckt abgefragt. Das Skript oeffnet einen kleinen
+   Server auf `localhost:8085`, gibt die Pinterest-Login-URL aus, faengt die
+   Weiterleitung ab und tauscht den Code gegen den Refresh-Token.
+   Ohne lokalen Browser: `--no-server`, URL manuell oeffnen, `code`-Parameter
+   aus der Redirect-URL kopieren und mit `--code <CODE>` uebergeben.
+3. **Drei Secrets hinterlegen** unter Repo → Settings → Secrets and variables →
+   Actions → *New repository secret*:
+   - `PINTEREST_APP_ID`
+   - `PINTEREST_APP_SECRET`
+   - `PINTEREST_REFRESH_TOKEN`
+
+   Der Refresh-Token gilt maximal ein Jahr — danach Schritt 2 wiederholen.
+   Secrets gehoeren **nie** ins Repo und nie in Chats oder Issues.
+4. **Pruefen, bevor irgendetwas rausgeht:** Actions → *Pinterest auto-publish* →
+   *Run workflow* → Modus **`doctor`**. Der Lauf holt einen Token, listet alle
+   Boards des Kontos und zeigt pro Hub, wie viele Pins offen sind und auf
+   welchem Board sie landen wuerden — ohne einen einzigen Pin zu posten.
+   Danach Modus **`dry-run`** fuer die konkrete naechste Charge.
+
+### Board-Zuordnung
+`pinterest/boards.json` enthaelt Board-**Namen**, keine IDs — das Skript loest
+sie beim Lauf ueber die API auf. Es braucht also kein Secret pro Hub.
+```json
+{ "default": "Party & Gastgeben Ideen", "sites": { "girlsnight": "Mädelsabend" } }
+```
+`sites` ordnet einzelnen Repo-Ordnern ein abweichendes Board zu, alles Uebrige
+geht auf `default`. Die exakten Namen liefert der Workflow-Modus
+`list-boards`. Reihenfolge der Aufloesung: `board_id` am Pin →
+`PINTEREST_BOARD_ID_<SITE>` → `boards.json` → `PINTEREST_BOARD_ID`.
+
+### Achtung: Queues zuerst mit dem Ist-Stand abgleichen
+Die Queue-Dateien sind die einzige Doppelpost-Sperre der API — was dort auf
+`"published": false` steht, wird gepostet. Pins, die schon ueber Weg 1 (RSS)
+oder Weg 3 (Bulk-CSV) auf Pinterest gelandet sind, stehen dort aber weiterhin
+auf `false` und wuerden ein zweites Mal angelegt. Vor dem ersten scharfen Lauf
+deshalb einmal den Modus **`mark-published-only`** ausfuehren: der hakt alle
+offenen Pins ab, **ohne** zu posten, und committet die Queues zurueck. Ab da
+postet die API nur noch, was danach wirklich neu dazukommt.
+
+Fehlen die Secrets, endet der Lauf sauber mit einer Meldung im Log — kein
+Fehler, kein rotes X, keine Fehler-Mail.
 
 ## Weg 3 — Einmaliger Bulk-Upload (manuell, für Nachzügler)
 `pinterest/make_bulk_csv.py` erzeugt `pinterest_bulk.csv` im Format von

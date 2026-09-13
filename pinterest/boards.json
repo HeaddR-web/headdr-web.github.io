@@ -1,0 +1,5 @@
+{
+  "_hinweis": "Board-NAMEN (nicht IDs), genau so wie sie bei Pinterest heissen. scripts/pinterest_publish.py loest sie beim Lauf ueber die API in Board-IDs auf — es muss also keine ID von Hand gesucht werden. 'sites' ordnet einzelnen Ordnern ein abweichendes Board zu (Schluessel = Ordnername im Repo, z. B. 'girlsnight'); alles Uebrige geht auf 'default'. Mit 'python scripts/pinterest_publish.py --list-boards' die exakten Namen pruefen.",
+  "default": "Party & Gastgeben Ideen",
+  "sites": {}
+}
