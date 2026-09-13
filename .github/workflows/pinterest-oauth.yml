@@ -1,0 +1,85 @@
+name: Pinterest OAuth einrichten
+
+# Einmalige Einrichtung: erzeugt den PINTEREST_REFRESH_TOKEN, ohne dass
+# irgendwo ein Terminal geoeffnet werden muss. Der Token wird direkt als
+# Repo-Secret geschrieben und nie im Log ausgegeben.
+#
+# Vorher noetig:
+#   1. Im Pinterest-Developer-Portal https://bethathost.de/ als Redirect-URI
+#      eintragen (exakt, mit abschliessendem Schraegstrich).
+#   2. Repo-Secret PINTEREST_APP_SECRET anlegen (App-Secret der Pinterest-App).
+#   3. Repo-Secret GH_SECRETS_PAT anlegen: Fine-grained Personal Access Token
+#      auf genau dieses Repo mit der Berechtigung "Secrets: Read and write".
+#      Nur dafuer da — das Schreiben von Secrets kann GITHUB_TOKEN nicht.
+#
+# Die App-ID ist ein Eingabefeld, kein Secret: sie ist die oeffentliche
+# Client-Kennung, und Actions wuerde einen Secret-Wert im Log maskieren —
+# die Login-URL waere damit unbrauchbar.
+
+on:
+  workflow_dispatch:
+    inputs:
+      schritt:
+        description: "Welcher Schritt"
+        type: choice
+        default: 1-login-url
+        options:
+          - 1-login-url
+          - 2-code-eintauschen
+      app_id:
+        description: "Pinterest App-ID (aus dem Developer-Portal)"
+        type: string
+        required: true
+      code:
+        description: "Nur fuer Schritt 2: der Wert hinter code= aus der Adresszeile"
+        type: string
+        default: ""
+      redirect_uri:
+        description: "Muss exakt so in der Pinterest-App hinterlegt sein"
+        type: string
+        default: "https://bethathost.de/"
+
+permissions:
+  contents: read         # nur zum Auschecken des Skripts
+
+concurrency:
+  group: pinterest-oauth
+  cancel-in-progress: false
+
+jobs:
+  oauth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: PyNaCl installieren (nur fuer Schritt 2)
+        if: inputs.schritt == '2-code-eintauschen'
+        run: pip install --quiet pynacl
+
+      # Eingaben gehen ueber env in die Shell, nicht per ${{ … }} direkt in die
+      # Kommandozeile — sonst waere der Inhalt eines Eingabefelds ausfuehrbarer
+      # Shell-Code (Script Injection).
+      - name: Login-URL erzeugen
+        if: inputs.schritt == '1-login-url'
+        env:
+          APP_ID: ${{ inputs.app_id }}
+          REDIRECT_URI: ${{ inputs.redirect_uri }}
+        run: |
+          python scripts/pinterest_oauth_ci.py url \
+            --app-id "$APP_ID" --redirect-uri "$REDIRECT_URI"
+
+      - name: Code eintauschen und Secrets schreiben
+        if: inputs.schritt == '2-code-eintauschen'
+        env:
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          GH_SECRETS_PAT: ${{ secrets.GH_SECRETS_PAT }}
+          APP_ID: ${{ inputs.app_id }}
+          CODE: ${{ inputs.code }}
+          REDIRECT_URI: ${{ inputs.redirect_uri }}
+        run: |
+          python scripts/pinterest_oauth_ci.py exchange \
+            --app-id "$APP_ID" --code "$CODE" --redirect-uri "$REDIRECT_URI"

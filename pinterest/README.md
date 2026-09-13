@@ -45,31 +45,62 @@ wird nichts doppelt gepostet. `.github/workflows/pinterest-publish.yml` laeuft
 aktualisierten Queues zurueck.
 
 ### Einrichtung (einmalig)
-1. **Redirect-URI eintragen.** In der Entwickler-App unter
-   <https://developers.pinterest.com/apps/> `http://localhost:8085/callback`
-   als Redirect-URI hinterlegen (exakt, inklusive Pfad).
-2. **Refresh-Token erzeugen** — lokal auf dem eigenen Rechner, nicht in Actions:
-   ```
-   python3 scripts/pinterest_oauth.py --app-id <APP-ID>
-   ```
-   Das App-Secret wird verdeckt abgefragt. Das Skript oeffnet einen kleinen
-   Server auf `localhost:8085`, gibt die Pinterest-Login-URL aus, faengt die
-   Weiterleitung ab und tauscht den Code gegen den Refresh-Token.
-   Ohne lokalen Browser: `--no-server`, URL manuell oeffnen, `code`-Parameter
-   aus der Redirect-URL kopieren und mit `--code <CODE>` uebergeben.
-3. **Drei Secrets hinterlegen** unter Repo → Settings → Secrets and variables →
-   Actions → *New repository secret*:
-   - `PINTEREST_APP_ID`
-   - `PINTEREST_APP_SECRET`
-   - `PINTEREST_REFRESH_TOKEN`
 
-   Der Refresh-Token gilt maximal ein Jahr — danach Schritt 2 wiederholen.
-   Secrets gehoeren **nie** ins Repo und nie in Chats oder Issues.
-4. **Pruefen, bevor irgendetwas rausgeht:** Actions → *Pinterest auto-publish* →
-   *Run workflow* → Modus **`doctor`**. Der Lauf holt einen Token, listet alle
-   Boards des Kontos und zeigt pro Hub, wie viele Pins offen sind und auf
-   welchem Board sie landen wuerden — ohne einen einzigen Pin zu posten.
-   Danach Modus **`dry-run`** fuer die konkrete naechste Charge.
+Es braucht am Ende drei Repo-Secrets: `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`
+und `PINTEREST_REFRESH_TOKEN`. Die ersten beiden stehen im Developer-Portal, der
+Refresh-Token entsteht erst durch eine einmalige OAuth-Autorisierung. Dafuer gibt
+es zwei Wege — Variante A braucht keinerlei Terminal.
+
+#### Variante A — ohne Terminal, komplett in GitHub Actions
+1. **Redirect-URI eintragen.** Unter <https://developers.pinterest.com/apps/> in
+   der App `https://bethathost.de/` als Redirect-URI hinterlegen (exakt, mit
+   abschliessendem Schraegstrich). Die Startseite laedt dabei ganz normal —
+   GitHub Pages ignoriert den angehaengten `?code=…` genau wie die `?pin=…`
+   Parameter der Pins.
+2. **Zwei Secrets anlegen** (Settings → Secrets and variables → Actions):
+   - `PINTEREST_APP_SECRET` — das App-Secret.
+   - `GH_SECRETS_PAT` — ein Fine-grained Personal Access Token auf *dieses*
+     Repo mit der Berechtigung **Secrets: Read and write**. Nur dafuer da:
+     Secrets schreiben kann das eingebaute `GITHUB_TOKEN` nicht.
+3. **Actions → *Pinterest OAuth einrichten* → Run workflow**, Schritt
+   `1-login-url`, App-ID ins Feld. Das Log gibt eine Pinterest-Login-URL aus.
+4. URL oeffnen, App autorisieren. Pinterest leitet auf die Startseite weiter;
+   in der Adresszeile steht `https://bethathost.de/?code=…&state=…`. Den Wert
+   hinter `code=` bis zum `&` kopieren.
+5. Denselben Workflow nochmal starten, Schritt `2-code-eintauschen`, Code
+   einfuegen. Er tauscht den Code, schreibt `PINTEREST_REFRESH_TOKEN` und
+   `PINTEREST_APP_ID` per API als Secrets und listet zur Kontrolle alle Boards
+   des Kontos mit ID auf. Der Token wird nie ins Log geschrieben.
+
+   Der `code` ist nur wenige Minuten gueltig. Kommt „Antwort enthaelt keinen
+   refresh_token", ist er abgelaufen oder schon benutzt — einfach Schritt 3
+   wiederholen.
+
+Die App-ID ist bewusst ein Eingabefeld und kein Secret: sie ist die
+oeffentliche Client-Kennung, und Actions maskiert Secret-Werte im Log — die
+Login-URL waere sonst unbrauchbar.
+
+#### Variante B — lokal im Terminal
+Setzt Python und einen Klon des Repos auf dem eigenen Rechner voraus.
+1. In der App `http://localhost:8085/callback` als Redirect-URI hinterlegen.
+2. `python3 scripts/pinterest_oauth.py --app-id <APP-ID>` — das App-Secret wird
+   verdeckt abgefragt. Das Skript startet einen kleinen Server auf
+   `localhost:8085`, gibt die Login-URL aus, faengt die Weiterleitung ab und
+   tauscht den Code gegen den Refresh-Token.
+   Ohne lokalen Browser: `--no-server`, URL manuell oeffnen, `code`-Parameter
+   aus der Redirect-URL mit `--code <CODE>` uebergeben.
+3. Die drei Secrets von Hand unter Settings → Secrets and variables → Actions
+   anlegen.
+
+Der Refresh-Token gilt maximal ein Jahr — danach die Autorisierung wiederholen.
+Er gehoert **nie** ins Repo und nie in Chats oder Issues.
+
+#### Danach: pruefen, bevor irgendetwas rausgeht
+Actions → *Pinterest auto-publish* → *Run workflow* → Modus **`doctor`**. Der
+Lauf holt einen Token, listet alle Boards des Kontos und zeigt pro Hub, wie
+viele Pins offen sind und auf welchem Board sie landen wuerden — ohne einen
+einzigen Pin zu posten. Danach Modus **`dry-run`** fuer die konkrete naechste
+Charge.
 
 ### Board-Zuordnung
 `pinterest/boards.json` enthaelt Board-**Namen**, keine IDs — das Skript loest
