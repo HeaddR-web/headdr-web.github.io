@@ -52,6 +52,14 @@ if command -v python3 >/dev/null 2>&1; then
     note "Einkaufsliste nicht aktuell:"; echo "$out" | sed 's/^/      /'; }
 fi
 
+# 9) Jeder Affiliate-Link traegt die fuer seinen Ordner vorgesehene Tracking-ID
+#    (scripts/tracking-ids.json). Faengt getippte/verlorene Tags ab - ein Link mit
+#    falschem oder fehlendem tag= bringt keine Provision.
+if command -v python3 >/dev/null 2>&1; then
+  out=$(python3 scripts/set-tracking-ids.py --check 2>&1) || {
+    note "Affiliate-Tracking-IDs stimmen nicht:"; echo "$out" | sed 's/^/      /'; }
+fi
+
 echo
 if [ "$fail" -eq 0 ]; then
   echo "✓ Konsistenz-Check bestanden."

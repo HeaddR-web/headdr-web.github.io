@@ -85,6 +85,13 @@ Fließtext auf — wer vorher abspringt (mobil die Mehrheit), sieht nie ein Prod
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,
 Form `https://www.amazon.de/s?k=<suchbegriff>&tag=cozylore-21`.
 
+**Tracking-IDs pro Seite:** Welche ID an welchen Ordner gehoert, steht in
+`scripts/tracking-ids.json`; `scripts/set-tracking-ids.py` schreibt sie in alle Links,
+`check-consistency.sh` (Punkt 9) prueft sie. Aktuell steht ueberall `cozylore-21`, das Skript
+aendert also nichts. Sinn der Sache: PartnerNet berichtet Klicks **und** Verkaeufe je ID — erst
+damit ist sichtbar, welche Seite traegt. Eine ID **erst im PartnerNet anlegen**, dann eintragen —
+Links mit einer ID, die es im Konto nicht gibt, werden nicht verguetet.
+
 ## Produkt-Picks — Realitäts-Regel
 Picks sind **realistische, bezahlbare Impuls-/Mitnahmekäufe fürs Gastgeben** (Deko, Gläser,
 Snack-Zubehör, Spiele, Fanartikel, Verbrauchsmaterial). **Keine geplanten Big-Ticket-Anschaffungen**
