@@ -44,6 +44,14 @@ hits=$(grep -rl --include='*.html' -e 'fonts\.googleapis\.com' -e 'fonts\.gstati
 hits=$(grep -rl --include='*.html' -e 'src="https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js' -e 'src="https://assets\.pinterest\.com/js/pinit\.js' . || true)
 [ -n "$hits" ] && { note "AdSense/Pinterest direkt (ohne Consent-Gate) eingebunden in:"; echo "$hits" | sed 's/^/      /'; }
 
+# 8) Einkaufslisten-Block oben auf den Anlass-Seiten stimmt mit den .pick-Karten ueberein.
+#    Der Block wird generiert (scripts/build-quickbuy.py); kommt unten ein Pick dazu oder
+#    aendert sich eine ASIN, muss er neu gebaut werden, sonst zeigt die Liste oben ins Leere.
+if command -v python3 >/dev/null 2>&1; then
+  out=$(python3 scripts/build-quickbuy.py --check 2>&1) || {
+    note "Einkaufsliste nicht aktuell:"; echo "$out" | sed 's/^/      /'; }
+fi
+
 echo
 if [ "$fail" -eq 0 ]; then
   echo "✓ Konsistenz-Check bestanden."
