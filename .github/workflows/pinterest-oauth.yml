@@ -5,8 +5,13 @@ name: Pinterest OAuth einrichten
 # Repo-Secret geschrieben und nie im Log ausgegeben.
 #
 # Vorher noetig:
-#   1. Im Pinterest-Developer-Portal https://bethathost.de/ als Redirect-URI
-#      eintragen (exakt, mit abschliessendem Schraegstrich).
+#   1. Im Pinterest-Developer-Portal https://www.bethathost.de/ als Redirect-URI
+#      eintragen (exakt, MIT www und mit abschliessendem Schraegstrich).
+#      Pinterest vergleicht zeichengenau: https://bethathost.de/ ohne www
+#      wird mit "400 — Der angegebene Weiterleitungs-URI stimmt nicht mit
+#      dem registrierten URI ueberein" abgewiesen (so passiert am
+#      14.09.2026). GitHub Pages leitet www auf die Hauptdomain um und
+#      behaelt dabei den Query-String, der ?code=... kommt also an.
 #   2. Repo-Secret PINTEREST_APP_SECRET anlegen (App-Secret der Pinterest-App).
 #   3. Repo-Secret GH_SECRETS_PAT anlegen: Fine-grained Personal Access Token
 #      auf genau dieses Repo mit der Berechtigung "Secrets: Read and write".
@@ -37,7 +42,7 @@ on:
       redirect_uri:
         description: "Muss exakt so in der Pinterest-App hinterlegt sein"
         type: string
-        default: "https://bethathost.de/"
+        default: "https://www.bethathost.de/"
 
 permissions:
   contents: read         # nur zum Auschecken des Skripts

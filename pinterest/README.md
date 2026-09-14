@@ -53,8 +53,16 @@ es zwei Wege — Variante A braucht keinerlei Terminal.
 
 #### Variante A — ohne Terminal, komplett in GitHub Actions
 1. **Redirect-URI eintragen.** Unter <https://developers.pinterest.com/apps/> in
-   der App `https://bethathost.de/` als Redirect-URI hinterlegen (exakt, mit
-   abschliessendem Schraegstrich). Die Startseite laedt dabei ganz normal —
+   der App `https://www.bethathost.de/` als Redirect-URI hinterlegen — exakt,
+   **mit `www`** und mit abschliessendem Schraegstrich. Pinterest vergleicht
+   zeichengenau und weist jede Abweichung mit „400 — Der angegebene
+   Weiterleitungs-URI stimmt nicht mit dem registrierten URI ueberein" ab
+   (genau daran ist der Login am 14.09.2026 gescheitert: registriert war die
+   www-Form, der Workflow schickte die ohne). GitHub Pages leitet www per 301
+   auf die Hauptdomain um und behaelt den Query-String — der `?code=…` landet
+   also sichtbar in der Adresszeile. Der Wert im Feld `redirect_uri` muss in
+   Schritt 1 und Schritt 2 **identisch** sein, sonst scheitert der Tausch und
+   der Code ist verbraucht. Die Startseite laedt dabei ganz normal —
    GitHub Pages ignoriert den angehaengten `?code=…` genau wie die `?pin=…`
    Parameter der Pins.
 2. **Zwei Secrets anlegen** (Settings → Secrets and variables → Actions):
