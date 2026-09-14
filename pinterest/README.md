@@ -99,6 +99,27 @@ nicht das oft genannte Jahr). Laeuft er ab, schlaegt der Publish-Lauf mit
 Variante A wiederholen. Der Token gehoert **nie** ins Repo und nie in Chats
 oder Issues.
 
+#### Rechte (Scopes) — `boards:write` ist Pflicht
+Die Login-URL fordert genau vier Rechte an:
+`boards:read,boards:write,pins:read,pins:write` (Konstante `SCOPES` in
+`scripts/pinterest_oauth_ci.py` und `scripts/pinterest_oauth.py`).
+
+**`boards:write` sieht ueberfluessig aus, ist es aber nicht:** Pinterest
+verlangt es fuer `POST /v5/pins`, obwohl dabei kein Board veraendert wird. Ein
+Token ohne dieses Recht laesst sich anstandslos erzeugen, liest Boards und
+Pins — und scheitert dann bei *jedem* Pin mit
+`HTTP 401 – Missing: ['boards:write']`. Genau das ist am 13.09.2026 passiert:
+70 offene Pins, 70 Fehler, kein einziger gepostet.
+
+Deshalb prueft der Tausch-Schritt jetzt selbst nach, welche Rechte Pinterest
+tatsaechlich erteilt hat (Feld `scope` in der Token-Antwort). Fehlt eines,
+bricht Variante A ab und schreibt **kein** Secret — der bisherige Token bleibt
+unangetastet —, und Variante B warnt im Terminal. Beim Pinterest-Login also
+alle Haken stehen lassen.
+
+Ein Token, der vor dem 13.09.2026 erzeugt wurde, hat `boards:write` nicht und
+muss ueber Schritt 1 + 2 der Variante A neu geholt werden.
+
 #### Danach: pruefen, bevor irgendetwas rausgeht
 Actions → *Pinterest auto-publish* → *Run workflow* → Modus **`doctor`**. Der
 Lauf holt einen Token, listet alle Boards des Kontos und zeigt pro Hub, wie
@@ -135,8 +156,23 @@ Titel). Er postet und aendert nichts, sondern sagt pro Eintrag `neu` oder
 - Gemischt → die als `DOPPELT` gemeldeten Eintraege in den `queue.json` von
   Hand auf `"published": true` setzen, dann `publish`.
 
-Fehlen die Secrets, endet der Lauf sauber mit einer Meldung im Log — kein
-Fehler, kein rotes X, keine Fehler-Mail.
+### Wann der Lauf rot wird
+- **Fehlende Secrets** → gruener Lauf mit Meldung im Log. Keine Fehler-Mail,
+  bevor die Einrichtung ueberhaupt begonnen hat.
+- **Einzelne Pins scheitern, andere gehen durch** → gruener Lauf mit Hinweis.
+  Die gescheiterten bleiben offen und kommen beim naechsten Lauf erneut dran.
+- **Kein einziger Pin kommt durch** → **Exit 1, roter Lauf.** Das ist nie ein
+  Zufall, sondern Token, Scope oder Board. Frueher lief genau dieser Fall
+  gruen durch und waere wochenlang nicht aufgefallen.
+
+Ausserdem bricht der Lauf nach drei Fehlschlaegen ohne einen einzigen Erfolg
+ab, und `MAX_PER_RUN` begrenzt **Versuche**, nicht Erfolge — ein kaputter Token
+kostet damit 5 API-Calls pro Lauf statt einmal quer durch die ganze Queue.
+Erste Anlaufstelle bei Rot: Modus `doctor`.
+
+Die Queues werden auch bei einem roten Lauf zurueckcommittet (`if: always()` im
+Workflow): was gepostet wurde, **muss** abgehakt sein, sonst legt der naechste
+Lauf dieselben Pins ein zweites Mal an.
 
 ## Weg 3 — Einmaliger Bulk-Upload (manuell, für Nachzügler)
 `pinterest/make_bulk_csv.py` erzeugt `pinterest_bulk.csv` im Format von

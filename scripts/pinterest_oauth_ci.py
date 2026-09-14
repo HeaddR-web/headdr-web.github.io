@@ -30,6 +30,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import secrets as pysecrets
 import sys
 import urllib.error
@@ -40,7 +41,27 @@ AUTH_URL = "https://www.pinterest.com/oauth/"
 TOKEN_URL = "https://api.pinterest.com/v5/oauth/token"
 BOARDS_URL = "https://api.pinterest.com/v5/boards?page_size=100"
 GITHUB_API = "https://api.github.com"
-SCOPES = "boards:read,pins:read,pins:write"
+# boards:write ist Pflicht: POST /v5/pins verlangt es, obwohl es nach
+# einem reinen Pin-Recht aussieht. Ohne das Scope antwortet die API mit
+# HTTP 401 "Missing: ['boards:write']" (so passiert am 13.09.2026 —
+# 70 Pins, 70 Fehler, kein einziger gepostet).
+SCOPES = "boards:read,boards:write,pins:read,pins:write"
+
+
+def missing_scopes(result: dict) -> list:
+    """Welche der angeforderten Scopes hat Pinterest NICHT vergeben?
+
+    Pinterest gibt die tatsaechlich erteilten Rechte im Feld ``scope`` zurueck
+    (durch Komma oder Leerzeichen getrennt). Wer beim Login ein Recht abwaehlt
+    oder eine alte Autorisierung wiederverwendet, bekommt trotzdem einen
+    gueltigen Token — der Fehler faellt sonst erst Wochen spaeter beim ersten
+    echten POST /v5/pins auf. Fehlt das Feld ganz, wird nichts behauptet.
+    """
+    raw = (result.get("scope") or "").strip()
+    if not raw:
+        return []
+    granted = {s for s in re.split(r"[,\s]+", raw) if s}
+    return [s for s in SCOPES.split(",") if s not in granted]
 
 
 def _json_request(url, data=None, headers=None, method="GET"):
@@ -172,6 +193,18 @@ def cmd_exchange(args) -> int:
     print(f"::add-mask::{refresh}")
     print(f"::add-mask::{access}")
     print("Token erhalten.")
+
+    # Erst pruefen, was Pinterest wirklich erteilt hat — ein Token ohne
+    # boards:write kann keinen einzigen Pin anlegen. Lieber gar keins
+    # schreiben als das funktionierende alte damit ueberschreiben.
+    fehlend = missing_scopes(result)
+    if fehlend:
+        raise SystemExit(
+            f"Pinterest hat diese Rechte NICHT erteilt: {', '.join(fehlend)}\n"
+            f"Erteilt wurde nur: {result.get('scope')}\n\n"
+            "Es wurde KEIN Secret geschrieben — der bisherige Token bleibt unveraendert.\n"
+            "Schritt 1 wiederholen und beim Pinterest-Login alle Haken stehen lassen."
+        )
 
     print("\nSecrets schreiben:")
     set_repo_secret(repo, pat, "PINTEREST_REFRESH_TOKEN", refresh, public_key)
