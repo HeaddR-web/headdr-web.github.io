@@ -1,0 +1,39 @@
+{
+  "_hinweis": [
+    "Pro Seite eine eigene Amazon-Tracking-ID. PartnerNet meldet Klicks UND Verkaeufe je ID,",
+    "damit laesst sich endlich sehen, welche Seite traegt und welche nur Aufrufe sammelt.",
+    "",
+    "So einsetzen:",
+    "  1. Im PartnerNet unter 'Kontoeinstellungen -> Tracking-IDs verwalten' die unten",
+    "     eingetragenen IDs anlegen (bis zu 100 sind kostenlos). Endung '-21' ist Pflicht.",
+    "     Lehnt PartnerNet einen Namen ab (zu lang/vergeben), hier einen kuerzeren eintragen.",
+    "  2. python3 scripts/set-tracking-ids.py",
+    "  3. python3 scripts/build-quickbuy.py   (Einkaufslisten mitziehen)",
+    "  4. bash scripts/check-consistency.sh",
+    "",
+    "WICHTIG: Erst anlegen, dann eintragen. Links mit einer ID, die es im Konto nicht gibt,",
+    "werden nicht vergueten - die Provision ist dann weg.",
+    "",
+    "Solange alles auf 'cozylore-21' steht, aendert das Skript nichts."
+  ],
+  "standard": "cozylore-21",
+  "seiten": {
+    "brunch": "cozylore-21",
+    "casino": "cozylore-21",
+    "cocktailabend": "cozylore-21",
+    "gartenparty": "cozylore-21",
+    "geburtstag": "cozylore-21",
+    "girlsnight": "cozylore-21",
+    "grillabend": "cozylore-21",
+    "hawaii-tiki": "cozylore-21",
+    "jga": "cozylore-21",
+    "mexiko-fiesta": "cozylore-21",
+    "oktoberfest": "cozylore-21",
+    "ratgeber": "cozylore-21",
+    "saison-deko": "cozylore-21",
+    "spa-abend": "cozylore-21",
+    "spieleabend": "cozylore-21",
+    "valentinstag": "cozylore-21",
+    "watchparty": "cozylore-21"
+  }
+}

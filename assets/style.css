@@ -741,6 +741,120 @@ article a {
   outline-offset: 3px;
 }
 
+/* ---------- Kaufratgeber-Liste auf der Startseite ---------- */
+/* Die /ratgeber/-Seiten sind die einzigen mit Kaufabsicht im Titel und waren
+   von der Startseite aus ueberhaupt nicht erreichbar. */
+.guides {
+  padding-block: 10px 30px;
+}
+.guide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+.guide-list li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.guide-list a {
+  display: block;
+  padding: 14px 16px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.guide-list a::after {
+  content: " \2192";
+  color: var(--gold);
+}
+.guide-list a:hover {
+  color: var(--rose-deep);
+}
+.guide-list a:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
+/* ---------- Schnellkauf-Block ("Die Einkaufsliste") ---------- */
+/* Steht direkt unter der Einleitung, damit die Empfehlungen nicht erst bei
+   40 % Seitentiefe auftauchen. Bewusst kompakt und textlastig: Der Block soll
+   den Fliesstext anreissen, nicht ersetzen. */
+.quickbuy {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--rose);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin: 26px 0 34px;
+  box-shadow: var(--shadow-card);
+}
+.quickbuy .qb-head {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.18rem;
+  margin: 0 0 4px;
+  color: var(--ink-strong);
+}
+.quickbuy .qb-sub {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.quickbuy .qb-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+}
+.quickbuy .qb-list li {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 8px;
+}
+.quickbuy .qb-list a {
+  display: block;
+  /* Volle Zeilenhoehe als Trefferflaeche: auf dem Handy wird hier mit dem
+     Daumen getippt, ein reiner Textlink ist dafuer zu schmal. */
+  padding: 4px 0;
+  min-height: 24px;
+  color: var(--rose-deep);
+  font-weight: 600;
+  font-size: 0.94rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.quickbuy .qb-list a::after {
+  content: " \2192";
+  color: var(--gold);
+}
+.quickbuy .qb-list a:hover {
+  text-decoration: underline;
+}
+.quickbuy .qb-list a:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+.quickbuy .qb-note {
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+@media (max-width: 620px) {
+  .quickbuy {
+    padding: 16px 16px;
+  }
+  .quickbuy .qb-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Ad slot ---------- */
 .ad-slot {
   margin: 34px 0;

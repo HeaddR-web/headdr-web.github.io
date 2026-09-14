@@ -41,7 +41,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 2. `<header class="site">`: Brand `<a class="brand" href="/">BeThatHost</a>` + Nav mit genau
    zwei Links: `Alle Anlässe` → `/`, `Über uns` → `/ueber-uns.html` (absolute Pfade, einheitlich auf allen Ebenen).
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
-   Intro, thematische Abschnitte mit `<div class="pick">`-Karten, ein `<div class="ad-slot">`, `<div class="subscribe">`.
+   Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), thematische Abschnitte mit
+   `<div class="pick">`-Karten, ein `<div class="ad-slot">`, `<div class="subscribe">`.
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`)
    + Cookie-Einstellungen-Button (siehe „Cookie-Consent" unten).
 5. Vor `</body>`: Cloudflare Web Analytics, dann `<script src="/js/consent.js" defer></script>`
@@ -64,9 +65,32 @@ Einwilligung — deshalb werden beide **nie** direkt im HTML eingebunden, sonder
   `consent.js` nachladen, nie direkt einbinden — sonst driftet die Datenschutzerklärung
   wieder von der technischen Realität weg.
 
+## Einkaufslisten-Block (`aside.quickbuy`) — generiert, nie von Hand
+Direkt unter der Einleitung steht auf jeder Anlass-Seite eine kompakte Liste **aller** Picks der
+Seite mit Direktlink. Grund: Ohne den Block taucht die erste Empfehlung erst nach rund 900 Zeichen
+Fließtext auf — wer vorher abspringt (mobil die Mehrheit), sieht nie ein Produkt.
+
+- Gebaut von `scripts/build-quickbuy.py` aus den vorhandenen `.pick`-Karten. **Niemals von Hand
+  bearbeiten** — der Block steht zwischen `<!-- QUICKBUY:START … -->` und `<!-- QUICKBUY:END -->`
+  und wird bei jedem Lauf komplett ersetzt.
+- Nach **jeder** Änderung an den Picks einer Seite (neuer Pick, andere ASIN, anderer Name):
+  `python3 scripts/build-quickbuy.py`
+- `scripts/check-consistency.sh` prüft das mit (Punkt 8) und wird rot, wenn der Block nicht zu den
+  Karten darunter passt. Neue Anlass-Seite: Slug in das `ANLASS`-Dict des Skripts eintragen, sonst
+  bekommt sie keinen Block.
+- Picks mit dem Label `Optional` (Kaufratgeber-Verweise) bleiben bewusst draußen — die Liste ist
+  für Direktkäufe.
+
 ## Affiliate-Konvention
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,
 Form `https://www.amazon.de/s?k=<suchbegriff>&tag=cozylore-21`.
+
+**Tracking-IDs pro Seite:** Welche ID an welchen Ordner gehoert, steht in
+`scripts/tracking-ids.json`; `scripts/set-tracking-ids.py` schreibt sie in alle Links,
+`check-consistency.sh` (Punkt 9) prueft sie. Aktuell steht ueberall `cozylore-21`, das Skript
+aendert also nichts. Sinn der Sache: PartnerNet berichtet Klicks **und** Verkaeufe je ID — erst
+damit ist sichtbar, welche Seite traegt. Eine ID **erst im PartnerNet anlegen**, dann eintragen —
+Links mit einer ID, die es im Konto nicht gibt, werden nicht verguetet.
 
 ## Produkt-Picks — Realitäts-Regel
 Picks sind **realistische, bezahlbare Impuls-/Mitnahmekäufe fürs Gastgeben** (Deko, Gläser,
