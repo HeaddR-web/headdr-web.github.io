@@ -741,6 +741,46 @@ article a {
   outline-offset: 3px;
 }
 
+/* ---------- Kaufratgeber-Liste auf der Startseite ---------- */
+/* Die /ratgeber/-Seiten sind die einzigen mit Kaufabsicht im Titel und waren
+   von der Startseite aus ueberhaupt nicht erreichbar. */
+.guides {
+  padding-block: 10px 30px;
+}
+.guide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+.guide-list li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.guide-list a {
+  display: block;
+  padding: 14px 16px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.guide-list a::after {
+  content: " \2192";
+  color: var(--gold);
+}
+.guide-list a:hover {
+  color: var(--rose-deep);
+}
+.guide-list a:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
 /* ---------- Schnellkauf-Block ("Die Einkaufsliste") ---------- */
 /* Steht direkt unter der Einleitung, damit die Empfehlungen nicht erst bei
    40 % Seitentiefe auftauchen. Bewusst kompakt und textlastig: Der Block soll
