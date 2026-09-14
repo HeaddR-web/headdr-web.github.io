@@ -47,17 +47,21 @@ hits=$(grep -rl --include='*.html' -e 'src="https://pagead2\.googlesyndication\.
 # 8) Einkaufslisten-Block oben auf den Anlass-Seiten stimmt mit den .pick-Karten ueberein.
 #    Der Block wird generiert (scripts/build-quickbuy.py); kommt unten ein Pick dazu oder
 #    aendert sich eine ASIN, muss er neu gebaut werden, sonst zeigt die Liste oben ins Leere.
-if command -v python3 >/dev/null 2>&1; then
+if ! command -v python3 >/dev/null 2>&1; then
+  # Bewusst ein Fehler, kein stilles Ueberspringen: ein Guard, der sich ohne
+  # Hinweis selbst abschaltet, taeuscht eine Pruefung vor, die nie lief.
+  note "python3 fehlt — Punkte 8 und 9 konnten nicht geprueft werden"
+else
   out=$(python3 scripts/build-quickbuy.py --check 2>&1) || {
     note "Einkaufsliste nicht aktuell:"; echo "$out" | sed 's/^/      /'; }
-fi
+  echo "  ✓ Einkaufslisten stimmen mit den Pick-Karten ueberein"
 
 # 9) Jeder Affiliate-Link traegt die fuer seinen Ordner vorgesehene Tracking-ID
 #    (scripts/tracking-ids.json). Faengt getippte/verlorene Tags ab - ein Link mit
 #    falschem oder fehlendem tag= bringt keine Provision.
-if command -v python3 >/dev/null 2>&1; then
   out=$(python3 scripts/set-tracking-ids.py --check 2>&1) || {
     note "Affiliate-Tracking-IDs stimmen nicht:"; echo "$out" | sed 's/^/      /'; }
+  echo "  ✓ Alle Affiliate-Links tragen die vorgesehene Tracking-ID"
 fi
 
 echo
