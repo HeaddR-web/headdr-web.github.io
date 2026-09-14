@@ -7,6 +7,10 @@
  * die Skripte laden und Cookies/IDs setzen.
  *
  * Verhalten:
+ *  - Auf schmalen Viewports kompakt gehalten: das Banner stand vorher ueber rund
+ *    40 % des sichtbaren Bereichs und hat den Einstieg in die Seite verdeckt.
+ *    Die beiden Buttons teilen sich dort die Zeile exakt haelftig - gleiche
+ *    Breite, Farbe, Rahmen; die Gleichwertigkeit bleibt also unangetastet.
  *  - Ohne gespeicherte Entscheidung: Banner mit zwei GLEICHWERTIGEN Buttons
  *    ("Nur notwendige" / "Akzeptieren"), kein Nudging, keine Vorauswahl.
  *  - "Akzeptieren": AdSense (adsbygoogle.js) + Pinterest (pinit.js) werden erst
@@ -78,7 +82,13 @@
       "#" + BANNER_ID + " .bth-consent-btn{font:inherit;font-size:.92rem;font-weight:600;" +
       "padding:10px 18px;border-radius:10px;border:1px solid #f7f1e8;background:transparent;" +
       "color:#f7f1e8;cursor:pointer;min-width:150px;}" +
-      "#" + BANNER_ID + " .bth-consent-btn:hover{background:rgba(247,241,232,.12);}";
+      "#" + BANNER_ID + " .bth-consent-btn:hover{background:rgba(247,241,232,.12);}" +
+      "@media(max-width:620px){" +
+      "#" + BANNER_ID + " .bth-consent-inner{padding:12px 14px;gap:10px;}" +
+      "#" + BANNER_ID + " .bth-consent-text{flex-basis:100%;font-size:.82rem;line-height:1.4;}" +
+      "#" + BANNER_ID + " .bth-consent-actions{flex:1 1 100%;}" +
+      "#" + BANNER_ID + " .bth-consent-btn{flex:1 1 0;min-width:0;padding:11px 8px;font-size:.88rem;}" +
+      "}";
     document.head.appendChild(style);
   }
 
@@ -96,9 +106,8 @@
     wrap.setAttribute("aria-label", "Cookie-Einstellungen");
     wrap.innerHTML =
       '<div class="bth-consent-inner">' +
-      '<p class="bth-consent-text">Wir nutzen Cookies bzw. Dienste von Drittanbietern (Werbung, Pinterest). ' +
-      "Diese laden erst, wenn du zustimmst. Details in unserer " +
-      '<a href="/datenschutz.html">Datenschutzerklärung</a>.</p>' +
+      '<p class="bth-consent-text">Werbung und Pinterest setzen Cookies. Sie laden erst, wenn du ' +
+      'zustimmst. <a href="/datenschutz.html">Datenschutz</a></p>' +
       '<div class="bth-consent-actions">' +
       '<button type="button" class="bth-consent-btn" data-choice="necessary">Nur notwendige</button>' +
       '<button type="button" class="bth-consent-btn" data-choice="all">Akzeptieren</button>' +
