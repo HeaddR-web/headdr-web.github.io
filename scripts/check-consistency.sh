@@ -52,16 +52,28 @@ if ! command -v python3 >/dev/null 2>&1; then
   # Hinweis selbst abschaltet, taeuscht eine Pruefung vor, die nie lief.
   note "python3 fehlt — Punkte 8 und 9 konnten nicht geprueft werden"
 else
-  out=$(python3 scripts/build-quickbuy.py --check 2>&1) || {
-    note "Einkaufsliste nicht aktuell:"; echo "$out" | sed 's/^/      /'; }
-  echo "  ✓ Einkaufslisten stimmen mit den Pick-Karten ueberein"
+  if out=$(python3 scripts/build-quickbuy.py --check 2>&1); then
+    echo "  ✓ Einkaufslisten stimmen mit den Pick-Karten ueberein"
+  else
+    note "Einkaufsliste nicht aktuell:"; echo "$out" | sed 's/^/      /'
+  fi
 
 # 9) Jeder Affiliate-Link traegt die fuer seinen Ordner vorgesehene Tracking-ID
 #    (scripts/tracking-ids.json). Faengt getippte/verlorene Tags ab - ein Link mit
 #    falschem oder fehlendem tag= bringt keine Provision.
-  out=$(python3 scripts/set-tracking-ids.py --check 2>&1) || {
-    note "Affiliate-Tracking-IDs stimmen nicht:"; echo "$out" | sed 's/^/      /'; }
-  echo "  ✓ Alle Affiliate-Links tragen die vorgesehene Tracking-ID"
+  if out=$(python3 scripts/set-tracking-ids.py --check 2>&1); then
+    echo "  ✓ Alle Affiliate-Links tragen die vorgesehene Tracking-ID"
+  else
+    note "Affiliate-Tracking-IDs stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
+
+# 10) Meta-Descriptions in SERP-Laenge. Google schneidet deutsche Snippets bei rund
+#     155-160 Zeichen ab; was dahinter steht, sieht in der Suche niemand.
+  if out=$(python3 scripts/check-meta.py 2>&1); then
+    echo "  ✓ Alle Meta-Descriptions passen in das Suchergebnis"
+  else
+    note "Meta-Descriptions ausserhalb der SERP-Laenge:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
