@@ -106,7 +106,9 @@ genau das beim Gastgeben hilft), `<!-- AFFILIATE -->`, dann der CTA. Eine Karte 
 ist ein Kauf-Button ohne Grund zu klicken — im September 2026 waren 21 solcher Karten auf 10 Seiten
 unterwegs, alle nachträglich per Hand angehängt. **Zwei Karten derselben Seite dürfen nie auf
 dieselbe ASIN zeigen** (Kopierfehler; schickt den Leser garantiert auf das falsche Produkt).
-`scripts/check-picks.py` prüft beides, Punkt 11 im Konsistenz-Check.
+Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`) gilt dasselbe:
+`hp-label`, `hp-name`, **`hp-desc`** (ein kurzer Nutzen-Satz), `hp-btn`.
+`scripts/check-picks.py` prüft beide Kartentypen, Punkt 11 im Konsistenz-Check.
 
 ## Neue Anlass-/Motto-Seite anlegen
 1. Ordner + `index.html` exakt nach obiger Anatomie.
