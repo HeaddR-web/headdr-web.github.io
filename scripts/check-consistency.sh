@@ -74,6 +74,16 @@ else
   else
     note "Meta-Descriptions ausserhalb der SERP-Laenge:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 11) Jede Pick-Karte hat Ueberschrift, Beschreibung und Kauf-Button, und keine
+#     zwei Karten einer Seite zeigen auf dieselbe ASIN. Eine Karte ohne Text ist
+#     ein Kauf-Button ohne Kaufargument; eine doppelte ASIN schickt den Leser
+#     garantiert auf das falsche Produkt.
+  if out=$(python3 scripts/check-picks.py 2>&1); then
+    echo "  ✓ Alle Pick-Karten sind vollstaendig"
+  else
+    note "Pick-Karten unvollstaendig:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
