@@ -170,6 +170,12 @@ ein kaputter CTA auf 38 Seiten ist 38-mal enttäuschter Leser.
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,
 Form `https://www.amazon.de/s?k=<suchbegriff>&tag=cozylore-21`.
 
+**Ein Affiliate-Link ist genau einer mit `rel="sponsored"` — und der braucht ein `tag=`.**
+`scripts/set-tracking-ids.py` prüft (und ergänzt) das; bis September 2026 fiel ein Link ohne
+jedes `tag=` durch, weil das Skript nur vorhandene IDs korrigierte und fehlende bewusst in Ruhe
+liess. Ein solcher Link bringt keine Provision, egal wie oft er geklickt wird. Beleglinks ohne
+`rel="sponsored"` (z. B. Amazons Hilfeseite in `datenschutz.html`) bleiben absichtlich ohne Tag.
+
 **Tracking-IDs pro Seite:** Welche ID an welchen Ordner gehoert, steht in
 `scripts/tracking-ids.json`; `scripts/set-tracking-ids.py` schreibt sie in alle Links,
 `check-consistency.sh` (Punkt 9) prueft sie. Aktuell steht ueberall `cozylore-21`, das Skript

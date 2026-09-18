@@ -30,6 +30,12 @@ CONFIG = Path(__file__).resolve().parent / "tracking-ids.json"
 LINK_RE = re.compile(r'https://www\.amazon\.de/[^"\s]*')
 TAG_RE = re.compile(r'(?<=[?&])tag=[A-Za-z0-9._-]+')
 
+# Ein Affiliate-Link ist genau einer mit rel="sponsored". Nur der braucht ein
+# Tag - ein Beleglink in einem Rechtstext (z. B. auf Amazons Hilfeseite) darf
+# bewusst keins haben und wuerde sonst faelschlich als Fehler gemeldet.
+A_RE = re.compile(r'<a\b[^>]*href="(https://www\.amazon\.de/[^"]*)"[^>]*>')
+SPONSORED_RE = re.compile(r'rel="[^"]*\bsponsored\b')
+
 # cozy/** ist abgekoppelt und wird nicht angefasst (siehe CLAUDE.md).
 SKIP_DIRS = {"cozy", ".git", "assets", "scripts", "pinterest", ".github"}
 
@@ -64,6 +70,19 @@ def main() -> int:
             return TAG_RE.sub("tag=" + want, link)
 
         new = LINK_RE.sub(fix, html)
+
+        # Zweite Passe: Affiliate-Links, denen das tag= ganz fehlt. Die rutschten
+        # durch, weil fix() sie absichtlich in Ruhe laesst - und ein solcher Link
+        # bringt keine Provision, egal wie oft er geklickt wird.
+        def ergaenze(m):
+            link, ganz = m.group(1), m.group(0)
+            if "tag=" in link or not SPONSORED_RE.search(ganz):
+                return ganz
+            trenner = "&" if "?" in link else "?"
+            return ganz.replace(link, link + trenner + "tag=" + want)
+
+        new = A_RE.sub(ergaenze, new)
+
         if new == html:
             continue
         if check:
@@ -74,7 +93,7 @@ def main() -> int:
 
     if check:
         if wrong:
-            print("Falsche Tracking-ID in:")
+            print("Falsche oder fehlende Tracking-ID in:")
             for w in wrong:
                 print("  " + w)
             print("Beheben mit: python3 scripts/set-tracking-ids.py")
