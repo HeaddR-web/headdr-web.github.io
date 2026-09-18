@@ -45,7 +45,9 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
    Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), **Inhaltsverzeichnis**
    (`<nav class="toc">`, siehe unten), thematische Abschnitte mit
-   `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten), `<div class="subscribe">`.
+   `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten).
+   Ein `<div class="subscribe">` gehoert erst dazu, wenn ein echtes Newsletter-Formular
+   dahinterhaengt — bis dahin sammelt es Adressen ein, die nirgends ankommen (siehe unten).
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`)
    + Cookie-Einstellungen-Button (siehe „Cookie-Consent" unten).
 5. Vor `</body>`: Cloudflare Web Analytics, dann `<script src="/js/consent.js" defer></script>`
@@ -128,6 +130,18 @@ mobil die häufigste Abbruchstelle. Nebeneffekt: Google bekommt die Sprungmarken
   dort steht es dem Leser nur im Weg. Ausgenommen sind außerdem Startseite, Rechtstexte,
   die drei `disclosure.html` und die internen Werkzeuge.
 - `scripts/check-toc.py` prüft das mit, Punkt 13 im Konsistenz-Check.
+
+## Newsletter (`div.subscribe`) — erst mit echtem Formular
+Bis September 2026 stand auf genau einer Seite (`oktoberfest/`) ein Anmeldekasten mit
+`<form action="#" method="post">`. Der schickt beim Absenden auf dieselbe Seite zurück: jede
+eingegebene Adresse war weg, der Leser hielt sich aber für angemeldet. Dazu wurde eine
+E-Mail-Adresse erhoben, ohne dass Zweck oder Empfänger in der Datenschutzerklärung standen.
+Der Kasten ist deshalb entfernt; die CSS-Regeln bleiben in `/assets/style.css`.
+
+Zurück kommt er, sobald ein echter Anbieter (beehiiv, MailerLite o. ä.) dahinterhängt —
+dann auf **alle** Anlass-Seiten, nicht nur auf eine, und mit einem Absatz in
+`/datenschutz.html` (Anbieter, Zweck, Speicherdauer, Widerruf). Vorher nicht ausrollen:
+ein kaputter CTA auf 38 Seiten ist 38-mal enttäuschter Leser.
 
 ## Affiliate-Konvention
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,

@@ -943,6 +943,14 @@ article [id] { scroll-margin-top: 90px; }
 }
 
 /* ---------- Subscribe ---------- */
+/* Newsletter-Kasten. Steht derzeit auf keiner Seite: das einzige Exemplar
+   (oktoberfest/) hatte action="#" und hat jede eingegebene Adresse
+   stillschweigend verworfen - schlimmer als kein Formular, weil der Leser
+   glaubt, angemeldet zu sein, und die Abfrage ohne genannten Empfaenger
+   ausserdem in der Datenschutzerklaerung fehlte. Die Regeln bleiben hier,
+   damit der Kasten zurueckkann, sobald ein echtes Formular (beehiiv,
+   MailerLite o. ae.) dahinterhaengt - dann gehoert er auf alle Anlass-Seiten.
+*/
 .subscribe {
   background: var(--paper);
   border: 1px solid var(--line);
