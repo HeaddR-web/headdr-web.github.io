@@ -44,12 +44,34 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
    zwei Links: `Alle Anlässe` → `/`, `Über uns` → `/ueber-uns.html` (absolute Pfade, einheitlich auf allen Ebenen).
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
    Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), thematische Abschnitte mit
-   `<div class="pick">`-Karten, ein `<div class="ad-slot">`, `<div class="subscribe">`.
+   `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten), `<div class="subscribe">`.
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`)
    + Cookie-Einstellungen-Button (siehe „Cookie-Consent" unten).
 5. Vor `</body>`: Cloudflare Web Analytics, dann `<script src="/js/consent.js" defer></script>`
    (siehe „Cookie-Consent"). **Kein** direktes `<script ... adsbygoogle.js>` und **kein** direktes
    `<script ... pinit.js>` mehr im Markup — beide lädt `consent.js` erst nach Opt-in nach.
+
+## Werbeplätze (`div.ad-slot`) — immer leer im Quelltext
+Jede Inhaltsseite hat **genau einen** `<div class="ad-slot"></div>`, ungefähr in der Mitte des
+Artikels (vor der mittleren `<h2>`). Er steht im Quelltext **leer** und wird erst von
+`js/consent.js` nach der Einwilligung mit einer In-Artikel-Anzeige befüllt.
+
+- **Nie Text hineinschreiben.** `.ad-slot:empty` blendet den leeren Platz aus; sobald Text
+  darin steht, sieht jeder Besucher dauerhaft einen Kasten. Genau so stand bis September 2026
+  „Werbeplatz — im Artikel (responsiv). Erscheint, sobald AdSense aktiv ist." auf `oktoberfest/`.
+- **Anzeigenblock-ID:** `ADSENSE_SLOT` in `js/consent.js` — die eine Stelle, an der die
+  `data-ad-slot`-Nummer steht. Solange sie leer ist, wird **nichts** eingesetzt und **nichts**
+  geladen; die Slots sind dann unsichtbar. ID im AdSense-Konto unter *Anzeigen → Nach
+  Anzeigenblock → In-Artikel-Anzeige* anlegen und dort eintragen.
+- Liefert AdSense keine Anzeige (`data-ad-status="unfilled"`), leert `consent.js` den Platz
+  wieder — dann greift `:empty` und der Kasten verschwindet, statt als Lücke stehen zu bleiben.
+- Die Anzeige bekommt eine `<span class="ad-label">Anzeige</span>` (Kennzeichnungspflicht,
+  § 6 Abs. 1 Nr. 1 DDG, § 5a UWG).
+- **Ohne Werbeplatz** bleiben bewusst: Rechtstexte (`impressum`, `datenschutz`, `privacy`),
+  die drei `disclosure.html` und die internen Werkzeuge (`dashboard`, `produkt-review`) —
+  Werbung neben der Anbieterkennung oder der Affiliate-Offenlegung untergräbt genau das
+  Vertrauenssignal, für das diese Seiten da sind.
+- `scripts/check-ads.py` prüft das mit, Punkt 12 im Konsistenz-Check.
 
 ## Cookie-Consent (DSGVO Art. 13, § 25 TDDDG)
 AdSense (`adsbygoogle.js`) und Pinterest (`pinit.js`) setzen Cookies/übertragen die IP vor jeder

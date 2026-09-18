@@ -14,7 +14,8 @@
  *  - Ohne gespeicherte Entscheidung: Banner mit zwei GLEICHWERTIGEN Buttons
  *    ("Nur notwendige" / "Akzeptieren"), kein Nudging, keine Vorauswahl.
  *  - "Akzeptieren": AdSense (adsbygoogle.js) + Pinterest (pinit.js) werden erst
- *    JETZT per Script-Injection nachgeladen.
+ *    JETZT per Script-Injection nachgeladen; erst danach werden die
+ *    <div class="ad-slot"> der Seite mit einer Anzeige befuellt.
  *  - "Nur notwendige": beide Skripte bleiben ungeladen.
  *  - Entscheidung liegt in localStorage (rein geraetelokal, keine Uebertragung
  *    an einen Server) und kann jederzeit ueber window.bthOpenConsentSettings()
@@ -27,6 +28,13 @@
   var ADSENSE_SRC =
     "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4473022510510415";
   var PINTEREST_SRC = "https://assets.pinterest.com/js/pinit.js";
+  var ADSENSE_CLIENT = "ca-pub-4473022510510415";
+  // AdSense-Anzeigenblock-ID (das "data-ad-slot"-Feld). Im AdSense-Konto unter
+  // Anzeigen > Nach Anzeigenblock einen Block vom Typ "In-Artikel-Anzeige"
+  // anlegen und die Zahl aus dem Code-Schnipsel hier eintragen.
+  // Solange sie leer ist, bleibt jeder <div class="ad-slot"> leer und damit
+  // per CSS unsichtbar - es wird nichts geladen und nichts angezeigt.
+  var ADSENSE_SLOT = "";
   var BANNER_ID = "bth-consent-banner";
   var STYLE_ID = "bth-consent-style";
 
@@ -61,9 +69,55 @@
     document.head.appendChild(s);
   }
 
+  /*
+   * Fuellt die <div class="ad-slot"> der Seite mit einer In-Artikel-Anzeige.
+   * Wird ausschliesslich aus activate() heraus aufgerufen, also nie ohne
+   * Einwilligung. Liefert AdSense keine Anzeige aus (data-ad-status
+   * "unfilled", z. B. weil das Konto noch nicht freigeschaltet ist), wird der
+   * Platz wieder geleert - dann greift .ad-slot:empty und er verschwindet,
+   * statt als leerer Kasten im Text stehen zu bleiben.
+   */
+  function fillAdSlots() {
+    if (!ADSENSE_SLOT) return;
+    var slots = document.querySelectorAll(".ad-slot");
+    for (var i = 0; i < slots.length; i++) {
+      fillOneSlot(slots[i]);
+    }
+  }
+
+  function fillOneSlot(slot) {
+    if (slot.firstChild) return; // schon befuellt
+
+    var label = document.createElement("span");
+    label.className = "ad-label";
+    label.textContent = "Anzeige";
+
+    var unit = document.createElement("ins");
+    unit.className = "adsbygoogle";
+    unit.setAttribute("data-ad-client", ADSENSE_CLIENT);
+    unit.setAttribute("data-ad-slot", ADSENSE_SLOT);
+    unit.setAttribute("data-ad-format", "fluid");
+    unit.setAttribute("data-ad-layout", "in-article");
+
+    slot.appendChild(label);
+    slot.appendChild(unit);
+
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      slot.innerHTML = "";
+      return;
+    }
+
+    window.setTimeout(function () {
+      if (unit.getAttribute("data-ad-status") === "unfilled") slot.innerHTML = "";
+    }, 3000);
+  }
+
   function activate() {
     loadScriptOnce(ADSENSE_SRC, { crossorigin: "anonymous" });
     loadScriptOnce(PINTEREST_SRC, { "data-pin-hover": "true" });
+    fillAdSlots();
   }
 
   function ensureStyles() {

@@ -84,6 +84,15 @@ else
   else
     note "Pick-Karten unvollstaendig:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 12) Jede Inhaltsseite hat genau einen Werbeplatz, und der ist im Quelltext leer.
+#     Fehlt er, kann AdSense auf der Seite nichts ausliefern; steht Text darin,
+#     sieht jeder Besucher dauerhaft einen Kasten mit einer Baustellen-Notiz.
+  if out=$(python3 scripts/check-ads.py 2>&1); then
+    echo "  ✓ Werbeplaetze sitzen auf allen Inhaltsseiten"
+  else
+    note "Werbeplaetze stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

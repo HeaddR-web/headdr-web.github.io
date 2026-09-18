@@ -856,15 +856,38 @@ article a {
 }
 
 /* ---------- Ad slot ---------- */
+/* Werbeplatz. Solange nichts darin steht, ist er nicht da: ein leerer
+   gestrichelter Kasten auf jeder Seite waere fuer den Leser nur eine Luecke
+   mit der Aufschrift "hier fehlt etwas". Erst wenn consent.js nach der
+   Einwilligung eine Anzeige eingesetzt hat, bekommt der Platz Abstand,
+   Rahmen und die Kennzeichnung. */
+.ad-slot:empty {
+  display: none;
+}
+
 .ad-slot {
   margin: 34px 0;
-  padding: 22px;
+  padding: 14px;
   text-align: center;
-  border: 1px dashed var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  color: var(--muted);
-  font-size: 0.78rem;
   background: var(--paper);
+}
+
+/* Kennzeichnungspflicht fuer Werbung (§ 6 Abs. 1 Nr. 1 TMG / DDG, § 5a UWG):
+   bezahlte Anzeigen muessen als solche erkennbar sein, wenn sie neben
+   redaktionellem Text stehen. */
+.ad-slot .ad-label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ad-slot ins {
+  display: block;
 }
 
 /* ---------- Subscribe ---------- */
