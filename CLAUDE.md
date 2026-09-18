@@ -131,6 +131,29 @@ mobil die häufigste Abbruchstelle. Nebeneffekt: Google bekommt die Sprungmarken
   die drei `disclosure.html` und die internen Werkzeuge.
 - `scripts/check-toc.py` prüft das mit, Punkt 13 im Konsistenz-Check.
 
+## Weiterlesen-Block (`nav.related`) — generiert, nie von Hand
+Am Ende jeder Seite stehen drei thematisch passende Verweise plus „Alle Anlässe". Grund:
+Im September 2026 verlinkte **kein Artikel** auf neun der Seiten (brunch, casino, geburtstag,
+oktoberfest, saison-deko und drei Mädelsabend-Guides) — sie waren nur über die Startseite
+erreichbar. Vier Seiten hatten gar keinen ausgehenden Link: wer dort ankam, hatte als einzigen
+Weg weiter den Zurück-Button. Die handgemachten „Weitere Anlässe"-Absätze gab es nur auf zehn
+Seiten und zeigten fast alle auf dieselben zwei Ziele.
+
+- Gebaut von `scripts/build-related.py`. **Niemals von Hand bearbeiten** — der Block steht
+  zwischen `<!-- RELATED:START … -->` und `<!-- RELATED:END -->` und wird bei jedem Lauf
+  komplett ersetzt.
+- **Wie die Ziele entstehen:** Jede Seite gehört zu einem Thema (`THEMA`). Innerhalb eines
+  Themas bilden die Seiten einen **Ring** — jede verlinkt auf die beiden nächsten. Ein Ring
+  kann per Konstruktion keine Waise enthalten. Der dritte Link geht reihum ins Partner-Thema
+  (`PARTNER`), damit die Ringe nicht voneinander abgeschnitten sind.
+- **Neue Seite:** Slug in `NAME` (kurzer Linktext — die `<h1>` sind für eine Kachel zu lang)
+  **und** in das passende `THEMA` eintragen, dann `python3 scripts/build-related.py`.
+  Ohne Eintrag bekommt die Seite weder Block noch eingehende Links.
+- Links immer **absolut** (`/casino/`). Die alten Blöcke nutzten `../casino/` und
+  `../index.html` — auf den Guide-Unterseiten zeigt das eine Ebene daneben.
+- `scripts/check-related.py` prüft das mit, Punkt 14 im Konsistenz-Check: Block aktuell,
+  keine Waisen, kein interner Link auf eine Datei, die es nicht gibt.
+
 ## Newsletter (`div.subscribe`) — erst mit echtem Formular
 Bis September 2026 stand auf genau einer Seite (`oktoberfest/`) ein Anmeldekasten mit
 `<form action="#" method="post">`. Der schickt beim Absenden auf dieselbe Seite zurück: jede

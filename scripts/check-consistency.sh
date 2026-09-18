@@ -102,6 +102,15 @@ else
   else
     note "Inhaltsverzeichnisse stimmen nicht:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 14) Jede Seite ist aus dem Artikeltext heraus erreichbar und verlinkt weiter.
+#     Eine Seite ohne eingehenden Link findet nur, wer ueber die Startseite
+#     kommt; eine ohne ausgehenden endet fuer den Leser im Zurueck-Button.
+  if out=$(python3 scripts/check-related.py 2>&1); then
+    echo "  ✓ Weiterlesen-Blocks sind aktuell, keine Waisen"
+  else
+    note "Interne Verlinkung stimmt nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

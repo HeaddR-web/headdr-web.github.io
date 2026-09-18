@@ -943,6 +943,46 @@ article [id] { scroll-margin-top: 90px; }
 }
 
 /* ---------- Subscribe ---------- */
+/* Weiterlesen-Block am Artikelende. Vorher endeten vier Seiten ohne einen
+   einzigen ausgehenden Link und neun bekamen von keinem Artikel einen
+   eingehenden - wer dort ankam, hatte als Weg weiter nur den Zurueck-Button.
+   Erzeugt von scripts/build-related.py. */
+.related {
+  margin: 48px 0 8px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.related .rel-head {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.related ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.related a {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-strong);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.related a::after { content: " \2192"; color: var(--muted); }
+.related a:hover { border-color: var(--rose); color: var(--rose); }
+.related a:hover::after { color: var(--rose); }
+.related a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
 /* Newsletter-Kasten. Steht derzeit auf keiner Seite: das einzige Exemplar
    (oktoberfest/) hatte action="#" und hat jede eingegebene Adresse
    stillschweigend verworfen - schlimmer als kein Formular, weil der Leser
