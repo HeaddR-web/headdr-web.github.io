@@ -93,6 +93,15 @@ else
   else
     note "Werbeplaetze stimmen nicht:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 13) Das Inhaltsverzeichnis passt zu den Ueberschriften und steht unter der
+#     Einkaufsliste. Stimmt es nicht, schickt es den Leser auf Abschnitte, die
+#     es nicht mehr gibt; steht es zu weit oben, verdraengt es den Kaufweg.
+  if out=$(python3 scripts/check-toc.py 2>&1); then
+    echo "  ✓ Inhaltsverzeichnisse sind aktuell"
+  else
+    note "Inhaltsverzeichnisse stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

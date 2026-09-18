@@ -134,7 +134,14 @@ def main() -> int:
         block = render(anlass, items)
         without = BLOCK_RE.sub("", html)
         # Der Block gehoert zwischen Einleitung und erste Kapitel-Ueberschrift.
-        pos = without.find("        <h2")
+        # Steht dort schon das Inhaltsverzeichnis (scripts/build-toc.py), muss die
+        # Einkaufsliste davor - sonst schieben sich beide Generatoren gegenseitig
+        # nach unten und der Konsistenz-Check wird abwechselnd rot.
+        pos = without.find("<!-- TOC:START")
+        if pos >= 0:
+            pos = without.rfind("\n", 0, pos) + 1
+        else:
+            pos = without.find("        <h2")
         if pos < 0:
             print(f"{slug}: kein <h2> gefunden - uebersprungen")
             return 1

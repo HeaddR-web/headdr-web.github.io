@@ -1,0 +1,4 @@
+# Python-Bytecode der Wartungsskripte in scripts/ - reine Nebenprodukte,
+# gehoeren nicht ins Repo (bis September 2026 lagen zwei davon versioniert drin).
+__pycache__/
+*.pyc

@@ -785,6 +785,58 @@ article a {
 /* Steht direkt unter der Einleitung, damit die Empfehlungen nicht erst bei
    40 % Seitentiefe auftauchen. Bewusst kompakt und textlastig: Der Block soll
    den Fliesstext anreissen, nicht ersetzen. */
+/* Inhaltsverzeichnis. Die Artikel haben vier bis neun Abschnitte; ohne das
+   Verzeichnis sieht der Leser beim Ankommen nur die Einleitung und muss raten,
+   ob sein Thema ueberhaupt vorkommt. Erzeugt von scripts/build-toc.py. */
+.toc {
+  margin: 0 0 34px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.toc .toc-title {
+  margin: 0 0 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: 7px;
+}
+.toc li {
+  counter-increment: toc;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+.toc li::before {
+  content: counter(toc);
+  min-width: 1.15em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--rose);
+}
+.toc a {
+  color: var(--ink-strong);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.toc a:hover { border-bottom-color: var(--rose); }
+.toc a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+/* Damit der Sprung aus dem Verzeichnis die Ueberschrift nicht unter den
+   Seitenkopf schiebt. Gilt auch fuer die Pinterest-Anker (#cat-*). */
+article [id] { scroll-margin-top: 90px; }
+
 .quickbuy {
   background: var(--paper);
   border: 1px solid var(--line);

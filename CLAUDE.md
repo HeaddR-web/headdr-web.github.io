@@ -43,7 +43,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 2. `<header class="site">`: Brand `<a class="brand" href="/">BeThatHost</a>` + Nav mit genau
    zwei Links: `Alle Anlässe` → `/`, `Über uns` → `/ueber-uns.html` (absolute Pfade, einheitlich auf allen Ebenen).
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
-   Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), thematische Abschnitte mit
+   Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), **Inhaltsverzeichnis**
+   (`<nav class="toc">`, siehe unten), thematische Abschnitte mit
    `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten), `<div class="subscribe">`.
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`)
    + Cookie-Einstellungen-Button (siehe „Cookie-Consent" unten).
@@ -104,6 +105,29 @@ Fließtext auf — wer vorher abspringt (mobil die Mehrheit), sieht nie ein Prod
   bekommt sie keinen Block.
 - Picks mit dem Label `Optional` (Kaufratgeber-Verweise) bleiben bewusst draußen — die Liste ist
   für Direktkäufe.
+
+## Inhaltsverzeichnis (`nav.toc`) — generiert, nie von Hand
+Unter der Einkaufsliste steht auf jeder Seite mit mindestens vier Abschnitten ein
+Sprungverzeichnis. Grund: Die Artikel haben vier bis neun Abschnitte, der Leser sah beim
+Ankommen aber nur die Einleitung und musste raten, ob sein Thema überhaupt vorkommt —
+mobil die häufigste Abbruchstelle. Nebeneffekt: Google bekommt die Sprungmarken für Sitelinks.
+
+- Gebaut von `scripts/build-toc.py` aus den `<h2>` des Inhaltsbereichs. **Niemals von Hand
+  bearbeiten** — der Block steht zwischen `<!-- TOC:START … -->` und `<!-- TOC:END -->` und
+  wird bei jedem Lauf komplett ersetzt.
+- Nach **jeder** Änderung an den `<h2>` einer Seite (neu, umbenannt, gelöscht):
+  `python3 scripts/build-toc.py`
+- **Bestehende `id`-Attribute werden nie angefasst.** Die 65 `cat-*`-Anker stecken in den
+  Pinterest-Ziel-URLs (`/casino/?pin=pokerset#cat-pokerset`); ein umbenannter Anker macht
+  jeden dieser Pins kaputt. Fehlende ids ergänzt das Skript, vorhandene bleiben.
+- **Reihenfolge ist Pflicht: Einkaufsliste → Verzeichnis → erstes `<h2>`.** Die Liste ist der
+  einzige Kaufweg above the fold; alles, was sie nach unten schiebt, kostet Umsatz. Beide
+  Generatoren zielen deshalb aufeinander: `build-quickbuy.py` setzt vor `<!-- TOC:START`,
+  `build-toc.py` hinter `<!-- QUICKBUY:END -->` — egal welches Skript zuletzt läuft.
+- Unter vier Abschnitten (`MIN_ABSCHNITTE`) bekommt eine Seite bewusst kein Verzeichnis,
+  dort steht es dem Leser nur im Weg. Ausgenommen sind außerdem Startseite, Rechtstexte,
+  die drei `disclosure.html` und die internen Werkzeuge.
+- `scripts/check-toc.py` prüft das mit, Punkt 13 im Konsistenz-Check.
 
 ## Affiliate-Konvention
 Jeder Produktlink: `rel="sponsored nofollow" target="_blank"`, Amazon-Tag **`cozylore-21`**,
