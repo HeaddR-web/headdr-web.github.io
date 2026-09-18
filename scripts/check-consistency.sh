@@ -59,8 +59,8 @@ else
   fi
 
 # 9) Jeder Affiliate-Link traegt die fuer seinen Ordner vorgesehene Tracking-ID
-#    (scripts/tracking-ids.json). Faengt getippte/verlorene Tags ab - ein Link mit
-#    falschem oder fehlendem tag= bringt keine Provision.
+#    (scripts/tracking-ids.json), und jeder rel="sponsored"-Link hat ueberhaupt eins.
+#    Ein Link mit falschem oder fehlendem tag= bringt keine Provision.
   if out=$(python3 scripts/set-tracking-ids.py --check 2>&1); then
     echo "  ✓ Alle Affiliate-Links tragen die vorgesehene Tracking-ID"
   else
