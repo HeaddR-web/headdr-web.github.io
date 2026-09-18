@@ -186,10 +186,17 @@
         border-radius: 999px; padding: 9px 18px; font-size: 0.9rem; font-weight: 600;
       }
 
+      /* Werbeplatz: unsichtbar, solange consent.js nichts eingesetzt hat. */
+      .ad-slot:empty { display: none; }
       .ad-slot {
-        margin: 10px 0 40px; padding: 22px; text-align: center; border: 1px dashed var(--line);
-        border-radius: 8px; color: var(--muted); font-size: 0.78rem; background: var(--paper);
+        margin: 10px 0 40px; padding: 14px; text-align: center;
+        border: 1px solid var(--line); border-radius: 8px; background: var(--paper);
       }
+      .ad-slot .ad-label {
+        display: block; margin: 0 0 8px; color: var(--muted);
+        font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+      }
+      .ad-slot ins { display: block; }
 
       footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
       footer.site .inner { max-width: var(--max); margin: 0 auto; padding: 32px 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -386,6 +393,8 @@
         </div>
 
       </section>
+
+      <div class="ad-slot wrap"></div>
 
       <section id="mottopartys" class="occasions wrap">
         <p class="sec-label">Mottopartys · für den besonderen Anlass</p>

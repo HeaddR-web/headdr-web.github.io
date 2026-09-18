@@ -84,6 +84,33 @@ else
   else
     note "Pick-Karten unvollstaendig:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 12) Jede Inhaltsseite hat genau einen Werbeplatz, und der ist im Quelltext leer.
+#     Fehlt er, kann AdSense auf der Seite nichts ausliefern; steht Text darin,
+#     sieht jeder Besucher dauerhaft einen Kasten mit einer Baustellen-Notiz.
+  if out=$(python3 scripts/check-ads.py 2>&1); then
+    echo "  ✓ Werbeplaetze sitzen auf allen Inhaltsseiten"
+  else
+    note "Werbeplaetze stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
+
+# 13) Das Inhaltsverzeichnis passt zu den Ueberschriften und steht unter der
+#     Einkaufsliste. Stimmt es nicht, schickt es den Leser auf Abschnitte, die
+#     es nicht mehr gibt; steht es zu weit oben, verdraengt es den Kaufweg.
+  if out=$(python3 scripts/check-toc.py 2>&1); then
+    echo "  ✓ Inhaltsverzeichnisse sind aktuell"
+  else
+    note "Inhaltsverzeichnisse stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
+
+# 14) Jede Seite ist aus dem Artikeltext heraus erreichbar und verlinkt weiter.
+#     Eine Seite ohne eingehenden Link findet nur, wer ueber die Startseite
+#     kommt; eine ohne ausgehenden endet fuer den Leser im Zurueck-Button.
+  if out=$(python3 scripts/check-related.py 2>&1); then
+    echo "  ✓ Weiterlesen-Blocks sind aktuell, keine Waisen"
+  else
+    note "Interne Verlinkung stimmt nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

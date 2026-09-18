@@ -785,6 +785,58 @@ article a {
 /* Steht direkt unter der Einleitung, damit die Empfehlungen nicht erst bei
    40 % Seitentiefe auftauchen. Bewusst kompakt und textlastig: Der Block soll
    den Fliesstext anreissen, nicht ersetzen. */
+/* Inhaltsverzeichnis. Die Artikel haben vier bis neun Abschnitte; ohne das
+   Verzeichnis sieht der Leser beim Ankommen nur die Einleitung und muss raten,
+   ob sein Thema ueberhaupt vorkommt. Erzeugt von scripts/build-toc.py. */
+.toc {
+  margin: 0 0 34px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.toc .toc-title {
+  margin: 0 0 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: 7px;
+}
+.toc li {
+  counter-increment: toc;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+.toc li::before {
+  content: counter(toc);
+  min-width: 1.15em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--rose);
+}
+.toc a {
+  color: var(--ink-strong);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.toc a:hover { border-bottom-color: var(--rose); }
+.toc a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+/* Damit der Sprung aus dem Verzeichnis die Ueberschrift nicht unter den
+   Seitenkopf schiebt. Gilt auch fuer die Pinterest-Anker (#cat-*). */
+article [id] { scroll-margin-top: 90px; }
+
 .quickbuy {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -856,18 +908,89 @@ article a {
 }
 
 /* ---------- Ad slot ---------- */
+/* Werbeplatz. Solange nichts darin steht, ist er nicht da: ein leerer
+   gestrichelter Kasten auf jeder Seite waere fuer den Leser nur eine Luecke
+   mit der Aufschrift "hier fehlt etwas". Erst wenn consent.js nach der
+   Einwilligung eine Anzeige eingesetzt hat, bekommt der Platz Abstand,
+   Rahmen und die Kennzeichnung. */
+.ad-slot:empty {
+  display: none;
+}
+
 .ad-slot {
   margin: 34px 0;
-  padding: 22px;
+  padding: 14px;
   text-align: center;
-  border: 1px dashed var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  color: var(--muted);
-  font-size: 0.78rem;
   background: var(--paper);
 }
 
+/* Kennzeichnungspflicht fuer Werbung (§ 6 Abs. 1 Nr. 1 TMG / DDG, § 5a UWG):
+   bezahlte Anzeigen muessen als solche erkennbar sein, wenn sie neben
+   redaktionellem Text stehen. */
+.ad-slot .ad-label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ad-slot ins {
+  display: block;
+}
+
 /* ---------- Subscribe ---------- */
+/* Weiterlesen-Block am Artikelende. Vorher endeten vier Seiten ohne einen
+   einzigen ausgehenden Link und neun bekamen von keinem Artikel einen
+   eingehenden - wer dort ankam, hatte als Weg weiter nur den Zurueck-Button.
+   Erzeugt von scripts/build-related.py. */
+.related {
+  margin: 48px 0 8px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.related .rel-head {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.related ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.related a {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-strong);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.related a::after { content: " \2192"; color: var(--muted); }
+.related a:hover { border-color: var(--rose); color: var(--rose); }
+.related a:hover::after { color: var(--rose); }
+.related a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+/* Newsletter-Kasten. Steht derzeit auf keiner Seite: das einzige Exemplar
+   (oktoberfest/) hatte action="#" und hat jede eingegebene Adresse
+   stillschweigend verworfen - schlimmer als kein Formular, weil der Leser
+   glaubt, angemeldet zu sein, und die Abfrage ohne genannten Empfaenger
+   ausserdem in der Datenschutzerklaerung fehlte. Die Regeln bleiben hier,
+   damit der Kasten zurueckkann, sobald ein echtes Formular (beehiiv,
+   MailerLite o. ae.) dahinterhaengt - dann gehoert er auf alle Anlass-Seiten.
+*/
 .subscribe {
   background: var(--paper);
   border: 1px solid var(--line);
