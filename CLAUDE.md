@@ -34,7 +34,9 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   `@font-face` in `fonts.css` ergänzen — nie den CDN-Link selbst einbinden.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
-1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>`, meta description, canonical,
+1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>`, meta description
+   (**max. 160 Zeichen** — Google schneidet deutsche Snippets bei rund 155-160 ab;
+   `scripts/check-meta.py` prüft das mit, Punkt 10 im Konsistenz-Check), canonical,
    og-Tags, **Article + FAQPage JSON-LD**, `/assets/fonts/fonts.css` (self-hosted, kein CDN),
    `/assets/style.css`, `/assets/motion.css`, AdSense-Verifizierungs-Meta (Skript selbst erst
    nach Consent, siehe Abschnitt „Cookie-Consent" unten).
@@ -98,6 +100,15 @@ Snack-Zubehör, Spiele, Fanartikel, Verbrauchsmaterial). **Keine geplanten Big-T
 (Beamer, teure Elektronik, Großmöbel) als „Unser Pick" mit direktem Kauf-CTA — niemand kauft so etwas
 spontan für eine Feier. Solche Posten höchstens als **optionalen Hinweis** mit Link zum passenden
 **Kaufratgeber** (`/ratgeber/…`, Label „Optional", CTA „Zum Kaufratgeber →"), nicht als Amazon-Direktlink.
+
+**Jede Karte braucht Text.** Label, `<h4>`, ein `<p>` mit dem Kaufargument (1-2 Sätze, warum
+genau das beim Gastgeben hilft), `<!-- AFFILIATE -->`, dann der CTA. Eine Karte ohne Beschreibung
+ist ein Kauf-Button ohne Grund zu klicken — im September 2026 waren 21 solcher Karten auf 10 Seiten
+unterwegs, alle nachträglich per Hand angehängt. **Zwei Karten derselben Seite dürfen nie auf
+dieselbe ASIN zeigen** (Kopierfehler; schickt den Leser garantiert auf das falsche Produkt).
+Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`) gilt dasselbe:
+`hp-label`, `hp-name`, **`hp-desc`** (ein kurzer Nutzen-Satz), `hp-btn`.
+`scripts/check-picks.py` prüft beide Kartentypen, Punkt 11 im Konsistenz-Check.
 
 ## Neue Anlass-/Motto-Seite anlegen
 1. Ordner + `index.html` exakt nach obiger Anatomie.
