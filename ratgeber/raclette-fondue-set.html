@@ -71,7 +71,16 @@
 
     <main>
       <article>
-        <a class="backlink" href="/">← Alle Anlässe</a>
+        <!-- BREADCRUMB:START — erzeugt von scripts/build-breadcrumb.py, nicht von Hand aendern -->
+        <nav class="breadcrumb" aria-label="Wo du gerade bist">
+          <a href="/">Start</a>
+          <a href="/#ratgeber">Kaufratgeber</a>
+          <span aria-current="page">Raclette &amp; Fondue</span>
+        </nav>
+        <script type="application/ld+json">
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://bethathost.de/"}, {"@type": "ListItem", "position": 2, "name": "Kaufratgeber", "item": "https://bethathost.de/#ratgeber"}, {"@type": "ListItem", "position": 3, "name": "Raclette & Fondue"}]}
+        </script>
+        <!-- BREADCRUMB:END -->
 
         <img class="lead" src="/assets/img/hf_20260619_140133_9c245de8-e0ad-4025-b377-83f15b85672d.jpg" alt="Gemütliches Raclette- und Fondue-Dinner für zwei mit Kerzen und Wein" />
 
