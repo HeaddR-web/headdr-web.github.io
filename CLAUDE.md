@@ -28,6 +28,12 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   Einwilligung (DSGVO Art. 6; vgl. LG München I, Urt. v. 20.01.2022, Az. 3 O
   17493/20). Jede Seite bindet stattdessen ein:
   `<link rel="stylesheet" href="/assets/fonts/fonts.css" />`
+  Davor stehen zwei **Preload-Zeilen** fuer die beiden Schnitte, die above the fold
+  gebraucht werden (`fraunces.woff2`, `hanken-grotesk.woff2`, jeweils mit `crossorigin`).
+  Grund: `fonts.css` ist ein eigenes Stylesheet, ohne Preload entdeckt der Browser die
+  `woff2` erst danach, tauscht die Schrift mitten im Aufbau und schiebt alles darunter
+  nach unten — gemessen **CLS 0,13** auf `watchparty/` und `cocktailabend/` (Schwelle 0,1).
+  Mit Preload: 0,01.
   Neue Schriftschnitte: mit modernem Browser-User-Agent von
   `fonts.googleapis.com/css2?family=...` abrufen, die `woff2`-URLs
   (`fonts.gstatic.com`) daraus greifen, nach `/assets/fonts/` herunterladen,
@@ -203,10 +209,57 @@ anklickt, landet auf einer Seite ohne die Antwort und ist sofort wieder weg.
 - Nach **jeder** Änderung am `FAQPage`-JSON-LD:
   `python3 scripts/build-faq.py && python3 scripts/build-toc.py`
   Das Verzeichnis muss hinterher, weil der Block eine neue `<h2 id="haeufige-fragen">` mitbringt.
+- **Wo der Block landet:** ans Ende des Inhalts-`<article>`. Produktkarten (`cat-card`,
+  `post-card`) zaehlen dabei nicht als Artikel — ein blosses „letztes `</article>`" traf auf
+  den Hub-Seiten die letzte Kachel, und die FAQ stand bis September 2026 mitten im
+  Kachelgitter (wo `app.js` sie beim Neuaufbau ersatzlos wegraeumte). Hub-Seiten haben gar
+  keinen Inhalts-`<article>`; dort geht der Block vor den Weiterlesen-Block.
 - Entfällt das JSON-LD, räumt das Skript den Block weg — eine Seite soll nie eine FAQ zeigen,
   die die Structured Data nicht mehr decken.
 - `scripts/check-faq.py` prüft beide Richtungen, Punkt 15 im Konsistenz-Check: JSON-LD ohne
   sichtbaren Block **und** sichtbarer Block ohne JSON-LD.
+
+## Kachelbilder (`assets/img/kachel/`, `assets/img/hero/`) — generiert, nie von Hand
+Die Kategorie-Kacheln (Startseite `a.occ-media img`, Hubs `div.cover` und `div.thumb`) zeigen
+ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die Originale mit
+1264 × 848 bis 1600 × 2385 Pixeln — auf `girlsnight/` allein 2,5 MB Kacheln, gemessener
+**LCP 6,2 s** auf gedrosseltem Mobilfunk (Schwelle 2,5 s), auf der Startseite 4,5 s.
+
+- Gebaut von `scripts/build-images.py`. Die Ableitungen liegen in `/assets/img/kachel/`
+  (`<stamm>-480.jpg`, `<stamm>-960.jpg`, zentrierter 4:3-Ausschnitt) und `/assets/img/hero/`
+  (`<stamm>-1280.jpg`, ohne Zuschnitt). **Die Originale bleiben unangetastet** — 29 von ihnen
+  sind zugleich `og:image` oder Lead-Bild, ein Verkleinern an Ort und Stelle wuerde die
+  Social-Vorschauen zerstoeren.
+- Der Dateiname der Ableitung traegt den Stamm des Originals. Deshalb findet das Skript das
+  Original auch dann wieder, wenn im Markup laengst die Ableitung steht — der Lauf ist
+  beliebig oft wiederholbar. Nach jedem neuen oder getauschten Kachelbild:
+  `python3 scripts/build-images.py`
+- **Kacheln sind echte `<img loading="lazy">`, nie CSS-Hintergruende.** Ein Hintergrund laesst
+  sich nicht verzoegern; auf `girlsnight/` luden so elf Kacheln sofort mit. Das `alt` bleibt
+  leer: die Kachel wiederholt nur die Ueberschrift daneben.
+- Der 4:3-Zuschnitt aendert sichtbar nichts. `object-fit: cover` und `background-size: cover`
+  schneiden beide zentriert; ein zentrierter Zuschnitt auf 4:3 mit anschliessendem Zuschnitt
+  auf das Kachel-Format ergibt dasselbe Bild wie ein Zuschnitt direkt aus dem Original.
+- `scripts/check-images.py` prueft das mit, Punkt 17 im Konsistenz-Check.
+
+Gemessen (Chromium, 390 × 844, 1,6 Mbit/s, 150 ms Latenz), vorher → nachher:
+`/` 4,51 s → 1,70 s · `/girlsnight/` 6,23 s → 2,51 s · `/cocktailabend/` 4,98 s → 2,17 s ·
+`/watchparty/` 6,00 s → 2,95 s. Seitengewicht `/girlsnight/`: 2520 KB → 466 KB.
+
+## Hub-Seiten: `app.js` rendert nur als Rueckfallebene
+`cocktailabend/app.js`, `girlsnight/app.js` und `watchparty/app.js` bauen das Kachelgitter
+(`#build-grid`) aus einer eingebetteten Liste. Bis September 2026 warfen sie dabei bei jedem
+Aufruf das statisch vorgerenderte Gitter weg und bauten es neu — das kostete dreifach:
+das Layout sprang sichtbar (**CLS 0,18** auf `watchparty/`), die Kacheln wurden ein zweites
+Mal geladen (in voller Aufloesung statt als Ableitung), und **alles, was sonst noch im
+Gitter stand, verschwand fuer jeden Besucher mit JavaScript** — auf `cocktailabend/` und
+`watchparty/` war das der komplette FAQ-Abschnitt, waehrend das `FAQPage`-JSON-LD ihn
+weiterhin behauptete. Dazu fehlte den Zweit- und Dritt-Picks im JS-Aufbau die `hp-desc`,
+die im statischen Markup steht.
+
+**Regel:** `render()` baut nur, wenn `#build-grid` noch keine `.cat-card` enthaelt. Was im
+HTML steht, gewinnt. Aendert sich eine Kategorie, gehoert sie in **beides** — in das
+statische Markup und in die Liste in `app.js`.
 
 ## Newsletter (`div.subscribe`) — erst mit echtem Formular
 Bis September 2026 stand auf genau einer Seite (`oktoberfest/`) ein Anmeldekasten mit
@@ -259,7 +312,8 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 3. Karte auf der Startseite ergänzen (`#anlaesse` für Anlässe, `#mottopartys` für Mottos).
 4. URL in `sitemap.xml` eintragen.
 5. Generatoren laufen lassen: `python3 scripts/build-quickbuy.py`, `build-toc.py`,
-   `build-related.py`, `build-faq.py`, `build-breadcrumb.py`.
+   `build-related.py`, `build-faq.py`, `build-breadcrumb.py`, `build-images.py`,
+   `build-sitemap-lastmod.py`.
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
@@ -302,7 +356,19 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
 
 ## Workflow / Konventionen
-- **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin).
+- **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin) und
+  `python3 scripts/build-sitemap-lastmod.py` — das Skript holt jedes `<lastmod>` aus dem
+  letzten Commit der jeweiligen Datei. Bis September 2026 standen dort durchgehend
+  Juni-/Juli-Daten, obwohl alle Seiten im September ueberarbeitet worden waren; Google
+  ignoriert `<lastmod>` komplett, sobald die Angabe erkennbar nicht stimmt.
+- **Python-Abhaengigkeiten stehen in `scripts/requirements.txt`.** Aktuell nur Pillow
+  (fuer `build-images.py` und damit Punkt 17). Ein neues Modul gehoert dort hinein,
+  sonst faellt es erst in CI auf: lokal ist es meist schon installiert, der Runner
+  bringt nur die Standardbibliothek mit. Genau so scheiterte der erste Lauf mit
+  Punkt 17 an `ModuleNotFoundError: No module named 'PIL'`.
+- **`paths:` in `.github/workflows/consistency.yml` deckt `scripts/**` mit ab.** Vorher
+  liefen bei einer reinen Skript-Aenderung gar keine Checks — der Guard schaltete sich
+  genau dann ab, wenn der Guard selbst geaendert wurde.
 - Branch je Aufgabe, **kein** Direkt-Push auf `main` ohne PR.
 - Commit-Präfixe: `content:`, `design:`, `feat:`, `fix:`, `chore:`.
 - Keine Secrets committen (API-Keys etc. liegen als GitHub-Secrets).

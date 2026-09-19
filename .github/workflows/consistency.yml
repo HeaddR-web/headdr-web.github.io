@@ -10,12 +10,16 @@ on:
     paths:
       - "**/*.html"
       - "assets/style.css"
-      - "scripts/check-consistency.sh"
+      - "assets/img/**"
+      - "scripts/**"
+      - ".github/workflows/consistency.yml"
   pull_request:
     paths:
       - "**/*.html"
       - "assets/style.css"
-      - "scripts/check-consistency.sh"
+      - "assets/img/**"
+      - "scripts/**"
+      - ".github/workflows/consistency.yml"
   workflow_dispatch: {}
 
 jobs:
@@ -23,5 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Punkt 17 (scripts/check-images.py) laedt scripts/build-images.py, das
+      # Pillow braucht. Ohne diesen Schritt scheitert der Check mit
+      # "ModuleNotFoundError: No module named 'PIL'" — und zwar erst in CI,
+      # weil Pillow lokal meist schon installiert ist.
+      - name: Python-Abhaengigkeiten
+        run: python3 -m pip install --disable-pip-version-check --quiet -r scripts/requirements.txt
       - name: Konsistenz-Check
         run: bash scripts/check-consistency.sh

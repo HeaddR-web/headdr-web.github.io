@@ -125,9 +125,33 @@
     return d.firstChild;
   }
 
+  // Kachel-Ableitung zu einem Originalbild (siehe scripts/build-images.py).
+  function kachel(src, breite) {
+    return src.replace(/^\/assets\/img\/(.+)\.jpg$/, "/assets/img/kachel/$1-" + breite + ".jpg");
+  }
+
+  function sprungZumAnker() {
+    if (location.hash) {
+      var t = document.getElementById(location.hash.slice(1));
+      if (t) { t.scrollIntoView(); }
+      else { var g = document.getElementById("build-grid"); if (g) setTimeout(function(){ g.scrollIntoView({ behavior: "auto", block: "start" }); }, 80); }  // entfernte Kategorie -> Produktbereich
+  }
+  }
+
   function render() {
     var grid = document.getElementById("build-grid");
     if (!grid) return;
+    // Das Gitter steht schon als HTML in der Seite (fuer Crawler und ohne JS).
+    // Es hier wegzuwerfen und neu zu bauen kostete bis September 2026 gleich
+    // dreifach: das Layout sprang sichtbar (CLS 0,18 auf watchparty/), die
+    // Kacheln wurden ein zweites Mal geladen - in voller Aufloesung statt als
+    // Ableitung -, und alles, was build-faq.py in dasselbe Gitter geschrieben
+    // hatte, verschwand fuer jeden Besucher mit JavaScript. Also nur noch
+    // rendern, wenn wirklich nichts da ist.
+    if (grid.querySelector(".cat-card")) {
+      sprungZumAnker();
+      return;
+    }
     grid.innerHTML = "";
     CATEGORIES.forEach(function (cat) {
       var picks = cat.products
@@ -145,7 +169,10 @@
         .join("");
       var card = el(
         '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
-          '<div class="cover" style="background-image:url(\'' + cat.img + "')\">" +
+          '<div class="cover"><img src="' + kachel(cat.img, 960) +
+          '" srcset="' + kachel(cat.img, 480) + " 480w, " + kachel(cat.img, 960) +
+          ' 960w" sizes="(max-width: 700px) 100vw, 360px"' +
+          ' width="960" height="720" alt="" loading="lazy" fetchpriority="low" />' +
           '<span class="tag">' + esc(cat.name) + "</span>" +
           "</div>" +
           '<div class="cat-body">' +
@@ -158,11 +185,7 @@
       grid.appendChild(card);
     });
 
-    if (location.hash) {
-      var t = document.getElementById(location.hash.slice(1));
-      if (t) { t.scrollIntoView(); }
-      else { var g = document.getElementById("build-grid"); if (g) setTimeout(function(){ g.scrollIntoView({ behavior: "auto", block: "start" }); }, 80); }  // entfernte Kategorie -> Produktbereich
-    }
+    sprungZumAnker();
   }
 
   document.addEventListener("DOMContentLoaded", render);

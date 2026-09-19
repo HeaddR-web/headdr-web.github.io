@@ -65,6 +65,31 @@ def baue(paare):
     return "\n".join(zeilen) + "\n"
 
 
+ARTIKEL_AUF_RE = re.compile(r"<article\b[^>]*>")
+KARTE_RE = re.compile(r'class="[^"]*\b(?:cat-card|post-card)\b')
+
+
+def artikel_ende(html):
+    """Position des </article>, das den Inhalts-Artikel schliesst.
+
+    Ein blosses rfind("</article>") trifft auf den Hub-Seiten die letzte
+    Produktkarte im Kachelgitter: bis September 2026 stand die FAQ von
+    cocktailabend/ und watchparty/ deshalb mitten zwischen zwei Karten - und
+    app.js raeumte sie beim Neuaufbau des Gitters ersatzlos weg. Karten-
+    <article> zaehlen hier also nicht; bleibt keines uebrig, entscheidet
+    </main>.
+    """
+    stapel = []
+    letzte = -1
+    for m in re.finditer(r"<article\b[^>]*>|</article>", html):
+        if m.group(0).startswith("</"):
+            if stapel and not KARTE_RE.search(stapel.pop()):
+                letzte = m.start()
+        else:
+            stapel.append(m.group(0))
+    return letzte
+
+
 def verarbeite(pfad, schreiben=True):
     html = open(pfad, encoding="utf-8").read()
     paare = fragen(html)
@@ -79,7 +104,11 @@ def verarbeite(pfad, schreiben=True):
     ohne = ALT_RE.sub("", ohne)
     block = baue(paare)
 
-    ende = ohne.rfind("</article>")
+    ende = artikel_ende(ohne)
+    if ende < 0:
+        # Hub-Seiten haben keinen Inhalts-<article>; dort gehoert die FAQ vor
+        # den Weiterlesen-Block, sonst haengt sie hinter dessen Kacheln.
+        ende = ohne.find("<!-- RELATED:START")
     if ende < 0:
         ende = ohne.rfind("</main>")
     if ende < 0:
