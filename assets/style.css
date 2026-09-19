@@ -694,6 +694,61 @@ article a {
   border-color: var(--rose);
 }
 
+/* ---------- Brotkrumen (erzeugt von scripts/build-breadcrumb.py) ---------- */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.breadcrumb a,
+.breadcrumb span {
+  color: inherit;
+  text-decoration: none;
+}
+.breadcrumb a {
+  border-bottom: 1px solid var(--line);
+}
+.breadcrumb a:hover {
+  color: var(--rose);
+  border-color: var(--rose);
+}
+.breadcrumb a:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+/* Das Trennzeichen steckt im CSS, nicht im Markup: So liest ein Screenreader
+   die Kette als Wortfolge und nicht als "Casino Groesser-als Abend". */
+.breadcrumb > * + *::before {
+  content: "\203A";
+  margin-right: 6px;
+  color: var(--line);
+}
+.breadcrumb [aria-current="page"] {
+  color: var(--ink);
+}
+/* Im Hero der Hub-Seiten steht die Zeile auf einem dunklen Foto. */
+.hero .breadcrumb {
+  margin: 0 0 12px;
+  color: var(--sand-light);
+}
+.hero .breadcrumb a {
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+.hero .breadcrumb a:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.hero .breadcrumb > * + *::before {
+  color: rgba(255, 255, 255, 0.5);
+}
+.hero .breadcrumb [aria-current="page"] {
+  color: #fff;
+}
+
 /* ---------- Affiliate pick ---------- */
 .pick {
   background: var(--paper);

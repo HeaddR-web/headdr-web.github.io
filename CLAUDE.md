@@ -42,7 +42,7 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
    nach Consent, siehe Abschnitt „Cookie-Consent" unten).
 2. `<header class="site">`: Brand `<a class="brand" href="/">BeThatHost</a>` + Nav mit genau
    zwei Links: `Alle Anlässe` → `/`, `Über uns` → `/ueber-uns.html` (absolute Pfade, einheitlich auf allen Ebenen).
-3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
+3. `<article>`: generierte **Brotkrume** (`<nav class="breadcrumb">`, siehe unten), Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
    Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), **Inhaltsverzeichnis**
    (`<nav class="toc">`, siehe unten), thematische Abschnitte mit
    `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten), zum Schluss der
@@ -131,6 +131,32 @@ mobil die häufigste Abbruchstelle. Nebeneffekt: Google bekommt die Sprungmarken
   dort steht es dem Leser nur im Weg. Ausgenommen sind außerdem Startseite, Rechtstexte,
   die drei `disclosure.html` und die internen Werkzeuge.
 - `scripts/check-toc.py` prüft das mit, Punkt 13 im Konsistenz-Check.
+
+## Brotkrumen (`nav.breadcrumb`) — generiert, nie von Hand
+Ganz oben in jedem Artikel steht der Weg dorthin: `Start › Mottopartys › Casino-Abend`.
+Grund: Bis September 2026 stand dort ein einzelner Rückwärts-Link in **acht** verschiedenen
+Ausführungen (19× „Alle Anlässe", daneben „Zurück zur Ausstattung", „Zurück zur Snack-Liste"
+und vier weitere). Auf den Unterseiten fehlte die mittlere Ebene ganz: von der Pyjama-Party
+kam man zum Mädelsabend, aber der Weg zur Startseite war unsichtbar. Dazu der Auftritt in der
+Suche: ohne `BreadcrumbList` zeigt Google unter dem Titel die nackte URL.
+
+- Gebaut von `scripts/build-breadcrumb.py`. **Niemals von Hand bearbeiten** — der Block steht
+  zwischen `<!-- BREADCRUMB:START … -->` und `<!-- BREADCRUMB:END -->` und wird bei jedem Lauf
+  komplett ersetzt. Er enthält beides: die sichtbare Zeile **und** das `BreadcrumbList`-JSON-LD.
+- **Die Kategorie kommt aus der Startseite selbst.** In welchem `<section id="…">` die Karte
+  einer Seite steht, das ist ihre Kategorie (`#anlaesse` → „Anlässe", `#mottopartys` →
+  „Mottopartys", `#ratgeber` → „Kaufratgeber"). Verschiebt jemand eine Karte, wandert die
+  Brotkrume beim nächsten Lauf mit — es gibt keine zweite Liste, die veralten könnte.
+  Der Linktext kommt aus `NAME` in `build-related.py`, damit eine Seite nicht an zwei Stellen
+  anders heißt.
+- **Wo der Block landet:** Artikelseiten direkt hinter `<article>` (also über dem Lead-Bild),
+  Hub-Seiten in den `hero-inner`-Kasten über die Eyebrow-Zeile. Beides liegt innerhalb eines
+  Containers — außerhalb greift kein Seitenrand.
+- Der alte `<a class="backlink">` wird dabei ersetzt; er bleibt nur auf `/ueber-uns.html`, das
+  keine Brotkrume bekommt. Die CSS-Regel dafür bleibt deshalb in `/assets/style.css`.
+- Nach jeder Änderung an den Startseiten-Karten oder an `NAME`:
+  `python3 scripts/build-breadcrumb.py`
+- `scripts/check-breadcrumb.py` prüft das mit, Punkt 16 im Konsistenz-Check.
 
 ## Weiterlesen-Block (`nav.related`) — generiert, nie von Hand
 Am Ende jeder Seite stehen drei thematisch passende Verweise plus „Alle Anlässe". Grund:
@@ -232,7 +258,9 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 2. Hero-Bild (3:2, querformat), als `og:image` und Lead.
 3. Karte auf der Startseite ergänzen (`#anlaesse` für Anlässe, `#mottopartys` für Mottos).
 4. URL in `sitemap.xml` eintragen.
-5. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
+5. Generatoren laufen lassen: `python3 scripts/build-quickbuy.py`, `build-toc.py`,
+   `build-related.py`, `build-faq.py`, `build-breadcrumb.py`.
+6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
 - **RSS-Auto-Publish (Standardweg):** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +

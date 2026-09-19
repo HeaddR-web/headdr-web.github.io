@@ -120,6 +120,15 @@ else
   else
     note "FAQ-Auszeichnung ohne sichtbaren Inhalt:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 16) Die Brotkrume passt zu der Kategorie, in der die Karte auf der Startseite
+#     wirklich steht - sonst zeigt Google im Suchergebnis einen Pfad an, den es
+#     auf der Seite nicht gibt.
+  if out=$(python3 scripts/check-breadcrumb.py 2>&1); then
+    echo "  ✓ Brotkrumen passen zur Startseite"
+  else
+    note "Brotkrumen-Navigation stimmt nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

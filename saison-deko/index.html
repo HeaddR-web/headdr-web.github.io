@@ -71,7 +71,16 @@
 
     <main>
       <article>
-        <a class="backlink" href="/">← Alle Anlässe</a>
+        <!-- BREADCRUMB:START — erzeugt von scripts/build-breadcrumb.py, nicht von Hand aendern -->
+        <nav class="breadcrumb" aria-label="Wo du gerade bist">
+          <a href="/">Start</a>
+          <a href="/#anlaesse">Anlässe</a>
+          <span aria-current="page">Saison-Deko</span>
+        </nav>
+        <script type="application/ld+json">
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://bethathost.de/"}, {"@type": "ListItem", "position": 2, "name": "Anlässe", "item": "https://bethathost.de/#anlaesse"}, {"@type": "ListItem", "position": 3, "name": "Saison-Deko"}]}
+        </script>
+        <!-- BREADCRUMB:END -->
 
         <img class="lead" src="/assets/img/hf_20260619_140138_00ae988e-b750-41e0-86e7-6276d357ee01.jpg" alt="Gemütliche Herbst- und Winter-Deko mit Kerzen, Lichterketten, Strickdecke, Trockenblumen und Tannenzapfen" />
 

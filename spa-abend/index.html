@@ -71,7 +71,16 @@
 
     <main>
       <article>
-        <a class="backlink" href="/">← Alle Anlässe</a>
+        <!-- BREADCRUMB:START — erzeugt von scripts/build-breadcrumb.py, nicht von Hand aendern -->
+        <nav class="breadcrumb" aria-label="Wo du gerade bist">
+          <a href="/">Start</a>
+          <a href="/#anlaesse">Anlässe</a>
+          <span aria-current="page">Spa-Abend</span>
+        </nav>
+        <script type="application/ld+json">
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://bethathost.de/"}, {"@type": "ListItem", "position": 2, "name": "Anlässe", "item": "https://bethathost.de/#anlaesse"}, {"@type": "ListItem", "position": 3, "name": "Spa-Abend"}]}
+        </script>
+        <!-- BREADCRUMB:END -->
 
         <img class="lead" src="/assets/img/hf_20260619_131513_ca67c668-3988-47a8-ae10-e0a8c84dbc1b.jpg" alt="Spa-Abend zuhause: Kerzen, Handtücher, Gesichtsmasken, Gesichtsroller, Badebomben und Tee in warmen Tönen" />
 
