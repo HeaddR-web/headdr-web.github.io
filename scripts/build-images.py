@@ -33,13 +33,21 @@ ORIGINAL_DIR = "assets/img"
 KACHEL_DIR = "assets/img/kachel"
 HERO_DIR = "assets/img/hero"
 BREITEN = (480, 960)
-# Eigene Leiter fuer die kleinen Kacheln (div.cover/div.thumb): Sie sind auf
-# dem Desktop 360 CSS-Pixel breit und mobil hoechstens rund 360 (100vw minus
-# Seitenrand) - auf einem 2x-Display also genau 720. Die 960er-Stufe war auf
-# jedem Geraet zu gross; auf watchparty/ luden drei davon 246 KB, waehrend das
-# Hero-Bild - das LCP-Element - noch unterwegs war. Die grossen Karten der
-# Startseite (a.occ-media, 46vw) brauchen die 960 dagegen weiter.
-KACHEL_BREITEN = (480, 720)
+# Eigene Leiter fuer die kleinen Kacheln (div.cover/div.thumb). Nachgemessen
+# ueber zehn Viewports braucht so eine Kachel auf einem 2x-Display:
+#   320 px -> 572   390 px -> 712   430 px -> 792   600 px -> 1132
+#   700 px -> 1148  768 px -> 690   900 px -> 822  1024 px -> 946
+#  1280 px -> 676
+# Der Sprung bei 600-700 px kommt vom Gitter: minmax(330px, 1fr) fuellt dort
+# noch eine einzige Spalte, die Kachel ist also fast so breit wie der
+# Bildschirm. Ab 768 px sind es zwei Spalten und die Kachel wird wieder klein.
+# Deshalb 720 als mittlere Stufe (deckt 320, 390, 768 und ab 1280 punktgenau)
+# und 960 als obere (430 bis 1024). Ohne die 720 lud jedes Handy die 960er:
+# auf watchparty/ waren das drei Bilder mit 246 KB, die dem Hero-Bild - dem
+# LCP-Element - die Bandbreite nahmen, waehrend es noch unterwegs war.
+# Die grossen Karten der Startseite (a.occ-media, 46vw) haben ihre eigene
+# Leiter BREITEN; dort passt die 960 auf jeder Breite.
+KACHEL_BREITEN = (480, 720, 960)
 SEITE = (4, 3)
 # Die 1x-Stufe wird Pixel fuer Pixel gezeigt und bleibt scharf; die 2x-Stufe und
 # das Hero-Bild werden immer verkleinert dargestellt, da faellt weniger Qualitaet
@@ -63,7 +71,22 @@ HERO_MOBIL_BREITE = 800
 HERO_MOBIL_SEITE = (41, 50)
 HERO_MOBIL_MQ = "(max-width: 460px)"
 SIZES = "(max-width: 860px) 100vw, 46vw"
-SIZES_KACHEL = "(max-width: 700px) 100vw, 360px"
+# Die Angabe muss zu den Messwerten bei KACHEL_BREITEN passen, sonst waehlt der
+# Browser die falsche Stufe: "360px" stimmte zwar ab 1280 px, behauptete aber
+# auch bei 1024 px 360 CSS-Pixel, wo die Kachel in Wahrheit 473 breit ist.
+# Die Bruchstellen kommen aus dem Gitter selbst: repeat(auto-fill,
+# minmax(330px, 1fr)) mit 26 px Luecke in einem Container von Bildschirm
+# minus 34 px Seitenrand. Zwei Spalten passen ab 2*330+26 = 686 Container-
+# Pixeln, also ab 720 px Bildschirm; drei ab 1042, also ab 1076 px. Die
+# Kachel ist dann (Bildschirm - 34 - 26) / 2, das ist calc(50vw - 30px).
+#   <= 719 px   eine Spalte,  Bildschirm minus Seitenrand
+#   <= 1075 px  zwei Spalten, calc(50vw - 30px)
+#   darueber    drei Spalten, rund 360 px (der Container ist gedeckelt)
+# Auf zwei Pixel kommt es dabei an: mit 47vw statt calc(50vw - 30px) rechnet
+# der Browser bei 768 px 721,9 Geraetepunkte aus - zwei mehr als die 720er
+# Stufe hergibt - und laedt die 960er.
+SIZES_KACHEL = ("(max-width: 719px) calc(100vw - 34px), "
+                "(max-width: 1075px) calc(50vw - 30px), 360px")
 
 OCC_RE = re.compile(r'<a class="occ-media"[^>]*>.*?</a>', re.S)
 IMG_RE = re.compile(r'<img\s[^>]*?/?>', re.S)
@@ -154,7 +177,7 @@ def img_tag(alt_tag, stamm, zuerst):
 
 
 def kachel_breiten(stamm):
-    """1x- und 2x-Stufe einer kleinen Kachel (siehe KACHEL_BREITEN)."""
+    """Die Stufen einer kleinen Kachel (siehe KACHEL_BREITEN)."""
     with Image.open(original(stamm)) as im:
         max_b = zuschnitt(im).size[0]
     return tuple(b for b in KACHEL_BREITEN if b <= max_b) or (max_b,)
@@ -171,8 +194,9 @@ def kachel_img(stamm):
     alt bleibt leer - die Kachel wiederholt nur die Ueberschrift daneben,
     Screenreader sollen sie ueberspringen.
     """
-    klein, gross = kachel_breiten(stamm)
-    srcset = ", ".join(f"{url(stamm, b)} {b}w" for b in dict.fromkeys((klein, gross)))
+    breiten = kachel_breiten(stamm)
+    gross = breiten[-1]
+    srcset = ", ".join(f"{url(stamm, b)} {b}w" for b in breiten)
     return (
         f'<img src="{url(stamm, gross)}" srcset="{srcset}" sizes="{SIZES_KACHEL}"'
         f' width="{gross}" height="{int(round(gross * SEITE[1] / SEITE[0]))}"'

@@ -230,11 +230,22 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
   unangetastet** — 29 von ihnen sind zugleich `og:image` oder Lead-Bild, ein Verkleinern an
   Ort und Stelle wuerde die Social-Vorschauen zerstoeren.
 - **Zwei Kachel-Leitern, nicht eine.** Die kleinen Kacheln der Hubs (`div.cover`, `div.thumb`)
-  sind hoechstens 360 CSS-Pixel breit, auf einem 2x-Display also 720 — dafuer steht
-  `KACHEL_BREITEN = (480, 720)`. Die grossen Karten der Startseite (`a.occ-media`, 46vw)
-  brauchen weiterhin `BREITEN = (480, 960)`. Die 960er-Stufe war auf den Hubs auf jedem Geraet
-  zu gross: auf `watchparty/` luden drei davon 246 KB, waehrend das Hero-Bild — das
-  LCP-Element — noch unterwegs war.
+  haben `KACHEL_BREITEN = (480, 720, 960)`, die grossen Karten der Startseite
+  (`a.occ-media`) `BREITEN = (480, 960)`. Die 720er-Stufe gibt es, weil ohne sie **jedes
+  Handy die 960er** lud: auf `watchparty/` waren das drei Bilder mit 246 KB, die dem
+  Hero-Bild — dem LCP-Element — die Bandbreite nahmen, waehrend es noch unterwegs war.
+- **`SIZES_KACHEL` muss zum Gitter passen, auf zwei Pixel genau.** Die Kachelbreite springt
+  mit den Spalten: `repeat(auto-fill, minmax(330px, 1fr))` mit 26 px Luecke fuellt bis 719 px
+  Bildschirm **eine** Spalte (die Kachel ist dann fast so breit wie der Bildschirm), ab 720 px
+  zwei, ab 1076 px drei. Nachgemessen braucht sie auf einem 2x-Display 572 (320 px) bis 1148
+  (700 px) Geraetepunkte. Steht in `sizes` eine Zahl, die davon abweicht, laedt der Browser
+  die falsche Stufe — mit `47vw` statt `calc(50vw - 30px)` rechnet er bei 768 px 721,9
+  Punkte aus, zwei mehr als die 720er Stufe hergibt, und nimmt die 960er. Nach jeder
+  Aenderung am Gitter-CSS also nachmessen, nicht schaetzen.
+- **Die Stufe darf zu gross sein, nie zu klein.** `.cover` und `.thumb` teilen sich ein
+  `sizes`, ihre Gitter brechen aber unterschiedlich um; bei 700 und 1024 px laedt `.thumb`
+  deshalb die 960er, wo die 720er reichte. Das ist die richtige Richtung: ein paar Bytes zu
+  viel auf dem Tablet kosten weniger als ein hochskaliertes Bild.
 - **Das Hero-Bild gibt es zweimal: quer fuers Grosse, hoch fuers Handy.** Der Hero-Kasten ist
   auf dem Handy hoch (288 × 541 bei 320 px Viewport, 358 × 487 bei 390 px), das Desktop-Bild
   dagegen quer (1280 × 858). `background-size: cover` skaliert deshalb nach der Hoehe und
