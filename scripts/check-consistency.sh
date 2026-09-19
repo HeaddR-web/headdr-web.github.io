@@ -111,6 +111,15 @@ else
   else
     note "Interne Verlinkung stimmt nicht:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 15) Jede ausgezeichnete FAQ steht auch sichtbar auf der Seite. Googles
+#     Richtlinie fuer strukturierte Daten verlangt das; und wer die Frage im
+#     Suchergebnis anklickt, soll die Antwort auch vorfinden.
+  if out=$(python3 scripts/check-faq.py 2>&1); then
+    echo "  ✓ FAQs stehen sichtbar auf der Seite"
+  else
+    note "FAQ-Auszeichnung ohne sichtbaren Inhalt:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
