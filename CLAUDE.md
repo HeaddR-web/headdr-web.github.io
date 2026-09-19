@@ -361,6 +361,14 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   letzten Commit der jeweiligen Datei. Bis September 2026 standen dort durchgehend
   Juni-/Juli-Daten, obwohl alle Seiten im September ueberarbeitet worden waren; Google
   ignoriert `<lastmod>` komplett, sobald die Angabe erkennbar nicht stimmt.
+- **Python-Abhaengigkeiten stehen in `scripts/requirements.txt`.** Aktuell nur Pillow
+  (fuer `build-images.py` und damit Punkt 17). Ein neues Modul gehoert dort hinein,
+  sonst faellt es erst in CI auf: lokal ist es meist schon installiert, der Runner
+  bringt nur die Standardbibliothek mit. Genau so scheiterte der erste Lauf mit
+  Punkt 17 an `ModuleNotFoundError: No module named 'PIL'`.
+- **`paths:` in `.github/workflows/consistency.yml` deckt `scripts/**` mit ab.** Vorher
+  liefen bei einer reinen Skript-Aenderung gar keine Checks — der Guard schaltete sich
+  genau dann ab, wenn der Guard selbst geaendert wurde.
 - Branch je Aufgabe, **kein** Direkt-Push auf `main` ohne PR.
 - Commit-Präfixe: `content:`, `design:`, `feat:`, `fix:`, `chore:`.
 - Keine Secrets committen (API-Keys etc. liegen als GitHub-Secrets).

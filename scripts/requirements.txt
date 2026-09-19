@@ -1,0 +1,4 @@
+# Python-Abhaengigkeiten der Repo-Skripte.
+# Pillow: Bildableitungen in scripts/build-images.py (und damit Punkt 17 des
+# Konsistenz-Checks, scripts/check-images.py).
+Pillow>=10.0
