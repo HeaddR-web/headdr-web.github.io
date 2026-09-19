@@ -129,6 +129,14 @@ else
   else
     note "Brotkrumen-Navigation stimmt nicht:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 17) Kacheln zeigen auf die verkleinerte Ableitung, nicht auf das Original -
+#     sonst laedt der Besucher fuer eine 360-px-Kachel ein 1600 px breites Bild.
+  if out=$(python3 scripts/check-images.py 2>&1); then
+    echo "  ✓ Kachelbilder in Anzeigegroesse"
+  else
+    note "Kachelbilder nicht in Anzeigegroesse:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
