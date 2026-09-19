@@ -1381,3 +1381,18 @@ a.add-btn { text-decoration: none; }
   position: relative;
   overflow: hidden;
 }
+
+/* Handy-Zuschnitt des Hero-Bildes.
+   Das grosse Bild ist quer (1280 x 858), der Hero-Kasten auf dem Handy hoch
+   (358 x 487 CSS-Pixel bei 390 px Viewport). cover skaliert deshalb nach der
+   Hoehe: rund 40 % der Bildbreite fallen weg, geladen werden sie trotzdem -
+   und 858 Bildpunkte reichen fuer ein 2x-Display ohnehin nicht. Der
+   Hochformat-Zuschnitt (scripts/build-images.py) zeigt denselben Ausschnitt
+   gleich scharf, braucht aber ein Drittel weniger Bytes. Faellt die Variable
+   weg, greift automatisch wieder das grosse Bild. */
+@media (max-width: 460px) {
+  .hero {
+    background-image: linear-gradient(180deg, rgba(24, 19, 15, 0.18) 30%, rgba(24, 19, 15, 0.66)),
+      var(--hero-img-mobil, var(--hero-img));
+  }
+}

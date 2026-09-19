@@ -226,10 +226,31 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
 **LCP 6,2 s** auf gedrosseltem Mobilfunk (Schwelle 2,5 s), auf der Startseite 4,5 s.
 
 - Gebaut von `scripts/build-images.py`. Die Ableitungen liegen in `/assets/img/kachel/`
-  (`<stamm>-480.jpg`, `<stamm>-960.jpg`, zentrierter 4:3-Ausschnitt) und `/assets/img/hero/`
-  (`<stamm>-1280.jpg`, ohne Zuschnitt). **Die Originale bleiben unangetastet** — 29 von ihnen
-  sind zugleich `og:image` oder Lead-Bild, ein Verkleinern an Ort und Stelle wuerde die
-  Social-Vorschauen zerstoeren.
+  und `/assets/img/hero/` (jeweils `<stamm>-<breite>.jpg`). **Die Originale bleiben
+  unangetastet** — 29 von ihnen sind zugleich `og:image` oder Lead-Bild, ein Verkleinern an
+  Ort und Stelle wuerde die Social-Vorschauen zerstoeren.
+- **Zwei Kachel-Leitern, nicht eine.** Die kleinen Kacheln der Hubs (`div.cover`, `div.thumb`)
+  sind hoechstens 360 CSS-Pixel breit, auf einem 2x-Display also 720 — dafuer steht
+  `KACHEL_BREITEN = (480, 720)`. Die grossen Karten der Startseite (`a.occ-media`, 46vw)
+  brauchen weiterhin `BREITEN = (480, 960)`. Die 960er-Stufe war auf den Hubs auf jedem Geraet
+  zu gross: auf `watchparty/` luden drei davon 246 KB, waehrend das Hero-Bild — das
+  LCP-Element — noch unterwegs war.
+- **Das Hero-Bild gibt es zweimal: quer fuers Grosse, hoch fuers Handy.** Der Hero-Kasten ist
+  auf dem Handy hoch (288 × 541 bei 320 px Viewport, 358 × 487 bei 390 px), das Desktop-Bild
+  dagegen quer (1280 × 858). `background-size: cover` skaliert deshalb nach der Hoehe und
+  wirft rund 40 % der Bildbreite weg, die der Besucher trotzdem laedt — und 858 Bildpunkte
+  reichen fuer die 974 Geraetepunkte eines 2x-Displays ohnehin nicht. Deshalb zusaetzlich
+  `<stamm>-800.jpg` im Hochformat 41:50. Im Markup haengen beide als Custom Property am
+  `.hero` (`--hero-img` und `--hero-img-mobil`), in `/assets/style.css` schaltet
+  `@media (max-width: 460px)` um. **Beide Preload-Zeilen tragen ein `media`-Attribut** — ohne
+  das holt der Browser beide Bilder, und der Handy-Zuschnitt macht die Seite schwerer statt
+  leichter. Nachgemessen ist das Handy-Bild exakt gleich scharf (mittlere Kantenstaerke 13,8
+  vorher wie nachher) bei rund einem Drittel weniger Bytes.
+- **Verwaiste Ableitungen raeumt das Skript weg.** Was in `kachel/` oder `hero/` liegt und von
+  keiner Seite mehr verlinkt wird, loescht `build-images.py` (und `check-images.py` meldet es
+  als vierten Fehlerfall). Sonst bleibt bei jeder Aenderung an den Stufen — etwa Kacheln von
+  960 auf 720 — die alte Datei im Repo liegen, und spaeter ist nicht mehr zu erkennen, welche
+  davon noch gebraucht wird.
 - Der Dateiname der Ableitung traegt den Stamm des Originals. Deshalb findet das Skript das
   Original auch dann wieder, wenn im Markup laengst die Ableitung steht — der Lauf ist
   beliebig oft wiederholbar. Nach jedem neuen oder getauschten Kachelbild:
@@ -242,9 +263,13 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
   auf das Kachel-Format ergibt dasselbe Bild wie ein Zuschnitt direkt aus dem Original.
 - `scripts/check-images.py` prueft das mit, Punkt 17 im Konsistenz-Check.
 
-Gemessen (Chromium, 390 × 844, 1,6 Mbit/s, 150 ms Latenz), vorher → nachher:
-`/` 4,51 s → 1,70 s · `/girlsnight/` 6,23 s → 2,51 s · `/cocktailabend/` 4,98 s → 2,17 s ·
-`/watchparty/` 6,00 s → 2,95 s. Seitengewicht `/girlsnight/`: 2520 KB → 466 KB.
+Gemessen (Chromium, 390 × 844, DPR 2, 1,6 Mbit/s, 150 ms Latenz), Ausgangslage → nach den
+Ableitungen → nach Kachel-Leiter und Handy-Hero:
+`/` 4,51 s → 1,70 s (kein Hero) · `/girlsnight/` 6,23 s → 2,42 s → **1,87 s** ·
+`/cocktailabend/` 4,98 s → 2,13 s → **1,75 s** · `/watchparty/` 6,00 s → 2,84 s → **1,93 s**.
+CLS ueberall ≤ 0,022. Seitengewicht `/girlsnight/`: 2520 KB → 466 KB.
+Auf einem 768-px-Tablet liegen die drei Hubs weiterhin bei 2,5-2,8 s — dort greift der
+Handy-Zuschnitt nicht mehr, das Querformat schon.
 
 ## Hub-Seiten: `app.js` rendert nur als Rueckfallebene
 `cocktailabend/app.js`, `girlsnight/app.js` und `watchparty/app.js` bauen das Kachelgitter

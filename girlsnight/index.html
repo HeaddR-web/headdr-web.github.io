@@ -21,7 +21,8 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-grotesk.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-    <link rel="preload" as="image" href="/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-1280.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-1280.jpg" media="(min-width: 461px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-800.jpg" media="(max-width: 460px)" fetchpriority="high" />
     <link rel="stylesheet" href="/assets/style.css" />
     <meta name="google-adsense-account" content="ca-pub-4473022510510415" />
     <script type="application/ld+json">
@@ -32,6 +33,38 @@
         "url": "https://bethathost.de/girlsnight/",
         "inLanguage": "de",
         "description": "Plane den ultimativen Mädelsabend: Spiele, Drinks, Snacks, Deko, Pflege und Filmabend, kuratiert nach Kategorie mit direkten Amazon-Links."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was braucht man für einen Mädelsabend?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mehr als eine Handvoll Dinge sind es nicht: ein Spiel als Eisbrecher, einen Signature-Drink, den du vorher im Krug ansetzt, ein Grazing-Board zum Hinstellen, warmes Licht statt Deckenlampe, einen Foto-Hintergrund und für die entspannte Runde ein Set Gesichtsmasken. Alles andere ist Zugabe."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was macht man an einem Mädelsabend zu Hause?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bewährt hat sich diese Reihenfolge: beim Ankommen ein Drink und ein Spiel ohne Zubehör, während noch nicht alle da sind. Danach das Essen, an dem den ganzen Abend genascht wird. Erst dann das eigentliche Programm, also Spa-Runde, Filmabend, Spieleabend oder Motto-Party. Zum Schluss Fotos, die jede mitnimmt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie viel Vorbereitung braucht ein Mädelsabend?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rund eine Stunde, wenn du es aufteilst: Der Cocktail steht in fünf Minuten im Krug, das Grazing-Board baust du in 15 Minuten zusammen, und die Deko ist in einer halben Stunde fertig, wenn du dich auf Hintergrund, Licht und den gedeckten Tisch beschränkst. Dips und Süßes lassen sich am Vortag vorbereiten."
+            }
+          }
+        ]
       }
     </script>
       <link rel="stylesheet" href="/assets/motion.css" />
@@ -50,7 +83,7 @@
     <main>
       <section
         class="hero"
-        style="--hero-img: url('/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-1280.jpg')"
+        style="--hero-img: url('/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-1280.jpg'); --hero-img-mobil: url('/assets/img/hero/hf_20260616_102050_2b432a28-f7d8-49c9-bd96-49a4696ef394-800.jpg')"
       >
         <div class="hero-inner">
         <!-- BREADCRUMB:START — erzeugt von scripts/build-breadcrumb.py, nicht von Hand aendern -->
@@ -83,12 +116,12 @@
         </div>
         <div class="build-grid" id="build-grid">
           <!-- statisch vorgerendert für Crawler/No-JS; app.js rendert für JS-Nutzer identisch darüber -->
-          <article class="cat-card" id="cat-games" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-960.jpg" srcset="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-480.jpg 480w, /assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Spiele</span></div><div class="cat-body"><p class="blurb">Eisbrecher, Party-Kartenspiele und ein bisschen Chaos.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Party-Kartenspiel (Erwachsene)</span><span class="hp-desc">Der einfachste Eisbrecher des Abends.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0914WWCSC?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><div class="hero-pick"><span class="hp-name">Hitster (Musik-Partyspiel)</span><span class="hp-desc">Musik raten, ohne dass jemand Regeln lernen muss.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0FBGF84ZJ?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-games.html">Zum Guide →</a></div></article>
-          <article class="cat-card" id="cat-drinks" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-960.jpg" srcset="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-480.jpg 480w, /assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Drinks</span></div><div class="cat-body"><p class="blurb">Signature-Cocktails, Sekt und alles zum Servieren.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Gläser-Set</span><span class="hp-desc">Für alle dasselbe Glas, das sieht nach Anlass aus.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0DQ5SP9HN?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-drinks.html">Zum Guide →</a></div></article>
-          <article class="cat-card" id="cat-snacks" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-960.jpg" srcset="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-480.jpg 480w, /assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Snacks</span></div><div class="cat-body"><p class="blurb">Grazing-Boards, süße Häppchen und Popcorn ohne Ende.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Snackschalen</span><span class="hp-desc">Chips, Nüsse und Dips, ohne dass jemand aufsteht.</span><a class="hp-btn" href="https://www.amazon.de/dp/B07CMHJVNG?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-snacks.html">Zum Guide →</a></div></article>
-          <article class="cat-card" id="cat-themes" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-960.jpg" srcset="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-480.jpg 480w, /assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Deko &amp; Themes</span></div><div class="cat-body"><p class="blurb">Ballon-Girlanden, Lichterketten und ein hübsch gedeckter Tisch.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Luftballon-Girlande (Set)</span><span class="hp-desc">Der Foto-Hintergrund des Abends.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0DPWVW3CR?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><div class="hero-pick"><span class="hp-name">Deko-Set</span><span class="hp-desc">Der Raum ist damit in zehn Minuten fertig.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0GHLGQXH6?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-themes.html">Zum Guide →</a></div></article>
-          <article class="cat-card" id="cat-pamper" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-960.jpg" srcset="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-480.jpg 480w, /assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Pflege &amp; Spa</span></div><div class="cat-body"><p class="blurb">Gesichtsmasken, Bademäntel und ein Spa-Moment für daheim.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Gesichtsmasken-Set</span><span class="hp-desc">Der Spa-Klassiker für alle.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0CJYCSGZP?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-pamper-spa.html">Zum Guide →</a></div></article>
-          <article class="cat-card" id="cat-fotos" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-960.jpg" srcset="/assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-480.jpg 480w, /assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Fotos &amp; Erinnerungen</span></div><div class="cat-body"><p class="blurb">Sofortbilder, die jede mit nach Hause nimmt, das Must-have für den Mädelsabend.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Sofortbildkamera</span><span class="hp-desc">Der Mädelsabend-Klassiker schlechthin, jede klebt ihr Foto später ins Album.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0C2J34N8G?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/pyjama-party.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-games" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-720.jpg" srcset="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-480.jpg 480w, /assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Spiele</span></div><div class="cat-body"><p class="blurb">Eisbrecher, Party-Kartenspiele und ein bisschen Chaos.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Party-Kartenspiel (Erwachsene)</span><span class="hp-desc">Der einfachste Eisbrecher des Abends.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0914WWCSC?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><div class="hero-pick"><span class="hp-name">Hitster (Musik-Partyspiel)</span><span class="hp-desc">Musik raten, ohne dass jemand Regeln lernen muss.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0FBGF84ZJ?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-games.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-drinks" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-720.jpg" srcset="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-480.jpg 480w, /assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Drinks</span></div><div class="cat-body"><p class="blurb">Signature-Cocktails, Sekt und alles zum Servieren.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Gläser-Set</span><span class="hp-desc">Für alle dasselbe Glas, das sieht nach Anlass aus.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0DQ5SP9HN?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-drinks.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-snacks" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-720.jpg" srcset="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-480.jpg 480w, /assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Snacks</span></div><div class="cat-body"><p class="blurb">Grazing-Boards, süße Häppchen und Popcorn ohne Ende.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Snackschalen</span><span class="hp-desc">Chips, Nüsse und Dips, ohne dass jemand aufsteht.</span><a class="hp-btn" href="https://www.amazon.de/dp/B07CMHJVNG?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-snacks.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-themes" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-720.jpg" srcset="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-480.jpg 480w, /assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Deko &amp; Themes</span></div><div class="cat-body"><p class="blurb">Ballon-Girlanden, Lichterketten und ein hübsch gedeckter Tisch.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Luftballon-Girlande (Set)</span><span class="hp-desc">Der Foto-Hintergrund des Abends.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0DPWVW3CR?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><div class="hero-pick"><span class="hp-name">Deko-Set</span><span class="hp-desc">Der Raum ist damit in zehn Minuten fertig.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0GHLGQXH6?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-themes.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-pamper" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-720.jpg" srcset="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-480.jpg 480w, /assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Pflege &amp; Spa</span></div><div class="cat-body"><p class="blurb">Gesichtsmasken, Bademäntel und ein Spa-Moment für daheim.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Gesichtsmasken-Set</span><span class="hp-desc">Der Spa-Klassiker für alle.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0CJYCSGZP?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/girls-night-pamper-spa.html">Zum Guide →</a></div></article>
+          <article class="cat-card" id="cat-fotos" style="scroll-margin-top:90px"><div class="cover"><img src="/assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-720.jpg" srcset="/assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-480.jpg 480w, /assets/img/kachel/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /><span class="tag">Fotos &amp; Erinnerungen</span></div><div class="cat-body"><p class="blurb">Sofortbilder, die jede mit nach Hause nimmt, das Must-have für den Mädelsabend.</p><div class="hero-pick"><span class="hp-label">Unser Pick</span><span class="hp-name">Sofortbildkamera</span><span class="hp-desc">Der Mädelsabend-Klassiker schlechthin, jede klebt ihr Foto später ins Album.</span><a class="hp-btn" href="https://www.amazon.de/dp/B0C2J34N8G?tag=cozylore-21" rel="sponsored nofollow noopener" target="_blank">Preis auf Amazon prüfen →</a></div><a class="guide-link" href="posts/pyjama-party.html">Zum Guide →</a></div></article>
           <noscript>
             <p style="color: var(--muted)">
               Die Kategorie-Ansicht braucht JavaScript. Du kannst trotzdem alle Guides lesen:
@@ -114,7 +147,7 @@
         </div>
         <div class="grid">
           <a class="post-card" href="posts/pyjama-party.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-960.jpg" srcset="/assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-480.jpg 480w, /assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-720.jpg" srcset="/assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-480.jpg 480w, /assets/img/kachel/hf_20260619_093316_175d0bda-4257-447a-9d56-f71df851edcf-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Szenario</span>
               <h3>Pyjama Party planen</h3>
@@ -122,7 +155,7 @@
             </div>
           </a>
           <a class="post-card" href="posts/wine-tasting-girls.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-960.jpg" srcset="/assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-480.jpg 480w, /assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-720.jpg" srcset="/assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-480.jpg 480w, /assets/img/kachel/hf_20260619_095500_194e308a-312a-45da-9c26-af7ecc5af841-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Szenario</span>
               <h3>Wine Tasting mit den Girls</h3>
@@ -130,7 +163,7 @@
             </div>
           </a>
           <a class="post-card" href="posts/girls-night-galentines.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-960.jpg" srcset="/assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-480.jpg 480w, /assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-720.jpg" srcset="/assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-480.jpg 480w, /assets/img/kachel/hf_20260616_102602_a1d7b5f9-fbed-4db5-8455-44d565fd2e14-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Galentine's</span>
               <h3>Galentine's Day Party-Ideen</h3>
@@ -139,7 +172,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-budget.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-960.jpg" srcset="/assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-480.jpg 480w, /assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-720.jpg" srcset="/assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-480.jpg 480w, /assets/img/kachel/hf_20260616_080936_75877fe0-3de7-4712-b635-44ef0e26511e-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Budget</span>
               <h3>Mädelsabend-Ideen mit kleinem Budget</h3>
@@ -148,7 +181,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-games.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-960.jpg" srcset="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-480.jpg 480w, /assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-720.jpg" srcset="/assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-480.jpg 480w, /assets/img/kachel/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Spiele</span>
               <h3>21 Spiele für den Mädelsabend, die alle zum Lachen bringen</h3>
@@ -157,7 +190,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-drinks.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-960.jpg" srcset="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-480.jpg 480w, /assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-720.jpg" srcset="/assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-480.jpg 480w, /assets/img/kachel/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Drinks</span>
               <h3>Cocktails &amp; Mocktails, die alle lieben</h3>
@@ -166,7 +199,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-snacks.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-960.jpg" srcset="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-480.jpg 480w, /assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-720.jpg" srcset="/assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-480.jpg 480w, /assets/img/kachel/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Snacks</span>
               <h3>Einfache Snacks &amp; ein Grazing-Board zum Angeben</h3>
@@ -175,7 +208,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-themes.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-960.jpg" srcset="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-480.jpg 480w, /assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-720.jpg" srcset="/assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-480.jpg 480w, /assets/img/kachel/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Deko &amp; Themes</span>
               <h3>12 Themen- &amp; Deko-Ideen für den Mädelsabend</h3>
@@ -184,7 +217,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-pamper-spa.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-960.jpg" srcset="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-480.jpg 480w, /assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-720.jpg" srcset="/assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-480.jpg 480w, /assets/img/kachel/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Pflege &amp; Spa</span>
               <h3>Der Spa- &amp; Pflegeabend zuhause, Schritt für Schritt</h3>
@@ -193,7 +226,7 @@
           </a>
 
           <a class="post-card" href="posts/girls-night-movie-night.html">
-            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-960.jpg" srcset="/assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-480.jpg 480w, /assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-960.jpg 960w" sizes="(max-width: 700px) 100vw, 360px" width="960" height="720" alt="" loading="lazy" fetchpriority="low" /></div>
+            <div class="thumb"><img src="/assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-720.jpg" srcset="/assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-480.jpg 480w, /assets/img/kachel/hf_20260616_102543_f5bfd8f6-713c-4afb-9c14-d0cef07ebcaa-720.jpg 720w" sizes="(max-width: 700px) 100vw, 360px" width="720" height="540" alt="" loading="lazy" fetchpriority="low" /></div>
             <div class="body">
               <span class="kicker">Filmabend</span>
               <h3>Das ultimative Filmabend-Setup für Mädels</h3>
@@ -203,6 +236,17 @@
         </div>
       </section>
 
+        <!-- FAQ:START — erzeugt von scripts/build-faq.py aus dem FAQPage-JSON-LD, nicht von Hand aendern -->
+        <section class="faq">
+          <h2 id="haeufige-fragen">Häufige Fragen</h2>
+          <h3>Was braucht man für einen Mädelsabend?</h3>
+          <p>Mehr als eine Handvoll Dinge sind es nicht: ein Spiel als Eisbrecher, einen Signature-Drink, den du vorher im Krug ansetzt, ein Grazing-Board zum Hinstellen, warmes Licht statt Deckenlampe, einen Foto-Hintergrund und für die entspannte Runde ein Set Gesichtsmasken. Alles andere ist Zugabe.</p>
+          <h3>Was macht man an einem Mädelsabend zu Hause?</h3>
+          <p>Bewährt hat sich diese Reihenfolge: beim Ankommen ein Drink und ein Spiel ohne Zubehör, während noch nicht alle da sind. Danach das Essen, an dem den ganzen Abend genascht wird. Erst dann das eigentliche Programm, also Spa-Runde, Filmabend, Spieleabend oder Motto-Party. Zum Schluss Fotos, die jede mitnimmt.</p>
+          <h3>Wie viel Vorbereitung braucht ein Mädelsabend?</h3>
+          <p>Rund eine Stunde, wenn du es aufteilst: Der Cocktail steht in fünf Minuten im Krug, das Grazing-Board baust du in 15 Minuten zusammen, und die Deko ist in einer halben Stunde fertig, wenn du dich auf Hintergrund, Licht und den gedeckten Tisch beschränkst. Dips und Süßes lassen sich am Vortag vorbereiten.</p>
+        </section>
+        <!-- FAQ:END -->
         <!-- RELATED:START — erzeugt von scripts/build-related.py, nicht von Hand aendern -->
         <nav class="related" aria-labelledby="rel-head">
           <p class="rel-head" id="rel-head">Das passt auch dazu</p>

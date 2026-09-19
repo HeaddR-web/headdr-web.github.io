@@ -33,6 +33,13 @@ ORIGINAL_DIR = "assets/img"
 KACHEL_DIR = "assets/img/kachel"
 HERO_DIR = "assets/img/hero"
 BREITEN = (480, 960)
+# Eigene Leiter fuer die kleinen Kacheln (div.cover/div.thumb): Sie sind auf
+# dem Desktop 360 CSS-Pixel breit und mobil hoechstens rund 360 (100vw minus
+# Seitenrand) - auf einem 2x-Display also genau 720. Die 960er-Stufe war auf
+# jedem Geraet zu gross; auf watchparty/ luden drei davon 246 KB, waehrend das
+# Hero-Bild - das LCP-Element - noch unterwegs war. Die grossen Karten der
+# Startseite (a.occ-media, 46vw) brauchen die 960 dagegen weiter.
+KACHEL_BREITEN = (480, 720)
 SEITE = (4, 3)
 # Die 1x-Stufe wird Pixel fuer Pixel gezeigt und bleibt scharf; die 2x-Stufe und
 # das Hero-Bild werden immer verkleinert dargestellt, da faellt weniger Qualitaet
@@ -40,6 +47,21 @@ SEITE = (4, 3)
 QUALITAET = 80
 QUALITAET_KLEIN = 72
 HERO_BREITE = 1280
+# Handy-Zuschnitt des Hero-Bildes. Das Desktop-Bild ist quer (1280 x 858), der
+# Hero-Kasten auf dem Handy dagegen hoch: 358 x 487 CSS-Pixel bei 390 px
+# Viewport, bei 320 px sogar 288 x 541. background-size:cover skaliert deshalb
+# nach der Hoehe - und wirft links und rechts rund 40 Prozent der Bildbreite
+# weg, die der Besucher trotzdem herunterlaedt. Schlimmer noch: 858 Bildpunkte
+# Hoehe reichen fuer die 974 Geraetepunkte eines 2x-Displays gar nicht, das
+# Bild wird also auch noch hochskaliert.
+# 800 x 976 im Hochformat laedt nur noch das, was zu sehen ist: rund ein
+# Drittel weniger Bytes bei 14 Prozent mehr Bildhoehe. Nachgemessen bleibt das
+# Bild dabei exakt gleich scharf (mittlere Kantenstaerke 13,8 vorher wie
+# nachher) und zeigt denselben Ausschnitt. Ab 461 px uebernimmt wieder das
+# Querformat.
+HERO_MOBIL_BREITE = 800
+HERO_MOBIL_SEITE = (41, 50)
+HERO_MOBIL_MQ = "(max-width: 460px)"
 SIZES = "(max-width: 860px) 100vw, 46vw"
 SIZES_KACHEL = "(max-width: 700px) 100vw, 360px"
 
@@ -63,10 +85,10 @@ def original(stamm):
     return os.path.join(WURZEL, ORIGINAL_DIR, stamm + ".jpg")
 
 
-def zuschnitt(im):
-    """Zentrierter 4:3-Ausschnitt."""
+def zuschnitt(im, seite=SEITE):
+    """Zentrierter Ausschnitt im gewuenschten Seitenverhaeltnis."""
     b, h = im.size
-    ziel = SEITE[0] / SEITE[1]
+    ziel = seite[0] / seite[1]
     if b / h > ziel:
         neu_b = int(round(h * ziel))
         links = (b - neu_b) // 2
@@ -132,9 +154,10 @@ def img_tag(alt_tag, stamm, zuerst):
 
 
 def kachel_breiten(stamm):
-    """div.cover/div.thumb sind 190-210 px hoch, hoechstens rund 460 px breit - 1x und 2x."""
-    moeglich = breiten_fuer(stamm)
-    return moeglich[0], moeglich[-1]
+    """1x- und 2x-Stufe einer kleinen Kachel (siehe KACHEL_BREITEN)."""
+    with Image.open(original(stamm)) as im:
+        max_b = zuschnitt(im).size[0]
+    return tuple(b for b in KACHEL_BREITEN if b <= max_b) or (max_b,)
 
 
 def kachel_img(stamm):
@@ -157,30 +180,56 @@ def kachel_img(stamm):
     )
 
 
-HERO_RE = re.compile(r"""--hero-img: url\('(?P<quelle>[^']+)'\)""")
-VORLADEN_RE = re.compile(r'(<link rel="preload" as="image" href=")(?P<quelle>[^"]+)(")')
+# Beide Custom Properties bzw. beide Preload-Zeilen mitfassen, damit ein
+# zweiter Lauf nichts verdoppelt.
+HERO_RE = re.compile(
+    r"--hero-img: url\('(?P<quelle>[^']+)'\)"
+    r"(?:; --hero-img-mobil: url\('[^']+'\))?"
+)
+VORLADEN_RE = re.compile(
+    r'(?P<einzug>[ \t]*)<link rel="preload" as="image" href="(?P<quelle>[^"]+)"[^>]*>\n'
+    r'(?:[ \t]*<link rel="preload" as="image"[^>]*>\n)?'
+)
 
 
-def hero_url(stamm):
-    return f"/{HERO_DIR}/{stamm}-{HERO_BREITE}.jpg"
+def hero_url(stamm, breite=None):
+    return f"/{HERO_DIR}/{stamm}-{breite or HERO_BREITE}.jpg"
+
+
+def hero_dateien(stamm):
+    return [os.path.join(HERO_DIR, f"{stamm}-{b}.jpg")
+            for b in (HERO_BREITE, HERO_MOBIL_BREITE)]
 
 
 def hero_erzeuge(stamm, schreiben=True):
-    """Das Hero-Bild in Anzeigebreite. Kein Zuschnitt - background-position
-    entscheidet, welcher Ausschnitt zu sehen ist, das darf sich nicht aendern.
-    Das Original bleibt liegen, es ist zugleich og:image."""
-    ziel = os.path.join(WURZEL, HERO_DIR, f"{stamm}-{HERO_BREITE}.jpg")
-    if os.path.exists(ziel):
-        return []
-    if schreiben:
+    """Beide Hero-Ableitungen: Desktop-Breite ohne Zuschnitt, Handy-Zuschnitt.
+
+    Auf dem Desktop bleibt das Bild ungeschnitten - background-position
+    entscheidet dort, welcher Ausschnitt zu sehen ist, und das darf sich nicht
+    aendern. Fuer das Handy wird vorgeschnitten, was der Browser ohnehin zeigt
+    (siehe HERO_MOBIL_SEITE). Das Original bleibt beidemale liegen, es ist
+    zugleich og:image.
+    """
+    neu = []
+    for breite, seite in ((HERO_BREITE, None), (HERO_MOBIL_BREITE, HERO_MOBIL_SEITE)):
+        ziel = os.path.join(WURZEL, HERO_DIR, f"{stamm}-{breite}.jpg")
+        if os.path.exists(ziel):
+            continue
+        neu.append(os.path.relpath(ziel, WURZEL))
+        if not schreiben:
+            continue
         with Image.open(original(stamm)) as im:
             im = im.convert("RGB")
-            hoehe = int(round(HERO_BREITE * im.size[1] / im.size[0]))
+            if seite:
+                im = zuschnitt(im, seite)
+                masse = (breite, int(round(breite * seite[1] / seite[0])))
+            else:
+                masse = (breite, int(round(breite * im.size[1] / im.size[0])))
             os.makedirs(os.path.dirname(ziel), exist_ok=True)
-            im.resize((HERO_BREITE, hoehe), Image.LANCZOS).save(
+            im.resize(masse, Image.LANCZOS).save(
                 ziel, "JPEG", quality=QUALITAET_KLEIN, optimize=True, progressive=True
             )
-    return [os.path.relpath(ziel, WURZEL)]
+    return neu
 
 
 def verarbeite(pfad, schreiben=True):
@@ -218,13 +267,23 @@ def verarbeite(pfad, schreiben=True):
         if not stamm or not os.path.exists(original(stamm)):
             return m.group(0)
         heroes.append(stamm)
-        return f"--hero-img: url('{hero_url(stamm)}')"
+        return (f"--hero-img: url('{hero_url(stamm)}')"
+                f"; --hero-img-mobil: url('{hero_url(stamm, HERO_MOBIL_BREITE)}')")
 
     def vorladen(m):
         stamm = stamm_aus(m.group("quelle"))
         if not stamm or not os.path.exists(original(stamm)):
             return m.group(0)
-        return m.group(1) + hero_url(stamm) + m.group(3)
+        # Zwei Zeilen mit media-Bedingung: der Browser laedt nur die, die zu
+        # seinem Viewport passt. Ohne media haette er beide geholt - der
+        # Handy-Zuschnitt wuerde das Bild dann groesser statt kleiner machen.
+        ein = m.group("einzug")
+        return (
+            f'{ein}<link rel="preload" as="image" href="{hero_url(stamm)}"'
+            f' media="(min-width: 461px)" fetchpriority="high" />\n'
+            f'{ein}<link rel="preload" as="image" href="{hero_url(stamm, HERO_MOBIL_BREITE)}"'
+            f' media="{HERO_MOBIL_MQ}" fetchpriority="high" />\n'
+        )
 
     ergebnis = KACHEL_RE.sub(hintergrund, OCC_RE.sub(occ, html))
     ergebnis = VORLADEN_RE.sub(vorladen, HERO_RE.sub(hero, ergebnis))
@@ -245,16 +304,38 @@ def seiten():
     return treffer
 
 
+def verwaist(gebraucht):
+    """Ableitungen, die keine Seite mehr verlinkt.
+
+    Aendert sich eine Stufe (etwa die Kacheln von 960 auf 720), bleiben die
+    alten Dateien sonst als toter Ballast im Repo liegen - und niemand sieht
+    spaeter, welche davon noch gebraucht werden.
+    """
+    raus = []
+    for ordner in (KACHEL_DIR, HERO_DIR):
+        voll = os.path.join(WURZEL, ordner)
+        if not os.path.isdir(voll):
+            continue
+        for name in sorted(os.listdir(voll)):
+            rel = os.path.join(ordner, name)
+            if rel not in gebraucht:
+                raus.append(rel)
+    return raus
+
+
 def main():
     pruefen = "--pruefen" in sys.argv
     offen = []
+    gebraucht = set()
     for pfad in seiten():
         staemme, heroes, geaendert = verarbeite(pfad, schreiben=not pruefen)
         neu = []
         for stamm, breiten in staemme.items():
             neu += erzeuge(stamm, breiten, schreiben=not pruefen)
+            gebraucht.update(os.path.join(KACHEL_DIR, f"{stamm}-{b}.jpg") for b in breiten)
         for stamm in dict.fromkeys(heroes):
             neu += hero_erzeuge(stamm, schreiben=not pruefen)
+            gebraucht.update(hero_dateien(stamm))
         if pruefen:
             if geaendert:
                 offen.append(f"Markup nicht aktuell: {pfad}")
@@ -263,11 +344,20 @@ def main():
         elif staemme or heroes:
             zusatz = f", {len(neu)} neu erzeugt" if neu else ""
             print(f"{pfad}: {len(staemme)} Kacheln{zusatz}")
+
+    alt = verwaist(gebraucht)
     if pruefen:
+        for datei in alt:
+            offen.append(f"Ableitung verwaist: {datei}")
         if offen:
             print("\n".join(offen))
             sys.exit(1)
-        print("Kachelbilder aktuell")
+        print("Kachel- und Hero-Bilder aktuell")
+    else:
+        for datei in alt:
+            os.remove(os.path.join(WURZEL, datei))
+        if alt:
+            print(f"{len(alt)} verwaiste Ableitungen geloescht")
 
 
 if __name__ == "__main__":

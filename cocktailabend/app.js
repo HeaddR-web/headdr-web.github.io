@@ -119,10 +119,10 @@
         .join("");
       var card = el(
         '<article class="cat-card" id="cat-' + cat.key + '" style="scroll-margin-top:90px">' +
-          '<div class="cover"><img src="' + kachel(cat.img, 960) +
-          '" srcset="' + kachel(cat.img, 480) + " 480w, " + kachel(cat.img, 960) +
-          ' 960w" sizes="(max-width: 700px) 100vw, 360px"' +
-          ' width="960" height="720" alt="" loading="lazy" fetchpriority="low" />' +
+          '<div class="cover"><img src="' + kachel(cat.img, 720) +
+          '" srcset="' + kachel(cat.img, 480) + " 480w, " + kachel(cat.img, 720) +
+          ' 720w" sizes="(max-width: 700px) 100vw, 360px"' +
+          ' width="720" height="540" alt="" loading="lazy" fetchpriority="low" />' +
           '<span class="tag">' + esc(cat.name) + "</span>" +
           "</div>" +
           '<div class="cat-body">' +

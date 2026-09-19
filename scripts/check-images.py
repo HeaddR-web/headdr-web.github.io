@@ -12,6 +12,10 @@ Drei Fehler:
   * Eine Seite bindet ein Kachelbild noch als CSS-Hintergrund ein. Ein
     Hintergrund laesst sich nicht verzoegern (loading="lazy"), er laedt
     immer sofort mit - auf girlsnight/ waren das elf Bilder auf einmal.
+  * Eine Ableitung liegt herum, die keine Seite mehr verlinkt. Das passiert
+    bei jeder Aenderung an den Stufen (etwa Kacheln von 960 auf 720) und
+    faellt sonst niemandem auf: die Dateien bleiben im Repo, und spaeter ist
+    nicht mehr zu erkennen, welche davon noch gebraucht werden.
 
 Beheben mit: python3 scripts/build-images.py
 """
@@ -31,6 +35,7 @@ HINTERGRUND_RE = bilder.re.compile(
 
 def main():
     offen = []
+    gebraucht = set()
     for pfad in bilder.seiten():
         staemme, heroes, geaendert = bilder.verarbeite(pfad, schreiben=False)
         if geaendert:
@@ -38,11 +43,17 @@ def main():
         for stamm, breiten in staemme.items():
             for datei in bilder.erzeuge(stamm, breiten, schreiben=False):
                 offen.append(f"Ableitung fehlt: {datei}")
+            gebraucht.update(os.path.join(bilder.KACHEL_DIR, f"{stamm}-{b}.jpg")
+                             for b in breiten)
         for stamm in dict.fromkeys(heroes):
             for datei in bilder.hero_erzeuge(stamm, schreiben=False):
                 offen.append(f"Hero-Ableitung fehlt: {datei}")
+            gebraucht.update(bilder.hero_dateien(stamm))
         if HINTERGRUND_RE.search(open(os.path.join(bilder.WURZEL, pfad), encoding="utf-8").read()):
             offen.append(f"Kachel noch als CSS-Hintergrund: {pfad}")
+
+    for datei in bilder.verwaist(gebraucht):
+        offen.append(f"Ableitung verwaist: {datei}")
 
     if offen:
         print("\n".join(offen))
