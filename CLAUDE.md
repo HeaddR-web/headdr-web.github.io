@@ -45,7 +45,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 3. `<article>`: Lead-Bild (3:2), `<h1>`, `<p class="meta">Aktualisiert am … · 5 Min. Lesezeit · BeThatHost</p>`,
    Intro, **Einkaufslisten-Block** (`<aside class="quickbuy">`, siehe unten), **Inhaltsverzeichnis**
    (`<nav class="toc">`, siehe unten), thematische Abschnitte mit
-   `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten).
+   `<div class="pick">`-Karten, ein **leerer** `<div class="ad-slot"></div>` (siehe unten), zum Schluss der
+   generierte **FAQ-Abschnitt** (`<section class="faq">`, siehe unten).
    Ein `<div class="subscribe">` gehoert erst dazu, wenn ein echtes Newsletter-Formular
    dahinterhaengt — bis dahin sammelt es Adressen ein, die nirgends ankommen (siehe unten).
 4. `<footer class="site">`: Standard-Offenlegung (leser-finanziert, `/datenschutz.html`, `/impressum.html`)
@@ -153,6 +154,27 @@ Seiten und zeigten fast alle auf dieselben zwei Ziele.
   `../index.html` — auf den Guide-Unterseiten zeigt das eine Ebene daneben.
 - `scripts/check-related.py` prüft das mit, Punkt 14 im Konsistenz-Check: Block aktuell,
   keine Waisen, kein interner Link auf eine Datei, die es nicht gibt.
+
+## FAQ-Abschnitt (`section.faq`) — generiert, nie von Hand
+Am Ende des Artikels, vor dem Weiterlesen-Block, steht der sichtbare FAQ-Abschnitt.
+Grund: Im September 2026 trugen **16 Seiten** ein `FAQPage`-JSON-LD, dessen zwei bis drei
+Fragen im Artikel **nirgends vorkamen** — darunter beide Hubs `cocktailabend/` und
+`watchparty/` sowie alle fünf `ratgeber/`-Seiten. Googles Richtlinie für strukturierte Daten
+verlangt, dass der ausgezeichnete Inhalt für den Besucher sichtbar ist; unsichtbare
+Auszeichnung riskiert eine manuelle Maßnahme. Teurer noch: Wer die Frage im Suchergebnis
+anklickt, landet auf einer Seite ohne die Antwort und ist sofort wieder weg.
+
+- **Das JSON-LD ist die Quelle, der sichtbare Block die Ausgabe.** Gebaut von
+  `scripts/build-faq.py` aus dem `FAQPage`-JSON-LD der Seite. **Niemals von Hand bearbeiten** —
+  der Block steht zwischen `<!-- FAQ:START … -->` und `<!-- FAQ:END -->` und wird bei jedem
+  Lauf komplett ersetzt. Neue Frage also **im JSON-LD** ergänzen, nicht im Markup.
+- Nach **jeder** Änderung am `FAQPage`-JSON-LD:
+  `python3 scripts/build-faq.py && python3 scripts/build-toc.py`
+  Das Verzeichnis muss hinterher, weil der Block eine neue `<h2 id="haeufige-fragen">` mitbringt.
+- Entfällt das JSON-LD, räumt das Skript den Block weg — eine Seite soll nie eine FAQ zeigen,
+  die die Structured Data nicht mehr decken.
+- `scripts/check-faq.py` prüft beide Richtungen, Punkt 15 im Konsistenz-Check: JSON-LD ohne
+  sichtbaren Block **und** sichtbarer Block ohne JSON-LD.
 
 ## Newsletter (`div.subscribe`) — erst mit echtem Formular
 Bis September 2026 stand auf genau einer Seite (`oktoberfest/`) ein Anmeldekasten mit
