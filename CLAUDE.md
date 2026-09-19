@@ -150,8 +150,14 @@ Seiten und zeigten fast alle auf dieselben zwei Ziele.
 - **Neue Seite:** Slug in `NAME` (kurzer Linktext — die `<h1>` sind für eine Kachel zu lang)
   **und** in das passende `THEMA` eintragen, dann `python3 scripts/build-related.py`.
   Ohne Eintrag bekommt die Seite weder Block noch eingehende Links.
-- Links immer **absolut** (`/casino/`). Die alten Blöcke nutzten `../casino/` und
-  `../index.html` — auf den Guide-Unterseiten zeigt das eine Ebene daneben.
+- Links immer **absolut** (`/casino/`) — auf der **ganzen** Seite, nicht nur im Block.
+  `../index.html` zeigt auf den Guide-Unterseiten eine Ebene daneben, und `/index.html`
+  ist eine zweite URL für die Startseite, deren Canonical `/` lautet.
+- **Nichts zwischen `</main>` und `<footer>`.** Dort greift kein Layout-Container: der
+  Inhalt läuft randlos über den ganzen Bildschirm. Genau so standen 14 handgemachte
+  „Weitere Ideen:"-Absätze auf der Seite — randlos und inhaltlich doppelt unter dem
+  Weiterlesen-Block, den sie ersetzen sollten. `ALT_RE` in `build-related.py` räumt
+  beide Schreibweisen („Weitere Anlässe:" und „Weitere Ideen:") weg.
 - `scripts/check-related.py` prüft das mit, Punkt 14 im Konsistenz-Check: Block aktuell,
   keine Waisen, kein interner Link auf eine Datei, die es nicht gibt.
 

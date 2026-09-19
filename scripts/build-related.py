@@ -132,7 +132,12 @@ PARTNER = {
 
 BLOCK_RE = re.compile(r'[ \t]*<!-- RELATED:START.*?<!-- RELATED:END -->\n?', re.S)
 # Die handgemachten Vorgaenger: <p>Weitere Anlaesse: ... </p>
-ALT_RE = re.compile(r'[ \t]*<p>\s*Weitere Anlässe:.*?</p>\n?', re.S)
+# Die handgemachten Weiter-Absaetze, die dieser Block ersetzt. Sie kamen in zwei
+# Schreibweisen vor; bis September 2026 traf das Muster nur "Weitere Anlässe:",
+# deshalb standen 34 "Weitere Ideen:"-Absaetze weiter unter dem neuen Block - auf
+# 14 Seiten sogar ausserhalb von </main> und damit ohne Seitenrand quer ueber den
+# ganzen Bildschirm.
+ALT_RE = re.compile(r'[ \t]*<p>\s*Weitere (?:Anlässe|Ideen):.*?</p>\n?', re.S)
 
 
 def url(pfad):

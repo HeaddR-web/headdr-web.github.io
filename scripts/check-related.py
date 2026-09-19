@@ -10,6 +10,11 @@ Drei Fehler:
     nur ueber die Startseite erreichbar. Genau das war im September 2026 bei
     neun Seiten der Fall.
   * Ein interner Link zeigt auf eine Datei, die es nicht gibt.
+  * Inhalt steht zwischen </main> und <footer> und damit ausserhalb des
+    Layout-Containers - er laeuft dann ohne Seitenrand quer ueber den ganzen
+    Bildschirm. Genau so standen bis September 2026 14 handgemachte
+    "Weitere Ideen:"-Absaetze auf der Seite, randlos und doppelt unter dem
+    Weiterlesen-Block.
 
 Beheben mit: python3 scripts/build-related.py
 (Bei einer neuen Seite vorher den Slug in NAME und THEMA eintragen.)
@@ -70,6 +75,14 @@ def main():
     for f in seiten:
         if f not in NUR_NAVIGATION and ein[f] == 0:
             fehler.append(f"{f}: Waise - kein Artikel verlinkt dorthin")
+
+    # 3) Nichts zwischen </main> und <footer>: dort greift kein Seitenrand.
+    for f in seiten:
+        html = open(f, encoding="utf-8").read()
+        a = html.rfind("</main>")
+        b = html.find("<footer", a) if a >= 0 else -1
+        if a >= 0 and b > a and html[a + len("</main>"):b].strip():
+            fehler.append(f"{f}: Inhalt zwischen </main> und <footer> - ohne Seitenrand")
 
     if fehler:
         print("\n".join(sorted(set(fehler))))
