@@ -137,6 +137,15 @@ else
   else
     note "Kachelbilder nicht in Anzeigegroesse:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 18) Die ausgelieferten Schriften passen zu den Originalen in assets/fonts/src/.
+#     Sie haengen als Preload vor dem Hero-Bild; eine Schrift, die kein Skript
+#     mehr erzeugen kann, aendert sich beim naechsten Lauf kommentarlos.
+  if out=$(python3 scripts/check-fonts.py 2>&1); then
+    echo "  ✓ Schriftdateien aktuell"
+  else
+    note "Schriftdateien stimmen nicht:"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

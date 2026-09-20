@@ -22,7 +22,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 - **Fonts nur über die CSS-Variablen** `--display` (Fraunces) und `--ui` (Hanken Grotesk).
   **Nie** Playfair Display oder Inter auf BeThatHost-Seiten einführen.
 - **Fonts sind self-hosted** (`/assets/fonts/*.woff2` + `@font-face`-Regeln in
-  `/assets/fonts/fonts.css`). **Niemals** dynamisch vom Google-Fonts-CDN laden
+  `/assets/fonts/fonts.css`; die Originale liegen in `/assets/fonts/src/`, siehe
+  Abschnitt „Schriftdateien“). **Niemals** dynamisch vom Google-Fonts-CDN laden
   (`fonts.googleapis.com`/`fonts.gstatic.com`, auch kein `preconnect` dorthin) —
   das überträgt beim Seitenaufruf die Besucher-IP an Google-Server ohne
   Einwilligung (DSGVO Art. 6; vgl. LG München I, Urt. v. 20.01.2022, Az. 3 O
@@ -281,6 +282,42 @@ Ableitungen → nach Kachel-Leiter und Handy-Hero:
 CLS ueberall ≤ 0,022. Seitengewicht `/girlsnight/`: 2520 KB → 466 KB.
 Auf einem 768-px-Tablet liegen die drei Hubs weiterhin bei 2,5-2,8 s — dort greift der
 Handy-Zuschnitt nicht mehr, das Querformat schon.
+
+## Schriftdateien (`assets/fonts/`) — Ableitung aus `assets/fonts/src/`
+Die Originale liegen in `assets/fonts/src/`, ausgeliefert wird die Ableitung daneben.
+Grund: `hanken-grotesk.woff2` und `fraunces.woff2` haengen als Preload in allen 42 Seiten
+und werden damit **vor** dem Hero-Bild geladen — dem LCP-Element. Jedes Kilobyte dort
+kostet doppelt.
+
+- Gebaut von `scripts/build-fonts.py` (`--pruefen` meldet nur). Nach jeder Aenderung an
+  einer Datei unter `assets/fonts/src/`: `python3 scripts/build-fonts.py`.
+- **Nur `hanken-grotesk.woff2` wird geschrumpft**, und nur an der **unteren** Achsenhaelfte:
+  `wght: (400, 400, 900)` — Minimum auf 400, Default und Maximum unveraendert. Damit faellt
+  der komplette negative Delta-Satz weg (`fonts.css` liefert ohnehin nur 400–700 aus):
+  34 704 → 24 052 Bytes (−31 %). Nachgemessen **Pixel fuer Pixel identisch**: ein Specimen
+  mit 300/400/500/600/700/800/900 in beiden Schnitten und beiden Werten von
+  `font-optical-sizing` ergab 0 abweichende Pixel.
+- **Der Default einer Achse darf nie verschoben werden.** Sobald er ausserhalb der neuen
+  Grenzen liegt, rechnet fontTools die Umrisse auf ganze Font-Einheiten um und die Schrift
+  sieht anders aus. Deshalb immer das **Dreier-Tupel** `(Minimum, Default, Maximum)`
+  benutzen, nie die Kurzform `(Minimum, Maximum)`.
+- **Auch oben kuerzen (`(400, 700)`): nein.** Spart 856 Bytes, rechnet dabei aber den oberen
+  Delta-Satz um: bei `wght: 600` — sieben Mal in `style.css` — wandert die Textbreite um
+  einen Pixel, 5 355 Pixel des Specimens weichen ab.
+- **`fraunces.woff2` bleibt unangetastet.** Der Default seiner `wght`-Achse liegt bei **900**,
+  also ausserhalb der ausgelieferten 400–700; jede Begrenzung verschiebt ihn. Zusammen mit
+  der zweiten Achse `opsz` (die `font-optical-sizing: auto`, der CSS-Standard, tatsaechlich
+  benutzt) aendert das die Darstellung sichtbar: 45 400 abweichende Pixel, in jeder
+  getesteten Variante. Gewinn waeren 3–8 KB — dafuer wird die Schrift hier nicht veraendert.
+- Der `cmap` bleibt vollstaendig (ein weiteres Subset koennte aus einem Zeichen ein
+  Kaestchen machen). `fraunces-italic.woff2` und `inter.woff2` bleiben unberuehrt
+  (Inter gehoert zu `cozy/**` und wird auf BeThatHost nie geladen).
+- `scripts/check-fonts.py` prueft das mit, Punkt 18 im Konsistenz-Check: Ableitung nicht
+  aktuell, verlinkte Schrift fehlt, vorhandene Schrift verwaist.
+
+Gemessen (Chromium, 390 × 844, DPR 2, 1,6 Mbit/s, 150 ms Latenz), Original → Ableitung:
+`/` 1,68 → **1,61 s** · `/watchparty/` 1,96 → **1,90 s** · `/girlsnight/` 1,88 → **1,80 s** ·
+`/cocktailabend/` 1,74 → **1,67 s**. CLS unveraendert, 11 KB weniger je Seite.
 
 ## Hub-Seiten: `app.js` rendert nur als Rueckfallebene
 `cocktailabend/app.js`, `girlsnight/app.js` und `watchparty/app.js` bauen das Kachelgitter
