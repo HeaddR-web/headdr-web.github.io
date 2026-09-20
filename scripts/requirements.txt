@@ -2,3 +2,10 @@
 # Pillow: Bildableitungen in scripts/build-images.py (und damit Punkt 17 des
 # Konsistenz-Checks, scripts/check-images.py).
 Pillow>=10.0
+
+# fonttools + brotli: Schrift-Ableitungen in scripts/build-fonts.py (und damit
+# Punkt 18 des Konsistenz-Checks, scripts/check-fonts.py). brotli ist kein
+# Extra-Luxus, sondern die Kompression von woff2 - ohne das Modul schreibt
+# fontTools die Datei gar nicht erst.
+fonttools>=4.50
+Brotli>=1.1
