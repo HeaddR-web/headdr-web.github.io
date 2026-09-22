@@ -146,6 +146,15 @@ else
   else
     note "Schriftdateien stimmen nicht:"; echo "$out" | sed 's/^/      /'
   fi
+
+# 19) Article-JSON-LD traegt image (aus og:image) und dateModified (aus dem
+#     sichtbaren "Aktualisiert am"). Fehlen beide, meldet die Search Console
+#     jede Artikelseite als unvollstaendig.
+  if out=$(python3 scripts/build-article-jsonld.py --pruefen 2>&1); then
+    echo "  ✓ Article-JSON-LD vollstaendig"
+  else
+    note "Article-JSON-LD nicht aktuell (python3 scripts/build-article-jsonld.py):"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
