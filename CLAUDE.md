@@ -100,6 +100,22 @@ Einwilligung — deshalb werden beide **nie** direkt im HTML eingebunden, sonder
   `consent.js` nachladen, nie direkt einbinden — sonst driftet die Datenschutzerklärung
   wieder von der technischen Realität weg.
 
+## Article-JSON-LD: `image` und `dateModified` — generiert
+Bis September 2026 fehlten beide Felder im `Article`-JSON-LD aller 33 Artikelseiten. Google
+fuehrt sie als empfohlen; ohne `image` kommt eine Seite fuer die Bilddarstellung in der Suche
+und in Discover nicht in Frage, die Search Console meldet sie als unvollstaendig.
+
+- Gebaut von `scripts/build-article-jsonld.py`. **Nicht von Hand pflegen** — beide Zeilen
+  werden bei jedem Lauf entfernt und neu gesetzt.
+- **Quellen stehen schon auf der Seite:** `image` ← `og:image`, `dateModified` ← sichtbares
+  „Aktualisiert am 19. Juni 2026" im `<p class="meta">`. Google verlangt, dass Markup-Datum und
+  sichtbares Datum uebereinstimmen — deshalb ist das sichtbare Datum die Quelle, und das Skript
+  setzt es nie selbst. Wer eine Seite wesentlich ueberarbeitet, aendert das sichtbare Datum
+  und laesst danach das Skript laufen.
+- Nach jeder Aenderung an `og:image` oder am sichtbaren Datum:
+  `python3 scripts/build-article-jsonld.py`
+- Punkt 19 im Konsistenz-Check.
+
 ## Einkaufslisten-Block (`aside.quickbuy`) — generiert, nie von Hand
 Direkt unter der Einleitung steht auf jeder Anlass-Seite eine kompakte Liste **aller** Picks der
 Seite mit Direktlink. Grund: Ohne den Block taucht die erste Empfehlung erst nach rund 900 Zeichen
@@ -386,7 +402,7 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 4. URL in `sitemap.xml` eintragen.
 5. Generatoren laufen lassen: `python3 scripts/build-quickbuy.py`, `build-toc.py`,
    `build-related.py`, `build-faq.py`, `build-breadcrumb.py`, `build-images.py`,
-   `build-sitemap-lastmod.py`.
+   `build-article-jsonld.py`, `build-sitemap-lastmod.py`.
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
