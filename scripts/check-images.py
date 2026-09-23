@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Prueft die Kachel- und Hero-Bilder.
+"""Prueft die Kachel-, Hero- und Lead-Bilder.
 
 Drei Fehler:
   * Das Markup ist nicht aktuell: eine Kachel zeigt noch auf das Original
@@ -52,13 +52,24 @@ def main():
         if HINTERGRUND_RE.search(open(os.path.join(bilder.WURZEL, pfad), encoding="utf-8").read()):
             offen.append(f"Kachel noch als CSS-Hintergrund: {pfad}")
 
+    # Lead-Bilder der Artikel (article img.lead) - das LCP-Element der Seite.
+    for pfad in bilder.lead_seiten():
+        staemme, geaendert = bilder.verarbeite_lead(pfad, schreiben=False)
+        if geaendert:
+            offen.append(f"Lead-Bild nicht aktuell: {pfad}")
+        for stamm in staemme:
+            for datei in bilder.lead_erzeuge(stamm, schreiben=False):
+                offen.append(f"Lead-Ableitung fehlt: {datei}")
+            gebraucht.update(os.path.join(bilder.LEAD_DIR, f"{stamm}-{b}.jpg")
+                             for b in bilder.lead_breiten(stamm))
+
     for datei in bilder.verwaist(gebraucht):
         offen.append(f"Ableitung verwaist: {datei}")
 
     if offen:
         print("\n".join(offen))
         sys.exit(1)
-    print("Kachel- und Hero-Bilder aktuell")
+    print("Kachel-, Hero- und Lead-Bilder aktuell")
 
 
 if __name__ == "__main__":

@@ -292,6 +292,14 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
 - Der 4:3-Zuschnitt aendert sichtbar nichts. `object-fit: cover` und `background-size: cover`
   schneiden beide zentriert; ein zentrierter Zuschnitt auf 4:3 mit anschliessendem Zuschnitt
   auf das Kachel-Format ergibt dasselbe Bild wie ein Zuschnitt direkt aus dem Original.
+- **Lead-Bilder der Artikel (`article img.lead`) laufen ueber dasselbe Skript**, Ableitungen in
+  `/assets/img/lead/`, Leiter `LEAD_BREITEN = (720, 1080, 1440)` — **ohne Zuschnitt**. Der
+  Kasten ist breitengesteuert (`width: 100%`, `max-height: 460px`, `object-fit: cover`), das
+  Bild wird bei jedem Viewport nach der Breite skaliert; eine reine Verkleinerung zeigt also
+  exakt denselben Ausschnitt. Bis September 2026 kam das Original: 637 KB (1600 × 2385) fuer
+  einen 358 × 460-Kasten, gemessener **LCP 4,3 s** auf `world-cup-watch-party`, danach 1,9 s.
+  `height: auto` in `/assets/style.css` gehoert dazu — sonst nimmt der Browser das
+  `height`-Attribut woertlich und jedes Querformat-Lead waere 460 px hoch.
 - `scripts/check-images.py` prueft das mit, Punkt 17 im Konsistenz-Check.
 
 Gemessen (Chromium, 390 × 844, DPR 2, 1,6 Mbit/s, 150 ms Latenz), Ausgangslage → nach den

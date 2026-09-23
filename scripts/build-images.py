@@ -32,6 +32,7 @@ WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGINAL_DIR = "assets/img"
 KACHEL_DIR = "assets/img/kachel"
 HERO_DIR = "assets/img/hero"
+LEAD_DIR = "assets/img/lead"
 BREITEN = (480, 960)
 # Eigene Leiter fuer die kleinen Kacheln (div.cover/div.thumb). Nachgemessen
 # ueber zehn Viewports braucht so eine Kachel auf einem 2x-Display:
@@ -88,6 +89,26 @@ SIZES = "(max-width: 860px) 100vw, 46vw"
 SIZES_KACHEL = ("(max-width: 719px) calc(100vw - 34px), "
                 "(max-width: 1075px) calc(50vw - 30px), 360px")
 
+# Lead-Bild der Artikel (article img.lead) - das LCP-Element jeder Artikelseite.
+# Bis September 2026 kam es als Original: bis zu 637 KB (1600 x 2385) fuer einen
+# Kasten von 358 x 460 CSS-Pixeln auf dem Handy, 720 x 460 auf dem Desktop.
+# Gemessener LCP auf world-cup-watch-party 4,3 s, auf girls-night-games 3,2 s.
+# Der Kasten ist breitengesteuert (width:100%, max-height:460px, object-fit:
+# cover): das Bild wird immer nach der Breite skaliert, bei jedem Viewport und
+# jedem Seitenverhaeltnis der Originale. Deshalb reicht eine reine Breiten-
+# Leiter ohne Zuschnitt - sichtbar bleibt exakt dasselbe Bild.
+#   720   Handy bis 360 CSS-Pixel bei 2x, Desktop bei 1x (Pixel fuer Pixel)
+#   1080  Handys mit 3x und Tablets
+#   1440  Desktop bei 2x (720 CSS-Pixel)
+# Ein Original, das schmaler ist als die oberste Stufe, bekommt seine eigene
+# Breite als letzte Stufe (1264, 1024, 848) - nie hochskalieren.
+LEAD_BREITEN = (720, 1080, 1440)
+# Artikelbreite: --read 720px, Seitenrand 16 px bis 640 px Bildschirm, darueber
+# 24 px. Ab 768 px passt die volle Leselaenge.
+SIZES_LEAD = ("(max-width: 640px) calc(100vw - 32px), "
+              "(max-width: 767px) calc(100vw - 48px), 720px")
+LEAD_RE = re.compile(r'<img class="lead"\s[^>]*?/?>')
+
 OCC_RE = re.compile(r'<a class="occ-media"[^>]*>.*?</a>', re.S)
 IMG_RE = re.compile(r'<img\s[^>]*?/?>', re.S)
 ATTR_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
@@ -95,7 +116,7 @@ KACHEL_RE = re.compile(
     r'<div class="(?P<klasse>cover|thumb)"(?: style="(?P<stil>[^"]*)")?>(?P<inhalt>.*?)</div>',
     re.S,
 )
-PFAD_RE = re.compile(r'/assets/img/(?:kachel/|hero/)?(?P<stamm>[^"\'/]+?)(?:-\d+)?\.jpg')
+PFAD_RE = re.compile(r'/assets/img/(?:kachel/|hero/|lead/)?(?P<stamm>[^"\'/]+?)(?:-\d+)?\.jpg')
 
 
 def stamm_aus(pfad):
@@ -256,6 +277,88 @@ def hero_erzeuge(stamm, schreiben=True):
     return neu
 
 
+def lead_breiten(stamm):
+    with Image.open(original(stamm)) as im:
+        max_b = im.size[0]
+    stufen = [b for b in LEAD_BREITEN if b <= max_b]
+    if not stufen or stufen[-1] < min(max_b, LEAD_BREITEN[-1]):
+        stufen.append(max_b)
+    return stufen
+
+
+def lead_url(stamm, breite):
+    return f"/{LEAD_DIR}/{stamm}-{breite}.jpg"
+
+
+def lead_erzeuge(stamm, schreiben=True):
+    """Ungeschnittene Verkleinerungen des Originals (siehe LEAD_BREITEN)."""
+    neu = []
+    for breite in lead_breiten(stamm):
+        ziel = os.path.join(WURZEL, LEAD_DIR, f"{stamm}-{breite}.jpg")
+        if os.path.exists(ziel):
+            continue
+        neu.append(os.path.relpath(ziel, WURZEL))
+        if not schreiben:
+            continue
+        with Image.open(original(stamm)) as im:
+            im = im.convert("RGB")
+            masse = (breite, int(round(breite * im.size[1] / im.size[0])))
+            os.makedirs(os.path.dirname(ziel), exist_ok=True)
+            # Die 720er wird auf dem Desktop bei 1x Pixel fuer Pixel gezeigt.
+            guete = QUALITAET if breite == LEAD_BREITEN[0] else QUALITAET_KLEIN
+            im.resize(masse, Image.LANCZOS).save(
+                ziel, "JPEG", quality=guete, optimize=True, progressive=True
+            )
+    return neu
+
+
+def lead_img(alt_tag, stamm):
+    """Das Lead-Bild mit srcset. width/height reservieren den Platz (dazu
+    height:auto in style.css), fetchpriority="high", weil es das LCP-Element ist."""
+    attr = dict(ATTR_RE.findall(alt_tag))
+    breiten = lead_breiten(stamm)
+    with Image.open(original(stamm)) as im:
+        b, h = im.size
+    mitte = breiten[min(1, len(breiten) - 1)]
+    srcset = ", ".join(f"{lead_url(stamm, x)} {x}w" for x in breiten)
+    return (
+        f'<img class="lead" src="{lead_url(stamm, mitte)}" srcset="{srcset}"'
+        f' sizes="{SIZES_LEAD}" width="{mitte}" height="{int(round(mitte * h / b))}"'
+        f' alt="{attr.get("alt", "")}" fetchpriority="high" />'
+    )
+
+
+def verarbeite_lead(pfad, schreiben=True):
+    voll = os.path.join(WURZEL, pfad)
+    html = open(voll, encoding="utf-8").read()
+    staemme = []
+
+    def ersetze(m):
+        stamm = stamm_aus(m.group(0))
+        if not stamm or not os.path.exists(original(stamm)):
+            return m.group(0)
+        staemme.append(stamm)
+        return lead_img(m.group(0), stamm)
+
+    ergebnis = LEAD_RE.sub(ersetze, html)
+    geaendert = ergebnis != html
+    if geaendert and schreiben:
+        open(voll, "w", encoding="utf-8").write(ergebnis)
+    return staemme, geaendert
+
+
+def lead_seiten():
+    treffer = []
+    for ordner, dirs, dateien in os.walk(WURZEL):
+        rel = os.path.relpath(ordner, WURZEL)
+        dirs[:] = sorted(d for d in dirs if not d.startswith(".")
+                         and not (rel == "." and d in ("cozy", "assets", "scripts")))
+        for name in sorted(dateien):
+            if name.endswith(".html"):
+                treffer.append(os.path.normpath(os.path.join(rel, name)))
+    return treffer
+
+
 def verarbeite(pfad, schreiben=True):
     voll = os.path.join(WURZEL, pfad)
     html = open(voll, encoding="utf-8").read()
@@ -336,7 +439,7 @@ def verwaist(gebraucht):
     spaeter, welche davon noch gebraucht werden.
     """
     raus = []
-    for ordner in (KACHEL_DIR, HERO_DIR):
+    for ordner in (KACHEL_DIR, HERO_DIR, LEAD_DIR):
         voll = os.path.join(WURZEL, ordner)
         if not os.path.isdir(voll):
             continue
@@ -369,6 +472,21 @@ def main():
             zusatz = f", {len(neu)} neu erzeugt" if neu else ""
             print(f"{pfad}: {len(staemme)} Kacheln{zusatz}")
 
+    for pfad in lead_seiten():
+        staemme, geaendert = verarbeite_lead(pfad, schreiben=not pruefen)
+        neu = []
+        for stamm in staemme:
+            neu += lead_erzeuge(stamm, schreiben=not pruefen)
+            gebraucht.update(os.path.join(LEAD_DIR, f"{stamm}-{b}.jpg")
+                             for b in lead_breiten(stamm))
+        if pruefen:
+            if geaendert:
+                offen.append(f"Markup nicht aktuell: {pfad}")
+            for datei in neu:
+                offen.append(f"Ableitung fehlt: {datei}")
+        elif neu:
+            print(f"{pfad}: Lead-Bild, {len(neu)} neu erzeugt")
+
     alt = verwaist(gebraucht)
     if pruefen:
         for datei in alt:
@@ -376,7 +494,7 @@ def main():
         if offen:
             print("\n".join(offen))
             sys.exit(1)
-        print("Kachel- und Hero-Bilder aktuell")
+        print("Kachel-, Hero- und Lead-Bilder aktuell")
     else:
         for datei in alt:
             os.remove(os.path.join(WURZEL, datei))
