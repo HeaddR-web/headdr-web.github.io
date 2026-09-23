@@ -339,6 +339,13 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
   einen 358 × 460-Kasten, gemessener **LCP 4,3 s** auf `world-cup-watch-party`, danach 1,9 s.
   `height: auto` in `/assets/style.css` gehoert dazu — sonst nimmt der Browser das
   `height`-Attribut woertlich und jedes Querformat-Lead waere 460 px hoch.
+- **Produktfotos der Pick-Karten (`div.pick-photo img`) ebenso**, Ableitungen in
+  `/assets/img/produkt/`, Leiter `PRODUKT_BREITEN = (360, 540, 720)`, ohne Zuschnitt (die
+  Originale sind quadratisch, `object-fit: contain`). Der Kasten zeigt 170 px (Desktop) bzw.
+  240 px (Handy). Bis September 2026 kamen auf `gartenparty/` sieben 1024er-Originale ohne
+  `width`/`height` — 870 KB, jetzt 220 KB auf dem Handy, 124 KB auf dem Desktop.
+  Neue Karte mit Foto: `<div class="pick-photo"><img src="/assets/img/<original>.jpg" alt="…" /></div>`
+  eintragen, dann `python3 scripts/build-images.py`.
 - `scripts/check-images.py` prueft das mit, Punkt 17 im Konsistenz-Check.
 
 Gemessen (Chromium, 390 × 844, DPR 2, 1,6 Mbit/s, 150 ms Latenz), Ausgangslage → nach den

@@ -1338,6 +1338,7 @@ a.add-btn { text-decoration: none; }
 .pick .pick-photo img {
   display: block;
   width: 100%;
+  height: auto; /* sonst gilt das height-Attribut woertlich */
   aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 2px;

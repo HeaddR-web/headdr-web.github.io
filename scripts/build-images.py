@@ -33,6 +33,7 @@ ORIGINAL_DIR = "assets/img"
 KACHEL_DIR = "assets/img/kachel"
 HERO_DIR = "assets/img/hero"
 LEAD_DIR = "assets/img/lead"
+PRODUKT_DIR = "assets/img/produkt"
 BREITEN = (480, 960)
 # Eigene Leiter fuer die kleinen Kacheln (div.cover/div.thumb). Nachgemessen
 # ueber zehn Viewports braucht so eine Kachel auf einem 2x-Display:
@@ -109,6 +110,20 @@ SIZES_LEAD = ("(max-width: 640px) calc(100vw - 32px), "
               "(max-width: 767px) calc(100vw - 48px), 720px")
 LEAD_RE = re.compile(r'<img class="lead"\s[^>]*?/?>')
 
+# Produktfotos in den Pick-Karten (div.pick-photo img). Der Kasten ist quadratisch
+# (aspect-ratio 1/1, object-fit: contain) und klein: 170 CSS-Pixel Bild auf dem
+# Desktop (190 px minus 2 x 10 px Innenabstand), bis 640 px Bildschirm 240
+# (max-width 260 px minus Innenabstand). Ausgeliefert wurden bis September 2026
+# die 1024 x 1024 grossen Originale ohne width/height - 870 KB fuer sieben Karten
+# auf gartenparty/.
+#   360  Desktop bei 2x (340 Geraetepunkte)
+#   540  Handy bei 2x (480)
+#   720  Handy bei 3x (720)
+# Kein Zuschnitt: die Originale sind quadratisch, und contain zeigt ohnehin alles.
+PRODUKT_BREITEN = (360, 540, 720)
+SIZES_PRODUKT = "(max-width: 640px) 240px, 170px"
+PRODUKT_RE = re.compile(r'(<div class="pick-photo">)(<img\s[^>]*?/?>)')
+
 OCC_RE = re.compile(r'<a class="occ-media"[^>]*>.*?</a>', re.S)
 IMG_RE = re.compile(r'<img\s[^>]*?/?>', re.S)
 ATTR_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
@@ -116,7 +131,7 @@ KACHEL_RE = re.compile(
     r'<div class="(?P<klasse>cover|thumb)"(?: style="(?P<stil>[^"]*)")?>(?P<inhalt>.*?)</div>',
     re.S,
 )
-PFAD_RE = re.compile(r'/assets/img/(?:kachel/|hero/|lead/)?(?P<stamm>[^"\'/]+?)(?:-\d+)?\.jpg')
+PFAD_RE = re.compile(r'/assets/img/(?:kachel/|hero/|lead/|produkt/)?(?P<stamm>[^"\'/]+?)(?:-\d+)?\.jpg')
 
 
 def stamm_aus(pfad):
@@ -347,6 +362,72 @@ def verarbeite_lead(pfad, schreiben=True):
     return staemme, geaendert
 
 
+def produkt_breiten(stamm):
+    with Image.open(original(stamm)) as im:
+        max_b = im.size[0]
+    stufen = [b for b in PRODUKT_BREITEN if b <= max_b]
+    return stufen or [max_b]
+
+
+def produkt_url(stamm, breite):
+    return f"/{PRODUKT_DIR}/{stamm}-{breite}.jpg"
+
+
+def produkt_erzeuge(stamm, schreiben=True):
+    """Ungeschnittene Verkleinerungen des Produktfotos (siehe PRODUKT_BREITEN)."""
+    neu = []
+    for breite in produkt_breiten(stamm):
+        ziel = os.path.join(WURZEL, PRODUKT_DIR, f"{stamm}-{breite}.jpg")
+        if os.path.exists(ziel):
+            continue
+        neu.append(os.path.relpath(ziel, WURZEL))
+        if not schreiben:
+            continue
+        with Image.open(original(stamm)) as im:
+            im = im.convert("RGB")
+            masse = (breite, int(round(breite * im.size[1] / im.size[0])))
+            os.makedirs(os.path.dirname(ziel), exist_ok=True)
+            im.resize(masse, Image.LANCZOS).save(
+                ziel, "JPEG", quality=QUALITAET_KLEIN, optimize=True, progressive=True
+            )
+    return neu
+
+
+def produkt_img(alt_tag, stamm):
+    """Produktfoto mit srcset. width/height reservieren den Platz (height:auto
+    in style.css), loading="lazy": die Karten liegen alle unter dem Falz."""
+    attr = dict(ATTR_RE.findall(alt_tag))
+    breiten = produkt_breiten(stamm)
+    with Image.open(original(stamm)) as im:
+        b, h = im.size
+    klein = breiten[0]
+    srcset = ", ".join(f"{produkt_url(stamm, x)} {x}w" for x in breiten)
+    return (
+        f'<img src="{produkt_url(stamm, klein)}" srcset="{srcset}"'
+        f' sizes="{SIZES_PRODUKT}" width="{klein}" height="{int(round(klein * h / b))}"'
+        f' alt="{attr.get("alt", "")}" loading="lazy" decoding="async" />'
+    )
+
+
+def verarbeite_produkt(pfad, schreiben=True):
+    voll = os.path.join(WURZEL, pfad)
+    html = open(voll, encoding="utf-8").read()
+    staemme = []
+
+    def ersetze(m):
+        stamm = stamm_aus(m.group(2))
+        if not stamm or not os.path.exists(original(stamm)):
+            return m.group(0)
+        staemme.append(stamm)
+        return m.group(1) + produkt_img(m.group(2), stamm)
+
+    ergebnis = PRODUKT_RE.sub(ersetze, html)
+    geaendert = ergebnis != html
+    if geaendert and schreiben:
+        open(voll, "w", encoding="utf-8").write(ergebnis)
+    return staemme, geaendert
+
+
 def lead_seiten():
     treffer = []
     for ordner, dirs, dateien in os.walk(WURZEL):
@@ -439,7 +520,7 @@ def verwaist(gebraucht):
     spaeter, welche davon noch gebraucht werden.
     """
     raus = []
-    for ordner in (KACHEL_DIR, HERO_DIR, LEAD_DIR):
+    for ordner in (KACHEL_DIR, HERO_DIR, LEAD_DIR, PRODUKT_DIR):
         voll = os.path.join(WURZEL, ordner)
         if not os.path.isdir(voll):
             continue
@@ -487,6 +568,20 @@ def main():
         elif neu:
             print(f"{pfad}: Lead-Bild, {len(neu)} neu erzeugt")
 
+        staemme, geaendert = verarbeite_produkt(pfad, schreiben=not pruefen)
+        neu = []
+        for stamm in staemme:
+            neu += produkt_erzeuge(stamm, schreiben=not pruefen)
+            gebraucht.update(os.path.join(PRODUKT_DIR, f"{stamm}-{b}.jpg")
+                             for b in produkt_breiten(stamm))
+        if pruefen:
+            if geaendert:
+                offen.append(f"Markup nicht aktuell: {pfad}")
+            for datei in neu:
+                offen.append(f"Ableitung fehlt: {datei}")
+        elif neu:
+            print(f"{pfad}: {len(staemme)} Produktfotos, {len(neu)} neu erzeugt")
+
     alt = verwaist(gebraucht)
     if pruefen:
         for datei in alt:
@@ -494,7 +589,7 @@ def main():
         if offen:
             print("\n".join(offen))
             sys.exit(1)
-        print("Kachel-, Hero- und Lead-Bilder aktuell")
+        print("Kachel-, Hero-, Lead- und Produktbilder aktuell")
     else:
         for datei in alt:
             os.remove(os.path.join(WURZEL, datei))
