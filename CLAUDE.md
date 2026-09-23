@@ -139,7 +139,8 @@ Bis September 2026 trug jede Seite nur `og:title`, `og:description`, `og:type` u
 Ohne `og:url` zaehlt Facebook `/casino/` und `/casino/?pin=pokerset` als zwei Seiten, ohne
 Bildmasse bleibt die erste Vorschau bildlos, ohne `twitter:card` zeigt X ein Briefmarkenbild.
 Auf `oktoberfest/` war `og:image` ein **SVG** — das zeigen WhatsApp, Facebook und Pinterest
-gar nicht an; dort steht jetzt die JPG-Fassung `assets/img/og-oktoberfest-raute.jpg`.
+gar nicht an; seit September 2026 steht dort ein echtes Foto (`assets/img/oktoberfest-zuhause-tisch.jpg`,
+erzeugt ueber Canva, als JPG exportiert).
 
 - Gebaut von `scripts/build-social-meta.py`, Block direkt hinter `og:image` zwischen
   `<!-- SOCIAL:START … -->` und `<!-- SOCIAL:END -->`. **Nicht von Hand pflegen.**
