@@ -32,7 +32,7 @@ spec.loader.exec_module(br)
 
 NUR_NAVIGATION = {"index.html", "ueber-uns.html", "datenschutz.html",
                   "impressum.html", "privacy.html", "dashboard.html",
-                  "produkt-review.html"}
+                  "produkt-review.html", "404.html"}
 LINK_RE = re.compile(r'href="(/[^"#?]*)"')
 
 

@@ -119,6 +119,28 @@ und in Discover nicht in Frage, die Search Console meldet sie als unvollstaendig
   `python3 scripts/build-article-jsonld.py`
 - Punkt 19 im Konsistenz-Check.
 
+## `llms.txt` — generiert, nie von Hand
+`robots.txt` lädt GPTBot, ClaudeBot, PerplexityBot & Co. ausdrücklich ein; `llms.txt` ist das
+Inhaltsverzeichnis, das diese Crawler lesen. Von Hand angelegt am 20. Juli 2026 und danach nie
+wieder angefasst, fehlten im September 2026 **24 von 37 Seiten** — alle Mottopartys, alle
+Anlass-Seiten, alle Kaufratgeber.
+
+- Gebaut von `scripts/build-llms.py`, **aus den Listen, die es schon gibt**: Seiten und
+  Linktext aus `THEMA` und `NAME` in `build-related.py`, Beschreibung aus der meta description.
+  Wer eine Seite in `THEMA` einträgt, hat sie damit auch in `llms.txt`.
+- Neues Thema in `THEMA`: auch in `ABSCHNITTE` von `build-llms.py` eintragen — sonst bricht
+  das Skript ab, statt das Thema still zu verschweigen.
+- Nach jeder Änderung an `THEMA`/`NAME` oder an einer meta description:
+  `python3 scripts/build-llms.py`
+- Punkt 20 im Konsistenz-Check.
+
+## Fehlerseite (`404.html`)
+GitHub Pages liefert `/404.html` für jede unbekannte URL aus. Bis September 2026 gab es keine —
+wer über einen alten Pin oder einen Tippfehler kam, sah die nackte GitHub-Fehlerseite ohne
+einen einzigen Link zurück. Die Seite steht auf `noindex, follow`, nutzt nur **absolute** Pfade
+(sie wird unter jeder beliebigen URL ausgeliefert) und ist wie die Rechtstexte von Werbeplatz,
+Brotkrume, Verzeichnis und Weiterlesen-Block ausgenommen.
+
 ## Einkaufslisten-Block (`aside.quickbuy`) — generiert, nie von Hand
 Direkt unter der Einleitung steht auf jeder Anlass-Seite eine kompakte Liste **aller** Picks der
 Seite mit Direktlink. Grund: Ohne den Block taucht die erste Empfehlung erst nach rund 900 Zeichen
@@ -413,7 +435,7 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 4. URL in `sitemap.xml` eintragen.
 5. Generatoren laufen lassen: `python3 scripts/build-quickbuy.py`, `build-toc.py`,
    `build-related.py`, `build-faq.py`, `build-breadcrumb.py`, `build-images.py`,
-   `build-article-jsonld.py`, `build-sitemap-lastmod.py`.
+   `build-article-jsonld.py`, `build-llms.py`, `build-sitemap-lastmod.py`.
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest

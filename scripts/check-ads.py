@@ -27,6 +27,7 @@ OHNE_WERBUNG = {
     "datenschutz.html": "Rechtstext",
     "impressum.html": "Rechtstext",
     "privacy.html": "Rechtstext",
+    "404.html": "Fehlerseite (noindex, nur Wegweiser)",
     "dashboard.html": "internes Werkzeug",
     "produkt-review.html": "internes Werkzeug",
     "cocktailabend/disclosure.html": "Affiliate-Offenlegung",
