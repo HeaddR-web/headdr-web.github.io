@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Prueft die Kachel-, Hero- und Lead-Bilder.
+"""Prueft die Kachel-, Hero-, Lead- und Produktbilder.
 
 Drei Fehler:
   * Das Markup ist nicht aktuell: eine Kachel zeigt noch auf das Original
@@ -63,13 +63,23 @@ def main():
             gebraucht.update(os.path.join(bilder.LEAD_DIR, f"{stamm}-{b}.jpg")
                              for b in bilder.lead_breiten(stamm))
 
+        # Produktfotos der Pick-Karten (div.pick-photo img).
+        staemme, geaendert = bilder.verarbeite_produkt(pfad, schreiben=False)
+        if geaendert:
+            offen.append(f"Produktfoto nicht aktuell: {pfad}")
+        for stamm in staemme:
+            for datei in bilder.produkt_erzeuge(stamm, schreiben=False):
+                offen.append(f"Produkt-Ableitung fehlt: {datei}")
+            gebraucht.update(os.path.join(bilder.PRODUKT_DIR, f"{stamm}-{b}.jpg")
+                             for b in bilder.produkt_breiten(stamm))
+
     for datei in bilder.verwaist(gebraucht):
         offen.append(f"Ableitung verwaist: {datei}")
 
     if offen:
         print("\n".join(offen))
         sys.exit(1)
-    print("Kachel-, Hero- und Lead-Bilder aktuell")
+    print("Kachel-, Hero-, Lead- und Produktbilder aktuell")
 
 
 if __name__ == "__main__":
