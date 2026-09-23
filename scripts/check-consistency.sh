@@ -163,6 +163,15 @@ else
   else
     note "llms.txt nicht aktuell (python3 scripts/build-llms.py):"; echo "$out" | sed 's/^/      /'
   fi
+
+# 21) Social-Meta (og:url, og:site_name, og:locale, Bildmasse, og:image:alt,
+#     twitter:card) hinter jedem og:image, und og:image ist JPG/PNG. Bis
+#     September 2026 fehlten alle sechs; oktoberfest/ teilte ein SVG.
+  if out=$(python3 scripts/build-social-meta.py --pruefen 2>&1); then
+    echo "  ✓ $out"
+  else
+    note "Social-Meta nicht aktuell (python3 scripts/build-social-meta.py):"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

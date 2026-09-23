@@ -134,6 +134,22 @@ Anlass-Seiten, alle Kaufratgeber.
   `python3 scripts/build-llms.py`
 - Punkt 20 im Konsistenz-Check.
 
+## Social-Meta (`og:url`, `twitter:card` & Co.) — generiert
+Bis September 2026 trug jede Seite nur `og:title`, `og:description`, `og:type` und `og:image`.
+Ohne `og:url` zaehlt Facebook `/casino/` und `/casino/?pin=pokerset` als zwei Seiten, ohne
+Bildmasse bleibt die erste Vorschau bildlos, ohne `twitter:card` zeigt X ein Briefmarkenbild.
+Auf `oktoberfest/` war `og:image` ein **SVG** — das zeigen WhatsApp, Facebook und Pinterest
+gar nicht an; dort steht jetzt die JPG-Fassung `assets/img/og-oktoberfest-raute.jpg`.
+
+- Gebaut von `scripts/build-social-meta.py`, Block direkt hinter `og:image` zwischen
+  `<!-- SOCIAL:START … -->` und `<!-- SOCIAL:END -->`. **Nicht von Hand pflegen.**
+- Quellen: `og:url` ← canonical, Breite/Hoehe ← die Bilddatei, `og:image:alt` ← `alt` des
+  Lead-Bilds (wenn gleiches Motiv), sonst `og:title`.
+- **`og:image` ist immer JPG oder PNG** und liegt unter `/assets/` — sonst bricht das Skript ab.
+- Nach jeder Aenderung an `og:image`, canonical, `og:title` oder Lead-`alt`:
+  `python3 scripts/build-social-meta.py`
+- Punkt 21 im Konsistenz-Check.
+
 ## Fehlerseite (`404.html`)
 GitHub Pages liefert `/404.html` für jede unbekannte URL aus. Bis September 2026 gab es keine —
 wer über einen alten Pin oder einen Tippfehler kam, sah die nackte GitHub-Fehlerseite ohne
@@ -435,7 +451,7 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 4. URL in `sitemap.xml` eintragen.
 5. Generatoren laufen lassen: `python3 scripts/build-quickbuy.py`, `build-toc.py`,
    `build-related.py`, `build-faq.py`, `build-breadcrumb.py`, `build-images.py`,
-   `build-article-jsonld.py`, `build-llms.py`, `build-sitemap-lastmod.py`.
+   `build-article-jsonld.py`, `build-social-meta.py`, `build-llms.py`, `build-sitemap-lastmod.py`.
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
