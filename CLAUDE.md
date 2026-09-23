@@ -41,7 +41,10 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   `@font-face` in `fonts.css` ergänzen — nie den CDN-Link selbst einbinden.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
-1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>`, meta description
+1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>` (**max. 60 Zeichen inkl.
+   „ — BeThatHost"** — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
+   hinter dem Schnitt verschwand genau die Marke. Hauptsuchwort nach vorn; die `<h1>` darf
+   länger sein), meta description
    (**max. 160 Zeichen** — Google schneidet deutsche Snippets bei rund 155-160 ab;
    `scripts/check-meta.py` prüft das mit, Punkt 10 im Konsistenz-Check), canonical,
    og-Tags, **Article + FAQPage JSON-LD**, `/assets/fonts/fonts.css` (self-hosted, kein CDN),
