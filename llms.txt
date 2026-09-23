@@ -1,20 +1,66 @@
 # BeThatHost — bethathost.de
 
-> Deutschsprachige Plattform zum Planen von Veranstaltungen & Abenden zuhause. Pro Anlass kuratierte Kategorien mit direkt verlinkten Produktempfehlungen und ausführliche Guides. Marken-/Money-Modell: Affiliate (Amazon, amazon.de) + Display-Werbung.
+> Deutschsprachige Seite zum Planen von Feiern und Abenden zuhause: Mädelsabend, Cocktailabend, WM-Party, Geburtstag, Mottopartys und mehr. Pro Anlass kuratierte Produktempfehlungen mit direktem Link, ausführliche Guides und Kaufratgeber.
 
-## Rubriken
-- [Mädelsabend (Girls Night)](https://bethathost.de/girlsnight/): Spiele, Cocktails, Snacks, Deko, Pflege & Filmabend
-- [WM- / Fußball-Watch-Party](https://bethathost.de/watchparty/): Beamer-Setup, Snacks, Getränke, schwarz-rot-gold Fan-Deko, Tippspiel
-- [Cocktailabend](https://bethathost.de/cocktailabend/): Hausbar, Gläser, Zutaten, Snacks, Ambiente
+Finanziert über Affiliate-Links (Amazon.de) und Display-Werbung; jede Seite legt das offen. Alle Inhalte auf Deutsch.
 
-## Guides
-- https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html
-- https://bethathost.de/girlsnight/posts/girls-night-budget.html
-- https://bethathost.de/girlsnight/posts/girls-night-drinks.html
-- https://bethathost.de/girlsnight/posts/girls-night-galentines.html
-- https://bethathost.de/girlsnight/posts/girls-night-games.html
-- https://bethathost.de/girlsnight/posts/girls-night-movie-night.html
-- https://bethathost.de/girlsnight/posts/girls-night-pamper-spa.html
-- https://bethathost.de/girlsnight/posts/girls-night-snacks.html
-- https://bethathost.de/girlsnight/posts/girls-night-themes.html
-- https://bethathost.de/watchparty/posts/world-cup-watch-party.html
+## Mädelsabend
+
+- [Mädelsabend](https://bethathost.de/girlsnight/): Den ultimativen Mädelsabend planen: Spiele, Cocktails, Snacks, Deko, Pflege und Filmabend — kuratiert nach Kategorie, mit Guide je Bereich.
+- [Mädelsabend-Mottos](https://bethathost.de/girlsnight/posts/girls-night-themes.html): 12 Mädelsabend-Mottos mit einfacher Deko: Ballonbögen, Neon-Glow, Disco, Galentine's und mehr. Wähl ein Motto und bring den ganzen Abend im Nu zusammen.
+- [Mädelsabend-Spiele](https://bethathost.de/girlsnight/posts/girls-night-games.html): Die besten Mädelsabend-Spiele, Eisbrecher ohne Zubehör, urkomische Partykartenspiele und Trinkspiele. 21 Ideen, bei denen alle lachen, für jede Gruppengröße.
+- [Snacks & Grazing-Board](https://bethathost.de/girlsnight/posts/girls-night-snacks.html): Einfache Mädelsabend-Snacks, die ohne großes Kochen beeindrucken, so baust du ein Grazing-Board, plus süße, salzige und vorbereitbare Häppchen, die alle lieben.
+- [Drinks für den Mädelsabend](https://bethathost.de/girlsnight/posts/girls-night-drinks.html): Einfache Mädelsabend-Getränke: ein Signature-Cocktail zum Vorbereiten, beliebte Klassiker und alkoholfreie Mocktails, damit alle mitmachen können.
+- [Wine Tasting](https://bethathost.de/girlsnight/posts/wine-tasting-girls.html): Wine Tasting mit den Girls zuhause planen: gleiche Gläser, Karaffe zum Belüften, Käse-Board und Verkostungskarten, mit konkreten Empfehlungen und Ablaufplan.
+- [Filmabend mit den Girls](https://bethathost.de/girlsnight/posts/girls-night-movie-night.html): Der ultimative Mädels-Filmabend: gemütliche Decken-Höhle, Popcorn-Bar, der richtige Bildschirm und Watchlist-Ideen, auf die sich alle einigen.
+- [Pflege- & Spa-Abend](https://bethathost.de/girlsnight/posts/girls-night-pamper-spa.html): Spa-Abend zu Hause: Gesichtsmasken, Mani-Pediküre, ein Bademantel-und-Kerzen-Ritual und das Equipment, das dein Wohnzimmer zum Spa macht.
+- [Pyjama-Party](https://bethathost.de/girlsnight/posts/pyjama-party.html): Pyjama Party planen: gemütliches Setup mit Decken & Lichtern, matching Pyjamas, Spa-Runde, Snacks und Spiele, mit konkreten Empfehlungen und direkten Links.
+- [Galentine's Day](https://bethathost.de/girlsnight/posts/girls-night-galentines.html): Galentine's Day feiern: was dahintersteckt und wann es ist, plus Themen, Essen, Drinks, Spiele und Goodie-Bag-Ideen für den 13. Februar.
+- [Mädelsabend mit kleinem Budget](https://bethathost.de/girlsnight/posts/girls-night-budget.html): Mädelsabend mit kleinem Budget: 20 günstige Ideen für daheim, kostenlose Aktivitäten, DIY-Deko, einfache Snacks — und die Käufe, die sich lohnen.
+
+## Cocktailabend
+
+- [Cocktailabend](https://bethathost.de/cocktailabend/): Alles für den perfekten Cocktailabend zuhause: Bar-Ausstattung, Gläser, Zutaten, Snacks und Deko, kuratiert nach Kategorie, mit direkten Amazon-Links.
+- [Cocktailabend zuhause planen](https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html): So planst du den Cocktailabend zuhause: Hausbar-Basics, ein Signature-Drink zum Vorbereiten, alkoholfreie Optionen, die richtigen Gläser, Snacks.
+- [Signature-Cocktails vorbereiten](https://bethathost.de/cocktailabend/posts/signature-cocktails-vorbereiten.html): 5 Signature-Cocktails zum Vorbereiten: Batch-Rezepte für Aperol Spritz, Gin Tonic, Negroni & Co., plus Gläser, Eis und Garnitur für deinen Cocktailabend.
+
+## WM- und Fußball-Party
+
+- [WM-Party](https://bethathost.de/watchparty/): Alles für die WM-Party zuhause: Großbild-Stimmung, Snacks, Getränke, schwarz-rot-gold Fan-Deko und ein Tippspiel, kuratiert nach Kategorie.
+- [WM-Party planen](https://bethathost.de/watchparty/posts/world-cup-watch-party.html): Die ultimative WM-Party zuhause: das richtige Bild-und-Ton-Setup, einfache Spieltag-Snacks, Getränke, Fan-Deko und ein Tippspiel.
+- [WM-Snacks](https://bethathost.de/watchparty/posts/wm-snacks-rezepte.html): Einfache, vorzubereitende WM-Snacks für zuhause: Fingerfood-Ideen, ein Grazing-Board, die richtigen Mengen pro Person und ein Timing-Plan für den Spieltag.
+- [Spontane Mini-Party](https://bethathost.de/watchparty/posts/wm-spiel-heute-abend.html): Spontane WM-Party heute Abend? Snacks in Minuten, Getränke kalt, schwarz-rot-gold Deko, Stream startklar und ein Tippspiel, mit konkreten Empfehlungen.
+
+## Anlässe
+
+- [Sonntags-Brunch](https://bethathost.de/brunch/): Sonntags-Brunch zuhause planen: Buffet statt Tellerservice, Waffeln und Eier als Highlights, Kaffee und Mimosas, ein schön gedeckter Tisch.
+- [Gartenparty](https://bethathost.de/gartenparty/): Gartenparty im Sommer planen: stimmungsvolle Beleuchtung, Schatten und Sitzplätze, Getränke kühlen und servieren, Musik und sommerliche Deko.
+- [Grillabend](https://bethathost.de/grillabend/): Grillabend im Garten planen: das Grill-Setup, Würzen und Zubereiten, Servieren und Kühlen sowie die richtige Atmosphäre für draußen.
+- [Geburtstag zuhause](https://bethathost.de/geburtstag/): Geburtstag zuhause feiern: Deko, die wirkt, die Torte in Szene setzen, Stimmung und Musik — mit Empfehlungen für jeden Teil des Tages.
+- [Spieleabend](https://bethathost.de/spieleabend/): Spieleabend zuhause planen: die richtigen Spiele, Snacks zum Knabbern, eine gemütliche Runde und Extras für die Wettkämpfer.
+- [Casino-Abend](https://bethathost.de/casino/): Casino- und James-Bond-Abend planen: Deko und Dresscode, Pokerset, Martini und Bond-Drinks — mit motto-exakten Empfehlungen je Kategorie.
+- [Spa-Abend](https://bethathost.de/spa-abend/): Spa-Abend zuhause gestalten: die richtige Atmosphäre, Gesichtspflege, Bad und Körper sowie Entspannung für deinen Wellness-Abend daheim.
+- [Valentinstag](https://bethathost.de/valentinstag/): Valentinstag zuhause feiern: romantische Atmosphäre, gedeckter Tisch für zwei, Fondue & Sekt und eine süße Überraschung, konkrete Ideen für eure Date Night.
+- [Saison-Deko](https://bethathost.de/saison-deko/): Saison-Deko für Herbst und Winter: warmes Licht, kuschelige Textilien, natürliche Akzente und stimmungsvolle Kerzen für ein gemütliches Zuhause.
+- [JGA](https://bethathost.de/jga/): JGA planen leicht gemacht: Team-Bride-Outfits und Schärpen, Deko, Spiele und ein Survival-Kit für den Junggesellinnenabschied.
+
+## Mottopartys
+
+- [Hawaii-Party](https://bethathost.de/hawaii-tiki/): Hawaii- & Tiki-Party planen: Blumenketten, Tiki-Deko, tropische Drinks, Outfits und Spiele, mit konkreten Empfehlungen und direkten Links für deine Sommer-Luau.
+- [Mexiko-Fiesta](https://bethathost.de/mexiko-fiesta/): Mexikanische Mottoparty zuhause: bunte Deko, ein Taco-Buffet, Margaritas und Fiesta-Stimmung — mit motto-exakten Empfehlungen.
+- [Oktoberfest zuhause](https://bethathost.de/oktoberfest/): Oktoberfest-Party zuhause: weiß-blaue Rauten-Deko, Brotzeit-Buffet, Maßkrüge und Wiesn-Stimmung — mit motto-exakten Empfehlungen.
+
+## Kaufratgeber
+
+- [Outdoor-Lichterkette](https://bethathost.de/ratgeber/outdoor-lichterkette.html): Outdoor-Lichterkette-Kaufratgeber: Solar oder Strom, warmweißes Licht, Länge & IP-Schutzart, so findest du die richtige Kette für Garten und Balkon.
+- [Bluetooth-Lautsprecher](https://bethathost.de/ratgeber/bluetooth-lautsprecher-garten.html): Wasserdichte Bluetooth-Lautsprecher für Garten & Party im Vergleich: worauf du bei Schutzart (IP67), Leistung und Akku achtest, mit konkreten Empfehlungen.
+- [Mini-Beamer](https://bethathost.de/ratgeber/mini-beamer-filmabend.html): Mini-Beamer Kaufratgeber 2026: worauf es bei Helligkeit, Auflösung, Anschlüssen und Sound ankommt — und welcher zu welchem Budget passt.
+- [Cocktail-Shaker-Set](https://bethathost.de/ratgeber/cocktail-shaker-set.html): Cocktail-Shaker-Set Kaufratgeber: Was in die Hausbar gehört, worauf du bei Shaker, Jigger und Barsieb achtest und welches Set zu dir passt, plus Extras.
+- [Raclette & Fondue](https://bethathost.de/ratgeber/raclette-fondue-set.html): Raclette oder Fondue? Worauf du bei Größe, Leistung und Pfännchen achten solltest und welches Set für 2 Personen zur Date Night oder die ganze Runde passt.
+
+## Optional
+
+- [Über BeThatHost](https://bethathost.de/ueber-uns.html): Über BeThatHost: Wir helfen dir, jede Feier stressfrei zu planen — mit kuratierten Ideen pro Anlass. Wer dahintersteckt und wie wir auswählen.
+- [Offenlegung: Affiliate-Links](https://bethathost.de/girlsnight/disclosure.html): Wie sich der Mädelsabend-Guide finanziert: Affiliate-Links, Werbung erst nach deiner Einwilligung, kein Newsletter, keine Konten.
+- [Datenschutz](https://bethathost.de/datenschutz.html)
+- [Impressum](https://bethathost.de/impressum.html)

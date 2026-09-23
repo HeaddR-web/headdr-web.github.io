@@ -25,7 +25,7 @@ import sys
 
 MIN_ABSCHNITTE = 4
 AUSGENOMMEN = {
-    "index.html", "datenschutz.html", "impressum.html", "privacy.html",
+    "index.html", "datenschutz.html", "impressum.html", "privacy.html", "404.html",
     "dashboard.html", "produkt-review.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",

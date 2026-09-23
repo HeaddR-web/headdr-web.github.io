@@ -47,7 +47,7 @@ ABSCHNITTE = {
 }
 
 AUSGENOMMEN = {
-    "index.html", "datenschutz.html", "impressum.html", "privacy.html",
+    "index.html", "datenschutz.html", "impressum.html", "privacy.html", "404.html",
     "dashboard.html", "produkt-review.html", "ueber-uns.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",

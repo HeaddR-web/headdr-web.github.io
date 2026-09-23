@@ -155,6 +155,14 @@ else
   else
     note "Article-JSON-LD nicht aktuell (python3 scripts/build-article-jsonld.py):"; echo "$out" | sed 's/^/      /'
   fi
+
+# 20) llms.txt listet jede Seite aus THEMA (build-related.py) mit ihrer meta
+#     description. Von Hand gepflegt fehlten dort im September 2026 24 von 37 Seiten.
+  if out=$(python3 scripts/build-llms.py --pruefen 2>&1); then
+    echo "  ✓ llms.txt aktuell"
+  else
+    note "llms.txt nicht aktuell (python3 scripts/build-llms.py):"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
