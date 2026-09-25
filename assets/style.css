@@ -634,6 +634,11 @@ article {
   margin: 0 auto;
 }
 article h1 {
+  /* Lange deutsche Komposita ("Junggesellinnenabschied-Ideen") passen bei 390 px
+     nicht in eine Zeile und wurden rechts abgeschnitten. Silbentrennung ueber
+     lang="de", overflow-wrap als Rueckfall fuer Browser ohne Woerterbuch. */
+  hyphens: auto;
+  overflow-wrap: break-word;
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(2rem, 4.8vw, 2.9rem);
