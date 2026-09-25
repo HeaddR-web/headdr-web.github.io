@@ -30,5 +30,25 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075844_39f86e5b-2166-4e70-b8f2-cdece07d6841.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Spieleabend planen: Die Drei-Akte-Regel",
+    "description": "Aufwärmer, Hauptspiel, Absacker: So bleibt ein Spieleabend spannend bis zum Schluss. Plus welches Spiel zu welcher Gruppengröße passt. #spieleabend #brettspiele #gesellschaftsspiele #spieleabendmitfreunden #partyideen",
+    "link": "https://bethathost.de/spieleabend/?pin=akte#cat-games",
+    "image_url": "https://bethathost.de/assets/pins/spieleabend-akte.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 5
+  },
+  {
+    "title": "Spielregeln erklären: 4 Tricks für den Spieleabend",
+    "description": "Nichts tötet einen Spieleabend so zuverlässig wie zwanzig Minuten Regelheft. Vier Tricks, mit denen alle nach einer Runde mitspielen. #spieleabend #brettspiele #spieletipps #gesellschaftsspiele #freunde",
+    "link": "https://bethathost.de/spieleabend/?pin=regeln#regeln",
+    "image_url": "https://bethathost.de/assets/pins/spieleabend-regeln.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 15
   }
 ]

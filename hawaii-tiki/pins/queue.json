@@ -30,5 +30,35 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075825_6b2a06e2-ed77-4ec6-83a6-3e645f6723c2.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Mai Tai Originalrezept: So schmeckt der echte Tiki-Klassiker",
+    "description": "Rum, Limette, Mandel – so war der Mai Tai 1944 gedacht, ganz ohne Ananassaft. Das Originalrezept plus Piña Colada und eine alkoholfreie Bowle für die Hawaii-Party. #maitai #tikicocktail #hawaiiparty #cocktailrezept #rum",
+    "link": "https://bethathost.de/hawaii-tiki/?pin=maitai#cat-drinks",
+    "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-maitai.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 17
+  },
+  {
+    "title": "Tropical-Bowle ohne Alkohol für 10 Personen",
+    "description": "Ananas, Orange, Maracuja und Ginger Ale: die alkoholfreie Bowle für die Hawaii- oder Sommerparty, in fünf Minuten angerührt. #bowle #alkoholfrei #sommerparty #hawaiiparty #partygetränke",
+    "link": "https://bethathost.de/hawaii-tiki/?pin=bowle#cat-drinks",
+    "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-bowle.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 26
+  },
+  {
+    "title": "Luau-Buffet für die Hawaii-Party: 5 Ideen mit Rezept",
+    "description": "Spieße, Kokosreis, Salsa, Poke und gegrillte Ananas: ein Buffet für die Hawaii-Party, das fast von allein läuft. Mit Rezepten und Mengen. #hawaiiparty #luau #partybuffet #sommerparty #mottoparty",
+    "link": "https://bethathost.de/hawaii-tiki/?pin=luau#essen",
+    "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-luau.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 29
   }
 ]

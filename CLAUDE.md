@@ -516,6 +516,15 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   erst in `STATISTIK.md` schauen.**
 - **Takt:** `MAX_PER_RUN: "1"` = 2 Pins am Tag. Mit 5 war die Queue nach einer Woche leer.
   Nachschub rechtzeitig einplanen: in `STATISTIK.md`/`doctor` steht, wie viele offen sind.
+- **Nachschub: Grafik-Pins.** Rezeptkarten, Checklisten und Ablaufpläne aus den Seiteninhalten,
+  Quelle `pinterest/grafik-pins.json`, gerendert von `scripts/build-pin-grafiken.py` nach
+  `assets/pins/<site>-<id>.jpg` (1000 × 1500, eigene Farben je Karte, kein Credit nötig).
+  Das Skript prüft, dass Zielseite und Anker existieren, verkleinert die Schrift, bis alles
+  auf die Karte passt, und trägt jeden Pin einmal in `<site>/pins/queue.json` ein — mit
+  `"kanal": "api"` und `"prio"` (Reihenfolge in `REIHENFOLGE`: Saisonales zuerst, danach
+  im Wechsel der Seiten). Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
+  `python3 scripts/build-pin-grafiken.py`. Ist die Queue leer oder fast leer, zeigt der
+  Publish-Workflow eine **Warnung** im Actions-Log statt still grün durchzulaufen.
 - **Kanal:** Neue Queue-Einträge tragen `"kanal": "api"` und stehen deshalb **nicht** in
   `feed.xml` — sonst legt der RSS-Import sie ein zweites Mal an. Die alten 70 Einträge ohne
   das Feld bleiben im Feed (sie sind längst draußen).

@@ -206,6 +206,10 @@ def read_queues(queue_files: list[Path]) -> tuple[dict, list]:
         for pin in data:
             if not pin.get("published"):
                 pending.append((qf, site, pin))
+    # "prio" legt die Reihenfolge ueber alle Queues fest (build-pin-grafiken.py
+    # setzt sie). Ohne wuerde Datei fuer Datei gepostet - erst alle Casino-Pins,
+    # dann alle vom Grillabend. Eintraege ohne prio behalten ihre Reihenfolge.
+    pending.sort(key=lambda t: t[2].get("prio", 0))
     return queues, pending
 
 
@@ -359,8 +363,15 @@ def main() -> int:
         return 0
 
     if not pending:
-        print("Alle Queues abgearbeitet — keine offenen Pins.")
+        # Als Warnung, nicht als stilles "gruen": im September 2026 lief der
+        # Workflow so wochenlang ins Leere, ohne dass es jemand bemerkte.
+        print("::warning title=Pinterest-Queue leer::Alle Queues abgearbeitet — keine "
+              "offenen Pins. Nachschub: pinterest/grafik-pins.json + "
+              "scripts/build-pin-grafiken.py")
         return 0
+    if len(pending) <= 6:
+        print(f"::warning title=Pinterest-Queue fast leer::Nur noch {len(pending)} offene "
+              "Pins — in rund drei Tagen ist die Queue leer.")
 
     attempted = 0
     posted = 0

@@ -1,0 +1,293 @@
+{
+  "_hinweis": "Quelle fuer die Grafik-Pins (Rezeptkarten, Checklisten, Ablaufplaene). scripts/build-pin-grafiken.py rendert daraus assets/pins/<site>-<id>.jpg (1000x1500, 2:3) und traegt jeden Pin einmal in <site>/pins/queue.json ein (mit \"kanal\": \"api\"). Inhalte stammen aus den Seiten selbst - aendert sich dort ein Rezept, hier mitziehen und neu rendern. Ein Pin, der schon in der Queue steht, wird nie doppelt eingetragen.",
+  "pins": [
+    {
+      "site": "casino", "id": "vesper", "anker": "cat-drinks", "farbe": "nacht",
+      "kicker": "Rezept · Casino-Abend", "titel": "Vesper Martini", "unter": "Bonds Drink aus „Casino Royale“",
+      "art": "liste",
+      "punkte": ["6 cl Gin", "2 cl Wodka", "1 cl Lillet Blanc", "Mit viel Eis kräftig shaken – ja, geschüttelt", "In ein eiskaltes Martini-Glas abseihen", "Zitronenzeste darüber auspressen"],
+      "fuss": "Plus: alkoholfreier „Moneypenny“",
+      "pin_titel": "Vesper Martini: Bonds Originalrezept für den Casino-Abend",
+      "beschreibung": "Geschüttelt, nicht gerührt: So mixt du den Vesper aus „Casino Royale“ – 6 cl Gin, 2 cl Wodka, 1 cl Lillet. Dazu die alkoholfreie Variante „Moneypenny“ und alles für den Casino-Abend zuhause. #vespermartini #jamesbond #casinoabend #cocktailrezept #mottoparty"
+    },
+    {
+      "site": "casino", "id": "chips", "anker": "cat-pokerset", "farbe": "gruen",
+      "kicker": "Pokerabend zuhause", "titel": "So verteilst du die Chips", "unter": "1.000 Casino-Dollar pro Person",
+      "art": "tabelle",
+      "punkte": ["10 Chips à 10|100", "8 Chips à 25|200", "4 Chips à 50|200", "5 Chips à 100|500"],
+      "fuss": "Blinds alle 20 Min.: 10/20 · 25/50 · 50/100 · 100/200",
+      "pin_titel": "Pokerchips richtig verteilen: Startstapel für den Pokerabend",
+      "beschreibung": "1.000 Casino-Dollar pro Person, 27 Chips pro Kopf – so reicht ein 300er-Set für zehn Spieler. Dazu die Blind-Stufen, damit das Turnier nach zwei Stunden entschieden ist. #pokerabend #texasholdem #casinoabend #spieleabend #partyideen"
+    },
+    {
+      "site": "casino", "id": "ablauf", "anker": "ablauf", "farbe": "gold",
+      "kicker": "Casino-Abend planen", "titel": "Ein Abend in fünf Akten", "unter": "Der Ablauf, der immer funktioniert",
+      "art": "schritte",
+      "punkte": ["2 Wochen vorher|Einladung mit Dresscode", "19:00|Ankunft, Chips, Begrüßungsdrink", "19:30|Black Jack zum Aufwärmen", "20:30|Essen und Roulette", "21:00|Das Poker-Turnier", "Zum Schluss|Siegerehrung mit Foto"],
+      "fuss": "",
+      "pin_titel": "Casino-Abend zuhause: Ablaufplan in fünf Akten",
+      "beschreibung": "Vom Dresscode in der Einladung bis zur Siegerehrung: So baust du einen Casino-Abend auf, bei dem niemand nach einer Stunde gelangweilt ist. Mit Black Jack, Roulette und Poker-Turnier. #casinoabend #jamesbondparty #mottoparty #partyplanung #spieleabend"
+    },
+    {
+      "site": "grillabend", "id": "marinaden", "anker": "cat-prep", "farbe": "terrakotta",
+      "kicker": "Grillen · selbst gemacht", "titel": "3 Marinaden für jedes Grillgut", "unter": "Je für rund 1 kg",
+      "art": "block",
+      "punkte": ["Kräuter-Knoblauch|6 EL Olivenöl, 2 Knoblauchzehen, Saft + Abrieb 1 Zitrone, 1 TL Salz, Rosmarin, Thymian", "Honig-Senf|3 EL Öl, 2 EL Senf, 2 EL Honig, 1 EL Sojasauce, 1 TL Rauchpaprika", "Joghurt-Tandoori|150 g Joghurt, 2 TL Garam Masala, 1 TL Paprika, 1 Knoblauchzehe, Salz, Zitrone"],
+      "fuss": "Vor dem Grillen gut abstreifen – sonst flammt es auf",
+      "pin_titel": "3 Grill-Marinaden zum Selbermachen: Kräuter, Honig-Senf, Tandoori",
+      "beschreibung": "Besser als fertig mariniert: drei Grundrezepte für Hähnchen, Nackensteak und Gemüse, jeweils für ein Kilo Grillgut. Plus der Trick, damit nichts aufflammt. #grillmarinade #grillen #bbq #grillrezepte #grillabend"
+    },
+    {
+      "site": "grillabend", "id": "zeitplan", "anker": "zeitplan", "farbe": "salbei",
+      "kicker": "Grillabend planen", "titel": "Der entspannte Grill-Zeitplan", "unter": "Damit du nicht nur am Rost stehst",
+      "art": "schritte",
+      "punkte": ["2 Tage vorher|Getränke, Kohle, alles Haltbare", "Am Vortag|Marinieren, Salate, Dips", "Vormittags|Spieße stecken, Brot holen", "1 Std. vorher|Kohle anzünden, Fleisch raus", "Gäste kommen|Erste Runde sofort auf den Rost"],
+      "fuss": "Holzkohle 20–30 Min., Briketts 45–60 Min.",
+      "pin_titel": "Grillabend-Zeitplan: Was du wann vorbereitest",
+      "beschreibung": "Ein Grillabend fühlt sich spontan an, wenn die Arbeit vorher erledigt ist. Der Zeitplan von zwei Tagen vorher bis zur ersten Runde – plus wie lange Kohle und Briketts brauchen. #grillabend #grillparty #gartenparty #partyplanung #sommerparty"
+    },
+    {
+      "site": "grillabend", "id": "fehler", "anker": "fehler", "farbe": "nacht",
+      "kicker": "Grillen wie ein Profi", "titel": "5 Grillfehler, die fast jeder macht", "unter": "",
+      "art": "nummern",
+      "punkte": ["Zu früh auflegen, solange noch Flammen schlagen", "Fleisch direkt aus dem Kühlschrank", "Ständig wenden", "Alles auf einmal auflegen", "Flammen mit Bier löschen"],
+      "fuss": "Was du stattdessen machst: auf bethathost.de",
+      "pin_titel": "5 Grillfehler, die fast jeder macht – und wie es besser geht",
+      "beschreibung": "Zu früh auflegen, ständig wenden, mit Bier ablöschen: die fünf häufigsten Fehler am Grill und was du stattdessen machst. #grilltipps #grillen #bbq #grillabend #grillsaison"
+    },
+    {
+      "site": "grillabend", "id": "zonen", "anker": "cat-setup", "farbe": "gold",
+      "kicker": "Der wichtigste Grilltrick", "titel": "Die Zwei-Zonen-Glut", "unter": "Kohle nur auf eine Hälfte",
+      "art": "block",
+      "punkte": ["Direkte Zone|Über der Glut: Würstchen, Steaks, Spieße scharf grillen", "Indirekte Zone|Leere Seite: Hähnchenschenkel gar ziehen, Gemüse, Warmhalten", "Der Hand-Test|10 cm über dem Rost: 2–3 Sek. = heiß, 5–6 Sek. = mittel"],
+      "fuss": "Zange statt Gabel – jedes Loch lässt Saft raus",
+      "pin_titel": "Zwei-Zonen-Glut: Der wichtigste Trick am Holzkohlegrill",
+      "beschreibung": "Kohle nur auf eine Hälfte – so grillst du scharf und hältst trotzdem warm, ohne dass etwas verbrennt. Plus der Hand-Test für die richtige Hitze. #grilltipps #holzkohlegrill #grillen #bbq #grillabend"
+    },
+    {
+      "site": "mexiko-fiesta", "id": "guacamole", "anker": "cat-buffet", "farbe": "salbei",
+      "kicker": "Rezept · Fiesta", "titel": "Guacamole, die grün bleibt", "unter": "Für 4 bis 6 Personen",
+      "art": "liste",
+      "punkte": ["3 reife Avocados, zerdrückt", "Saft von 1 Limette", "½ rote Zwiebel, fein gewürfelt", "1 Tomate ohne Kerne", "Frischer Koriander, Salz", "Folie direkt auf die Oberfläche legen"],
+      "fuss": "Höchstens 2 Stunden vorher machen",
+      "pin_titel": "Guacamole-Rezept: So bleibt sie grün",
+      "beschreibung": "Die klassische Guacamole für das Taco-Buffet – und der Trick, mit dem sie nicht braun wird. Dazu Pico de Gallo, Chili-Hack und alles für die mexikanische Fiesta. #guacamole #tacoparty #mexikanisch #fingerfood #partyrezepte"
+    },
+    {
+      "site": "mexiko-fiesta", "id": "margarita", "anker": "cat-drinks", "farbe": "terrakotta",
+      "kicker": "Für die ganze Runde", "titel": "Margarita im Krug", "unter": "Für 8 Drinks, vorbereitet",
+      "art": "liste",
+      "punkte": ["40 cl Tequila Blanco", "16 cl Orangenlikör (Triple Sec)", "16 cl frischer Limettensaft", "12 cl kaltes Wasser", "Kalt stellen, über Eis gießen", "Salzrand: Limette, dann in grobes Salz"],
+      "fuss": "Das Wasser ersetzt das Schmelzwasser aus dem Shaker",
+      "pin_titel": "Margarita im Krug für 8: Das Party-Rezept",
+      "beschreibung": "Nicht den ganzen Abend am Shaker stehen: Margarita für acht Gläser im Krug vormischen und nur noch über Eis gießen. Mit dem Trick fürs richtige Mischverhältnis. #margarita #cocktailrezept #mexikoparty #partydrinks #tequila"
+    },
+    {
+      "site": "mexiko-fiesta", "id": "aguafresca", "anker": "cat-drinks", "farbe": "rosa",
+      "kicker": "Ohne Alkohol · aus Mexiko", "titel": "Agua fresca & Jamaica", "unter": "Die zwei Klassiker ohne Alkohol",
+      "art": "block",
+      "punkte": ["Agua fresca de sandía|1 kg Wassermelone, 500 ml Wasser, Saft von 2 Limetten, etwas Zucker – pürieren, sieben, auf Eis", "Agua de Jamaica|30 g Hibiskusblüten mit 1 l heißem Wasser, 20 Min. ziehen lassen, süßen, kalt stellen"],
+      "fuss": "In Mexiko so normal wie bei uns Apfelschorle",
+      "pin_titel": "Agua fresca & Agua de Jamaica: Mexikanische Drinks ohne Alkohol",
+      "beschreibung": "Wassermelone oder Hibiskus: zwei alkoholfreie Klassiker aus Mexiko, die auf jeder Fiesta schneller leer sind als die Margaritas. #aguafresca #alkoholfrei #mocktail #sommergetränke #mexikoparty"
+    },
+    {
+      "site": "mexiko-fiesta", "id": "tacobar", "anker": "cat-buffet", "farbe": "gold",
+      "kicker": "Taco-Party planen", "titel": "So baust du die Taco-Bar auf", "unter": "Von links nach rechts",
+      "art": "schritte",
+      "punkte": ["1|Warme Tortillas (10 Min. bei 150 °C in Folie)", "2|Füllungen: Chili-Hack, Süßkartoffel-Bohnen", "3|Toppings: Käse, Salat, rote Zwiebeln", "4|Saucen: Guacamole, Pico de Gallo, Schmand"],
+      "fuss": "3–4 Tortillas und 150 g Füllung pro Person",
+      "pin_titel": "Taco-Bar aufbauen: Reihenfolge und Mengen für die Taco-Party",
+      "beschreibung": "Das Taco-Buffet funktioniert wie eine Straße: Tortillas, Füllung, Toppings, Saucen. So staut sich niemand – mit Mengen pro Person und den Rezepten. #tacobar #tacoparty #partybuffet #mexikanisch #partyessen"
+    },
+    {
+      "site": "hawaii-tiki", "id": "maitai", "anker": "cat-drinks", "farbe": "terrakotta",
+      "kicker": "Rezept von 1944", "titel": "Der echte Mai Tai", "unter": "Ohne Ananassaft, ohne Grenadine",
+      "art": "liste",
+      "punkte": ["6 cl gereifter Rum", "3 cl frischer Limettensaft", "1,5 cl Orangenlikör (Curaçao)", "1,5 cl Mandelsirup (Orgeat)", "0,5 cl Zuckersirup", "Kurz shaken, auf Crushed Ice, Minze"],
+      "fuss": "Erfunden in einer Tiki-Bar in Oakland, nicht in der Südsee",
+      "pin_titel": "Mai Tai Originalrezept: So schmeckt der echte Tiki-Klassiker",
+      "beschreibung": "Rum, Limette, Mandel – so war der Mai Tai 1944 gedacht, ganz ohne Ananassaft. Das Originalrezept plus Piña Colada und eine alkoholfreie Bowle für die Hawaii-Party. #maitai #tikicocktail #hawaiiparty #cocktailrezept #rum"
+    },
+    {
+      "site": "hawaii-tiki", "id": "bowle", "anker": "cat-drinks", "farbe": "gold",
+      "kicker": "Ohne Alkohol · für 10", "titel": "Tropical-Bowle", "unter": "Oft schneller leer als die Cocktails",
+      "art": "liste",
+      "punkte": ["1 l Ananassaft", "1 l Orangensaft", "½ l Maracujanektar", "Saft von 3 Limetten", "Kurz vorm Servieren: 1 l Ginger Ale + viel Eis", "Orangenscheiben und Minze obenauf"],
+      "fuss": "",
+      "pin_titel": "Tropical-Bowle ohne Alkohol für 10 Personen",
+      "beschreibung": "Ananas, Orange, Maracuja und Ginger Ale: die alkoholfreie Bowle für die Hawaii- oder Sommerparty, in fünf Minuten angerührt. #bowle #alkoholfrei #sommerparty #hawaiiparty #partygetränke"
+    },
+    {
+      "site": "hawaii-tiki", "id": "luau", "anker": "essen", "farbe": "salbei",
+      "kicker": "Hawaii-Party", "titel": "Das Luau-Buffet", "unter": "Fünf Ideen, die sich vorbereiten lassen",
+      "art": "nummern",
+      "punkte": ["Hähnchen-Ananas-Spieße teriyaki", "Kokosreis", "Ananas-Mango-Salsa", "Poke-Station mit Reis und Toppings", "Gegrillte Ananas mit Zimt und Eis"],
+      "fuss": "Rezepte und Mengen auf bethathost.de",
+      "pin_titel": "Luau-Buffet für die Hawaii-Party: 5 Ideen mit Rezept",
+      "beschreibung": "Spieße, Kokosreis, Salsa, Poke und gegrillte Ananas: ein Buffet für die Hawaii-Party, das fast von allein läuft. Mit Rezepten und Mengen. #hawaiiparty #luau #partybuffet #sommerparty #mottoparty"
+    },
+    {
+      "site": "jga", "id": "aufgaben", "anker": "cat-games", "farbe": "rosa",
+      "kicker": "JGA-Aufgaben", "titel": "Lustig statt peinlich", "unter": "6 Aufgaben, die immer funktionieren",
+      "art": "nummern",
+      "punkte": ["Foto mit einem Paar, das länger verheiratet ist, als die Braut alt ist", "5 Fremde nach ihrem Hochzeitslied fragen", "Heiratsantrag an eine Statue", "Autogramm von jemandem mit dem Namen des Bräutigams", "Ein Lied in der Fußgängerzone", "Selfie mit jemandem in Uniform"],
+      "fuss": "",
+      "pin_titel": "JGA-Aufgaben: 6 Ideen, die lustig sind statt peinlich",
+      "beschreibung": "Die Braut soll lachen, nicht sich schämen: sechs Aufgaben für den Junggesellinnenabschied, die in jeder Stadt funktionieren. Plus Tagesablauf und Survival-Kit. #jga #junggesellinnenabschied #jgaaufgaben #teambride #hochzeit"
+    },
+    {
+      "site": "jga", "id": "survivalkit", "anker": "cat-survival", "farbe": "gold",
+      "kicker": "Checkliste · JGA", "titel": "Das JGA-Survival-Kit", "unter": "Eine Person hat es in der Tasche",
+      "art": "haken",
+      "punkte": ["Blasenpflaster und Pflaster", "Powerbank mit Kabel", "Haargummis, Haar- und Sicherheitsnadeln", "Taschentücher, Feuchttücher, Deo", "Kaugummis und Traubenzucker", "Wasser für jede", "Kopfschmerztabletten für morgen"],
+      "fuss": "",
+      "pin_titel": "JGA-Survival-Kit: Die Checkliste für den Junggesellinnenabschied",
+      "beschreibung": "Was ins Survival-Kit für den JGA gehört – von Blasenpflaster bis Powerbank. Die Checkliste zum Abhaken plus Ablauf und Aufgaben. #jga #survivalkit #junggesellinnenabschied #teambride #checkliste"
+    },
+    {
+      "site": "jga", "id": "ablauf", "anker": "ablauf", "farbe": "salbei",
+      "kicker": "JGA planen", "titel": "Der Tagesablauf zum Übernehmen", "unter": "Vier Stationen und genug Luft",
+      "art": "schritte",
+      "punkte": ["11:00|Überraschungs-Brunch mit Outfit", "14:00|Gemeinsame Aktivität, 2 Stunden", "17:00|Pause: umziehen, ausruhen", "19:00|Abendessen, danach Bar"],
+      "fuss": "4–8 Wochen vor der Hochzeit · Budget vorher festlegen",
+      "pin_titel": "JGA-Tagesablauf: Der Plan für den Junggesellinnenabschied",
+      "beschreibung": "Brunch, Aktivität, Pause, Abendessen: der Tagesablauf, der fast immer funktioniert – und warum die Pause am Nachmittag den ganzen Tag rettet. #jga #junggesellinnenabschied #jgaideen #teambride #hochzeitsplanung"
+    },
+    {
+      "site": "saison-deko", "id": "kalender", "anker": "kalender", "farbe": "terrakotta",
+      "kicker": "Deko-Kalender", "titel": "Gemütlich von September bis Februar", "unter": "In drei Etappen statt einmal alles",
+      "art": "block",
+      "punkte": ["Herbst · Ende Sept.–Nov.|Kürbisse, Kastanien, Zapfen, Terrakotta, Senfgelb", "Advent · ab 1. Advent|Kürbisse raus, Tannengrün, Kerzen, Sterne, Gold rein", "Winter · Jan.–Feb.|Lichter und Decken bleiben, dazu Weiß, Eukalyptus, Tulpen"],
+      "fuss": "Pro Saison eine Kiste – mit Foto vom Aufbau",
+      "pin_titel": "Deko-Kalender: Gemütlich dekorieren von September bis Februar",
+      "beschreibung": "Herbst, Advent, Winter: Welche Deko wann kommt und geht – und was einfach stehen bleiben darf. So wirkt die Wohnung nach Weihnachten nicht leer. #herbstdeko #winterdeko #gemütlichwohnen #hygge #dekoideen"
+    },
+    {
+      "site": "saison-deko", "id": "licht", "anker": "cat-light", "farbe": "nacht",
+      "kicker": "Gemütliches Licht", "titel": "Die Drei-Höhen-Regel", "unter": "Deckenlicht aus, drei Lichtquellen an",
+      "art": "block",
+      "punkte": ["Oben|Stehlampe", "Mitte|Tisch- oder Leselampe", "Unten|Kerzen oder Lichterkette", "Die Lichtfarbe|2.700 Kelvin = warmweiß, 4.000 K gehört ins Bad"],
+      "fuss": "",
+      "pin_titel": "Gemütliches Licht: Die Drei-Höhen-Regel und die richtige Kelvin-Zahl",
+      "beschreibung": "Der schnellste Weg zu einer gemütlichen Wohnung: drei Lichtquellen auf drei Höhen und warmweiße Birnen mit 2.700 Kelvin. Kostet fast nichts. #gemütlichwohnen #lichtideen #hygge #wohnzimmerideen #herbstdeko"
+    },
+    {
+      "site": "saison-deko", "id": "kerzen", "anker": "cat-safe-light", "farbe": "gold",
+      "kicker": "Advent · sicher", "titel": "Kerzen ohne Risiko", "unter": "Im Dezember brennt es am häufigsten",
+      "art": "haken",
+      "punkte": ["Nie unbeaufsichtigt brennen lassen", "10 cm Abstand zu Zweigen und Vorhängen", "Immer auf nicht brennbarem Untersetzer", "Kranzkerzen tauschen, bevor sie ins Grün brennen", "Fenster, Regal, Kinderzimmer: LED-Kerzen"],
+      "fuss": "",
+      "pin_titel": "Kerzen im Advent: 5 Regeln gegen Brände",
+      "beschreibung": "Adventskränze und Gestecke gehören zu den häufigsten Brandursachen im Dezember. Fünf einfache Regeln – und wo LED-Kerzen die bessere Wahl sind. #adventskranz #weihnachtsdeko #kerzen #sicherheit #winterdeko"
+    },
+    {
+      "site": "spieleabend", "id": "akte", "anker": "cat-games", "farbe": "gruen",
+      "kicker": "Spieleabend planen", "titel": "Die Drei-Akte-Regel", "unter": "Der Abend, bei dem keiner abschaltet",
+      "art": "schritte",
+      "punkte": ["15–20 Min.|Aufwärmer: schnelles Würfel- oder Kartenspiel", "60–90 Min.|Hauptspiel – kooperativ, wenn jemand schlecht verliert", "Zum Schluss|Absacker: Quiz- oder Partyspiel"],
+      "fuss": "Ab 6 Personen: nur noch Team- und Partyspiele",
+      "pin_titel": "Spieleabend planen: Die Drei-Akte-Regel",
+      "beschreibung": "Aufwärmer, Hauptspiel, Absacker: So bleibt ein Spieleabend spannend bis zum Schluss. Plus welches Spiel zu welcher Gruppengröße passt. #spieleabend #brettspiele #gesellschaftsspiele #spieleabendmitfreunden #partyideen"
+    },
+    {
+      "site": "spieleabend", "id": "regeln", "anker": "regeln", "farbe": "gold",
+      "kicker": "Spieleabend", "titel": "Regeln erklären, ohne dass alle abschalten", "unter": "",
+      "art": "nummern",
+      "punkte": ["Einer lernt das Spiel vorher", "Erst das Ziel, dann die Regeln", "Eine offene Proberunde, Punkte zählen nicht", "Sonderregeln erst, wenn sie auftauchen"],
+      "fuss": "",
+      "pin_titel": "Spielregeln erklären: 4 Tricks für den Spieleabend",
+      "beschreibung": "Nichts tötet einen Spieleabend so zuverlässig wie zwanzig Minuten Regelheft. Vier Tricks, mit denen alle nach einer Runde mitspielen. #spieleabend #brettspiele #spieletipps #gesellschaftsspiele #freunde"
+    },
+    {
+      "site": "oktoberfest", "id": "obatzda", "anker": "cat-brotzeit", "farbe": "blau",
+      "kicker": "Rezept · Wiesn zuhause", "titel": "Obatzda", "unter": "Für 6 bis 8 Personen",
+      "art": "liste",
+      "punkte": ["200 g reifer Camembert", "50 g weiche Butter", "100 g Frischkäse", "1 kleine Zwiebel, sehr fein", "1 TL edelsüßes Paprika, Prise Kümmel", "Optional 2 EL helles Bier, 2 Std. kalt stellen"],
+      "fuss": "Je reifer der Camembert, desto würziger",
+      "pin_titel": "Obatzda-Rezept für die Oktoberfest-Party zuhause",
+      "beschreibung": "Der bayerische Klassiker für die Brotzeit: Obatzda aus Camembert, Butter und Paprika. Dazu Wurstsalat, Weißwürste und alles für die Wiesn-Party zuhause. #obatzda #oktoberfest #bayerischerezepte #brotzeit #wiesn"
+    },
+    {
+      "site": "oktoberfest", "id": "weisswurst", "anker": "cat-brotzeit", "farbe": "gold",
+      "kicker": "Oktoberfest zuhause", "titel": "Weißwürste richtig machen", "unter": "Ziehen, nicht kochen",
+      "art": "schritte",
+      "punkte": ["1|Wasser zum Kochen bringen", "2|Vom Herd nehmen", "3|Würste hinein, 10 Minuten ziehen lassen", "4|Im Wasser servieren, mit süßem Senf und Brezn"],
+      "fuss": "Kochen sie, platzen sie · 2 Würste pro Person",
+      "pin_titel": "Weißwürste richtig zubereiten: ziehen statt kochen",
+      "beschreibung": "Warum Weißwürste nie kochen dürfen und wie sie richtig heiß werden, ohne zu platzen. Plus Obatzda, Wurstsalat und die ganze Brotzeit für die Wiesn-Party. #weisswurst #oktoberfest #brotzeit #bayern #wiesn"
+    },
+    {
+      "site": "oktoberfest", "id": "spiele", "anker": "cat-extras", "farbe": "blau",
+      "kicker": "Wiesn-Gaudi", "titel": "4 Spiele für die Oktoberfest-Party", "unter": "",
+      "art": "block",
+      "punkte": ["Maßkrug-Stemmen|Voller Krug, ausgestreckter Arm – wer hält am längsten?", "Nageln|Holzklotz, ein Nagel pro Person, schmale Hammerseite", "Brezn-Schnappen|Brezn an Schnüren, Hände auf den Rücken", "Bayerisch-Quiz|Was heißt „Obacht“? Was ist ein Fleischpflanzerl?"],
+      "fuss": "",
+      "pin_titel": "Oktoberfest-Spiele: 4 Ideen für die Wiesn-Party zuhause",
+      "beschreibung": "Maßkrug-Stemmen, Nageln, Brezn-Schnappen und ein Bayerisch-Quiz: vier Spiele, die aus dem Abendessen eine echte Gaudi machen. #oktoberfest #partyspiele #wiesn #oktoberfestparty #gaudi"
+    },
+    {
+      "site": "oktoberfest", "id": "playlist", "anker": "cat-mass", "farbe": "gold",
+      "kicker": "Oktoberfest zuhause", "titel": "Die Wiesn-Playlist", "unter": "Was in jedem Zelt läuft",
+      "art": "nummern",
+      "punkte": ["Ein Prosit der Gemütlichkeit", "Fliegerlied", "Sweet Caroline", "Country Roads", "Hey Baby", "Atemlos"],
+      "fuss": "Ein Prosit alle halbe Stunde – mit Anstoßen",
+      "pin_titel": "Oktoberfest-Playlist: Die Hits aus dem Festzelt",
+      "beschreibung": "Blasmusik zum Ankommen, dann die Hits aus jedem Zelt: die Playlist für die Oktoberfest-Party zuhause, plus der Anstich mit „O'zapft is!“. #oktoberfest #playlist #wiesnhits #partymusik #oktoberfestparty"
+    },
+    {
+      "site": "spa-abend", "id": "reihenfolge", "anker": "ablauf", "farbe": "rosa",
+      "kicker": "Spa-Abend zuhause", "titel": "Die richtige Reihenfolge", "unter": "Rund zwei Stunden für dich",
+      "art": "schritte",
+      "punkte": ["1|Reinigen", "2|Dampfbad, 5–10 Min. (Kamille)", "3|Sanftes Peeling", "4|Maske, 10–20 Min. – Zeit fürs Fußbad", "5|Bad, 36–38 °C, 15–20 Min.", "6|Eincremen, Tee, Füße hoch"],
+      "fuss": "",
+      "pin_titel": "Spa-Abend zuhause: Die richtige Reihenfolge für deine Pflege",
+      "beschreibung": "Reinigen, Dampf, Peeling, Maske, Bad: In dieser Reihenfolge nimmt die Haut Pflege am besten auf. Mit Badetemperatur und Zeiten für einen echten Wellness-Abend. #spaabend #selfcare #wellnesszuhause #beautyroutine #metime"
+    },
+    {
+      "site": "spa-abend", "id": "diy", "anker": "cat-face", "farbe": "salbei",
+      "kicker": "DIY aus der Küche", "titel": "3 Rezepte für den Spa-Abend", "unter": "",
+      "art": "block",
+      "punkte": ["Joghurt-Honig-Maske|2 EL Naturjoghurt, 1 TL Honig, 10 Minuten einwirken", "Haferflocken-Peeling|2 EL fein gemahlene Haferflocken mit etwas Wasser – mild fürs Gesicht", "Zucker-Öl-Peeling|3 EL Zucker, 2 EL Öl, 1 TL Honig – für Hände, Füße, Lippen"],
+      "fuss": "Vorher in der Armbeuge testen",
+      "pin_titel": "DIY Gesichtsmaske und Peelings: 3 Rezepte für den Spa-Abend",
+      "beschreibung": "Joghurt-Honig-Maske, Haferflocken-Peeling und Zucker-Öl-Peeling: drei Rezepte aus der Küche für den Wellness-Abend zuhause. #diygesichtsmaske #peeling #spaabend #selfcare #naturkosmetik"
+    },
+    {
+      "site": "mengenrechner", "id": "fleisch", "anker": "faustregeln-fuers-essen", "farbe": "terrakotta",
+      "kicker": "Grillabend · Faustregel", "titel": "Wie viel Fleisch pro Person?", "unter": "Wenn das Grillen die Hauptmahlzeit ist",
+      "art": "tabelle",
+      "punkte": ["Grillgut, roh|300 g", "Salate & Beilagen|250 g", "Grillgemüse|100 g", "Brot|80 g", "Saucen & Dips|50 ml", "Kinder|die Hälfte"],
+      "fuss": "Für deine Gästezahl ausrechnen: Party-Mengenrechner",
+      "pin_titel": "Wie viel Fleisch pro Person beim Grillen? Die Faustregel",
+      "beschreibung": "300 Gramm Grillgut, 250 Gramm Beilagen, 80 Gramm Brot pro Person – die Faustregeln für den Grillabend. Mit dem kostenlosen Mengenrechner für deine Gästezahl. #grillen #grillparty #mengenrechner #partyplanung #grillabend"
+    },
+    {
+      "site": "mengenrechner", "id": "getraenke", "anker": "faustregeln-fuer-getraenke", "farbe": "gold",
+      "kicker": "Party-Faustregel", "titel": "Wie viele Getränke pro Gast?", "unter": "2 in der ersten Stunde, danach 1 pro Stunde",
+      "art": "tabelle",
+      "punkte": ["4 Stunden, 10 Gäste|50 Getränke", "davon alkoholisch|die Hälfte", "Wein (0,75 l)|5 Gläser", "Sekt (0,75 l)|7 Gläser", "Heißer Tag, alkoholfrei|+30 %"],
+      "fuss": "Für deine Feier ausrechnen: Party-Mengenrechner",
+      "pin_titel": "Wie viele Getränke pro Gast? Die Faustregel für jede Party",
+      "beschreibung": "Zwei Getränke in der ersten Stunde, danach eins pro Stunde: die Faustregel für Bier, Wein, Sekt und Alkoholfreies. Mit kostenlosem Rechner für deine Gästezahl. #partyplanung #getränke #hausparty #mengenrechner #partytipps"
+    },
+    {
+      "site": "mengenrechner", "id": "eis", "anker": "eis-kuehlung-und-geschirr", "farbe": "blau",
+      "kicker": "Der Posten, der um 21 Uhr fehlt", "titel": "Wie viel Eis für die Party?", "unter": "",
+      "art": "tabelle",
+      "punkte": ["Normaler Abend|250 g pro Gast", "Heißer Tag|500 g pro Gast", "Cocktailabend, je Erw.|+700 g", "Tankstellen-Beutel|2 kg", "Gläser|2 pro Gast"],
+      "fuss": "Eiswasser mit Salz kühlt Flaschen in 15 Minuten",
+      "pin_titel": "Wie viel Eis braucht man für eine Party? Die Faustregel",
+      "beschreibung": "250 Gramm pro Gast, an heißen Tagen das Doppelte, beim Cocktailabend noch mehr: So viel Eis brauchst du wirklich. Plus Gläser und Geschirr pro Person. #partyplanung #eiswürfel #sommerparty #cocktailparty #mengenrechner"
+    },
+    {
+      "site": "mengenrechner", "id": "fehler", "anker": "die-fuenf-haeufigsten-planungsfehler", "farbe": "nacht",
+      "kicker": "Party planen", "titel": "5 Planungsfehler, die fast jeder macht", "unter": "",
+      "art": "nummern",
+      "punkte": ["Nach Zusagen planen statt nach Erfahrung", "Alles auf einmal auf den Tisch", "Kühlschrank-Platz vergessen", "Nur an Alkohol denken", "Am Tag selbst einkaufen"],
+      "fuss": "Einkaufsliste in 30 Sekunden: Party-Mengenrechner",
+      "pin_titel": "Party planen: 5 Fehler, die fast jeder Gastgeber macht",
+      "beschreibung": "Zu viele Vielleichts, zu wenig Kühlschrank, alles am selben Tag: die fünf häufigsten Planungsfehler und wie du sie vermeidest. Mit kostenlosem Mengenrechner. #partyplanung #gastgeben #partytipps #hausparty #feiern"
+    }
+  ]
+}
