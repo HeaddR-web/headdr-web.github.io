@@ -23,6 +23,7 @@ import importlib.util
 import json
 import os
 import sys
+import time
 import urllib.parse
 from collections import defaultdict
 from pathlib import Path
@@ -37,11 +38,27 @@ METRIKEN = ["IMPRESSION", "SAVE", "PIN_CLICK", "OUTBOUND_CLICK"]
 NAMEN = {"IMPRESSION": "Impressionen", "SAVE": "Gemerkt", "PIN_CLICK": "Pin-Klicks",
          "OUTBOUND_CLICK": "Klicks zur Seite"}
 TAGE = 89  # die API erlaubt hoechstens 90 Tage Rueckblick
+PAUSE = 0.6  # Sekunden zwischen zwei Analytics-Abfragen
 BERICHT = ROOT / "pinterest" / "STATISTIK.md"
 ROHDATEN = ROOT / "pinterest" / "stats" / "latest.json"
 
 
 def pin_analytics(token: str, pin_id: str, start: dt.date, ende: dt.date) -> dict:
+    """Tageswerte eines Pins. Beim ersten Lauf (298 Pins am Stueck) lieferte
+    die API ab Pin 140 nur noch HTTP 429 - deshalb Pause zwischen den Abfragen
+    und bei 429 eine Minute warten, hoechstens dreimal."""
+    for versuch in range(4):
+        try:
+            time.sleep(PAUSE)
+            return _analytics(token, pin_id, start, ende)
+        except pp.PinterestError as exc:
+            if "HTTP 429" not in str(exc) or versuch == 3:
+                raise
+            print(f"  Rate-Limit bei Pin {pin_id} - 60 s warten")
+            time.sleep(60)
+
+
+def _analytics(token: str, pin_id: str, start: dt.date, ende: dt.date) -> dict:
     query = urllib.parse.urlencode({
         "start_date": start.isoformat(), "end_date": ende.isoformat(),
         "metric_types": ",".join(METRIKEN), "app_types": "ALL", "split_field": "NO_SPLIT",
@@ -116,6 +133,14 @@ def main() -> int:
             for m, v in werte.items():
                 woche[montag][m] += v
 
+    # Wie viele Pins pro Woche neu dazukamen - faellt diese Spalte auf null,
+    # bricht ein paar Wochen spaeter die Reichweite ein (August 2026).
+    neu_je_woche = defaultdict(int)
+    for p in pins:
+        if p["erstellt"]:
+            d = dt.date.fromisoformat(p["erstellt"])
+            neu_je_woche[d - dt.timedelta(days=d.weekday())] += 1
+
     # Letzte 30 Tage je Pin und je Seite
     grenze = (heute - dt.timedelta(days=30)).isoformat()
     for p in pins:
@@ -145,13 +170,13 @@ def main() -> int:
         "",
         "## Verlauf pro Woche",
         "",
-        "| Woche ab | Impressionen | Gemerkt | Pin-Klicks | Klicks zur Seite |",
-        "|---|---:|---:|---:|---:|",
+        "| Woche ab | Neue Pins | Impressionen | Gemerkt | Pin-Klicks | Klicks zur Seite |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
-    for montag in sorted(woche):
+    for montag in sorted(set(woche) | {m for m in neu_je_woche if m >= start - dt.timedelta(days=7)}):
         w = woche[montag]
-        z.append(f"| {montag.strftime('%d.%m.%Y')} | {zahl(w['IMPRESSION'])} | {zahl(w['SAVE'])} | "
-                 f"{zahl(w['PIN_CLICK'])} | {zahl(w['OUTBOUND_CLICK'])} |")
+        z.append(f"| {montag.strftime('%d.%m.%Y')} | {neu_je_woche.get(montag, 0)} | {zahl(w['IMPRESSION'])} | "
+                 f"{zahl(w['SAVE'])} | {zahl(w['PIN_CLICK'])} | {zahl(w['OUTBOUND_CLICK'])} |")
     z += ["", "## Top 15 Pins (letzte 30 Tage, nach Impressionen)", "",
           "| Pin | Seite | Impressionen | Gemerkt | Klicks zur Seite |", "|---|---|---:|---:|---:|"]
     for p in sorted(pins, key=lambda p: (-p["30t"]["IMPRESSION"], -p["30t"]["OUTBOUND_CLICK"]))[:15]:
@@ -164,6 +189,17 @@ def main() -> int:
         w = je_seite[s]
         z.append(f"| {s} | {anzahl[s]} | {zahl(w['IMPRESSION'])} | {zahl(w['SAVE'])} | "
                  f"{zahl(w['OUTBOUND_CLICK'])} |")
+    titel = defaultdict(list)
+    for p in pins:
+        titel[p["titel"].strip().lower()].append(p)
+    doppelt = {t: ps for t, ps in titel.items() if t and len(ps) > 1}
+    alt = [p for p in pins if p["link"] and "bethathost.de" not in p["link"]]
+    z += ["", "## Aufräumbedarf", "",
+          f"- **{len(doppelt)} Titel mehrfach** auf den Boards, zusammen "
+          f"{sum(len(ps) for ps in doppelt.values())} Pins (bis zu "
+          f"{max((len(ps) for ps in doppelt.values()), default=0)}× derselbe). Pinterest wertet "
+          "Wiederholungen als Spam-Muster und drosselt die Reichweite.",
+          f"- **{len(alt)} Pins** verlinken nicht auf bethathost.de (alte Adresse oder Cozylore)."]
     if fehler:
         z += ["", f"_{len(fehler)} Pin(s) ohne Zahlen (API-Fehler), z. B.: `{fehler[0][:200]}`_"]
     BERICHT.write_text("\n".join(z) + "\n", encoding="utf-8")
