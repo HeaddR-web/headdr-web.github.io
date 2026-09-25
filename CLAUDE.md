@@ -514,6 +514,14 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Secrets. Bis September 2026 wurde nichts gemessen — die Queue war leer, der Workflow lief
   zweimal täglich ins Leere, und es fiel niemandem auf. **Vor jeder Pinterest-Entscheidung
   erst in `STATISTIK.md` schauen.**
+- **Duplikate aufräumen:** `.github/workflows/pinterest-aufraeumen.yml` (nur manuell, Modus
+  `anzeigen` oder `loeschen`) + `scripts/pinterest_aufraeumen.py`. Gruppe = gleicher Titel
+  und gleiche Zielseite; es bleibt der Pin mit den meisten Impressionen (aus
+  `stats/latest.json`), eine weitere Kopie nur mit eigenständig ≥ 200 Impressionen. Gleiche
+  Zahlen = derselbe Pin auf zwei Boards, die Kopie geht. Jeder gelöschte Pin wird vorher in
+  `pinterest/geloescht/<datum>.json` gesichert (Titel, Beschreibung, Link, Bild-URL).
+  Am 25.09.2026 vom Inhaber freigegeben und einmal ausgeführt (298 → 124 Pins). **Immer erst
+  `anzeigen`, und vorher die Statistik frisch laufen lassen.**
 - **Takt:** `MAX_PER_RUN: "1"` = 2 Pins am Tag. Mit 5 war die Queue nach einer Woche leer.
   Nachschub rechtzeitig einplanen: in `STATISTIK.md`/`doctor` steht, wie viele offen sind.
 - **Nachschub: Grafik-Pins.** Rezeptkarten, Checklisten und Ablaufpläne aus den Seiteninhalten,
