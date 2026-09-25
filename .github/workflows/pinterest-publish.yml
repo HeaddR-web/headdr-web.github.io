@@ -55,7 +55,10 @@ jobs:
           PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
           # Optionales globales Fallback-Board, falls boards.json nicht greift.
           PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
-          MAX_PER_RUN: "5"
+          # 1 pro Lauf = 2 am Tag. Mit 5 war die Queue (70 Pins) nach einer
+          # Woche leer, danach lief der Workflow wochenlang ins Leere.
+          # Pinterest belohnt einen gleichmaessigen Takt mehr als Schuebe.
+          MAX_PER_RUN: "1"
           MODE: ${{ inputs.mode || 'publish' }}
           MAX_OVERRIDE: ${{ inputs.max }}
         run: |

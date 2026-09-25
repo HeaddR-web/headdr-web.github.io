@@ -116,6 +116,11 @@ def main():
         fallback_date = lastmod.get(slug) or git_date(os.path.relpath(qf, ROOT))
         with open(qf, encoding="utf-8") as f:
             for p in json.load(f):
+                # "kanal": "api" = nur ueber pinterest_publish.py posten. Stuende
+                # der Pin auch hier, legte Pinterest ihn ein zweites Mal an,
+                # sobald der RSS-Import ihn findet (Doppelpost-Regel, CLAUDE.md).
+                if p.get("kanal") == "api":
+                    continue
                 date = date_from_image(p["image_url"]) or fallback_date
                 items.append({
                     "title": p["title"],
