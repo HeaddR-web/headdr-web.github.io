@@ -1,0 +1,62 @@
+name: Pinterest aufraeumen
+
+# Doppelte Pins finden und entfernen. Nur manuell startbar.
+# Modus "anzeigen" aendert nichts; "loeschen" loescht und sichert jeden
+# geloeschten Pin vorher in pinterest/geloescht/<datum>.json.
+# Logik und Regel: scripts/pinterest_aufraeumen.py
+
+on:
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: "anzeigen (nichts aendern) oder loeschen"
+        type: choice
+        default: anzeigen
+        options:
+          - anzeigen
+          - loeschen
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pinterest-aufraeumen
+  cancel-in-progress: false
+
+jobs:
+  aufraeumen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Doppelte Pins
+        env:
+          PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          MODUS: ${{ inputs.modus }}
+        run: |
+          if [[ "$MODUS" == "loeschen" ]]; then
+            python scripts/pinterest_aufraeumen.py --loeschen
+          else
+            python scripts/pinterest_aufraeumen.py
+          fi
+
+      # always(): auch nach einem Abbruch muss die Sicherung ins Repo.
+      - name: Sicherung committen
+        if: always()
+        run: |
+          if [[ -n "$(git status --porcelain pinterest/geloescht)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add pinterest/geloescht
+            git commit -m "Pinterest: geloeschte Duplikate sichern [skip ci]"
+            git pull --rebase
+            git push
+          else
+            echo "Nichts zu sichern."
+          fi
