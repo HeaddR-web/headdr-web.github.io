@@ -34,7 +34,7 @@
   // anlegen und die Zahl aus dem Code-Schnipsel hier eintragen.
   // Solange sie leer ist, bleibt jeder <div class="ad-slot"> leer und damit
   // per CSS unsichtbar - es wird nichts geladen und nichts angezeigt.
-  var ADSENSE_SLOT = "";
+  var ADSENSE_SLOT = "3658536724";
   var BANNER_ID = "bth-consent-banner";
   var STYLE_ID = "bth-consent-style";
 

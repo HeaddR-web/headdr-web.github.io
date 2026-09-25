@@ -75,7 +75,8 @@ Artikels (vor der mittleren `<h2>`). Er steht im Quelltext **leer** und wird ers
   „Werbeplatz — im Artikel (responsiv). Erscheint, sobald AdSense aktiv ist." auf `oktoberfest/`.
 - **Anzeigenblock-ID:** `ADSENSE_SLOT` in `js/consent.js` — die eine Stelle, an der die
   `data-ad-slot`-Nummer steht. Solange sie leer ist, wird **nichts** eingesetzt und **nichts**
-  geladen; die Slots sind dann unsichtbar. ID im AdSense-Konto unter *Anzeigen → Nach
+  geladen; die Slots sind dann unsichtbar. Seit 25.09.2026 steht dort `3658536724`
+  (In-Artikel-Block „bethathost-artikel“). ID im AdSense-Konto unter *Anzeigen → Nach
   Anzeigenblock → In-Artikel-Anzeige* anlegen und dort eintragen.
 - Liefert AdSense keine Anzeige (`data-ad-status="unfilled"`), leert `consent.js` den Platz
   wieder — dann greift `:empty` und der Kasten verschwindet, statt als Lücke stehen zu bleiben.
