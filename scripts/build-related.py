@@ -71,12 +71,15 @@ NAME = {
     "ratgeber/mini-beamer-filmabend.html": "Mini-Beamer",
     "ratgeber/outdoor-lichterkette.html": "Outdoor-Lichterkette",
     "ratgeber/raclette-fondue-set.html": "Raclette & Fondue",
+
+    "mengenrechner/index.html": "Party-Mengenrechner",
 }
 
 # Reihenfolge im Ring = Reihenfolge hier. Thematisch benachbarte Seiten sollten
 # beieinander stehen, dann passen die Vorschlaege inhaltlich zueinander.
 THEMA = {
     "anlaesse": [
+        "mengenrechner/index.html",
         "brunch/index.html", "gartenparty/index.html", "grillabend/index.html",
         "geburtstag/index.html", "spieleabend/index.html", "casino/index.html",
         "spa-abend/index.html", "valentinstag/index.html",
