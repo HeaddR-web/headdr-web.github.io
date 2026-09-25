@@ -30,5 +30,35 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075821_4dcb3024-3067-468f-83b3-9324ce130143.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Vesper Martini: Bonds Originalrezept für den Casino-Abend",
+    "description": "Geschüttelt, nicht gerührt: So mixt du den Vesper aus „Casino Royale“ – 6 cl Gin, 2 cl Wodka, 1 cl Lillet. Dazu die alkoholfreie Variante „Moneypenny“ und alles für den Casino-Abend zuhause. #vespermartini #jamesbond #casinoabend #cocktailrezept #mottoparty",
+    "link": "https://bethathost.de/casino/?pin=vesper#cat-drinks",
+    "image_url": "https://bethathost.de/assets/pins/casino-vesper.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 6
+  },
+  {
+    "title": "Pokerchips richtig verteilen: Startstapel für den Pokerabend",
+    "description": "1.000 Casino-Dollar pro Person, 27 Chips pro Kopf – so reicht ein 300er-Set für zehn Spieler. Dazu die Blind-Stufen, damit das Turnier nach zwei Stunden entschieden ist. #pokerabend #texasholdem #casinoabend #spieleabend #partyideen",
+    "link": "https://bethathost.de/casino/?pin=chips#cat-pokerset",
+    "image_url": "https://bethathost.de/assets/pins/casino-chips.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 13
+  },
+  {
+    "title": "Casino-Abend zuhause: Ablaufplan in fünf Akten",
+    "description": "Vom Dresscode in der Einladung bis zur Siegerehrung: So baust du einen Casino-Abend auf, bei dem niemand nach einer Stunde gelangweilt ist. Mit Black Jack, Roulette und Poker-Turnier. #casinoabend #jamesbondparty #mottoparty #partyplanung #spieleabend",
+    "link": "https://bethathost.de/casino/?pin=ablauf#ablauf",
+    "image_url": "https://bethathost.de/assets/pins/casino-ablauf.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 20
   }
 ]

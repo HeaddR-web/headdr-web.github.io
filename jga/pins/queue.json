@@ -30,5 +30,35 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075841_71066c5e-e7fd-4b15-b887-a9d000f8309f.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "JGA-Aufgaben: 6 Ideen, die lustig sind statt peinlich",
+    "description": "Die Braut soll lachen, nicht sich schämen: sechs Aufgaben für den Junggesellinnenabschied, die in jeder Stadt funktionieren. Plus Tagesablauf und Survival-Kit. #jga #junggesellinnenabschied #jgaaufgaben #teambride #hochzeit",
+    "link": "https://bethathost.de/jga/?pin=aufgaben#cat-games",
+    "image_url": "https://bethathost.de/assets/pins/jga-aufgaben.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 12
+  },
+  {
+    "title": "JGA-Survival-Kit: Die Checkliste für den Junggesellinnenabschied",
+    "description": "Was ins Survival-Kit für den JGA gehört – von Blasenpflaster bis Powerbank. Die Checkliste zum Abhaken plus Ablauf und Aufgaben. #jga #survivalkit #junggesellinnenabschied #teambride #checkliste",
+    "link": "https://bethathost.de/jga/?pin=survivalkit#cat-survival",
+    "image_url": "https://bethathost.de/assets/pins/jga-survivalkit.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 19
+  },
+  {
+    "title": "JGA-Tagesablauf: Der Plan für den Junggesellinnenabschied",
+    "description": "Brunch, Aktivität, Pause, Abendessen: der Tagesablauf, der fast immer funktioniert – und warum die Pause am Nachmittag den ganzen Tag rettet. #jga #junggesellinnenabschied #jgaideen #teambride #hochzeitsplanung",
+    "link": "https://bethathost.de/jga/?pin=ablauf#ablauf",
+    "image_url": "https://bethathost.de/assets/pins/jga-ablauf.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 24
   }
 ]

@@ -38,5 +38,35 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075928_74053b64-01b7-4952-8ebd-ecfd0244b8ee.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Deko-Kalender: Gemütlich dekorieren von September bis Februar",
+    "description": "Herbst, Advent, Winter: Welche Deko wann kommt und geht – und was einfach stehen bleiben darf. So wirkt die Wohnung nach Weihnachten nicht leer. #herbstdeko #winterdeko #gemütlichwohnen #hygge #dekoideen",
+    "link": "https://bethathost.de/saison-deko/?pin=kalender#kalender",
+    "image_url": "https://bethathost.de/assets/pins/saison-deko-kalender.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 3
+  },
+  {
+    "title": "Gemütliches Licht: Die Drei-Höhen-Regel und die richtige Kelvin-Zahl",
+    "description": "Der schnellste Weg zu einer gemütlichen Wohnung: drei Lichtquellen auf drei Höhen und warmweiße Birnen mit 2.700 Kelvin. Kostet fast nichts. #gemütlichwohnen #lichtideen #hygge #wohnzimmerideen #herbstdeko",
+    "link": "https://bethathost.de/saison-deko/?pin=licht#cat-light",
+    "image_url": "https://bethathost.de/assets/pins/saison-deko-licht.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 8
+  },
+  {
+    "title": "Kerzen im Advent: 5 Regeln gegen Brände",
+    "description": "Adventskränze und Gestecke gehören zu den häufigsten Brandursachen im Dezember. Fünf einfache Regeln – und wo LED-Kerzen die bessere Wahl sind. #adventskranz #weihnachtsdeko #kerzen #sicherheit #winterdeko",
+    "link": "https://bethathost.de/saison-deko/?pin=kerzen#cat-safe-light",
+    "image_url": "https://bethathost.de/assets/pins/saison-deko-kerzen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 16
   }
 ]

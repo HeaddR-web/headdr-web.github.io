@@ -30,5 +30,45 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075838_fb8eafd2-8db3-45b0-86f5-c7ca9105eca9.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Guacamole-Rezept: So bleibt sie grün",
+    "description": "Die klassische Guacamole für das Taco-Buffet – und der Trick, mit dem sie nicht braun wird. Dazu Pico de Gallo, Chili-Hack und alles für die mexikanische Fiesta. #guacamole #tacoparty #mexikanisch #fingerfood #partyrezepte",
+    "link": "https://bethathost.de/mexiko-fiesta/?pin=guacamole#cat-buffet",
+    "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-guacamole.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 14
+  },
+  {
+    "title": "Margarita im Krug für 8: Das Party-Rezept",
+    "description": "Nicht den ganzen Abend am Shaker stehen: Margarita für acht Gläser im Krug vormischen und nur noch über Eis gießen. Mit dem Trick fürs richtige Mischverhältnis. #margarita #cocktailrezept #mexikoparty #partydrinks #tequila",
+    "link": "https://bethathost.de/mexiko-fiesta/?pin=margarita#cat-drinks",
+    "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-margarita.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 22
+  },
+  {
+    "title": "Agua fresca & Agua de Jamaica: Mexikanische Drinks ohne Alkohol",
+    "description": "Wassermelone oder Hibiskus: zwei alkoholfreie Klassiker aus Mexiko, die auf jeder Fiesta schneller leer sind als die Margaritas. #aguafresca #alkoholfrei #mocktail #sommergetränke #mexikoparty",
+    "link": "https://bethathost.de/mexiko-fiesta/?pin=aguafresca#cat-drinks",
+    "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-aguafresca.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 30
+  },
+  {
+    "title": "Taco-Bar aufbauen: Reihenfolge und Mengen für die Taco-Party",
+    "description": "Das Taco-Buffet funktioniert wie eine Straße: Tortillas, Füllung, Toppings, Saucen. So staut sich niemand – mit Mengen pro Person und den Rezepten. #tacobar #tacoparty #partybuffet #mexikanisch #partyessen",
+    "link": "https://bethathost.de/mexiko-fiesta/?pin=tacobar#cat-buffet",
+    "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-tacobar.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 27
   }
 ]

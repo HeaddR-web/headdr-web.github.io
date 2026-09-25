@@ -38,5 +38,25 @@
     "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260717_075901_18e1e028-99b0-411d-bc64-493d98e43549.png",
     "published": true,
     "pin_id": ""
+  },
+  {
+    "title": "Spa-Abend zuhause: Die richtige Reihenfolge für deine Pflege",
+    "description": "Reinigen, Dampf, Peeling, Maske, Bad: In dieser Reihenfolge nimmt die Haut Pflege am besten auf. Mit Badetemperatur und Zeiten für einen echten Wellness-Abend. #spaabend #selfcare #wellnesszuhause #beautyroutine #metime",
+    "link": "https://bethathost.de/spa-abend/?pin=reihenfolge#ablauf",
+    "image_url": "https://bethathost.de/assets/pins/spa-abend-reihenfolge.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 9
+  },
+  {
+    "title": "DIY Gesichtsmaske und Peelings: 3 Rezepte für den Spa-Abend",
+    "description": "Joghurt-Honig-Maske, Haferflocken-Peeling und Zucker-Öl-Peeling: drei Rezepte aus der Küche für den Wellness-Abend zuhause. #diygesichtsmaske #peeling #spaabend #selfcare #naturkosmetik",
+    "link": "https://bethathost.de/spa-abend/?pin=diy#cat-face",
+    "image_url": "https://bethathost.de/assets/pins/spa-abend-diy.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 21
   }
 ]

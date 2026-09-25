@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Obatzda-Rezept für die Oktoberfest-Party zuhause",
+    "description": "Der bayerische Klassiker für die Brotzeit: Obatzda aus Camembert, Butter und Paprika. Dazu Wurstsalat, Weißwürste und alles für die Wiesn-Party zuhause. #obatzda #oktoberfest #bayerischerezepte #brotzeit #wiesn",
+    "link": "https://bethathost.de/oktoberfest/?pin=obatzda#cat-brotzeit",
+    "image_url": "https://bethathost.de/assets/pins/oktoberfest-obatzda.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 1
+  },
+  {
+    "title": "Weißwürste richtig zubereiten: ziehen statt kochen",
+    "description": "Warum Weißwürste nie kochen dürfen und wie sie richtig heiß werden, ohne zu platzen. Plus Obatzda, Wurstsalat und die ganze Brotzeit für die Wiesn-Party. #weisswurst #oktoberfest #brotzeit #bayern #wiesn",
+    "link": "https://bethathost.de/oktoberfest/?pin=weisswurst#cat-brotzeit",
+    "image_url": "https://bethathost.de/assets/pins/oktoberfest-weisswurst.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 4
+  },
+  {
+    "title": "Oktoberfest-Spiele: 4 Ideen für die Wiesn-Party zuhause",
+    "description": "Maßkrug-Stemmen, Nageln, Brezn-Schnappen und ein Bayerisch-Quiz: vier Spiele, die aus dem Abendessen eine echte Gaudi machen. #oktoberfest #partyspiele #wiesn #oktoberfestparty #gaudi",
+    "link": "https://bethathost.de/oktoberfest/?pin=spiele#cat-extras",
+    "image_url": "https://bethathost.de/assets/pins/oktoberfest-spiele.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 7
+  },
+  {
+    "title": "Oktoberfest-Playlist: Die Hits aus dem Festzelt",
+    "description": "Blasmusik zum Ankommen, dann die Hits aus jedem Zelt: die Playlist für die Oktoberfest-Party zuhause, plus der Anstich mit „O'zapft is!“. #oktoberfest #playlist #wiesnhits #partymusik #oktoberfestparty",
+    "link": "https://bethathost.de/oktoberfest/?pin=playlist#cat-mass",
+    "image_url": "https://bethathost.de/assets/pins/oktoberfest-playlist.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "api",
+    "prio": 11
+  }
+]
