@@ -522,6 +522,11 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   `pinterest/geloescht/<datum>.json` gesichert (Titel, Beschreibung, Link, Bild-URL).
   Am 25.09.2026 vom Inhaber freigegeben und einmal ausgeführt (298 → 124 Pins). **Immer erst
   `anzeigen`, und vorher die Statistik frisch laufen lassen.**
+- **Alte Ziel-Links umbiegen:** derselbe Workflow, Modi `links-anzeigen` / `links-umbiegen`.
+  Pins mit `headdr-web.github.io/…` bekommen denselben Pfad auf bethathost.de, Pins auf
+  Cozylore-Seiten (`/cozy/…`) die nächstliegende BeThatHost-Seite (`COZY_ZIEL` in
+  `pinterest_aufraeumen.py`). Neue URLs tragen `?pin=umzug-<id-ende>`; das Protokoll alt → neu
+  landet in `pinterest/geloescht/links-<datum>.json`. Am 25.09.2026 freigegeben (38 Pins).
 - **Takt:** `MAX_PER_RUN: "1"` = 2 Pins am Tag. Mit 5 war die Queue nach einer Woche leer.
   Nachschub rechtzeitig einplanen: in `STATISTIK.md`/`doctor` steht, wie viele offen sind.
 - **Nachschub: Grafik-Pins.** Rezeptkarten, Checklisten und Ablaufpläne aus den Seiteninhalten,

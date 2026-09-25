@@ -21,6 +21,8 @@ bei Bedarf neu anlegen - geloescht ist bei Pinterest endgueltig.
 Aufruf (CI: .github/workflows/pinterest-aufraeumen.yml):
   python3 scripts/pinterest_aufraeumen.py            # nur anzeigen
   python3 scripts/pinterest_aufraeumen.py --loeschen # wirklich loeschen
+  python3 scripts/pinterest_aufraeumen.py --links            # alte Ziel-Links anzeigen
+  python3 scripts/pinterest_aufraeumen.py --links-umbiegen   # auf bethathost.de umbiegen
 """
 import datetime as dt
 import importlib.util
@@ -82,6 +84,93 @@ def delete_pin(token: str, pin_id: str) -> None:
     pp._request(f"{pp.API_BASE}/pins/{pin_id}", headers=headers, method="DELETE")
 
 
+# --- Links umbiegen -------------------------------------------------------
+# Alte Ziel-Adressen auf bethathost.de. headdr-web.github.io leitet zwar per 301
+# weiter, aber Pinterest wertet den Umweg schlechter, und die Cozylore-Seiten
+# (abgekoppelt, englisch, nicht mehr gepflegt) sollen gar kein Ziel mehr sein.
+# Cozylore-Pins bekommen die naechstliegende BeThatHost-Seite (Inhaber-Freigabe
+# 25.09.2026). Jede neue URL traegt ?pin=umzug-<pin-id-ende> - serverseitig eindeutig,
+# siehe Ziel-URL-Regel in CLAUDE.md.
+BASIS = "https://bethathost.de"
+COZY_ZIEL = {
+    "cozy-bathroom-spa-ideas": "/spa-abend/#cat-bath",
+    "cozy-balcony-ideas": "/gartenparty/#cat-light",
+    "cozy-fall-decor-ideas": "/saison-deko/#kalender",
+    "cozy-apartment-in-winter": "/saison-deko/#kalender",
+    "coziest-throw-blankets": "/saison-deko/#cat-textiles",
+    "best-cozy-rugs": "/saison-deko/#cat-textiles",
+    "cozy-bedroom-aesthetic-on-a-budget": "/saison-deko/#cat-textiles",
+    "cozy-minimalist-bedroom": "/saison-deko/#cat-textiles",
+    "cozy-living-room-ideas-small-apartments": "/saison-deko/#cat-textiles",
+    "cozy-rental-ideas": "/saison-deko/#cat-textiles",
+    "cozy-reading-nook-ideas": "/saison-deko/#cat-textiles",
+    "best-warm-light-bulbs-cozy-glow": "/saison-deko/#cat-light",
+    "cozy-bedroom-lighting-ideas": "/saison-deko/#cat-light",
+    "best-cozy-candles": "/saison-deko/#cat-safe-light",
+    "cozy-entryway-ideas": "/saison-deko/#cat-natural",
+    "cozy-bookshelf-styling": "/saison-deko/#cat-natural",
+    "cozy-kitchen-ideas": "/saison-deko/#cat-natural",
+    "cozy-desk-setup-ideas": "/saison-deko/#cat-light",
+    "warm-paint-colors-cozy-room": "/saison-deko/#cat-textiles",
+    "hygge-living-habits": "/saison-deko/#cat-light",
+    "cheap-cozy-decor-under-25": "/saison-deko/#cat-natural",
+}
+
+
+def neuer_link(link: str, pin_id: str):
+    """Neue Ziel-URL oder None, wenn der Link schon passt."""
+    u = urllib.parse.urlparse(link or "")
+    if not u.netloc:
+        return None
+    alt_host = u.netloc.lower() in ("headdr-web.github.io", "www.headdr-web.github.io")
+    cozy = u.path.startswith("/cozy/")
+    if not (alt_host or cozy):
+        return None
+    if cozy:
+        slug = u.path.rstrip("/").rsplit("/", 1)[-1].removesuffix(".html")
+        ziel = COZY_ZIEL.get(slug, "/saison-deko/#cat-light")
+    else:
+        ziel = u.path + (f"#{u.fragment}" if u.fragment else "")
+    pfad, _, anker = ziel.partition("#")
+    if not (ROOT / (pfad.lstrip("/") + ("index.html" if pfad.endswith("/") else ""))).exists():
+        raise SystemExit(f"Zielseite fehlt im Repo: {pfad} (fuer {link})")
+    return f"{BASIS}{pfad}?pin=umzug-{pin_id[-6:]}" + (f"#{anker}" if anker else "")
+
+
+def patch_link(token: str, pin_id: str, link: str) -> None:
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    pp._request(f"{pp.API_BASE}/pins/{pin_id}", json.dumps({"link": link}).encode(),
+                headers, method="PATCH")
+
+
+def links(token: str, pins: list, umbiegen: bool) -> int:
+    plan_ = [(p, neuer_link(p.get("link"), p["id"])) for p in pins]
+    plan_ = [(p, n) for p, n in plan_ if n]
+    print(f"{len(plan_)} Pins mit alter oder Cozylore-Adresse.")
+    for p, n in plan_:
+        print(f"  {p['id']}  {p.get('link')}\n      -> {n}")
+    if not umbiegen:
+        print("\nNur angezeigt. Umbiegen mit Modus 'links-umbiegen'.")
+        return 0
+    SICHERUNG.mkdir(parents=True, exist_ok=True)
+    datei = SICHERUNG / f"links-{dt.date.today().isoformat()}.json"
+    erledigt, fehler = [], 0
+    for p, n in plan_:
+        try:
+            patch_link(token, p["id"], n)
+            erledigt.append({"id": p["id"], "title": p.get("title"), "alt": p.get("link"), "neu": n})
+            print(f"Umgebogen {p['id']}")
+        except pp.PinterestError as exc:
+            fehler += 1
+            print(f"Fehler bei {p['id']}: {exc}")
+            if "HTTP 429" in str(exc):
+                time.sleep(60)
+        datei.write_text(json.dumps(erledigt, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        time.sleep(PAUSE)
+    print(f"\nFertig: {len(erledigt)} umgebogen, {fehler} Fehler. Protokoll: {datei.relative_to(ROOT)}")
+    return 1 if fehler and not erledigt else 0
+
+
 def main() -> int:
     loeschen = "--loeschen" in sys.argv[1:]
     app_id = os.environ.get("PINTEREST_APP_ID", "")
@@ -103,6 +192,8 @@ def main() -> int:
         for p in pp.list_board_pins(token, b["id"]):
             p["_board"] = b.get("name", "")
             pins.append(p)
+    if "--links" in sys.argv[1:] or "--links-umbiegen" in sys.argv[1:]:
+        return links(token, pins, "--links-umbiegen" in sys.argv[1:])
     weg, bleibt_extra = plan(pins, impressionen)
     print(f"{len(pins)} Pins auf {len(boards)} Boards. Zu loeschen: {len(weg)}, "
           f"als eigenstaendige Kopie behalten: {len(bleibt_extra)}.")
