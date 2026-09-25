@@ -508,6 +508,17 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   (Abgleich ueber Ziel-URL ohne Fragment, sonst Titel). Ist alles doppelt, danach
   `mark-published-only` laufen lassen (hakt alles ab, ohne zu posten), sonst legt die API
   jeden dieser Pins ein zweites Mal an.
+- **Zahlen:** `.github/workflows/pinterest-stats.yml` (montags + manuell) ruft
+  `scripts/pinterest_stats.py` auf und schreibt `pinterest/STATISTIK.md` (Wochenverlauf,
+  Top-Pins, Zahlen je Seite) und `pinterest/stats/latest.json`. Nur lesend, dieselben drei
+  Secrets. Bis September 2026 wurde nichts gemessen — die Queue war leer, der Workflow lief
+  zweimal täglich ins Leere, und es fiel niemandem auf. **Vor jeder Pinterest-Entscheidung
+  erst in `STATISTIK.md` schauen.**
+- **Takt:** `MAX_PER_RUN: "1"` = 2 Pins am Tag. Mit 5 war die Queue nach einer Woche leer.
+  Nachschub rechtzeitig einplanen: in `STATISTIK.md`/`doctor` steht, wie viele offen sind.
+- **Kanal:** Neue Queue-Einträge tragen `"kanal": "api"` und stehen deshalb **nicht** in
+  `feed.xml` — sonst legt der RSS-Import sie ein zweites Mal an. Die alten 70 Einträge ohne
+  das Feld bleiben im Feed (sie sind längst draußen).
 - `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
   `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
