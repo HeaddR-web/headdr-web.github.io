@@ -152,6 +152,28 @@ erzeugt ueber Canva, als JPG exportiert).
   `python3 scripts/build-social-meta.py`
 - Punkt 21 im Konsistenz-Check.
 
+## Party-Mengenrechner (`mengenrechner/`)
+Erstes echtes Werkzeug der Seite, angelegt im September 2026 nach der AdSense-Ablehnung
+„Minderwertige Inhalte“ (Google verlangt „Informationen, Tools oder Dienste“ mit eigenem
+Mehrwert — reine Produktlisten reichen nicht). Anlass, Gäste, Dauer rein, Einkaufsliste raus.
+
+- **Alle Faustregeln stehen an einer Stelle:** oben in `mengenrechner/rechner.js`
+  (`ANLAESSE`, `GETRAENKE`, `EIS_KG` …). Der Seitentext („So rechnet der Mengenrechner“,
+  die Faustregel-Tabelle, das Rechenbeispiel) nennt **dieselben Zahlen**. Wer eine Regel
+  ändert, ändert beides — sonst rechnet das Werkzeug anders, als die Seite behauptet.
+- Läuft rein im Browser: keine Cookies, kein Speichern, kein Nachladen. Der Zustand steht
+  nur in der URL (`?anlass=grill&gaeste=12…`), damit „Link teilen“ die Liste mitnimmt.
+  Das muss so bleiben, sonst gehört es in die Datenschutzerklärung und hinter `consent.js`.
+- Drucken zeigt nur die Liste (`@media print` in `/assets/style.css`).
+- Kein Lead-Bild: oben steht der Rechner, nicht ein Foto. `og:image` ist
+  `assets/img/mengenrechner-einkaufsliste.jpg` (aus echten Rechner-Werten gerendert —
+  ändern sich die Regeln, Bild neu erzeugen).
+- Startseite: eigener Abschnitt `<section id="werkzeuge">` direkt unter dem Hero, Brotkrume
+  „Werkzeuge“ (`ABSCHNITTE` in `build-breadcrumb.py`). Im Weiterlesen-Ring steht der Rechner
+  am Anfang von `THEMA["anlaesse"]`.
+- Neues Werkzeug: Karte in `#werkzeuge`, Slug in `NAME` und `THEMA`, dann die Generatoren
+  wie bei jeder neuen Seite.
+
 ## Fehlerseite (`404.html`)
 GitHub Pages liefert `/404.html` für jede unbekannte URL aus. Bis September 2026 gab es keine —
 wer über einen alten Pin oder einen Tippfehler kam, sah die nackte GitHub-Fehlerseite ohne
