@@ -16,7 +16,6 @@ on:
           - anzeigen
           - loeschen
           - links-anzeigen
-          - links-umbiegen
 
 permissions:
   contents: write
@@ -46,8 +45,6 @@ jobs:
             python scripts/pinterest_aufraeumen.py --loeschen
           elif [[ "$MODUS" == "links-anzeigen" ]]; then
             python scripts/pinterest_aufraeumen.py --links
-          elif [[ "$MODUS" == "links-umbiegen" ]]; then
-            python scripts/pinterest_aufraeumen.py --links-umbiegen
           else
             python scripts/pinterest_aufraeumen.py
           fi
