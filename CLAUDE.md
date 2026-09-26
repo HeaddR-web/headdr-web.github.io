@@ -39,6 +39,13 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   `fonts.googleapis.com/css2?family=...` abrufen, die `woff2`-URLs
   (`fonts.gstatic.com`) daraus greifen, nach `/assets/fonts/` herunterladen,
   `@font-face` in `fonts.css` ergänzen — nie den CDN-Link selbst einbinden.
+- **Dasselbe gilt für jede andere Ressource** (Bilder, Hintergründe, Skripte, Videos), auch
+  unter `cozy/`: nie direkt von einem Fremd-Host einbinden, sondern die Datei ins Repo legen
+  (Bilder nach `/assets/img/`) und lokal verlinken. Typischer Fall sind Higgsfield-Links
+  (`*.cloudfront.net/user_…/hf_….png`): die gehören nur in `pins/queue.json` und `feed.xml`
+  (die holt Pinterest selbst ab), nie in HTML, CSS oder JS. Punkt 22 im Konsistenz-Check
+  (`scripts/check-fremdhosts.py`) prüft das. Einzige Ausnahme ist der Cloudflare-Beacon,
+  begründet in `datenschutz.html` Punkt 9.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
 1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>` (**max. 60 Zeichen inkl.
