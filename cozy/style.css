@@ -106,7 +106,7 @@ main {
   overflow: hidden;
   color: #fff;
   background-image: linear-gradient(rgba(40, 26, 18, 0.34), rgba(40, 26, 18, 0.62)),
-    url("https://d8j0ntlcm91z4.cloudfront.net/user_3EzQWq2PztIpmRyoVyluIhbJYPZ/hf_20260615_104651_fb210856-9cbc-4b23-b486-f3e3e24f20aa.png");
+    url("/assets/img/hf_20260615_104651_fb210856-9cbc-4b23-b486-f3e3e24f20aa.jpg");
   background-size: cover;
   background-position: center 38%;
 }

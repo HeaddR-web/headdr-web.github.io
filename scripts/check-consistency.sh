@@ -172,6 +172,16 @@ else
   else
     note "Social-Meta nicht aktuell (python3 scripts/build-social-meta.py):"; echo "$out" | sed 's/^/      /'
   fi
+
+# 22) DSGVO: keine Seite laedt beim Aufruf etwas von einem fremden Host (HTML, CSS,
+#     JS, auch Cozylore). Bis September 2026 zog cozy/style.css sein Hero-Bild direkt
+#     vom Higgsfield-CDN. Einzige Ausnahme ist der Cloudflare-Beacon (datenschutz.html
+#     Punkt 9); AdSense und Pinterest nur aus js/consent.js.
+  if out=$(python3 scripts/check-fremdhosts.py 2>&1); then
+    echo "  ✓ $out"
+  else
+    note "Fremd-Host ohne Einwilligung (python3 scripts/check-fremdhosts.py):"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo
