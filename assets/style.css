@@ -1639,3 +1639,39 @@ table.faustregeln tbody th {
     content: "\2610  ";
   }
 }
+
+/* ---------- Planungswissen auf den Hub-Seiten (.hub-text) ----------
+   Bewusst eine <section> und kein <article>: build-faq.py setzt die FAQ ans
+   Ende des Inhalts-<article>; auf den Hubs gehoert sie vor den Weiterlesen-Block. */
+.hub-text {
+  max-width: var(--read);
+  margin: 64px auto 0;
+}
+.hub-text h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+  margin: 44px 0 12px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+.hub-text h2:first-child {
+  margin-top: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.hub-text p,
+.hub-text li {
+  font-size: 1.07rem;
+  color: #453d34;
+}
+.hub-text li {
+  margin-bottom: 6px;
+}
+.hub-text strong {
+  color: var(--ink-strong);
+}
+.hub-text a {
+  color: var(--rose-deep);
+}

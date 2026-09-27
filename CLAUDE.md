@@ -426,6 +426,12 @@ Gitter stand, verschwand fuer jeden Besucher mit JavaScript** — auf `cocktaila
 weiterhin behauptete. Dazu fehlte den Zweit- und Dritt-Picks im JS-Aufbau die `hp-desc`,
 die im statischen Markup steht.
 
+**Planungstext (`section.hub-text`):** Unter den Guides steht auf `cocktailabend/` und
+`watchparty/` ein Lesetext in Artikelbreite (seit September 2026, AdSense-Ablehnung
+„Minderwertige Inhalte“). Bewusst eine `<section>`, kein `<article>` — `build-faq.py` setzt die
+FAQ sonst in diesen Block. Die Hubs sind in `AUSGENOMMEN` von `build-toc.py`: mit den neuen
+`<h2>` bekaemen sie sonst ein Verzeichnis mitten im Kopf des Kachelgitters.
+
 **Regel:** `render()` baut nur, wenn `#build-grid` noch keine `.cat-card` enthaelt. Was im
 HTML steht, gewinnt. Aendert sich eine Kategorie, gehoert sie in **beides** — in das
 statische Markup und in die Liste in `app.js`.
