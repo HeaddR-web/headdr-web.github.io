@@ -496,9 +496,9 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 ## Pinterest
 - **STAND 28.09.2026 — so kommen Pins wirklich raus: nur per Bulk-CSV.** Die Entwickler-App hat
   **Trial-Zugang**; jedes `POST /v5/pins` endet mit `HTTP 403 – Apps with Trial access may not
-  create Pins in production`. Lesen, Statistik und Löschen gehen. Der RSS-Feed hat laut
-  `pinterest/README.md` für dieses Konto nie einen Pin erzeugt. Die ~230 Pins aus dem Juli kamen
-  per Bulk-Upload. Deshalb: offene Queue-Einträge mit `python3 pinterest/make_bulk_csv.py --queue`
+  create Pins in production`. Lesen, Statistik und Löschen gehen. Die ~230 Pins aus dem Juli
+  kamen per Bulk-Upload; der RSS-Feed ist verbunden, hat aber nur alte Einträge doppelt angelegt
+  (siehe nächster Punkt). Deshalb: offene Queue-Einträge mit `python3 pinterest/make_bulk_csv.py --queue`
   in `pinterest/bulk-neue-pins.csv` schreiben (2 pro Tag, 10 und 16 Uhr, nach `prio`), der Inhaber
   lädt sie in Pinterest hoch (*Erstellen → Bulk-Pins erstellen*), danach im Publish-Workflow
   `mark-published-only` laufen lassen. Der Zeitplan in `pinterest-publish.yml` ist aus, bis die
@@ -507,11 +507,11 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Pinterest `feed.xml` eingelesen und 66 längst veröffentlichte Pins ein zweites Mal angelegt.
   Seitdem enthält der Feed nur Queue-Einträge mit `"kanal": "rss"`, die noch nicht
   `published` sind (aktuell keine). Nie wieder bereits veröffentlichte Pins in den Feed.
-- **RSS-Auto-Publish:** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
-  `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
+- **RSS-Auto-Publish:** `scripts/make_feed.py` baut `feed.xml` aus den `*/pins/queue.json`
+  (nur `"kanal": "rss"`, nicht `published`); Pinterest zieht das selbst. Details: `pinterest/README.md`.
 - **Live-Posten über die API (vorbereitet, aber blockiert — siehe Trial-Zugang oben):** `.github/workflows/pinterest-publish.yml` +
   `scripts/pinterest_publish.py` posten 2×/Tag aus den `*/pins/queue.json` über die offizielle
-  Pinterest-API v5. Die Entwickler-App ist freigeschaltet; nötig sind nur die drei Secrets
+  Pinterest-API v5. Nötig sind die drei Secrets
   `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Token erzeugen wahlweise
   ohne Terminal über den Workflow `pinterest-oauth.yml` (+ `scripts/pinterest_oauth_ci.py`,
   Redirect-URI `https://bethathost.de/`, schreibt das Secret selbst per API) oder lokal mit
@@ -560,9 +560,10 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   im Wechsel der Seiten). Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
   `python3 scripts/build-pin-grafiken.py`. Ist die Queue leer oder fast leer, zeigt der
   Publish-Workflow eine **Warnung** im Actions-Log statt still grün durchzulaufen.
-- **Kanal:** Neue Queue-Einträge tragen `"kanal": "api"` und stehen deshalb **nicht** in
-  `feed.xml` — sonst legt der RSS-Import sie ein zweites Mal an. Die alten 70 Einträge ohne
-  das Feld bleiben im Feed (sie sind längst draußen).
+- **Kanal:** Queue-Einträge mit `"kanal": "api"` gehen per Bulk-CSV raus (bzw. per API, sobald
+  Standard-Zugang da ist) und stehen **nie** in `feed.xml`. Seit 28.09.2026 steht überhaupt nur
+  noch `"kanal": "rss"` + unveröffentlicht im Feed; die alten Einträge sind entfernt, weil der
+  RSS-Import sie ein zweites Mal angelegt hat. Nach jedem CSV-Upload `mark-published-only`.
 - `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
   `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".

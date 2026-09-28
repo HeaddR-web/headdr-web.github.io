@@ -23,6 +23,12 @@ erstellen — ganz ohne Entwickler-App, ohne OAuth, ohne Secrets.
 
 Details: <https://help.pinterest.com/de/business/article/auto-publish-pins-from-your-rss-feed>
 
+**Nachtrag 28.09.2026:** Der Feed *ist* bei Pinterest verbunden. Am 26./27.09. hat Pinterest ihn
+eingelesen und 66 längst veröffentlichte Pins ein zweites Mal angelegt (danach gelöscht). Seitdem
+enthält `feed.xml` nur noch Queue-Einträge mit `"kanal": "rss"`, die noch nicht veröffentlicht
+sind. Die API hat nur Trial-Zugang und kann nicht posten; neue Pins gehen per Bulk-CSV
+(`make_bulk_csv.py --queue`).
+
 **Stand 09/2026:** Dieser Weg hat für dieses Konto nie einen Pin erzeugt, obwohl `feed.xml`
 valides RSS ist (W3C-Validator: 0 Fehler), alle Bild-URLs mit HTTP 200 antworten und die Domain
 verifiziert ist. Warum, ließ sich von außen nicht klären — Pinterest legt keine Fetch-Logs offen.
