@@ -34,6 +34,7 @@ NUR_NAVIGATION = {"index.html", "ueber-uns.html", "datenschutz.html",
                   "impressum.html", "privacy.html", "dashboard.html",
                   "produkt-review.html", "404.html"}
 LINK_RE = re.compile(r'href="(/[^"#?]*)"')
+RELATIV_RE = re.compile(r'<a\b[^>]*?\shref="(?!/|https?:|#|mailto:|tel:|javascript:|\$\{)([^"]+)"')
 
 
 def norm(ziel):
@@ -83,6 +84,14 @@ def main():
         b = html.find("<footer", a) if a >= 0 else -1
         if a >= 0 and b > a and html[a + len("</main>"):b].strip():
             fehler.append(f"{f}: Inhalt zwischen </main> und <footer> - ohne Seitenrand")
+
+    # 4) Keine relativen Links. Bis September 2026 standen 124 davon auf der
+    #    Seite (href="girls-night-drinks.html", href="posts/..."). Sie gehen
+    #    kaputt, sobald eine Seite umzieht, und "index.html" war eine zweite URL
+    #    fuer eine Seite, deren Canonical auf den Ordner zeigt.
+    for f in seiten:
+        for ziel in RELATIV_RE.findall(open(f, encoding="utf-8").read()):
+            fehler.append(f"{f}: relativer Link {ziel} - absolut schreiben (/ordner/...)")
 
     if fehler:
         print("\n".join(sorted(set(fehler))))
