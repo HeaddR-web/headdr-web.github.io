@@ -503,6 +503,10 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   lädt sie in Pinterest hoch (*Erstellen → Bulk-Pins erstellen*), danach im Publish-Workflow
   `mark-published-only` laufen lassen. Der Zeitplan in `pinterest-publish.yml` ist aus, bis die
   App Standard-Zugang hat (Antrag im Pinterest-Entwicklerportal, nur durch den Inhaber).
+- **RSS-Feed ist doch verbunden — und liefert nur noch Freigegebenes.** Am 26./27.09.2026 hat
+  Pinterest `feed.xml` eingelesen und 66 längst veröffentlichte Pins ein zweites Mal angelegt.
+  Seitdem enthält der Feed nur Queue-Einträge mit `"kanal": "rss"`, die noch nicht
+  `published` sind (aktuell keine). Nie wieder bereits veröffentlichte Pins in den Feed.
 - **RSS-Auto-Publish:** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
   `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
 - **Live-Posten über die API (vorbereitet, aber blockiert — siehe Trial-Zugang oben):** `.github/workflows/pinterest-publish.yml` +
