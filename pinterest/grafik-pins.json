@@ -996,6 +996,65 @@
       "fuss": "Ergibt gut 10 Gläser",
       "pin_titel": "Hexenpunsch für Halloween – mit und ohne Alkohol",
       "beschreibung": "Roter Halloween-Punsch aus Kirsch- und Cranberrysaft mit Ginger Ale: alkoholfrei für alle, Rum kommt erst ins Glas. Rezept für gut zehn Gläser. #halloween #bowle #punsch #halloweenparty #mocktail"
+    },
+    {
+      "site": "silvester",
+      "id": "sekt",
+      "anker": "cat-sekt",
+      "farbe": "nacht",
+      "kicker": "Silvester zuhause",
+      "titel": "Wie viel Sekt für Silvester?",
+      "unter": "Eine Flasche = rund 6 Gläser",
+      "art": "tabelle",
+      "punkte": [
+        "6 Gäste, nur Anstoßen|1 Flasche",
+        "10 Gäste, nur Anstoßen|2 Flaschen",
+        "6 Gäste, ganzer Abend|2 Flaschen",
+        "10 Gäste, ganzer Abend|4 Flaschen",
+        "16 Gäste, ganzer Abend|6 Flaschen"
+      ],
+      "fuss": "Plus eine alkoholfreie Flasche für alle anderen",
+      "pin_titel": "Wie viel Sekt für Silvester? Die Mengen für jede Runde",
+      "beschreibung": "Aus einer Flasche werden rund sechs Gläser: So viel Sekt brauchst du für 6, 10 oder 16 Gäste, nur zum Anstoßen oder für den ganzen Abend. #silvester #silvesterparty #sekt #neujahr #partyplanung"
+    },
+    {
+      "site": "silvester",
+      "id": "wachs",
+      "anker": "wachsgiessen",
+      "farbe": "gold",
+      "kicker": "Silvester-Brauch",
+      "titel": "Wachsgießen statt Bleigießen",
+      "unter": "Bleigieß-Sets sind seit 2018 aus dem Handel",
+      "art": "nummern",
+      "punkte": [
+        "Schüssel mit kaltem Wasser bereitstellen",
+        "Wachsstück auf dem Löffel über der Kerze schmelzen",
+        "Mit Schwung ins Wasser kippen",
+        "Figur gegen das Licht halten und den Schatten deuten"
+      ],
+      "fuss": "Die Deutungsliste liegt fast jedem Set bei",
+      "pin_titel": "Wachsgießen an Silvester: So geht der Brauch ohne Blei",
+      "beschreibung": "Bleigießen ist seit 2018 praktisch verboten – Wachsgießen funktioniert genauso. Die Anleitung in vier Schritten für die Silvesterparty. #silvester #wachsgießen #bleigießen #silvesterbrauch #neujahr"
+    },
+    {
+      "site": "silvester",
+      "id": "zeitplan",
+      "anker": "zeitplan",
+      "farbe": "blau",
+      "kicker": "Silvesterparty zuhause",
+      "titel": "Der Silvester-Zeitplan",
+      "unter": "",
+      "art": "schritte",
+      "punkte": [
+        "18 Uhr|Tisch decken, Kartoffeln kochen",
+        "19:30|Gäste kommen, Raclette an",
+        "22 Uhr|Wachsgießen und Vorsätze-Umschläge",
+        "23:30|Sekt in den Kühler, Suppe aufwärmen",
+        "0 Uhr|Countdown, Anstoßen, Konfetti"
+      ],
+      "fuss": "Neujahr: Katerfrühstück mit Rollmops",
+      "pin_titel": "Silvesterparty zuhause: der Zeitplan bis Mitternacht",
+      "beschreibung": "Von 18 Uhr bis zum Countdown: der Ablauf für eine entspannte Silvesterparty zuhause mit Raclette, Wachsgießen und Sekt zur richtigen Zeit. #silvesterparty #silvester #neujahr #raclette #partyplanung"
     }
   ]
 }

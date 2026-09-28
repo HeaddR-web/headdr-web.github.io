@@ -1581,6 +1581,11 @@ table.faustregeln {
   font-size: 0.93rem;
   line-height: 1.45;
 }
+/* Kleine Tabellen (drei kurze Spalten) passen auch aufs Handy - ohne
+   Mindestbreite, sonst muss man fuer eine Zahl seitlich scrollen. */
+table.faustregeln.kompakt {
+  min-width: 0;
+}
 table.faustregeln th,
 table.faustregeln td {
   text-align: left;

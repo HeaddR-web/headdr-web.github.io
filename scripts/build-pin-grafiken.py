@@ -57,6 +57,8 @@ REIHENFOLGE = [
     # Halloween: bekommt von Hand fruehe Freigabetage (30.09.-02.10., je als dritter
     # Pin des Tages), sonst laege es hinter dem 22.10. - zu spaet fuer den 31.10.
     "halloween-kuerbis", "halloween-mumien", "halloween-punsch",
+    # Silvester: Freigabe von Hand auf Mitte November gesetzt (Planungsbeginn)
+    "silvester-sekt", "silvester-wachs", "silvester-zeitplan",
 ]
 
 FARBEN = {
