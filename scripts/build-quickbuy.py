@@ -35,6 +35,7 @@ ANLASS = {
     "gartenparty": "deine Gartenparty",
     "geburtstag": "deinen Geburtstag",
     "grillabend": "deinen Grillabend",
+    "halloween": "deine Halloween-Party",
     "hawaii-tiki": "deine Hawaii-Party",
     "jga": "den JGA",
     "mexiko-fiesta": "deine Fiesta",

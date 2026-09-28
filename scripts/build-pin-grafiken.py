@@ -54,6 +54,9 @@ REIHENFOLGE = [
     "brunch-zeitplan", "ratgeber-lichterkette", "girlsnight-mitbringliste", "watchparty-nachos",
     "cocktailabend-flaschen", "geburtstag-runde", "girlsnight-weintemperatur", "ratgeber-shaken",
     "cocktailabend-verduennung", "watchparty-blumenkohl", "girlsnight-mimosa",
+    # Halloween: bekommt von Hand fruehe Freigabetage (30.09.-02.10., je als dritter
+    # Pin des Tages), sonst laege es hinter dem 22.10. - zu spaet fuer den 31.10.
+    "halloween-kuerbis", "halloween-mumien", "halloween-punsch",
 ]
 
 FARBEN = {

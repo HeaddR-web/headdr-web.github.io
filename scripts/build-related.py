@@ -44,6 +44,7 @@ NAME = {
     "hawaii-tiki/index.html": "Hawaii-Party",
     "mexiko-fiesta/index.html": "Mexiko-Fiesta",
     "oktoberfest/index.html": "Oktoberfest zuhause",
+    "halloween/index.html": "Halloween-Party",
 
     "girlsnight/index.html": "Mädelsabend",
     "girlsnight/posts/girls-night-budget.html": "Mädelsabend mit kleinem Budget",
@@ -87,7 +88,7 @@ THEMA = {
     ],
     "mottos": [
         "hawaii-tiki/index.html", "mexiko-fiesta/index.html",
-        "oktoberfest/index.html",
+        "oktoberfest/index.html", "halloween/index.html",
     ],
     "girlsnight": [
         "girlsnight/index.html",

@@ -937,6 +937,65 @@
       "fuss": "Erst Sekt, dann Saft – sonst schäumt es über",
       "pin_titel": "Mimosa-Bar: So viel Sekt und Saft brauchst du",
       "beschreibung": "Die Mengen für die Mimosa-Bar beim Brunch oder Mädelsabend: Sekt und Saft für 6, 8 und 10 Gäste, plus Saft-Ideen für die pinke Variante. #mimosa #mimosabar #brunch #galentinesday #sekt"
+    },
+    {
+      "site": "halloween",
+      "id": "kuerbis",
+      "anker": "kuerbis",
+      "farbe": "nacht",
+      "kicker": "Halloween zuhause",
+      "titel": "So hält dein Kürbis bis zur Party",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Frühestens 2–3 Tage vorher schnitzen",
+        "Deckel schräg oder von hinten schneiden",
+        "Innen auskratzen, bis 2–3 cm Wand bleiben",
+        "Schnittkanten mit Öl oder Vaseline einreiben",
+        "LED-Teelichter statt echter Kerzen"
+      ],
+      "fuss": "Die Kerne: 20 Min. bei 160 °C rösten",
+      "pin_titel": "Kürbis schnitzen: So hält er bis zur Halloween-Party",
+      "beschreibung": "Ein geschnitzter Kürbis hält drinnen nur drei bis fünf Tage. Mit diesen fünf Tricks sieht er an Halloween noch gut aus – plus was du mit den Kernen machst. #halloween #kürbisschnitzen #halloweendeko #kürbis #halloweenparty"
+    },
+    {
+      "site": "halloween",
+      "id": "mumien",
+      "anker": "cat-buffet",
+      "farbe": "terrakotta",
+      "kicker": "Rezept · Halloween",
+      "titel": "Mumien-Würstchen",
+      "unter": "Für 6, in 25 Minuten",
+      "art": "nummern",
+      "punkte": [
+        "1 Rolle Blätterteig in 1 cm breite Streifen schneiden",
+        "12 Wiener Würstchen locker umwickeln, Spalt fürs Gesicht lassen",
+        "15–18 Min. bei 200 °C Ober- und Unterhitze",
+        "Zwei Tupfen Senf als Augen"
+      ],
+      "fuss": "Vegetarisch mit Veggie-Würstchen",
+      "pin_titel": "Mumien-Würstchen im Blätterteig: der Halloween-Snack",
+      "beschreibung": "Das schnellste Halloween-Fingerfood: Würstchen in Blätterteig-Streifen wickeln, backen, Senf-Augen drauf. Für 6 in 25 Minuten, auch vegetarisch. #halloweenrezepte #halloweenparty #fingerfood #partysnacks #halloween"
+    },
+    {
+      "site": "halloween",
+      "id": "punsch",
+      "anker": "cat-drinks",
+      "farbe": "gold",
+      "kicker": "Halloween-Drink",
+      "titel": "Roter Hexenpunsch",
+      "unter": "Alkoholfrei – Rum kommt erst ins Glas",
+      "art": "tabelle",
+      "punkte": [
+        "Kirschsaft|1 l",
+        "Cranberrysaft|0,5 l",
+        "Ginger Ale (zuletzt)|1 l",
+        "Limettensaft|2 Limetten",
+        "Dunkler Rum (optional)|4 cl pro Glas"
+      ],
+      "fuss": "Ergibt gut 10 Gläser",
+      "pin_titel": "Hexenpunsch für Halloween – mit und ohne Alkohol",
+      "beschreibung": "Roter Halloween-Punsch aus Kirsch- und Cranberrysaft mit Ginger Ale: alkoholfrei für alle, Rum kommt erst ins Glas. Rezept für gut zehn Gläser. #halloween #bowle #punsch #halloweenparty #mocktail"
     }
   ]
 }
