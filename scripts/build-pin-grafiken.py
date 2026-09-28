@@ -59,6 +59,8 @@ REIHENFOLGE = [
     "halloween-kuerbis", "halloween-mumien", "halloween-punsch",
     # Silvester: Freigabe von Hand auf Mitte November gesetzt (Planungsbeginn)
     "silvester-sekt", "silvester-wachs", "silvester-zeitplan",
+    # Weihnachtsfeier: Freigabe von Hand auf 08.-10.11. (Planungsbeginn)
+    "weihnachtsfeier-gluehwein", "weihnachtsfeier-wuerfel", "weihnachtsfeier-bratapfel",
 ]
 
 FARBEN = {

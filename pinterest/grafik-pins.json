@@ -1055,6 +1055,66 @@
       "fuss": "Neujahr: Katerfrühstück mit Rollmops",
       "pin_titel": "Silvesterparty zuhause: der Zeitplan bis Mitternacht",
       "beschreibung": "Von 18 Uhr bis zum Countdown: der Ablauf für eine entspannte Silvesterparty zuhause mit Raclette, Wachsgießen und Sekt zur richtigen Zeit. #silvesterparty #silvester #neujahr #raclette #partyplanung"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "gluehwein",
+      "anker": "gluehwein",
+      "farbe": "terrakotta",
+      "kicker": "Rezept · Weihnachtsfeier",
+      "titel": "Glühwein selbst machen",
+      "unter": "Für 10 Tassen",
+      "art": "tabelle",
+      "punkte": [
+        "Trockener Rotwein|2 Flaschen",
+        "Orangensaft|0,5 l",
+        "Bio-Orange|in Scheiben",
+        "Zimt · Nelken · Sternanis|2 · 4 · 2",
+        "Zucker oder Honig|80–100 g"
+      ],
+      "fuss": "Nie kochen lassen – ab 78 °C verdampft der Alkohol",
+      "pin_titel": "Glühwein selbst machen: Rezept für 10 Tassen",
+      "beschreibung": "Selbstgemachter Glühwein für die Weihnachtsfeier: zwei Flaschen Rotwein, Orangensaft und Gewürze – und warum er nie kochen darf. Mit Kinderpunsch-Variante. #glühwein #weihnachten #weihnachtsfeier #glühweinrezept #advent"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "wuerfel",
+      "anker": "wuerfel",
+      "farbe": "gruen",
+      "kicker": "Wichteln mit Freunden",
+      "titel": "Würfel-Wichteln: die Regeln",
+      "unter": "",
+      "art": "schritte",
+      "punkte": [
+        "Runde 1|Reihum würfeln – bei einer 6 ein Geschenk aus der Mitte nehmen",
+        "Dann|Eieruhr auf 10 Minuten stellen",
+        "6|Einem anderen ein Geschenk wegnehmen",
+        "1|Alle Geschenke wandern nach links",
+        "3|Zwei Mitspieler müssen tauschen",
+        "Ding!|Was du hältst, gehört dir"
+      ],
+      "fuss": "Budget vorher festlegen, z. B. 10–20 €",
+      "pin_titel": "Würfel-Wichteln: Regeln für die Weihnachtsfeier",
+      "beschreibung": "Wichteln mit Würfel und Eieruhr: die Regeln für das chaotischste Wichtelspiel der Weihnachtsfeier, plus Variante Schrottwichteln. #wichteln #würfelwichteln #weihnachtsfeier #schrottwichteln #weihnachten"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "bratapfel",
+      "anker": "buffet",
+      "farbe": "gold",
+      "kicker": "Rezept · Advent",
+      "titel": "Bratäpfel mit Marzipan",
+      "unter": "Für 6, in 35 Minuten",
+      "art": "nummern",
+      "punkte": [
+        "6 Boskop-Äpfel, Kerngehäuse ausstechen",
+        "50 g Marzipan, 30 g Mandeln, 30 g Rosinen, 1 TL Zimt mischen",
+        "Füllen, Butter obendrauf, Apfelsaft in die Form",
+        "25–30 Min. bei 180 °C Umluft"
+      ],
+      "fuss": "Mit Vanillesoße servieren",
+      "pin_titel": "Bratäpfel mit Marzipan: das Rezept für den Advent",
+      "beschreibung": "Bratäpfel mit Marzipan-Mandel-Füllung für sechs: vorbereitet am Nachmittag, gebacken, wenn der Glühwein halb leer ist. #bratapfel #advent #weihnachtsrezepte #weihnachtsfeier #winterrezepte"
     }
   ]
 }
