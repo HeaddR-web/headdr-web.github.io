@@ -41,6 +41,7 @@ ANLASS = {
     "mexiko-fiesta": "deine Fiesta",
     "oktoberfest": "deine Wiesn-Party",
     "saison-deko": "die gemuetliche Jahreszeit",
+    "silvester": "deine Silvesterparty",
     "spa-abend": "deinen Spa-Abend",
     "spieleabend": "deinen Spieleabend",
     "valentinstag": "eure Date Night",
