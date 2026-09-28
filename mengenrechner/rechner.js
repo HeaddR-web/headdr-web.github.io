@@ -301,13 +301,26 @@
     letzte = { e: e, r: r };
     ziel.textContent = "";
 
+    // Nur im Ausdruck sichtbar (siehe @media print im zentralen Stylesheet):
+    // Marke und Anlass oben, Datum und Link zur Liste unten.
+    var druckkopf = el("div", "rl-druckkopf");
+    druckkopf.appendChild(el("span", "rl-marke", "BeThatHost"));
+    druckkopf.appendChild(el("span", "rl-titel", "Einkaufsliste " + r.anlass.name));
+    ziel.appendChild(druckkopf);
+
     var kopf = el("p", "rl-kopf");
     kopf.textContent = r.anlass.name + " · " + r.gaeste + (r.gaeste === 1 ? " Gast" : " Gäste") +
       " · " + e.stunden + (e.stunden === 1 ? " Stunde" : " Stunden") + (e.puffer ? " · inkl. 10 % Puffer" : "");
     ziel.appendChild(kopf);
 
+    // Jede Gruppe in einem eigenen Block: Im zweispaltigen Ausdruck bleiben
+    // Ueberschrift und Liste so zusammen, statt am Spaltenende zu reissen.
+    var bloecke = el("div", "rl-bloecke");
+    ziel.appendChild(bloecke);
     r.gruppen.forEach(function (g) {
-      ziel.appendChild(el("h3", "rl-gruppe", g.titel));
+      var block = el("section", "rl-block");
+      bloecke.appendChild(block);
+      block.appendChild(el("h3", "rl-gruppe", g.titel));
       var ul = el("ul", "rl-liste");
       g.zeilen.forEach(function (z) {
         var li = el("li");
@@ -318,7 +331,7 @@
         if (z.hinweis) li.appendChild(el("span", "rl-hinweis", z.hinweis));
         ul.appendChild(li);
       });
-      ziel.appendChild(ul);
+      block.appendChild(ul);
     });
 
     var weiter = el("p", "rl-weiter");
@@ -336,6 +349,12 @@
       q.set("hitze", e.hitze ? "1" : "0"); q.set("puffer", e.puffer ? "1" : "0");
       history.replaceState(null, "", location.pathname + "?" + q.toString() + location.hash);
     } catch (err) { /* aeltere Browser: dann eben ohne Teilen-Link */ }
+
+    var fuss = el("p", "rl-druckfuss");
+    fuss.appendChild(el("span", null, "Erstellt am " + new Date().toLocaleDateString("de-DE") +
+      " mit dem Party-Mengenrechner von BeThatHost. Liste wieder öffnen oder ändern:"));
+    fuss.appendChild(el("span", "rl-link", location.href.replace(/^https?:\/\//, "")));
+    ziel.appendChild(fuss);
   }
 
   function ausUrl() {
