@@ -273,7 +273,9 @@ Seiten und zeigten fast alle auf dieselben zwei Ziele.
   Weiterlesen-Block, den sie ersetzen sollten. `ALT_RE` in `build-related.py` räumt
   beide Schreibweisen („Weitere Anlässe:" und „Weitere Ideen:") weg.
 - `scripts/check-related.py` prüft das mit, Punkt 14 im Konsistenz-Check: Block aktuell,
-  keine Waisen, kein interner Link auf eine Datei, die es nicht gibt.
+  keine Waisen, kein interner Link auf eine Datei, die es nicht gibt, **und kein relativer
+  Link** (`href="girls-night-drinks.html"`, `href="posts/…"`). Bis September 2026 standen 124
+  davon auf der Seite, dazu die `guide`-Felder in den drei `app.js`.
 
 ## FAQ-Abschnitt (`section.faq`) — generiert, nie von Hand
 Am Ende des Artikels, vor dem Weiterlesen-Block, steht der sichtbare FAQ-Abschnitt.

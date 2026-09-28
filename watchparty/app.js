@@ -18,7 +18,7 @@
         "emoji": "🌮",
         "blurb": "Nachos, Wings & Fingerfood, das man ohne Tor-Verpassen schnappt.",
         "img": "/assets/img/hf_20260618_151400_aed3e59f-6306-4ada-9f78-fb7904cf9f2a.jpg",
-        "guide": "posts/world-cup-watch-party.html",
+        "guide": "/watchparty/posts/world-cup-watch-party.html",
         "products": [
             {
                 "name": "Snack- & Dip-Schalen",
@@ -33,7 +33,7 @@
         "emoji": "🇩🇪",
         "blurb": "Fahnen, Wimpelketten & Fan-Gear in schwarz-rot-gold.",
         "img": "/assets/img/hf_20260618_151154_afcd59b6-7195-447f-9f07-601ef2ce0468.jpg",
-        "guide": "posts/world-cup-watch-party.html",
+        "guide": "/watchparty/posts/world-cup-watch-party.html",
         "products": [
             {
                 "name": "Deko-Set (schwarz-rot-gold)",
@@ -48,7 +48,7 @@
         "emoji": "🏆",
         "blurb": "Spielplan an die Wand, ein Tippspiel und ein Spiel für die Halbzeit.",
         "img": "/assets/img/hf_20260618_151157_71d1e854-e938-414d-9df0-8b654ee30799.jpg",
-        "guide": "posts/world-cup-watch-party.html",
+        "guide": "/watchparty/posts/world-cup-watch-party.html",
         "products": [
             {
                 "name": "WM-Spielplan-Poster",
