@@ -80,7 +80,9 @@ def main():
                 continue
             with open(qf, encoding="utf-8") as f:
                 for q in json.load(f):
-                    if not q.get("published"):
+                    # "kanal": "rss" kommt von selbst ueber feed.xml - in der
+                    # CSV stuende er ein zweites Mal.
+                    if not q.get("published") and q.get("kanal") != "rss":
                         pins.append({"id": site, "title": q["title"], "image": q["image_url"],
                                      "description": q["description"], "link": q["link"],
                                      "prio": q.get("prio", 0)})

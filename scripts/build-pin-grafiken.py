@@ -12,13 +12,15 @@ Was es tut:
     Bildformat-Regel), in den Farben und Schriften der Seite. Jede Karte ist ein
     eigenes Motiv (Bild-Eindeutigkeit-Regel).
   * traegt jeden Pin einmal in <site>/pins/queue.json ein - mit eindeutiger
-    Ziel-URL (?pin=<id>#<anker>), "kanal": "api" (nicht in feed.xml, sonst
-    Doppelpost) und "prio" fuer die Reihenfolge (REIHENFOLGE unten).
+    Ziel-URL (?pin=<id>#<anker>), "kanal": "rss", "prio" fuer die Reihenfolge
+    (REIHENFOLGE unten) und "freigabe": dem Tag, ab dem der Pin in feed.xml
+    steht - zwei pro Tag, hinter dem letzten schon geplanten.
     Was schon in der Queue steht, bleibt unangetastet.
 
 Braucht Playwright + Chromium (lokal, nicht in CI):
   python3 scripts/build-pin-grafiken.py [--nur-queue]
 """
+import datetime as dt
 import functools
 import html
 import http.server
@@ -206,13 +208,37 @@ def rendern(pins):
         srv.shutdown()
 
 
+PRO_TAG = 2
+
+
+def freigabe_tage():
+    """Liefert fortlaufend den naechsten freien Freigabetag (hoechstens PRO_TAG je
+    Tag, fruehestens morgen). Warum ueberhaupt gestaffelt: Pinterest liest den
+    Feed am Stueck ein. 30 Pins an einem Tag wirken wie Spam und verbrennen den
+    Nachschub fuer die naechsten Wochen."""
+    belegt = {}
+    for qf in ROOT.glob("*/pins/queue.json"):
+        for q in json.loads(qf.read_text(encoding="utf-8")):
+            if q.get("freigabe"):
+                belegt[q["freigabe"]] = belegt.get(q["freigabe"], 0) + 1
+    tag = max([dt.date.today() + dt.timedelta(days=1)]
+              + [dt.date.fromisoformat(d) for d in belegt])
+    while True:
+        if belegt.get(tag.isoformat(), 0) < PRO_TAG:
+            belegt[tag.isoformat()] = belegt.get(tag.isoformat(), 0) + 1
+            yield tag.isoformat()
+        else:
+            tag += dt.timedelta(days=1)
+
+
 def queues_fuellen(pins):
     rang = {k: i for i, k in enumerate(REIHENFOLGE, 1)}
     fehlt = [f"{p['site']}-{p['id']}" for p in pins if f"{p['site']}-{p['id']}" not in rang]
     if fehlt:
         raise SystemExit("Nicht in REIHENFOLGE: " + ", ".join(fehlt))
     neu = 0
-    for pin in pins:
+    tage = freigabe_tage()
+    for pin in sorted(pins, key=lambda p: rang[f"{p['site']}-{p['id']}"]):
         qf = ROOT / pin["site"] / "pins" / "queue.json"
         qf.parent.mkdir(parents=True, exist_ok=True)
         queue = json.loads(qf.read_text(encoding="utf-8")) if qf.exists() else []
@@ -229,8 +255,9 @@ def queues_fuellen(pins):
             "image_url": bild,
             "published": False,
             "pin_id": "",
-            "kanal": "api",
+            "kanal": "rss",
             "prio": rang[f"{pin['site']}-{pin['id']}"],
+            "freigabe": next(tage),
         })
         qf.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         neu += 1

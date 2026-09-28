@@ -204,7 +204,9 @@ def read_queues(queue_files: list[Path]) -> tuple[dict, list]:
         queues[qf] = data
         site = qf.relative_to(ROOT).parts[0]
         for pin in data:
-            if not pin.get("published"):
+            # "kanal": "rss" laeuft ueber feed.xml (make_feed.py). Die API
+            # darf ihn nie zusaetzlich posten, sonst steht er doppelt da.
+            if not pin.get("published") and pin.get("kanal") != "rss":
                 pending.append((qf, site, pin))
     # "prio" legt die Reihenfolge ueber alle Queues fest (build-pin-grafiken.py
     # setzt sie). Ohne wuerde Datei fuer Datei gepostet - erst alle Casino-Pins,
@@ -300,7 +302,7 @@ def main() -> int:
         total = 0
         for qf in queue_files:
             data = queues.get(qf, [])
-            open_n = sum(1 for p in data if not p.get("published"))
+            open_n = sum(1 for p in data if not p.get("published") and p.get("kanal") != "rss")
             total += open_n
             site = qf.relative_to(ROOT).parts[0]
             board_id, source = board_for({}, site, name_to_id, board_names, default_board)
