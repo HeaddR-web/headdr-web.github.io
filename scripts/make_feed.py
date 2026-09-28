@@ -91,9 +91,13 @@ def main():
     lastmod = load_sitemap_lastmod()
     items = []
 
-    # 1) Cover-Pins je Seite
+    # 1) Cover-Pins je Seite - seit 28.09.2026 NICHT mehr im Feed.
+    #    Pinterest hat den Feed am 26./27.09. ploetzlich (wieder) eingelesen und
+    #    66 Pins ein zweites Mal angelegt, die laengst draussen waren. Alles aus
+    #    pins.json ist veroeffentlicht; ein neuer Cover-Pin gehoert als Queue-
+    #    Eintrag mit "kanal": "rss" in die jeweilige queue.json.
     with open(os.path.join(ROOT, "pinterest", "pins.json"), encoding="utf-8") as f:
-        for p in json.load(f):
+        for p in []:
             slug = p["id"] if p["id"] != "home" else "home"
             date = date_from_image(p["image"]) or lastmod.get(slug)
             items.append({
@@ -119,7 +123,10 @@ def main():
                 # "kanal": "api" = nur ueber pinterest_publish.py posten. Stuende
                 # der Pin auch hier, legte Pinterest ihn ein zweites Mal an,
                 # sobald der RSS-Import ihn findet (Doppelpost-Regel, CLAUDE.md).
-                if p.get("kanal") == "api":
+                # Nur, was ausdruecklich fuer RSS gedacht und noch nicht draussen
+                # ist. Alles andere liefe beim naechsten Einlesen doppelt raus
+                # (am 26./27.09.2026 genau so passiert: 66 Doppelte).
+                if p.get("kanal") != "rss" or p.get("published"):
                     continue
                 date = date_from_image(p["image_url"]) or fallback_date
                 items.append({
