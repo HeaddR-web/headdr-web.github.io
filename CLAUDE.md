@@ -568,7 +568,10 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Das Skript prüft, dass Zielseite und Anker existieren, verkleinert die Schrift, bis alles
   auf die Karte passt, und trägt jeden Pin einmal in `<site>/pins/queue.json` ein — mit
   `"kanal": "rss"`, `"prio"` (Reihenfolge in `REIHENFOLGE`: Saisonales zuerst, danach
-  im Wechsel der Seiten) und `"freigabe"` (siehe oben). Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
+  im Wechsel der Seiten) und `"freigabe"` (siehe oben). Ziel ist `<site>/index.html`, mit dem
+  optionalen Feld `"pfad"` eine Unterseite im Ordner (`"posts/wm-snacks-rezepte.html"`,
+  `ratgeber` + `"raclette-fondue-set.html"`); die Queue bleibt `<site>/pins/queue.json`.
+  Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
   `python3 scripts/build-pin-grafiken.py`. Ist die Queue leer oder fast leer, zeigt der
   Publish-Workflow eine **Warnung** im Actions-Log statt still grün durchzulaufen.
 - **Kanal:** `"kanal": "rss"` = geht tropfweise über `feed.xml` raus (Standard seit 28.09.2026).

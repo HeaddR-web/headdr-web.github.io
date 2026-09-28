@@ -49,6 +49,11 @@ REIHENFOLGE = [
     "hawaii-tiki-bowle", "mexiko-fiesta-tacobar", "grillabend-zonen",
     "hawaii-tiki-luau", "mexiko-fiesta-aguafresca", "grillabend-zeitplan",
     "grillabend-fehler",
+    # Nachschub ab 15.10.: Raclette zuerst (Saison), danach im Wechsel der Seiten
+    "ratgeber-raclette", "watchparty-wings", "girlsnight-werwuerde", "cocktailabend-batch",
+    "brunch-zeitplan", "ratgeber-lichterkette", "girlsnight-mitbringliste", "watchparty-nachos",
+    "cocktailabend-flaschen", "geburtstag-runde", "girlsnight-weintemperatur", "ratgeber-shaken",
+    "cocktailabend-verduennung", "watchparty-blumenkohl", "girlsnight-mimosa",
 ]
 
 FARBEN = {
@@ -143,8 +148,17 @@ def seite_html(pin):
         unter=f'<p class="unter">{e(pin["unter"])}</p>' if pin.get("unter") else "",
         inhalt=inhalt(pin),
         fuss=f'<p class="fuss">{e(pin["fuss"])}</p>' if pin.get("fuss") else "",
-        url=f"bethathost.de/{pin['site']}",
+        url="bethathost.de" if pin.get("pfad") else f"bethathost.de/{pin['site']}",
     )
+
+
+def zielseite(pin):
+    """Datei und URL-Pfad der Zielseite. Ohne "pfad" ist es <site>/index.html;
+    mit "pfad" (z. B. "posts/wm-snacks-rezepte.html") eine Unterseite im Ordner.
+    Die Queue bleibt in beiden Faellen <site>/pins/queue.json."""
+    if pin.get("pfad"):
+        return ROOT / pin["site"] / pin["pfad"], f"/{pin['site']}/{pin['pfad']}"
+    return ROOT / pin["site"] / "index.html", f"/{pin['site']}/"
 
 
 class StillerHandler(http.server.SimpleHTTPRequestHandler):
@@ -242,7 +256,7 @@ def queues_fuellen(pins):
         qf = ROOT / pin["site"] / "pins" / "queue.json"
         qf.parent.mkdir(parents=True, exist_ok=True)
         queue = json.loads(qf.read_text(encoding="utf-8")) if qf.exists() else []
-        link = f"{BASIS}/{pin['site']}/?pin={pin['id']}#{pin['anker']}"
+        link = f"{BASIS}{zielseite(pin)[1]}?pin={pin['id']}#{pin['anker']}"
         if any(q.get("link") == link for q in queue):
             continue
         bild = f"{BASIS}/assets/pins/{pin['site']}-{pin['id']}.jpg"
@@ -267,7 +281,7 @@ def queues_fuellen(pins):
 def pruefen(pins):
     """Ziel-Seite und Anker muessen existieren, sonst landet der Pin im Leeren."""
     for pin in pins:
-        datei = ROOT / pin["site"] / "index.html"
+        datei = zielseite(pin)[0]
         if not datei.exists():
             raise SystemExit(f"Seite fehlt: {datei}")
         if f'id="{pin["anker"]}"' not in datei.read_text(encoding="utf-8"):
