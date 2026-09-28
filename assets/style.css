@@ -1602,12 +1602,26 @@ table.faustregeln tbody th {
 }
 
 /* Druck: nur die Einkaufsliste, ohne Formular, Werbung und Navigation */
+.rl-druckkopf,
+.rl-druckfuss {
+  display: none;
+}
+
+/* Ausdruck / „Als PDF sichern“: nur die Liste, eine A4-Seite, zweispaltig.
+   Bis September 2026 druckte die Seite die Bildschirm-Liste 1:1 — eine lange
+   Spalte ohne Marke, Titel oder Datum, die fuer vier Zeilen auf eine zweite
+   Seite umbrach. */
 @media print {
+  @page {
+    size: A4;
+    margin: 14mm 14mm 12mm;
+  }
   header.site,
   footer.site,
   #bth-consent-banner,
   .rechner-seite > :not(.rechner),
   main > :not(article),
+  .rechner-titel,
   .rechner-form,
   .rechner-knoepfe,
   .rechner-meldung,
@@ -1618,11 +1632,17 @@ table.faustregeln tbody th {
   body::before {
     display: none;
   }
+  html,
   body,
   .rechner {
-    background: #fff;
+    background: #fff !important;
+    color: #1d1a16;
   }
+  main,
+  article.rechner-seite,
   .rechner {
+    max-width: none;
+    width: auto;
     border: none;
     box-shadow: none;
     padding: 0;
@@ -1631,12 +1651,98 @@ table.faustregeln tbody th {
   .rechner-ergebnis {
     border: none;
     margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .rl-liste li {
+  .rl-druckkopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12pt;
+    padding-bottom: 6pt;
+    border-bottom: 2pt solid #b9543f;
+  }
+  .rl-druckkopf .rl-titel {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1.1;
+  }
+  .rl-druckkopf .rl-marke {
+    order: 2;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11pt;
+    color: #b9543f;
+    white-space: nowrap;
+  }
+  .rechner-ergebnis .rl-kopf {
+    margin: 6pt 0 10pt;
+    font-size: 8.5pt;
+    color: #6b6155;
+  }
+  .rl-bloecke {
+    column-count: 2;
+    column-gap: 10mm;
+  }
+  .rl-block {
+    break-inside: avoid;
+    margin: 0 0 9pt;
+  }
+  article .rechner-ergebnis h3.rl-gruppe {
+    font-family: var(--display);
+    font-size: 11.5pt;
+    margin: 0 0 3pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.75pt solid #1d1a16;
+    break-after: avoid;
+  }
+  article .rl-liste li {
+    grid-template-columns: 9pt minmax(0, 1fr) auto;
+    gap: 0 6pt;
+    padding: 3.2pt 0;
+    border-top: 0.5pt solid #ddd5c8;
+    font-size: 9.5pt;
+    line-height: 1.3;
     break-inside: avoid;
   }
-  .rl-liste .rl-was::before {
-    content: "\2610  ";
+  article .rl-liste li:first-child {
+    border-top: none;
+  }
+  /* Echtes Kaestchen zum Abhaken statt eines Schriftzeichens */
+  .rl-liste li::before {
+    content: "";
+    width: 7.5pt;
+    height: 7.5pt;
+    margin-top: 1.8pt;
+    border: 0.9pt solid #1d1a16;
+    border-radius: 1.5pt;
+  }
+  .rl-liste .rl-menge {
+    color: #1d1a16;
+    font-size: 9.5pt;
+  }
+  .rl-liste .rl-hinweis {
+    grid-column: 2 / -1;
+    font-size: 7.8pt;
+    color: #6b6155;
+  }
+  .rl-druckfuss {
+    display: block;
+    margin: 8pt 0 0;
+    padding-top: 5pt;
+    border-top: 0.5pt solid #ddd5c8;
+    font-size: 7.8pt;
+    line-height: 1.4;
+    color: #6b6155;
+    break-inside: avoid;
+  }
+  .rl-druckfuss .rl-link {
+    display: block;
+    color: #1d1a16;
+    word-break: break-all;
   }
 }
 

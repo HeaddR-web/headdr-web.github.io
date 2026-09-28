@@ -164,7 +164,14 @@ Mehrwert — reine Produktlisten reichen nicht). Anlass, Gäste, Dauer rein, Ein
 - Läuft rein im Browser: keine Cookies, kein Speichern, kein Nachladen. Der Zustand steht
   nur in der URL (`?anlass=grill&gaeste=12…`), damit „Link teilen“ die Liste mitnimmt.
   Das muss so bleiben, sonst gehört es in die Datenschutzerklärung und hinter `consent.js`.
-- Drucken zeigt nur die Liste (`@media print` in `/assets/style.css`).
+- Drucken / „Als PDF sichern“ zeigt nur die Liste (`@media print` in `/assets/style.css`):
+  **eine A4-Seite, zweispaltig**, Kopf mit „Einkaufsliste <Anlass>“ und Marke, echte
+  Kästchen zum Abhaken, unten Datum und der Link, der die Liste wieder öffnet
+  (`.rl-druckkopf`/`.rl-druckfuss`, von `rechner.js` gesetzt, am Bildschirm unsichtbar).
+  Jede Gruppe steckt in einer `section.rl-block`, damit Überschrift und Zeilen nicht über den
+  Spaltenrand reißen. Bis September 2026 kam die Bildschirm-Liste 1:1 aufs Papier — eine lange
+  Spalte ohne Titel, die für vier Zeilen auf eine zweite Seite umbrach. Nach Änderungen an
+  der Liste mit einem großen Fall (30 Gäste, Brunch, Kinder) prüfen, dass es eine Seite bleibt.
 - Kein Lead-Bild: oben steht der Rechner, nicht ein Foto. `og:image` ist
   `assets/img/mengenrechner-einkaufsliste.jpg` (aus echten Rechner-Werten gerendert —
   ändern sich die Regeln, Bild neu erzeugen).
