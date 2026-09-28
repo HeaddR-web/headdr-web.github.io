@@ -494,9 +494,18 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
-- **RSS-Auto-Publish (Standardweg):** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
+- **STAND 28.09.2026 — so kommen Pins wirklich raus: nur per Bulk-CSV.** Die Entwickler-App hat
+  **Trial-Zugang**; jedes `POST /v5/pins` endet mit `HTTP 403 – Apps with Trial access may not
+  create Pins in production`. Lesen, Statistik und Löschen gehen. Der RSS-Feed hat laut
+  `pinterest/README.md` für dieses Konto nie einen Pin erzeugt. Die ~230 Pins aus dem Juli kamen
+  per Bulk-Upload. Deshalb: offene Queue-Einträge mit `python3 pinterest/make_bulk_csv.py --queue`
+  in `pinterest/bulk-neue-pins.csv` schreiben (2 pro Tag, 10 und 16 Uhr, nach `prio`), der Inhaber
+  lädt sie in Pinterest hoch (*Erstellen → Bulk-Pins erstellen*), danach im Publish-Workflow
+  `mark-published-only` laufen lassen. Der Zeitplan in `pinterest-publish.yml` ist aus, bis die
+  App Standard-Zugang hat (Antrag im Pinterest-Entwicklerportal, nur durch den Inhaber).
+- **RSS-Auto-Publish:** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
   `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
-- **Live-Posten über die API (aktiv, seit 2026-09):** `.github/workflows/pinterest-publish.yml` +
+- **Live-Posten über die API (vorbereitet, aber blockiert — siehe Trial-Zugang oben):** `.github/workflows/pinterest-publish.yml` +
   `scripts/pinterest_publish.py` posten 2×/Tag aus den `*/pins/queue.json` über die offizielle
   Pinterest-API v5. Die Entwickler-App ist freigeschaltet; nötig sind nur die drei Secrets
   `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Token erzeugen wahlweise
