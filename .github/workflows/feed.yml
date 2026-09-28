@@ -11,8 +11,9 @@ on:
       - "sitemap.xml"
       - "**/*.html"
       - "scripts/make_feed.py"
+      - "*/pins/queue.json"
   schedule:
-    - cron: "0 6 * * *"   # taeglich ~06:00 UTC, Sicherheitsnetz
+    - cron: "0 6 * * *"   # taeglich ~06:00 UTC: gibt die Pins des Tages frei ("freigabe" in */pins/queue.json)
   workflow_dispatch: {}
 
 permissions:

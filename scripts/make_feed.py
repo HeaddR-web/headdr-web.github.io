@@ -87,7 +87,13 @@ def rfc822(date_str):
     return format_datetime(d.replace(tzinfo=dt.timezone.utc))
 
 
+FENSTER = 30  # Tage, die ein freigegebener Pin im Feed bleibt
+
+
 def main():
+    heute_d = dt.datetime.now(dt.timezone.utc).date()
+    heute = heute_d.isoformat()
+    frueheste = (heute_d - dt.timedelta(days=FENSTER)).isoformat()
     lastmod = load_sitemap_lastmod()
     items = []
 
@@ -128,7 +134,19 @@ def main():
                 # (am 26./27.09.2026 genau so passiert: 66 Doppelte).
                 if p.get("kanal") != "rss" or p.get("published"):
                     continue
-                date = date_from_image(p["image_url"]) or fallback_date
+                # Tropfweise: Pinterest legt alles an, was neu im Feed steht,
+                # und zwar am Stueck. Deshalb erscheint jeder Pin erst an
+                # seinem "freigabe"-Tag (zwei pro Tag, gesetzt von
+                # build-pin-grafiken.py) - feed.yml baut den Feed taeglich neu.
+                # Nach FENSTER Tagen faellt er wieder raus; Pinterest hat ihn
+                # dann laengst eingelesen, und der Feed bleibt klein.
+                freigabe = p.get("freigabe")
+                if freigabe:
+                    if freigabe > heute or freigabe < frueheste:
+                        continue
+                    date = freigabe
+                else:
+                    date = date_from_image(p["image_url"]) or fallback_date
                 items.append({
                     "title": p["title"],
                     "link": p["link"],

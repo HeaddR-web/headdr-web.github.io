@@ -36,19 +36,21 @@
     "description": "Aufwärmer, Hauptspiel, Absacker: So bleibt ein Spieleabend spannend bis zum Schluss. Plus welches Spiel zu welcher Gruppengröße passt. #spieleabend #brettspiele #gesellschaftsspiele #spieleabendmitfreunden #partyideen",
     "link": "https://bethathost.de/spieleabend/?pin=akte#cat-games",
     "image_url": "https://bethathost.de/assets/pins/spieleabend-akte.jpg",
-    "published": true,
+    "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 5
+    "kanal": "rss",
+    "prio": 5,
+    "freigabe": "2026-10-01"
   },
   {
     "title": "Spielregeln erklären: 4 Tricks für den Spieleabend",
     "description": "Nichts tötet einen Spieleabend so zuverlässig wie zwanzig Minuten Regelheft. Vier Tricks, mit denen alle nach einer Runde mitspielen. #spieleabend #brettspiele #spieletipps #gesellschaftsspiele #freunde",
     "link": "https://bethathost.de/spieleabend/?pin=regeln#regeln",
     "image_url": "https://bethathost.de/assets/pins/spieleabend-regeln.jpg",
-    "published": true,
+    "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 15
+    "kanal": "rss",
+    "prio": 15,
+    "freigabe": "2026-10-06"
   }
 ]

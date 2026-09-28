@@ -25,11 +25,12 @@ Details: <https://help.pinterest.com/de/business/article/auto-publish-pins-from-
 
 **Nachtrag 28.09.2026:** Der Feed *ist* bei Pinterest verbunden. Am 26./27.09. hat Pinterest ihn
 eingelesen und 66 längst veröffentlichte Pins ein zweites Mal angelegt (danach gelöscht). Seitdem
-enthält `feed.xml` nur noch Queue-Einträge mit `"kanal": "rss"`, die noch nicht veröffentlicht
-sind. Die API hat nur Trial-Zugang und kann nicht posten; neue Pins gehen per Bulk-CSV
-(`make_bulk_csv.py --queue`).
+enthält `feed.xml` nur noch Queue-Einträge mit `"kanal": "rss"`, und die erst ab ihrem
+`"freigabe"`-Tag (zwei pro Tag, 30 Tage lang). So kommen die Grafik-Pins raus: `feed.yml` baut den
+Feed jeden Morgen neu, Pinterest holt sich die neuen Einträge selbst. Die API hat nur
+Trial-Zugang und kann nicht posten.
 
-**Stand 09/2026:** Dieser Weg hat für dieses Konto nie einen Pin erzeugt, obwohl `feed.xml`
+**Stand Anfang 09/2026 (überholt, siehe Nachtrag oben):** Dieser Weg hat für dieses Konto nie einen Pin erzeugt, obwohl `feed.xml`
 valides RSS ist (W3C-Validator: 0 Fehler), alle Bild-URLs mit HTTP 200 antworten und die Domain
 verifiziert ist. Warum, ließ sich von außen nicht klären — Pinterest legt keine Fetch-Logs offen.
 Seit die Entwickler-App freigeschaltet ist, ist **Weg 2 (API) der Hauptweg**; der Feed bleibt

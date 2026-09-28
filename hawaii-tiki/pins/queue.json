@@ -36,29 +36,32 @@
     "description": "Rum, Limette, Mandel – so war der Mai Tai 1944 gedacht, ganz ohne Ananassaft. Das Originalrezept plus Piña Colada und eine alkoholfreie Bowle für die Hawaii-Party. #maitai #tikicocktail #hawaiiparty #cocktailrezept #rum",
     "link": "https://bethathost.de/hawaii-tiki/?pin=maitai#cat-drinks",
     "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-maitai.jpg",
-    "published": true,
+    "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 17
+    "kanal": "rss",
+    "prio": 17,
+    "freigabe": "2026-10-07"
   },
   {
     "title": "Tropical-Bowle ohne Alkohol für 10 Personen",
     "description": "Ananas, Orange, Maracuja und Ginger Ale: die alkoholfreie Bowle für die Hawaii- oder Sommerparty, in fünf Minuten angerührt. #bowle #alkoholfrei #sommerparty #hawaiiparty #partygetränke",
     "link": "https://bethathost.de/hawaii-tiki/?pin=bowle#cat-drinks",
     "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-bowle.jpg",
-    "published": true,
+    "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 26
+    "kanal": "rss",
+    "prio": 26,
+    "freigabe": "2026-10-11"
   },
   {
     "title": "Luau-Buffet für die Hawaii-Party: 5 Ideen mit Rezept",
     "description": "Spieße, Kokosreis, Salsa, Poke und gegrillte Ananas: ein Buffet für die Hawaii-Party, das fast von allein läuft. Mit Rezepten und Mengen. #hawaiiparty #luau #partybuffet #sommerparty #mottoparty",
     "link": "https://bethathost.de/hawaii-tiki/?pin=luau#essen",
     "image_url": "https://bethathost.de/assets/pins/hawaii-tiki-luau.jpg",
-    "published": true,
+    "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 29
+    "kanal": "rss",
+    "prio": 29,
+    "freigabe": "2026-10-13"
   }
 ]
