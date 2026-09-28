@@ -36,7 +36,7 @@
     "description": "Die klassische Guacamole für das Taco-Buffet – und der Trick, mit dem sie nicht braun wird. Dazu Pico de Gallo, Chili-Hack und alles für die mexikanische Fiesta. #guacamole #tacoparty #mexikanisch #fingerfood #partyrezepte",
     "link": "https://bethathost.de/mexiko-fiesta/?pin=guacamole#cat-buffet",
     "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-guacamole.jpg",
-    "published": false,
+    "published": true,
     "pin_id": "",
     "kanal": "api",
     "prio": 14
@@ -46,7 +46,7 @@
     "description": "Nicht den ganzen Abend am Shaker stehen: Margarita für acht Gläser im Krug vormischen und nur noch über Eis gießen. Mit dem Trick fürs richtige Mischverhältnis. #margarita #cocktailrezept #mexikoparty #partydrinks #tequila",
     "link": "https://bethathost.de/mexiko-fiesta/?pin=margarita#cat-drinks",
     "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-margarita.jpg",
-    "published": false,
+    "published": true,
     "pin_id": "",
     "kanal": "api",
     "prio": 22
@@ -56,7 +56,7 @@
     "description": "Wassermelone oder Hibiskus: zwei alkoholfreie Klassiker aus Mexiko, die auf jeder Fiesta schneller leer sind als die Margaritas. #aguafresca #alkoholfrei #mocktail #sommergetränke #mexikoparty",
     "link": "https://bethathost.de/mexiko-fiesta/?pin=aguafresca#cat-drinks",
     "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-aguafresca.jpg",
-    "published": false,
+    "published": true,
     "pin_id": "",
     "kanal": "api",
     "prio": 30
@@ -66,7 +66,7 @@
     "description": "Das Taco-Buffet funktioniert wie eine Straße: Tortillas, Füllung, Toppings, Saucen. So staut sich niemand – mit Mengen pro Person und den Rezepten. #tacobar #tacoparty #partybuffet #mexikanisch #partyessen",
     "link": "https://bethathost.de/mexiko-fiesta/?pin=tacobar#cat-buffet",
     "image_url": "https://bethathost.de/assets/pins/mexiko-fiesta-tacobar.jpg",
-    "published": false,
+    "published": true,
     "pin_id": "",
     "kanal": "api",
     "prio": 27
