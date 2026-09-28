@@ -9,10 +9,16 @@ name: Pinterest auto-publish
 # Skript loest sie zur Laufzeit per API in IDs auf. Es braucht daher kein
 # Secret pro Hub, nur die drei Auth-Secrets.
 
+# ZEITPLAN AUS (seit 28.09.2026): Die Entwickler-App hat nur Trial-Zugang.
+# Pinterest antwortet auf jedes POST /v5/pins mit HTTP 403 "Apps with Trial
+# access may not create Pins in production". Vom 25. bis 28.09. schlug jeder
+# Lauf fehl. Posten laeuft bis zur Standard-Freigabe ueber die Bulk-CSV
+# (pinterest/make_bulk_csv.py --queue). Nach der Freigabe den Zeitplan wieder
+# einkommentieren.
 on:
-  schedule:
-    - cron: "0 9 * * *"   # taeglich ~09:00 UTC
-    - cron: "0 17 * * *"  # taeglich ~17:00 UTC
+  # schedule:
+  #   - cron: "0 9 * * *"   # taeglich ~09:00 UTC
+  #   - cron: "0 17 * * *"  # taeglich ~17:00 UTC
   workflow_dispatch:
     inputs:
       mode:
