@@ -6,6 +6,22 @@
     <atom:link href="https://bethathost.de/feed.xml" rel="self" type="application/rss+xml" />
     <description>Anlass- und Motto-Party-Ideen, Deko, Ausstattung und Einkaufslisten von BeThatHost.</description>
     <language>de-DE</language>
-    <lastBuildDate>Mon, 28 Sep 2026 22:35:24 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 12:07:31 +0000</lastBuildDate>
+    <item>
+      <title>Wie viele Getränke pro Gast? Die Faustregel für jede Party</title>
+      <link>https://bethathost.de/mengenrechner/?pin=getraenke#faustregeln-fuer-getraenke</link>
+      <guid isPermaLink="false">https://bethathost.de/mengenrechner/?pin=getraenke#faustregeln-fuer-getraenke#mengenrechner-getraenke.jpg</guid>
+      <description>Zwei Getränke in der ersten Stunde, danach eins pro Stunde: die Faustregel für Bier, Wein, Sekt und Alkoholfreies. Mit kostenlosem Rechner für deine Gästezahl. #partyplanung #getränke #hausparty #mengenrechner #partytipps</description>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+      <enclosure url="https://bethathost.de/assets/pins/mengenrechner-getraenke.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>Obatzda-Rezept für die Oktoberfest-Party zuhause</title>
+      <link>https://bethathost.de/oktoberfest/?pin=obatzda#cat-brotzeit</link>
+      <guid isPermaLink="false">https://bethathost.de/oktoberfest/?pin=obatzda#cat-brotzeit#oktoberfest-obatzda.jpg</guid>
+      <description>Der bayerische Klassiker für die Brotzeit: Obatzda aus Camembert, Butter und Paprika. Dazu Wurstsalat, Weißwürste und alles für die Wiesn-Party zuhause. #obatzda #oktoberfest #bayerischerezepte #brotzeit #wiesn</description>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+      <enclosure url="https://bethathost.de/assets/pins/oktoberfest-obatzda.jpg" type="image/jpeg" length="0" />
+    </item>
   </channel>
 </rss>
