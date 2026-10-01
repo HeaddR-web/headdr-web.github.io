@@ -1115,6 +1115,64 @@
       "fuss": "Mit Vanillesoße servieren",
       "pin_titel": "Bratäpfel mit Marzipan: das Rezept für den Advent",
       "beschreibung": "Bratäpfel mit Marzipan-Mandel-Füllung für sechs: vorbereitet am Nachmittag, gebacken, wenn der Glühwein halb leer ist. #bratapfel #advent #weihnachtsrezepte #weihnachtsfeier #winterrezepte"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "ablauf",
+      "anker": "ablauf",
+      "farbe": "blau",
+      "kicker": "Kindergeburtstag zuhause",
+      "titel": "Der Ablauf für 3 Stunden",
+      "unter": "",
+      "art": "schritte",
+      "punkte": [
+        "15:00|Ankommen, Malstation bis alle da sind",
+        "15:20|Geschenke, dann Kuchen und Kerzen",
+        "15:50|Bewegungsspiele",
+        "16:40|Schatzsuche",
+        "17:20|Würstchen, Pizza oder Nudeln",
+        "17:50|Ruhiges Spiel, Mitgebsel"
+      ],
+      "fuss": "18:00 Abholen – feste Zeit in die Einladung",
+      "pin_titel": "Kindergeburtstag zuhause: der Ablauf für drei Stunden",
+      "beschreibung": "Vom Ankommen bis zum Abholen: der bewährte Ablauf für einen Kindergeburtstag zuhause, mit Wechsel aus wilden und ruhigen Phasen. #kindergeburtstag #kindergeburtstagideen #kinderparty #geburtstagsparty #mamaleben"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "schatzsuche",
+      "anker": "schatzsuche",
+      "farbe": "gruen",
+      "kicker": "Kindergeburtstag",
+      "titel": "Schatzsuche in 4 Schritten",
+      "unter": "Für drinnen und den Garten",
+      "art": "nummern",
+      "punkte": [
+        "6–8 Stationen festlegen: Briefkasten, Waschmaschine, Kühlschrank",
+        "Für jede Station ein Hinweis, für Kleine als Bild",
+        "An jeder zweiten Station eine Aufgabe",
+        "Der Schatz: die Kiste mit den Mitgebseln"
+      ],
+      "fuss": "Strecke vorher einmal ablaufen",
+      "pin_titel": "Schatzsuche für den Kindergeburtstag: Anleitung in 4 Schritten",
+      "beschreibung": "So planst du eine Schatzsuche für den Kindergeburtstag zuhause: Stationen, Hinweise, Aufgaben – und warum die Mitgebsel der Schatz sind. #schatzsuche #kindergeburtstag #kinderparty #schnitzeljagd #kinderspiele"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "spiele",
+      "anker": "spiele",
+      "farbe": "terrakotta",
+      "kicker": "Kindergeburtstag",
+      "titel": "Spiele nach Alter",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "4 bis 6 Jahre|Topfschlagen, Stopptanz ohne Ausscheiden, Reise nach Jerusalem mit Kissen, Eierlaufen",
+        "7 bis 10 Jahre|Mumienwickeln, Wattepusten, Zeitungstanz, Pantomime",
+        "Für alle|Am Ende gewinnt jedes Kind etwas"
+      ],
+      "fuss": "Mehr Ideen auf bethathost.de",
+      "pin_titel": "Kindergeburtstag-Spiele nach Alter: 4 bis 10 Jahre",
+      "beschreibung": "Die besten Spiele für den Kindergeburtstag, sortiert nach Alter: von Topfschlagen bis Mumienwickeln – und die eine Regel, damit niemand weint. #kindergeburtstag #kinderspiele #partyspiele #kinderparty #geburtstag"
     }
   ]
 }

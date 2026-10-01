@@ -34,6 +34,7 @@ NAME = {
     "casino/index.html": "Casino-Abend",
     "gartenparty/index.html": "Gartenparty",
     "geburtstag/index.html": "Geburtstag zuhause",
+    "kindergeburtstag/index.html": "Kindergeburtstag",
     "grillabend/index.html": "Grillabend",
     "jga/index.html": "JGA",
     "saison-deko/index.html": "Saison-Deko",
@@ -84,7 +85,7 @@ THEMA = {
     "anlaesse": [
         "mengenrechner/index.html",
         "brunch/index.html", "gartenparty/index.html", "grillabend/index.html",
-        "geburtstag/index.html", "spieleabend/index.html", "casino/index.html",
+        "geburtstag/index.html", "kindergeburtstag/index.html", "spieleabend/index.html", "casino/index.html",
         "spa-abend/index.html", "valentinstag/index.html",
         "saison-deko/index.html", "weihnachtsfeier/index.html", "silvester/index.html", "jga/index.html",
     ],
