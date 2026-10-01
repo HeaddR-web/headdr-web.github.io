@@ -49,5 +49,27 @@
     "kanal": "rss",
     "prio": 37,
     "freigabe": "2026-10-17"
+  },
+  {
+    "title": "Waffelteig für den Brunch: am Vorabend fertig",
+    "description": "Das Waffelrezept für den Brunch mit Freunden: am Vorabend anrühren, morgens nur noch das Waffeleisen anwerfen. #waffeln #brunch #waffelrezept #sonntagsbrunch #frühstück",
+    "link": "https://bethathost.de/brunch/?pin=waffeln#cat-food",
+    "image_url": "https://bethathost.de/assets/pins/brunch-waffeln.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 65,
+    "freigabe": "2026-10-26"
+  },
+  {
+    "title": "Rührei für acht beim Brunch – und wie es warm bleibt",
+    "description": "Cremiges Rührei für acht Personen und der Ofen-Trick, damit es beim Brunch eine halbe Stunde warm bleibt, ohne trocken zu werden. #rührei #brunch #frühstück #brunchideen #gastgeben",
+    "link": "https://bethathost.de/brunch/?pin=ruehrei#cat-food",
+    "image_url": "https://bethathost.de/assets/pins/brunch-ruehrei.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 73,
+    "freigabe": "2026-10-30"
   }
 ]

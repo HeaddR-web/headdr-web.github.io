@@ -31,5 +31,27 @@
     "kanal": "rss",
     "prio": 56,
     "freigabe": "2026-11-10"
+  },
+  {
+    "title": "Orangenscheiben trocknen im Ofen: Weihnachtsdeko selbst gemacht",
+    "description": "Getrocknete Orangenscheiben für Kranz, Geschenke und Tisch: so gelingen sie im Ofen, ohne zu verbrennen. #weihnachtsdeko #diy #orangenscheiben #advent #naturdeko",
+    "link": "https://bethathost.de/weihnachtsfeier/?pin=orangen#deko",
+    "image_url": "https://bethathost.de/assets/pins/weihnachtsfeier-orangen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 70,
+    "freigabe": "2026-10-29"
+  },
+  {
+    "title": "Plätzchen-Tausch: die schönste Idee für die Weihnachtsfeier",
+    "description": "Jeder backt eine Sorte, alle gehen mit einer vollen Dose nach Hause: so funktioniert der Plätzchen-Tausch auf der Weihnachtsfeier mit Freunden. #plätzchen #weihnachtsfeier #advent #weihnachtsbäckerei #cookieswap",
+    "link": "https://bethathost.de/weihnachtsfeier/?pin=plaetzchen#buffet",
+    "image_url": "https://bethathost.de/assets/pins/weihnachtsfeier-plaetzchen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 77,
+    "freigabe": "2026-11-01"
   }
 ]
