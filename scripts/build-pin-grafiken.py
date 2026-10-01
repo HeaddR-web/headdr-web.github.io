@@ -62,6 +62,12 @@ REIHENFOLGE = [
     # Weihnachtsfeier: Freigabe von Hand auf 08.-10.11. (Planungsbeginn)
     "weihnachtsfeier-gluehwein", "weihnachtsfeier-wuerfel", "weihnachtsfeier-bratapfel",
     "kindergeburtstag-ablauf", "kindergeburtstag-schatzsuche", "kindergeburtstag-spiele",
+    # Nachschub ab 24.10.: Halloween zuerst (vor dem 31.10.), dann im Wechsel
+    "halloween-dip", "halloween-muffins", "halloween-spiele", "halloween-tuer",
+    "girlsnight-popcorn", "brunch-waffeln", "kindergeburtstag-mitgebsel", "ratgeber-beamer",
+    "girlsnight-schoko", "geburtstag-planung", "weihnachtsfeier-orangen", "ratgeber-reinigen",
+    "girlsnight-board", "brunch-ruehrei", "kindergeburtstag-essen", "ratgeber-shaken-richtig",
+    "girlsnight-filme", "weihnachtsfeier-plaetzchen",
 ]
 
 FARBEN = {
@@ -204,7 +210,11 @@ def rendern(pins):
                 # Schrift und Titel so lange verkleinern, bis alles in die Karte passt.
                 ok = page.evaluate("""() => {
                   const inh = document.getElementById('inhalt'), r = document.documentElement.style;
-                  const passt = () => inh.scrollHeight <= inh.clientHeight + 1 &&
+                  // Auch in der Breite: Tabellenwerte stehen auf einer Zeile (nowrap)
+                  // und liefen sonst unbemerkt ueber den Rand ("gebacken oder gekau").
+                  const breit = () => [...document.querySelectorAll('.tab li')]
+                    .every(li => li.scrollWidth <= li.clientWidth + 1);
+                  const passt = () => inh.scrollHeight <= inh.clientHeight + 1 && breit() &&
                                       document.querySelector('h1').getBoundingClientRect().height < 420;
                   // Gross anfangen und nur so weit verkleinern, bis alles passt -
                   // auf dem Handy ist eine Pin-Karte rund 180 px breit.

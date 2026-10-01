@@ -90,5 +90,49 @@
     "kanal": "rss",
     "prio": 47,
     "freigabe": "2026-10-22"
+  },
+  {
+    "title": "Popcorn aus dem Topf: so poppen fast alle Körner",
+    "description": "Der Trick mit den drei Probekörnern: so gelingt Popcorn aus dem Topf, plus drei Toppings für die Popcorn-Bar am Filmabend. #popcorn #filmabend #maedelsabend #movienight #snacks",
+    "link": "https://bethathost.de/girlsnight/posts/girls-night-movie-night.html?pin=popcorn#popcorn-richtig",
+    "image_url": "https://bethathost.de/assets/pins/girlsnight-popcorn.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 64,
+    "freigabe": "2026-10-26"
+  },
+  {
+    "title": "Heiße Schokolade für sechs: echt, nicht aus dem Pulver",
+    "description": "Heiße Schokolade aus echter Zartbitterschokolade für sechs, mit Toppings zum Selbernehmen – perfekt für Pyjama-Party und Herbstabende. #heißeschokolade #pyjamaparty #herbst #maedelsabend #winterdrinks",
+    "link": "https://bethathost.de/girlsnight/posts/pyjama-party.html?pin=schoko#heisse-schokolade",
+    "image_url": "https://bethathost.de/assets/pins/girlsnight-schoko.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 68,
+    "freigabe": "2026-10-28"
+  },
+  {
+    "title": "Grazing-Board für sechs: die genaue Einkaufsliste",
+    "description": "Wie viel Käse, Wurst und Obst für ein Grazing-Board als Hauptessen? Die Einkaufsliste für sechs Personen. #grazingboard #käseplatte #maedelsabend #partyfood #fingerfood",
+    "link": "https://bethathost.de/girlsnight/posts/girls-night-snacks.html?pin=board#board-fuer-sechs",
+    "image_url": "https://bethathost.de/assets/pins/girlsnight-board.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 72,
+    "freigabe": "2026-10-30"
+  },
+  {
+    "title": "Filme für den Mädelsabend – sortiert nach Stimmung",
+    "description": "Zum Lachen, Mitsingen, Schwärmen oder in Erinnerungen schwelgen: die besten Filme für den Filmabend mit den Mädels. #filmabend #maedelsabend #filmtipps #girlsnight #movienight",
+    "link": "https://bethathost.de/girlsnight/posts/girls-night-movie-night.html?pin=filme#filmvorschlaege",
+    "image_url": "https://bethathost.de/assets/pins/girlsnight-filme.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 76,
+    "freigabe": "2026-11-01"
   }
 ]

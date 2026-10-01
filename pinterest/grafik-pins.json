@@ -1173,6 +1173,365 @@
       "fuss": "Mehr Ideen auf bethathost.de",
       "pin_titel": "Kindergeburtstag-Spiele nach Alter: 4 bis 10 Jahre",
       "beschreibung": "Die besten Spiele für den Kindergeburtstag, sortiert nach Alter: von Topfschlagen bis Mumienwickeln – und die eine Regel, damit niemand weint. #kindergeburtstag #kinderspiele #partyspiele #kinderparty #geburtstag"
+    },
+    {
+      "site": "halloween",
+      "id": "dip",
+      "anker": "cat-buffet",
+      "farbe": "nacht",
+      "kicker": "Halloween-Rezept",
+      "titel": "Spinnennetz-Dip",
+      "unter": "In 5 Minuten aus jedem Dip",
+      "art": "nummern",
+      "punkte": [
+        "Guacamole oder Bohnendip flach in eine runde Schale streichen",
+        "Sauerrahm in einen Gefrierbeutel, kleine Ecke abschneiden",
+        "Drei, vier Kreise auf den Dip spritzen",
+        "Mit einem Zahnstocher von der Mitte nach außen ziehen"
+      ],
+      "fuss": "Dazu: Tortilla-Chips",
+      "pin_titel": "Spinnennetz-Dip für Halloween: in 5 Minuten",
+      "beschreibung": "Der einfachste Halloween-Snack: Sauerrahm-Spinnennetz auf Guacamole oder Bohnendip, mit dem Zahnstocher gezogen. #halloween #halloweenrezepte #halloweensnacks #dip #halloweenparty"
+    },
+    {
+      "site": "halloween",
+      "id": "muffins",
+      "anker": "cat-buffet",
+      "farbe": "gold",
+      "kicker": "Halloween-Rezept",
+      "titel": "Geister-Muffins",
+      "unter": "10 Minuten für das Foto des Abends",
+      "art": "tabelle",
+      "punkte": [
+        "Schoko-Muffins|12 Stück",
+        "Frischkäse|200 g",
+        "Puderzucker|50 g",
+        "Augen|2 Schokotropfen"
+      ],
+      "fuss": "Frosting als Klecks aufspritzen, Augen drauf – fertig",
+      "pin_titel": "Geister-Muffins für Halloween: schnell und ohne Backkunst",
+      "beschreibung": "Schoko-Muffins mit Frischkäse-Frosting und Schokoaugen: das schnellste Halloween-Dessert für die Party zuhause. #halloween #muffins #halloweenbacken #halloweenparty #kinderhalloween"
+    },
+    {
+      "site": "halloween",
+      "id": "spiele",
+      "anker": "cat-spiele",
+      "farbe": "terrakotta",
+      "kicker": "Halloween-Party",
+      "titel": "Spiele für Erwachsene",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Kostümwettbewerb|Mit Kategorien: kreativstes ohne Budget, gruseligstes, bestes Paar",
+        "Mumien-Wickeln|Zwei Teams, eine Rolle Klopapier, zwei Minuten",
+        "Gruselgeschichten|Licht aus, Taschenlampe reihum, zwei Minuten pro Geschichte"
+      ],
+      "fuss": "Später: Krimidinner oder Horrorfilm",
+      "pin_titel": "Halloween-Party: Spiele für Erwachsene",
+      "beschreibung": "Kostümwettbewerb mit Kategorien, Mumien-Wickeln und Gruselgeschichten: drei Spiele, die jede Halloween-Party für Erwachsene tragen. #halloweenparty #halloween #partyspiele #kostümparty #halloweenideen"
+    },
+    {
+      "site": "halloween",
+      "id": "tuer",
+      "anker": "tuer",
+      "farbe": "blau",
+      "kicker": "Halloween zuhause",
+      "titel": "Süßes oder Saures: vorbereitet",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Kinder klingeln meist zwischen 17 und 20 Uhr",
+        "In Familienvierteln schnell 30 bis 50 Kinder",
+        "Nur einzeln Verpacktes in die Schale",
+        "Zwei, drei Teile pro Kind rechnen",
+        "Einer öffnet – nicht die ganze Party",
+        "Schale leer? Kürbis aus, Zettel an die Tür"
+      ],
+      "fuss": "",
+      "pin_titel": "Süßes oder Saures: So bist du an Halloween vorbereitet",
+      "beschreibung": "Wann die Kinder klingeln, wie viele kommen und wie viele Süßigkeiten du brauchst: die Checkliste für Halloween an der Haustür. #halloween #süßesodersaures #trickortreat #halloweensüßigkeiten #familie"
+    },
+    {
+      "site": "girlsnight",
+      "pfad": "posts/girls-night-movie-night.html",
+      "id": "popcorn",
+      "anker": "popcorn-richtig",
+      "farbe": "terrakotta",
+      "kicker": "Filmabend",
+      "titel": "Popcorn aus dem Topf",
+      "unter": "Für 4 – besser als aus der Mikrowelle",
+      "art": "nummern",
+      "punkte": [
+        "2 EL Öl erhitzen, 3 Maiskörner hineinlegen",
+        "Wenn sie ploppen: 100 g Mais dazu, Deckel drauf",
+        "Vom Herd nehmen, 30 Sekunden warten",
+        "Zurück auf die Hitze, ab und zu rütteln",
+        "2–3 Sekunden Pause zwischen dem Knallen? Sofort runter"
+      ],
+      "fuss": "Toppings: Zimt-Zucker, Parmesan-Rosmarin, Schoko",
+      "pin_titel": "Popcorn aus dem Topf: so poppen fast alle Körner",
+      "beschreibung": "Der Trick mit den drei Probekörnern: so gelingt Popcorn aus dem Topf, plus drei Toppings für die Popcorn-Bar am Filmabend. #popcorn #filmabend #maedelsabend #movienight #snacks"
+    },
+    {
+      "site": "girlsnight",
+      "pfad": "posts/girls-night-movie-night.html",
+      "id": "filme",
+      "anker": "filmvorschlaege",
+      "farbe": "rosa",
+      "kicker": "Filmabend mit den Mädels",
+      "titel": "Filme nach Stimmung",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Zum Lachen|Brautalarm, Girls Club, Natürlich blond",
+        "Zum Mitsingen|Mamma Mia!, Pitch Perfect, Dirty Dancing",
+        "Romantisch|Notting Hill, Tatsächlich … Liebe",
+        "Nostalgie|Clueless, 10 Dinge, die ich an dir hasse"
+      ],
+      "fuss": "Erst den lauten Film, dann den ruhigen",
+      "pin_titel": "Filme für den Mädelsabend – sortiert nach Stimmung",
+      "beschreibung": "Zum Lachen, Mitsingen, Schwärmen oder in Erinnerungen schwelgen: die besten Filme für den Filmabend mit den Mädels. #filmabend #maedelsabend #filmtipps #girlsnight #movienight"
+    },
+    {
+      "site": "girlsnight",
+      "pfad": "posts/pyjama-party.html",
+      "id": "schoko",
+      "anker": "heisse-schokolade",
+      "farbe": "nacht",
+      "kicker": "Pyjama-Party",
+      "titel": "Heiße Schokolade für 6",
+      "unter": "",
+      "art": "tabelle",
+      "punkte": [
+        "Milch|1,2 l",
+        "Zartbitterschokolade|200 g",
+        "Zucker|2 EL",
+        "Salz|1 Prise"
+      ],
+      "fuss": "Nicht kochen lassen · Toppings: Marshmallows, Sahne",
+      "pin_titel": "Heiße Schokolade für sechs: echt, nicht aus dem Pulver",
+      "beschreibung": "Heiße Schokolade aus echter Zartbitterschokolade für sechs, mit Toppings zum Selbernehmen – perfekt für Pyjama-Party und Herbstabende. #heißeschokolade #pyjamaparty #herbst #maedelsabend #winterdrinks"
+    },
+    {
+      "site": "girlsnight",
+      "pfad": "posts/girls-night-snacks.html",
+      "id": "board",
+      "anker": "board-fuer-sechs",
+      "farbe": "gruen",
+      "kicker": "Grazing-Board",
+      "titel": "Grazing-Board für sechs",
+      "unter": "Die Einkaufsliste",
+      "art": "tabelle",
+      "punkte": [
+        "Käse, 3–4 Sorten|500 g",
+        "Salami & Schinken|300 g",
+        "Trauben, Beeren, Obst|700 g",
+        "Nüsse & Oliven|250 g",
+        "Schokolade & Süßes|250 g",
+        "Cracker, Baguette|2 Pck. + 1"
+      ],
+      "fuss": "Als Hauptessen: rund 390 g pro Person",
+      "pin_titel": "Grazing-Board für sechs: die genaue Einkaufsliste",
+      "beschreibung": "Wie viel Käse, Wurst und Obst für ein Grazing-Board als Hauptessen? Die Einkaufsliste für sechs Personen. #grazingboard #käseplatte #maedelsabend #partyfood #fingerfood"
+    },
+    {
+      "site": "brunch",
+      "id": "waffeln",
+      "anker": "cat-food",
+      "farbe": "gold",
+      "kicker": "Brunch-Rezept",
+      "titel": "Waffelteig für 8 Waffeln",
+      "unter": "Am Vorabend anrühren",
+      "art": "tabelle",
+      "punkte": [
+        "Weiche Butter|125 g",
+        "Zucker|75 g",
+        "Vanillezucker|1 Pck.",
+        "Eier|3",
+        "Mehl|250 g",
+        "Backpulver|1 TL",
+        "Milch|250 ml"
+      ],
+      "fuss": "Über Nacht in den Kühlschrank – morgens nur noch backen",
+      "pin_titel": "Waffelteig für den Brunch: am Vorabend fertig",
+      "beschreibung": "Das Waffelrezept für den Brunch mit Freunden: am Vorabend anrühren, morgens nur noch das Waffeleisen anwerfen. #waffeln #brunch #waffelrezept #sonntagsbrunch #frühstück"
+    },
+    {
+      "site": "brunch",
+      "id": "ruehrei",
+      "anker": "cat-food",
+      "farbe": "salbei",
+      "kicker": "Brunch für viele",
+      "titel": "Rührei für 8, das warm bleibt",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "12 Eier, 100 ml Milch oder Sahne, Prise Salz verquirlen",
+        "Bei niedriger Hitze in Butter langsam stocken lassen",
+        "Immer wieder vom Rand in die Mitte schieben",
+        "Cremig in eine vorgewärmte Form",
+        "Bei 80 °C im Ofen bleibt es 30 Min. warm"
+      ],
+      "fuss": "Schnittlauch erst beim Servieren",
+      "pin_titel": "Rührei für acht beim Brunch – und wie es warm bleibt",
+      "beschreibung": "Cremiges Rührei für acht Personen und der Ofen-Trick, damit es beim Brunch eine halbe Stunde warm bleibt, ohne trocken zu werden. #rührei #brunch #frühstück #brunchideen #gastgeben"
+    },
+    {
+      "site": "geburtstag",
+      "id": "planung",
+      "anker": "planung",
+      "farbe": "terrakotta",
+      "kicker": "Geburtstag zuhause",
+      "titel": "Der Geburtstags-Plan",
+      "unter": "",
+      "art": "schritte",
+      "punkte": [
+        "3 Wochen vorher|Einladung mit Motto und Uhrzeit",
+        "1 Woche vorher|Deko und Getränke, Torte festlegen",
+        "Am Vortag|Ballon-Girlande, Torte backen, Salate",
+        "Am Tag|Nur Frisches, Buffet aufbauen"
+      ],
+      "fuss": "Nachmittag ab 15 Uhr oder Abend ab 19 Uhr",
+      "pin_titel": "Geburtstag zuhause feiern: der Plan von drei Wochen vorher bis zum Tag",
+      "beschreibung": "Wann die Einladung raus muss, was am Vortag passiert und was erst am Tag: der entspannte Zeitplan für den Geburtstag zuhause. #geburtstag #geburtstagsparty #partyplanung #geburtstagideen #gastgeben"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "mitgebsel",
+      "anker": "mitgebsel",
+      "farbe": "rosa",
+      "kicker": "Kindergeburtstag",
+      "titel": "Mitgebsel ohne Plastikmüll",
+      "unter": "2 bis 4 € pro Tüte",
+      "art": "haken",
+      "punkte": [
+        "Seifenblasen",
+        "Sticker oder Radiergummi",
+        "Eine kleine Süßigkeit",
+        "Etwas vom Fest: bemalte Tasse, Armband",
+        "Alle Tüten gleich packen"
+      ],
+      "fuss": "Am besten als Schatz der Schatzsuche",
+      "pin_titel": "Mitgebsel für den Kindergeburtstag ohne Plastikmüll",
+      "beschreibung": "Was in die Mitgebseltüte gehört, ohne dass am nächsten Tag alles im Müll liegt – mit Budget und dem Trick mit der Schatzsuche. #mitgebsel #kindergeburtstag #kinderparty #nachhaltig #mamaleben"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "essen",
+      "anker": "essen",
+      "farbe": "salbei",
+      "kicker": "Kindergeburtstag",
+      "titel": "Essen, das Kinder essen",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Muffins statt Torte – schon portioniert",
+        "2 Würstchen oder 2 Stück Pizza pro Kind",
+        "Gurken- und Paprikasticks dazu",
+        "Rund 1 l Wasser oder Schorle pro Kind",
+        "Becher mit Namen beschriften",
+        "Allergien vorher abfragen"
+      ],
+      "fuss": "",
+      "pin_titel": "Kindergeburtstag: Essen und Mengen pro Kind",
+      "beschreibung": "Muffins statt Torte, zwei Würstchen pro Kind und ein Liter Schorle: was Kinder beim Geburtstag wirklich essen und trinken. #kindergeburtstag #kinderparty #partyessen #kinderessen #geburtstag"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "orangen",
+      "anker": "deko",
+      "farbe": "terrakotta",
+      "kicker": "Weihnachtsdeko selbst gemacht",
+      "titel": "Orangenscheiben trocknen",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Orangen in 5 mm dicke Scheiben schneiden",
+        "Auf ein Gitter legen",
+        "80 °C Umluft, 3 bis 4 Stunden",
+        "Zwischendurch einmal wenden"
+      ],
+      "fuss": "Die Wohnung duftet danach wie ein Weihnachtsmarkt",
+      "pin_titel": "Orangenscheiben trocknen im Ofen: Weihnachtsdeko selbst gemacht",
+      "beschreibung": "Getrocknete Orangenscheiben für Kranz, Geschenke und Tisch: so gelingen sie im Ofen, ohne zu verbrennen. #weihnachtsdeko #diy #orangenscheiben #advent #naturdeko"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "plaetzchen",
+      "anker": "buffet",
+      "farbe": "gold",
+      "kicker": "Weihnachtsfeier",
+      "titel": "Plätzchen-Tausch",
+      "unter": "Das Buffet, das sich selbst trägt",
+      "art": "nummern",
+      "punkte": [
+        "Jeder backt eine Sorte",
+        "Zwei Dutzend Stück mitbringen",
+        "Eine leere Dose dazu",
+        "Am Ende füllt jeder seine Dose mit allen Sorten"
+      ],
+      "fuss": "Herzhaft dazu: Flammkuchen oder Suppe",
+      "pin_titel": "Plätzchen-Tausch: die schönste Idee für die Weihnachtsfeier",
+      "beschreibung": "Jeder backt eine Sorte, alle gehen mit einer vollen Dose nach Hause: so funktioniert der Plätzchen-Tausch auf der Weihnachtsfeier mit Freunden. #plätzchen #weihnachtsfeier #advent #weihnachtsbäckerei #cookieswap"
+    },
+    {
+      "site": "ratgeber",
+      "pfad": "raclette-fondue-set.html",
+      "id": "reinigen",
+      "anker": "reinigen",
+      "farbe": "gruen",
+      "kicker": "Raclette & Fondue",
+      "titel": "Reinigen ohne Schrubben",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Pfännchen|Direkt nach dem Essen mit Küchenpapier auswischen, Reste einweichen – nie mit Metallschwamm",
+        "Naturstein|Nur heißes Wasser und Bürste, kein Spülmittel",
+        "Fondue-Kruste|Nicht wegkratzen, essen: „La Religieuse“ gilt als das Beste"
+      ],
+      "fuss": "",
+      "pin_titel": "Raclette-Pfännchen und Fondue reinigen ohne Schrubben",
+      "beschreibung": "So bekommst du Raclette-Pfännchen, Naturstein und Fonduetopf sauber, ohne die Beschichtung zu ruinieren. #raclette #fondue #putztipps #küchentipps #silvester"
+    },
+    {
+      "site": "ratgeber",
+      "pfad": "mini-beamer-filmabend.html",
+      "id": "beamer",
+      "anker": "abstand",
+      "farbe": "blau",
+      "kicker": "Heimkino",
+      "titel": "Wie weit muss der Beamer weg?",
+      "unter": "Bei Projektionsverhältnis 1,2 bis 1,4",
+      "art": "tabelle",
+      "punkte": [
+        "60 Zoll|1,6–1,9 m",
+        "80 Zoll|2,1–2,5 m",
+        "100 Zoll|2,7–3,1 m",
+        "120 Zoll|3,2–3,7 m"
+      ],
+      "fuss": "Größer = dunkler: lieber passend als riesig",
+      "pin_titel": "Beamer-Abstand: wie weit für welche Bildgröße?",
+      "beschreibung": "Wie weit muss der Beamer von der Wand weg? Die Tabelle für 60 bis 120 Zoll – damit der Filmabend nicht am Wohnzimmer scheitert. #beamer #heimkino #filmabend #wohnzimmer #movienight"
+    },
+    {
+      "site": "ratgeber",
+      "pfad": "cocktail-shaker-set.html",
+      "id": "shaken-richtig",
+      "anker": "richtig-shaken",
+      "farbe": "terrakotta",
+      "kicker": "Hausbar-Wissen",
+      "titel": "So shakst du richtig",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Zutaten zuerst, dann viel Eis: Shaker zu zwei Dritteln voll",
+        "Deckel fest, beim Cobbler Kappe festhalten",
+        "10–15 Sekunden kräftig, bis er außen beschlägt",
+        "Sofort auf frisches Eis abseihen"
+      ],
+      "fuss": "Mit Eiweiß: erst 10 Sekunden ohne Eis (Dry Shake)",
+      "pin_titel": "Cocktails richtig shaken: so geht es wie in der Bar",
+      "beschreibung": "Wie viel Eis, wie lange und warum nie aufs Shaker-Eis: die vier Schritte zum richtig geschüttelten Cocktail. #cocktails #hausbar #cocktailshaker #barwissen #mixen"
     }
   ]
 }

@@ -31,5 +31,49 @@
     "kanal": "rss",
     "prio": 50,
     "freigabe": "2026-10-02"
+  },
+  {
+    "title": "Spinnennetz-Dip für Halloween: in 5 Minuten",
+    "description": "Der einfachste Halloween-Snack: Sauerrahm-Spinnennetz auf Guacamole oder Bohnendip, mit dem Zahnstocher gezogen. #halloween #halloweenrezepte #halloweensnacks #dip #halloweenparty",
+    "link": "https://bethathost.de/halloween/?pin=dip#cat-buffet",
+    "image_url": "https://bethathost.de/assets/pins/halloween-dip.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 60,
+    "freigabe": "2026-10-24"
+  },
+  {
+    "title": "Geister-Muffins für Halloween: schnell und ohne Backkunst",
+    "description": "Schoko-Muffins mit Frischkäse-Frosting und Schokoaugen: das schnellste Halloween-Dessert für die Party zuhause. #halloween #muffins #halloweenbacken #halloweenparty #kinderhalloween",
+    "link": "https://bethathost.de/halloween/?pin=muffins#cat-buffet",
+    "image_url": "https://bethathost.de/assets/pins/halloween-muffins.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 61,
+    "freigabe": "2026-10-24"
+  },
+  {
+    "title": "Halloween-Party: Spiele für Erwachsene",
+    "description": "Kostümwettbewerb mit Kategorien, Mumien-Wickeln und Gruselgeschichten: drei Spiele, die jede Halloween-Party für Erwachsene tragen. #halloweenparty #halloween #partyspiele #kostümparty #halloweenideen",
+    "link": "https://bethathost.de/halloween/?pin=spiele#cat-spiele",
+    "image_url": "https://bethathost.de/assets/pins/halloween-spiele.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 62,
+    "freigabe": "2026-10-25"
+  },
+  {
+    "title": "Süßes oder Saures: So bist du an Halloween vorbereitet",
+    "description": "Wann die Kinder klingeln, wie viele kommen und wie viele Süßigkeiten du brauchst: die Checkliste für Halloween an der Haustür. #halloween #süßesodersaures #trickortreat #halloweensüßigkeiten #familie",
+    "link": "https://bethathost.de/halloween/?pin=tuer#tuer",
+    "image_url": "https://bethathost.de/assets/pins/halloween-tuer.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 63,
+    "freigabe": "2026-10-25"
   }
 ]

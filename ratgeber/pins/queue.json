@@ -31,5 +31,38 @@
     "kanal": "rss",
     "prio": 44,
     "freigabe": "2026-10-20"
+  },
+  {
+    "title": "Beamer-Abstand: wie weit für welche Bildgröße?",
+    "description": "Wie weit muss der Beamer von der Wand weg? Die Tabelle für 60 bis 120 Zoll – damit der Filmabend nicht am Wohnzimmer scheitert. #beamer #heimkino #filmabend #wohnzimmer #movienight",
+    "link": "https://bethathost.de/ratgeber/mini-beamer-filmabend.html?pin=beamer#abstand",
+    "image_url": "https://bethathost.de/assets/pins/ratgeber-beamer.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 67,
+    "freigabe": "2026-10-27"
+  },
+  {
+    "title": "Raclette-Pfännchen und Fondue reinigen ohne Schrubben",
+    "description": "So bekommst du Raclette-Pfännchen, Naturstein und Fonduetopf sauber, ohne die Beschichtung zu ruinieren. #raclette #fondue #putztipps #küchentipps #silvester",
+    "link": "https://bethathost.de/ratgeber/raclette-fondue-set.html?pin=reinigen#reinigen",
+    "image_url": "https://bethathost.de/assets/pins/ratgeber-reinigen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 71,
+    "freigabe": "2026-10-29"
+  },
+  {
+    "title": "Cocktails richtig shaken: so geht es wie in der Bar",
+    "description": "Wie viel Eis, wie lange und warum nie aufs Shaker-Eis: die vier Schritte zum richtig geschüttelten Cocktail. #cocktails #hausbar #cocktailshaker #barwissen #mixen",
+    "link": "https://bethathost.de/ratgeber/cocktail-shaker-set.html?pin=shaken-richtig#richtig-shaken",
+    "image_url": "https://bethathost.de/assets/pins/ratgeber-shaken-richtig.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 75,
+    "freigabe": "2026-10-31"
   }
 ]
