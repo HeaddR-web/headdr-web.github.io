@@ -107,6 +107,8 @@ li:first-child{{border-top:none}}
 .blk h3{{font-family:Fraunces,serif;font-weight:700;font-size:1.22em;margin:0 0 .18em;color:{fg}}}
 .blk p{{margin:0;color:{mut};font-size:.9em;line-height:1.35}}
 .fuss{{font-size:29px;font-style:italic;color:{mut};margin:26px 0 0;line-height:1.35}}
+.unscharf{{filter:blur(7px);opacity:.6;user-select:none}}
+.mehr{{font-weight:700;font-size:36px;color:{akzent};margin:30px 0 0;line-height:1.3}}
 .band{{height:170px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;border-top:2px solid {linie};margin-top:30px}}
 .marke{{font-family:Fraunces,serif;font-weight:800;font-size:44px}}
 .marke b{{color:{akzent}}}
@@ -154,14 +156,46 @@ def inhalt(pin):
     raise SystemExit(f"Unbekannte Art: {art}")
 
 
+def teaser(pin):
+    """Zeigt nur den Anfang: die ersten Punkte scharf, den naechsten verschwommen,
+    darunter "+ N weitere auf bethathost.de".
+
+    Warum: Bis Oktober 2026 stand auf jeder Karte das komplette Rezept bzw. die
+    ganze Liste. Gemerkt wurde viel, geklickt fast nie - 22.434 Impressionen,
+    8 Klicks zur Seite in 30 Tagen. Wer schon alles auf dem Pin hat, braucht die
+    Seite nicht. Ausnahme ("teaser": false): Pins, die schon draussen sind."""
+    punkte = pin["punkte"]
+    if pin["art"] == "block":
+        k = 1 if len(punkte) <= 3 else 2
+    else:
+        k = 2 if len(punkte) <= 5 else 3
+    k = max(1, min(k, len(punkte) - 2))
+    rest = len(punkte) - k
+    html = inhalt({**pin, "punkte": punkte[:k + 1]})
+    # Den letzten (k+1.) Punkt verschwimmen lassen
+    for tag, neu in (('<li>', '<li class="unscharf">'), ('<div class="blk">', '<div class="blk unscharf">')):
+        i = html.rfind(tag)
+        if i >= 0:
+            html = html[:i] + neu + html[i + len(tag):]
+            break
+    wort = "Schritte" if pin["art"] in ("nummern", "schritte") else ""
+    mehr = f"+ {rest} weitere {wort} auf bethathost.de →".replace("  ", " ")
+    return html, f'<p class="mehr">{e(mehr)}</p>'
+
+
 def seite_html(pin):
     bg, fg, mut, akzent, linie = FARBEN[pin["farbe"]]
+    if pin.get("teaser", True):
+        rumpf, fuss = teaser(pin)
+    else:
+        rumpf = inhalt(pin)
+        fuss = f'<p class="fuss">{e(pin["fuss"])}</p>' if pin.get("fuss") else ""
     return VORLAGE.format(
         bg=bg, fg=fg, mut=mut, akzent=akzent, linie=linie,
         kicker=e(pin["kicker"]), titel=e(pin["titel"]),
         unter=f'<p class="unter">{e(pin["unter"])}</p>' if pin.get("unter") else "",
-        inhalt=inhalt(pin),
-        fuss=f'<p class="fuss">{e(pin["fuss"])}</p>' if pin.get("fuss") else "",
+        inhalt=rumpf,
+        fuss=fuss,
         url="bethathost.de" if pin.get("pfad") else f"bethathost.de/{pin['site']}",
     )
 
