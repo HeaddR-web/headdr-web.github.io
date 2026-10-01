@@ -508,8 +508,9 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   veröffentlichte, danach gelöscht). Deshalb tragen neue Queue-Einträge `"kanal": "rss"` und ein
   `"freigabe": "JJJJ-MM-TT"`: `make_feed.py` nimmt einen Eintrag erst ab diesem Tag in `feed.xml`
   auf und nach 30 Tagen (`FENSTER`) wieder heraus, `feed.yml` baut den Feed täglich um 6 Uhr UTC
-  neu. `build-pin-grafiken.py` vergibt die Tage selbst: **zwei pro Tag**, hinter dem letzten schon
-  geplanten. **Saisonales darf vorgezogen werden:** Liegt der nächste freie Tag zu nah am Anlass
+  neu. `build-pin-grafiken.py` vergibt die Tage selbst: **zwei pro Tag**, in der ersten freien
+  Lücke ab morgen (nicht hinter dem spätesten Termin, sonst rutschte alles hinter die von Hand
+  vorgeplanten Saison-Pins). Bestätigt am 01.10.2026: Die ersten 5 Feed-Pins kamen je einmal an. **Saisonales darf vorgezogen werden:** Liegt der nächste freie Tag zu nah am Anlass
   (Halloween-Pins wären am 23.10. drangekommen), den `"freigabe"`-Wert in der Queue von Hand auf
   einen früheren Tag setzen — höchstens **drei** Pins pro Tag. **Nie** die Freigabe weglassen — ohne sie stünde alles auf einmal im Feed, und
   Pinterest legt es am Stück an. Weder die API noch die Bulk-CSV fassen `rss`-Einträge an.

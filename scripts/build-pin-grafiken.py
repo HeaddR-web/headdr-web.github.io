@@ -61,6 +61,7 @@ REIHENFOLGE = [
     "silvester-sekt", "silvester-wachs", "silvester-zeitplan",
     # Weihnachtsfeier: Freigabe von Hand auf 08.-10.11. (Planungsbeginn)
     "weihnachtsfeier-gluehwein", "weihnachtsfeier-wuerfel", "weihnachtsfeier-bratapfel",
+    "kindergeburtstag-ablauf", "kindergeburtstag-schatzsuche", "kindergeburtstag-spiele",
 ]
 
 FARBEN = {
@@ -234,7 +235,7 @@ PRO_TAG = 2
 
 def freigabe_tage():
     """Liefert fortlaufend den naechsten freien Freigabetag (hoechstens PRO_TAG je
-    Tag, fruehestens morgen). Warum ueberhaupt gestaffelt: Pinterest liest den
+    Tag, fruehestens morgen, erste Luecke zuerst). Warum ueberhaupt gestaffelt: Pinterest liest den
     Feed am Stueck ein. 30 Pins an einem Tag wirken wie Spam und verbrennen den
     Nachschub fuer die naechsten Wochen."""
     belegt = {}
@@ -242,8 +243,10 @@ def freigabe_tage():
         for q in json.loads(qf.read_text(encoding="utf-8")):
             if q.get("freigabe"):
                 belegt[q["freigabe"]] = belegt.get(q["freigabe"], 0) + 1
-    tag = max([dt.date.today() + dt.timedelta(days=1)]
-              + [dt.date.fromisoformat(d) for d in belegt])
+    # Erste freie Luecke ab morgen, nicht hinter dem spaetesten Tag: Saisonale
+    # Pins werden von Hand weit vorausgeplant (Silvester im November), sonst
+    # rutschte jeder neue Pin hinter diese Termine.
+    tag = dt.date.today() + dt.timedelta(days=1)
     while True:
         if belegt.get(tag.isoformat(), 0) < PRO_TAG:
             belegt[tag.isoformat()] = belegt.get(tag.isoformat(), 0) + 1

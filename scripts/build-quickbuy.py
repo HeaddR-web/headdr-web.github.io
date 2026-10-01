@@ -38,6 +38,7 @@ ANLASS = {
     "halloween": "deine Halloween-Party",
     "hawaii-tiki": "deine Hawaii-Party",
     "jga": "den JGA",
+    "kindergeburtstag": "den Kindergeburtstag",
     "mexiko-fiesta": "deine Fiesta",
     "oktoberfest": "deine Wiesn-Party",
     "saison-deko": "die gemuetliche Jahreszeit",
