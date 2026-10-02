@@ -596,6 +596,18 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 - **Bildformat — eiserne Regel:** Jedes neue Pin-Bild ist **vertikal 2:3** (z. B. 848×1264). Nie Quer-Bilder
   (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
 
+## Besucher & Google-Suche (`statistik/WEB.md`) — generiert
+Bis Oktober 2026 kannte niemand die Besucherzahlen; gemessen wurde nur Pinterest (8 Klicks zur
+Seite in 30 Tagen, ein einziger Amazon-Verkauf). `.github/workflows/web-stats.yml` (montags +
+manuell) ruft `scripts/web_stats.py` auf und schreibt `statistik/WEB.md` + `statistik/web.json`:
+Besuche je Tag, Seite, Herkunft und Gerät (Cloudflare Web Analytics, GraphQL) sowie Klicks,
+Suchbegriffe und den **Indexierungsstatus jeder Sitemap-URL** (Search Console, URL-Prüfung).
+Fehlt die Sitemap in der Search Console, reicht das Skript sie ein.
+- Secrets: `CF_API_TOKEN` (Token mit „Account Analytics: Read“), `CF_ACCOUNT_ID`,
+  `GSC_SERVICE_ACCOUNT` (JSON-Schlüssel eines Google-Dienstkontos, das in der Search Console
+  als Inhaber der Property eingetragen ist). Fehlt eins, steht im Bericht, was fehlt.
+- **Vor jeder Inhalts- oder Pinterest-Entscheidung hier und in `pinterest/STATISTIK.md` schauen.**
+
 ## Workflow / Konventionen
 - **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin) und
   `python3 scripts/build-sitemap-lastmod.py` — das Skript holt jedes `<lastmod>` aus dem

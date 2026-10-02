@@ -1,0 +1,52 @@
+name: Besucher & Google-Statistik
+
+# Holt jede Woche die Besucherzahlen (Cloudflare Web Analytics) und die
+# Google-Suche (Search Console: Klicks, Suchbegriffe, Indexierung je Seite)
+# und schreibt statistik/WEB.md + statistik/web.json. Reicht die Sitemap bei
+# Google ein, falls sie dort fehlt. Logik und noetige Secrets:
+# scripts/web_stats.py
+
+on:
+  schedule:
+    - cron: "15 7 * * 1"   # montags ~07:15 UTC, nach der Pinterest-Statistik
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: web-stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Google-Bibliothek installieren
+        run: pip install --quiet google-auth requests
+
+      - name: Zahlen abholen
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+        run: python scripts/web_stats.py
+
+      - name: Bericht committen
+        run: |
+          if [[ -n "$(git status --porcelain statistik)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add statistik
+            git commit -m "Statistik: Besucher und Google aktualisieren [skip ci]"
+            git pull --rebase
+            git push
+          else
+            echo "Keine Aenderung."
+          fi
