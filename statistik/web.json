@@ -1,0 +1,8 @@
+{
+  "cloudflare": {
+    "fehlt": "Secrets CF_API_TOKEN und CF_ACCOUNT_ID"
+  },
+  "search_console": {
+    "fehlt": "Secret GSC_SERVICE_ACCOUNT"
+  }
+}
