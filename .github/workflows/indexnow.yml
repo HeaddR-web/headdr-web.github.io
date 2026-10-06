@@ -1,0 +1,26 @@
+name: IndexNow
+
+# Meldet nach jeder Aenderung an sitemap.xml alle URLs per IndexNow an Bing,
+# Yandex & Co. (kein Konto noetig). Logik: scripts/indexnow.py
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "sitemap.xml"
+  workflow_dispatch: {}
+
+jobs:
+  melden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # GitHub Pages braucht nach dem Push ein, zwei Minuten, bis die
+      # Schluesseldatei live ist - sonst antwortet IndexNow mit 403.
+      - name: Auf das Deployment warten
+        run: sleep 120
+      - name: URLs melden
+        run: python scripts/indexnow.py
