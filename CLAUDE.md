@@ -608,6 +608,15 @@ Fehlt die Sitemap in der Search Console, reicht das Skript sie ein.
   als Inhaber der Property eingetragen ist). Fehlt eins, steht im Bericht, was fehlt.
 - **Vor jeder Inhalts- oder Pinterest-Entscheidung hier und in `pinterest/STATISTIK.md` schauen.**
 
+## IndexNow (Bing, Yandex & Co.) — automatisch
+Im Oktober 2026 fand eine Websuche nur 2 von rund 45 Seiten. IndexNow meldet neue und geänderte
+URLs **ohne Konto** an Bing (und damit DuckDuckGo, Ecosia, ChatGPT-Suche), Yandex, Seznam.
+Der Schlüssel liegt als `/<32 Hex-Zeichen>.txt` im Wurzelverzeichnis und enthält sich selbst —
+**nicht löschen, nicht umbenennen**, sonst lehnt IndexNow jede Meldung mit 403 ab.
+`.github/workflows/indexnow.yml` ruft nach jeder Änderung an `sitemap.xml` (und manuell)
+`scripts/indexnow.py` auf und meldet alle Sitemap-URLs. Google nutzt IndexNow nicht; dafür
+braucht es die Search Console (Abschnitt oben).
+
 ## Workflow / Konventionen
 - **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin) und
   `python3 scripts/build-sitemap-lastmod.py` — das Skript holt jedes `<lastmod>` aus dem
