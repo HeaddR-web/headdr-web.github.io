@@ -71,5 +71,27 @@
     "kanal": "rss",
     "prio": 45,
     "freigabe": "2026-10-21"
+  },
+  {
+    "title": "Cocktailabend: so viel Alkohol, Eis und Limetten brauchst du",
+    "description": "Die Faustregeln für den Cocktailabend zuhause: Drinks pro Flasche, Eis pro Gast und Limetten pro Sour. #cocktailabend #cocktails #partyplanung #hausbar #gastgeben",
+    "link": "https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html?pin=mengen#mengen",
+    "image_url": "https://bethathost.de/assets/pins/cocktailabend-mengen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 82,
+    "freigabe": "2026-11-04"
+  },
+  {
+    "title": "Cocktailabend zuhause: warum eine kleine Karte alles leichter macht",
+    "description": "Statt zehn Wünschen, für die die Zutaten fehlen: eine kleine Cocktailkarte mit drei, vier Drinks. #cocktailabend #cocktailkarte #hausbar #partytipps #gastgeben",
+    "link": "https://bethathost.de/cocktailabend/posts/cocktailabend-zuhause.html?pin=karte#karte",
+    "image_url": "https://bethathost.de/assets/pins/cocktailabend-karte.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 87,
+    "freigabe": "2026-11-06"
   }
 ]

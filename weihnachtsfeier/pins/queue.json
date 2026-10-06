@@ -53,5 +53,38 @@
     "kanal": "rss",
     "prio": 77,
     "freigabe": "2026-11-01"
+  },
+  {
+    "title": "Weihnachtsfeier mit Freunden 2026: der beste Termin",
+    "description": "Wann ist 2026 der beste Abend für die Weihnachtsfeier mit Freunden – und wann muss die Einladung raus? #weihnachtsfeier #advent #weihnachten #freunde #partyplanung",
+    "link": "https://bethathost.de/weihnachtsfeier/?pin=termin#termin",
+    "image_url": "https://bethathost.de/assets/pins/weihnachtsfeier-termin.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 78,
+    "freigabe": "2026-11-02"
+  },
+  {
+    "title": "Kinderpunsch: das Rezept für die Weihnachtsfeier",
+    "description": "Alkoholfreier Punsch aus Früchtetee, Traubensaft und Orangensaft – für Kinder und Fahrer, in denselben Tassen wie der Glühwein. #kinderpunsch #punsch #weihnachten #advent #alkoholfrei",
+    "link": "https://bethathost.de/weihnachtsfeier/?pin=kinderpunsch#gluehwein",
+    "image_url": "https://bethathost.de/assets/pins/weihnachtsfeier-kinderpunsch.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 84,
+    "freigabe": "2026-11-05"
+  },
+  {
+    "title": "3 Spiele für die Weihnachtsfeier mit Freunden",
+    "description": "Plätzchen-Blindverkostung, Weihnachtsfilm-Quiz und „Wer bin ich?“ – drei Spiele, die jede Weihnachtsfeier zuhause auflockern. #weihnachtsfeier #partyspiele #weihnachtsspiele #advent #freunde",
+    "link": "https://bethathost.de/weihnachtsfeier/?pin=spiele#spiele",
+    "image_url": "https://bethathost.de/assets/pins/weihnachtsfeier-spiele.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 88,
+    "freigabe": "2026-11-06"
   }
 ]

@@ -1540,6 +1540,242 @@
       "fuss": "Mit Eiweiß: erst 10 Sekunden ohne Eis (Dry Shake)",
       "pin_titel": "Cocktails richtig shaken: so geht es wie in der Bar",
       "beschreibung": "Wie viel Eis, wie lange und warum nie aufs Shaker-Eis: die vier Schritte zum richtig geschüttelten Cocktail. Die ganze Liste findest du auf bethathost.de. #cocktails #hausbar #cocktailshaker #barwissen #mixen"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "termin",
+      "anker": "termin",
+      "farbe": "gruen",
+      "kicker": "Weihnachtsfeier mit Freunden",
+      "titel": "Der beste Termin im Advent 2026",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "1. Advent ist am 29. November",
+        "Heiligabend fällt auf einen Donnerstag",
+        "Beste Wochenenden: 4./5. und 11./12. Dezember",
+        "Einladung Anfang November verschicken",
+        "Wichtel-Budget gleich mit angeben"
+      ],
+      "fuss": "",
+      "pin_titel": "Weihnachtsfeier mit Freunden 2026: der beste Termin",
+      "beschreibung": "Wann ist 2026 der beste Abend für die Weihnachtsfeier mit Freunden – und wann muss die Einladung raus? #weihnachtsfeier #advent #weihnachten #freunde #partyplanung"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "kinderpunsch",
+      "anker": "gluehwein",
+      "farbe": "terrakotta",
+      "kicker": "Rezept · alkoholfrei",
+      "titel": "Kinderpunsch für alle",
+      "unter": "In denselben Tassen wie der Glühwein",
+      "art": "tabelle",
+      "punkte": [
+        "Früchtetee, kräftig|1 l",
+        "Roter Traubensaft|0,5 l",
+        "Orangensaft|0,5 l",
+        "Zimt, Nelken, Sternanis|wie beim Glühwein"
+      ],
+      "fuss": "",
+      "pin_titel": "Kinderpunsch: das Rezept für die Weihnachtsfeier",
+      "beschreibung": "Alkoholfreier Punsch aus Früchtetee, Traubensaft und Orangensaft – für Kinder und Fahrer, in denselben Tassen wie der Glühwein. #kinderpunsch #punsch #weihnachten #advent #alkoholfrei"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "spiele",
+      "anker": "spiele",
+      "farbe": "nacht",
+      "kicker": "Weihnachtsfeier",
+      "titel": "3 Spiele für zwischendurch",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Plätzchen-Blindverkostung|Mit verbundenen Augen Sorte und Bäcker erraten",
+        "Weihnachtsfilm-Quiz|Ein Zitat vorlesen – wer den Film zuerst nennt, punktet",
+        "Wer bin ich?|Weihnachtsfiguren auf Zetteln an der Stirn"
+      ],
+      "fuss": "",
+      "pin_titel": "3 Spiele für die Weihnachtsfeier mit Freunden",
+      "beschreibung": "Plätzchen-Blindverkostung, Weihnachtsfilm-Quiz und „Wer bin ich?“ – drei Spiele, die jede Weihnachtsfeier zuhause auflockern. #weihnachtsfeier #partyspiele #weihnachtsspiele #advent #freunde"
+    },
+    {
+      "site": "silvester",
+      "id": "feuerwerk",
+      "anker": "feuerwerk",
+      "farbe": "blau",
+      "kicker": "Silvester 2026",
+      "titel": "Feuerwerk: was erlaubt ist",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Verkauf nur vom 29. bis 31. Dezember",
+        "Zünden nur am 31.12. und 1.1.",
+        "Verbotszonen in vielen Innenstädten",
+        "Drinnen nur Kategorie F1: Wunderkerzen, Tischfeuerwerk",
+        "Haustiere in einen ruhigen Raum"
+      ],
+      "fuss": "",
+      "pin_titel": "Silvester-Feuerwerk: was ist erlaubt?",
+      "beschreibung": "Wann Böller verkauft und gezündet werden dürfen, wo Verbotszonen gelten und was in der Wohnung erlaubt ist – die Regeln für Silvester. #silvester #feuerwerk #neujahr #silvesterparty #böller"
+    },
+    {
+      "site": "silvester",
+      "id": "sektoeffnen",
+      "anker": "cat-sekt",
+      "farbe": "gold",
+      "kicker": "Silvester-Trick",
+      "titel": "Sekt öffnen ohne Knall",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Flasche gut gekühlt und schräg halten",
+        "Korken mit einem Tuch festhalten",
+        "Die Flasche drehen, nicht den Korken",
+        "Langsam: leises Zischen statt Knall"
+      ],
+      "fuss": "",
+      "pin_titel": "Sekt öffnen ohne Knall: der Trick für Silvester",
+      "beschreibung": "Leises Zischen statt Korken an der Decke: so öffnest du Sekt sicher, auch um Mitternacht. #silvester #sekt #neujahr #partytipps #lifehack"
+    },
+    {
+      "site": "silvester",
+      "id": "essen",
+      "anker": "cat-essen",
+      "farbe": "terrakotta",
+      "kicker": "Silvester zuhause",
+      "titel": "Raclette oder Fondue?",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Raclette|Unkompliziert, für gemischte Runden: 200–250 g Käse pro Person",
+        "Käsefondue|Festlicher, braucht jemanden zum Rühren: 200 g Käse, 200 g Brot",
+        "Buffet|Ab acht Gästen: kalt, mit Fingerfood"
+      ],
+      "fuss": "",
+      "pin_titel": "Silvester-Essen: Raclette, Fondue oder Buffet?",
+      "beschreibung": "Was passt besser zur Silvesterparty zuhause – Raclette, Fondue oder Buffet? Mit Mengen pro Person. #silvester #raclette #fondue #silvesteressen #neujahr"
+    },
+    {
+      "site": "kindergeburtstag",
+      "id": "gaeste",
+      "anker": "planung",
+      "farbe": "salbei",
+      "kicker": "Kindergeburtstag",
+      "titel": "Wie viele Kinder, wie lange?",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Gäste: Alter des Kindes plus eins",
+        "3–5 Jahre: zwei Stunden",
+        "6–8 Jahre: drei Stunden",
+        "Ab etwa 8 Kindern ein zweiter Erwachsener",
+        "Einladung mit fester Abholzeit"
+      ],
+      "fuss": "",
+      "pin_titel": "Kindergeburtstag: wie viele Kinder einladen und wie lange feiern?",
+      "beschreibung": "Die Faustregeln für den Kindergeburtstag zuhause: Gästezahl, Dauer nach Alter und wann ein zweiter Erwachsener dabei sein sollte. #kindergeburtstag #kinderparty #geburtstag #mamaleben #partyplanung"
+    },
+    {
+      "site": "girlsnight",
+      "pfad": "posts/wine-tasting-girls.html",
+      "id": "reihenfolge",
+      "anker": "reihenfolge",
+      "farbe": "rosa",
+      "kicker": "Wein-Tasting zuhause",
+      "titel": "Die richtige Reihenfolge",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Schaumwein zuerst",
+        "Weiß vor Rosé vor Rot",
+        "Leicht vor kräftig, jung vor alt",
+        "Trocken vor süß – Süßwein zum Schluss"
+      ],
+      "fuss": "",
+      "pin_titel": "Wein-Tasting: in welcher Reihenfolge probieren?",
+      "beschreibung": "Damit der dritte Wein noch eine Chance hat: die richtige Reihenfolge fürs Wein-Tasting mit Freundinnen. #weintasting #wein #maedelsabend #weinprobe #girlsnight"
+    },
+    {
+      "site": "ratgeber",
+      "pfad": "cocktail-shaker-set.html",
+      "id": "fuenf",
+      "anker": "fuenf-cocktails",
+      "farbe": "nacht",
+      "kicker": "Hausbar",
+      "titel": "5 Cocktails mit dem Grundset",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Daiquiri|6 cl Rum, 3 cl Limette, 2 cl Zuckersirup",
+        "Margarita|5 cl Tequila, 2 cl Orangenlikör, 2 cl Limette",
+        "Whiskey Sour|5 cl Bourbon, 3 cl Zitrone, 2 cl Sirup",
+        "Espresso Martini|4 cl Wodka, 3 cl Espresso, 2 cl Kaffeelikör",
+        "Negroni|je 3 cl Gin, Campari, roter Wermut"
+      ],
+      "fuss": "",
+      "pin_titel": "5 Cocktails, die du mit jedem Shaker-Set mixen kannst",
+      "beschreibung": "Daiquiri, Margarita, Whiskey Sour, Espresso Martini und Negroni: die fünf Klassiker fürs Hausbar-Grundset, mit Mengen. #cocktails #cocktailrezepte #hausbar #cocktailabend #barwissen"
+    },
+    {
+      "site": "cocktailabend",
+      "pfad": "posts/cocktailabend-zuhause.html",
+      "id": "mengen",
+      "anker": "mengen",
+      "farbe": "gruen",
+      "kicker": "Cocktailabend",
+      "titel": "Wie viel brauchst du?",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "5 cl Spirituose pro Drink – 14 Drinks pro Flasche",
+        "Rund 1 kg Eis pro Gast",
+        "Eine halbe Limette pro Sour-Drink",
+        "12 cl Filler pro Longdrink"
+      ],
+      "fuss": "",
+      "pin_titel": "Cocktailabend: so viel Alkohol, Eis und Limetten brauchst du",
+      "beschreibung": "Die Faustregeln für den Cocktailabend zuhause: Drinks pro Flasche, Eis pro Gast und Limetten pro Sour. #cocktailabend #cocktails #partyplanung #hausbar #gastgeben"
+    },
+    {
+      "site": "cocktailabend",
+      "pfad": "posts/cocktailabend-zuhause.html",
+      "id": "karte",
+      "anker": "karte",
+      "farbe": "terrakotta",
+      "kicker": "Cocktailabend-Trick",
+      "titel": "Eine Karte statt „Was darf's sein?“",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Höchstens drei, vier Drinks",
+        "Der Signature-Batch",
+        "Ein Longdrink",
+        "Ein Klassiker aus dem Shaker",
+        "Eine alkoholfreie Variante"
+      ],
+      "fuss": "",
+      "pin_titel": "Cocktailabend zuhause: warum eine kleine Karte alles leichter macht",
+      "beschreibung": "Statt zehn Wünschen, für die die Zutaten fehlen: eine kleine Cocktailkarte mit drei, vier Drinks. #cocktailabend #cocktailkarte #hausbar #partytipps #gastgeben"
+    },
+    {
+      "site": "brunch",
+      "id": "mengen",
+      "anker": "cat-buffet",
+      "farbe": "gold",
+      "kicker": "Brunch zuhause",
+      "titel": "Brunch-Mengen pro Person",
+      "unter": "",
+      "art": "tabelle",
+      "punkte": [
+        "Brötchen & Croissants|2 Stück",
+        "Aufschnitt & Käse|120 g",
+        "Eier|1,5 Stück",
+        "Obst|150 g",
+        "Joghurt & Müsli|100 g"
+      ],
+      "fuss": "",
+      "pin_titel": "Brunch für Freunde: Mengen pro Person",
+      "beschreibung": "Wie viele Brötchen, wie viel Käse und Aufschnitt pro Gast? Die Mengen für den Brunch zuhause. #brunch #brunchideen #frühstück #sonntagsbrunch #gastgeben"
     }
   ]
 }

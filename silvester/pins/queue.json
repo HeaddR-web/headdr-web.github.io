@@ -31,5 +31,38 @@
     "kanal": "rss",
     "prio": 53,
     "freigabe": "2026-11-17"
+  },
+  {
+    "title": "Silvester-Essen: Raclette, Fondue oder Buffet?",
+    "description": "Was passt besser zur Silvesterparty zuhause – Raclette, Fondue oder Buffet? Mit Mengen pro Person. #silvester #raclette #fondue #silvesteressen #neujahr",
+    "link": "https://bethathost.de/silvester/?pin=essen#cat-essen",
+    "image_url": "https://bethathost.de/assets/pins/silvester-essen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 79,
+    "freigabe": "2026-11-02"
+  },
+  {
+    "title": "Silvester-Feuerwerk: was ist erlaubt?",
+    "description": "Wann Böller verkauft und gezündet werden dürfen, wo Verbotszonen gelten und was in der Wohnung erlaubt ist – die Regeln für Silvester. #silvester #feuerwerk #neujahr #silvesterparty #böller",
+    "link": "https://bethathost.de/silvester/?pin=feuerwerk#feuerwerk",
+    "image_url": "https://bethathost.de/assets/pins/silvester-feuerwerk.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 86,
+    "freigabe": "2026-11-05"
+  },
+  {
+    "title": "Sekt öffnen ohne Knall: der Trick für Silvester",
+    "description": "Leises Zischen statt Korken an der Decke: so öffnest du Sekt sicher, auch um Mitternacht. #silvester #sekt #neujahr #partytipps #lifehack",
+    "link": "https://bethathost.de/silvester/?pin=sektoeffnen#cat-sekt",
+    "image_url": "https://bethathost.de/assets/pins/silvester-sektoeffnen.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 89,
+    "freigabe": "2026-11-07"
   }
 ]
