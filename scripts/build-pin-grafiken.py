@@ -68,6 +68,10 @@ REIHENFOLGE = [
     "girlsnight-schoko", "geburtstag-planung", "weihnachtsfeier-orangen", "ratgeber-reinigen",
     "girlsnight-board", "brunch-ruehrei", "kindergeburtstag-essen", "ratgeber-shaken-richtig",
     "girlsnight-filme", "weihnachtsfeier-plaetzchen",
+    # Lücke 02.-07.11. (Anreißer-Karten)
+    "weihnachtsfeier-termin", "silvester-essen", "kindergeburtstag-gaeste", "ratgeber-fuenf",
+    "cocktailabend-mengen", "girlsnight-reihenfolge", "weihnachtsfeier-kinderpunsch", "brunch-mengen",
+    "silvester-feuerwerk", "cocktailabend-karte", "weihnachtsfeier-spiele", "silvester-sektoeffnen",
 ]
 
 FARBEN = {
@@ -311,7 +315,14 @@ def queues_fuellen(pins):
         qf.parent.mkdir(parents=True, exist_ok=True)
         queue = json.loads(qf.read_text(encoding="utf-8")) if qf.exists() else []
         link = f"{BASIS}{zielseite(pin)[1]}?pin={pin['id']}#{pin['anker']}"
-        if any(q.get("link") == link for q in queue):
+        alt = next((q for q in queue if q.get("link") == link), None)
+        if alt:
+            # Derselbe Link mit anderem Bild: ein aelterer Pin (oft aus dem Juli,
+            # vor den Grafik-Karten) hat die ?pin=-id schon. Still ueberspringen
+            # hiesse, die neue Karte nie zu posten - deshalb abbrechen.
+            if alt.get("image_url") != f"{BASIS}/assets/pins/{pin['site']}-{pin['id']}.jpg":
+                raise SystemExit(f"{pin['site']}-{pin['id']}: Link {link} gehoert schon einem "
+                                 f"anderen Pin ({alt.get('title')!r}) - andere id waehlen")
             continue
         bild = f"{BASIS}/assets/pins/{pin['site']}-{pin['id']}.jpg"
         if any(q.get("image_url") == bild for q in queue):
