@@ -47,6 +47,7 @@ ANLASS = {
     "spieleabend": "deinen Spieleabend",
     "valentinstag": "eure Date Night",
     "weihnachtsfeier": "eure Weihnachtsfeier",
+    "wichtelgeschenke": "die Wichtelrunde",
 }
 
 PICK_OPEN_RE = re.compile(r'<div class="pick">')
