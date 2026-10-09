@@ -194,6 +194,15 @@
       .tool-teaser h2 { font-family: var(--display); font-weight: 700; font-size: 1.45rem; margin: 2px 0 4px; }
       .tool-teaser p { margin: 0; color: var(--muted); max-width: 560px; }
       .tool-teaser .sec-label { border-top: none; padding-top: 0; margin: 0; color: var(--rose); }
+      /* Saison-Leiste: eigener Abschnitt #saison, NICHT in ABSCHNITTE von build-breadcrumb.py -
+         sonst ordnet das Skript die verlinkten Seiten der falschen Kategorie zu. Termine von Hand
+         pflegen: Was vorbei ist, fliegt raus. */
+      .saison { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: 18px 0 6px; }
+      .saison .sec-label { border-top: none; padding-top: 0; margin: 0 6px 0 0; }
+      .saison a { display: inline-flex; flex-direction: column; text-decoration: none; color: var(--ink-strong, #241f1a); background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 10px 16px; line-height: 1.25; }
+      .saison a:hover { border-color: var(--rose); }
+      .saison a b { font-family: var(--display); font-size: 1.05rem; }
+      .saison a span { font-size: 0.82rem; color: var(--muted); }
       .tool-teaser .tool-cta { display: inline-block; background: var(--rose); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 22px; border-radius: 4px; }
       .tool-teaser .tool-cta:hover { background: var(--rose-deep); }
       .tool-teaser .tool-cta:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
@@ -270,7 +279,7 @@
         <p class="kick">BeThatHost · Gastgeben, leicht gemacht</p>
         <h1>Plane die <em>perfekte</em> Feier.</h1>
         <p class="lede">
-          Egal ob Mädelsabend, WM-Party oder Cocktailabend zuhause, wähl deinen Anlass, und wir verwandeln Ideen,
+          Egal ob Halloween, Weihnachtsfeier oder Mädelsabend zuhause, wähl deinen Anlass, und wir verwandeln Ideen,
           Deko und Ausstattung in eine einzige, fertige Einkaufsliste. Kein Stress, nur ein guter Abend.
         </p>
         <a class="cue" href="#anlaesse">Anlässe entdecken ↓</a>
@@ -284,6 +293,15 @@
             <p>Anlass, Gäste und Dauer eingeben, der Party-Mengenrechner macht daraus eine fertige Einkaufsliste – von Grillgut bis Eiswürfel.</p>
           </div>
           <a class="tool-cta" href="/mengenrechner/">Mengen berechnen →</a>
+        </div>
+      </section>
+
+      <section id="saison" class="wrap" aria-label="Jetzt planen">
+        <div class="saison">
+          <p class="sec-label">Jetzt planen</p>
+          <a href="/halloween/"><b>Halloween-Party</b><span>Samstag, 31. Oktober</span></a>
+          <a href="/weihnachtsfeier/"><b>Weihnachtsfeier</b><span>Advent ab 29. November</span></a>
+          <a href="/silvester/"><b>Silvesterparty</b><span>Donnerstag, 31. Dezember</span></a>
         </div>
       </section>
 
