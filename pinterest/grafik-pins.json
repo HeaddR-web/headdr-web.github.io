@@ -1835,6 +1835,68 @@
       "fuss": "",
       "pin_titel": "Wichteln: 3 Regeln, damit dein Geschenk gut ankommt",
       "beschreibung": "Warum das 30-Euro-Geschenk in der 10-Euro-Runde ein Fehler ist und was stattdessen immer funktioniert. #wichteln #wichtelgeschenke #geschenkideen #weihnachten #adventszeit"
+    },
+    {
+      "site": "adventskalender",
+      "id": "genuss",
+      "anker": "genuss",
+      "farbe": "terrakotta",
+      "kicker": "Adventskalender befüllen",
+      "titel": "8 Ideen zum Genießen",
+      "unter": "Für Erwachsene",
+      "art": "liste",
+      "punkte": [
+        "Besondere Schokolade, z. B. mit Chili oder Meersalz",
+        "Wintertee",
+        "Mini-Flasche Likör oder Gin",
+        "Gebrannte Mandeln, selbst gemacht",
+        "Guter Kaffee oder heiße Schokolade",
+        "Vanilleschote oder Zimtstange",
+        "Pralinen oder Lebkuchen vom Bäcker",
+        "Glühweingewürz im Beutel"
+      ],
+      "fuss": "",
+      "pin_titel": "Adventskalender befüllen: 8 Ideen zum Genießen",
+      "beschreibung": "Was kommt in den Adventskalender für Erwachsene? Acht Genuss-Ideen von Schokolade bis Mini-Likör, die in jedes Türchen passen. #adventskalender #adventskalenderbefüllen #adventskalenderideen #advent #geschenkideen"
+    },
+    {
+      "site": "adventskalender",
+      "id": "gutscheine",
+      "anker": "erlebnisse",
+      "farbe": "gruen",
+      "kicker": "Adventskalender",
+      "titel": "Gutscheine, die man wirklich einlöst",
+      "unter": "Kosten fast nichts",
+      "art": "liste",
+      "punkte": [
+        "Frühstück am Bett, diesen Sonntag",
+        "Ich koche dein Lieblingsessen",
+        "Filmabend ohne Handy – du suchst aus",
+        "Weihnachtsmarkt, der Glühwein geht auf mich",
+        "Ich übernehme deinen nervigsten Haushalts-Job"
+      ],
+      "fuss": "",
+      "pin_titel": "Adventskalender-Gutscheine: Ideen, die man wirklich einlöst",
+      "beschreibung": "Gutscheine für den Adventskalender, die konkret und einlösbar sind – statt „ein Wunsch frei“. Fast kostenlos, lange in Erinnerung. #adventskalender #gutscheine #adventskalenderideen #paar #advent"
+    },
+    {
+      "site": "adventskalender",
+      "id": "plan",
+      "anker": "budget",
+      "farbe": "gold",
+      "kicker": "Adventskalender",
+      "titel": "Der Füllplan für 24 Türchen",
+      "unter": "Rund 2 € pro Türchen",
+      "art": "tabelle",
+      "punkte": [
+        "Genuss|8 Türchen",
+        "Gemütliches|6 Türchen",
+        "Erlebnisse (Gutscheine)|5 Türchen",
+        "Kleinigkeiten|5 Türchen"
+      ],
+      "fuss": "",
+      "pin_titel": "Adventskalender befüllen: der Füllplan für 24 Türchen",
+      "beschreibung": "Damit nicht jeden Tag dasselbe drin ist: der Füllplan für den selbst gemachten Adventskalender, mit Budget pro Türchen. #adventskalender #adventskalenderbefüllen #diy #advent #weihnachten"
     }
   ]
 }

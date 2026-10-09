@@ -74,6 +74,8 @@ REIHENFOLGE = [
     "silvester-feuerwerk", "cocktailabend-karte", "weihnachtsfeier-spiele", "silvester-sektoeffnen",
     # Wichtelgeschenke: Freigabe von Hand auf 11.-13.11. (Wichtel-Saison)
     "wichtelgeschenke-bis10", "wichtelgeschenke-buero", "wichtelgeschenke-regeln",
+    # Adventskalender: Freigabe von Hand auf 25.-27.10. (jeweils dritter Pin des Tages)
+    "adventskalender-genuss", "adventskalender-gutscheine", "adventskalender-plan",
 ]
 
 FARBEN = {

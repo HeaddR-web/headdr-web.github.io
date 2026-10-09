@@ -43,6 +43,7 @@ NAME = {
     "valentinstag/index.html": "Valentinstag",
     "weihnachtsfeier/index.html": "Weihnachtsfeier",
     "wichtelgeschenke/index.html": "Wichtelgeschenke",
+    "adventskalender/index.html": "Adventskalender befüllen",
     "silvester/index.html": "Silvesterparty",
 
     "hawaii-tiki/index.html": "Hawaii-Party",
@@ -88,7 +89,7 @@ THEMA = {
         "brunch/index.html", "gartenparty/index.html", "grillabend/index.html",
         "geburtstag/index.html", "kindergeburtstag/index.html", "spieleabend/index.html", "casino/index.html",
         "spa-abend/index.html", "valentinstag/index.html",
-        "saison-deko/index.html", "weihnachtsfeier/index.html", "wichtelgeschenke/index.html", "silvester/index.html", "jga/index.html",
+        "saison-deko/index.html", "weihnachtsfeier/index.html", "wichtelgeschenke/index.html", "adventskalender/index.html", "silvester/index.html", "jga/index.html",
     ],
     "mottos": [
         "hawaii-tiki/index.html", "mexiko-fiesta/index.html",
