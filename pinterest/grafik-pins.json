@@ -1776,6 +1776,65 @@
       "fuss": "",
       "pin_titel": "Brunch für Freunde: Mengen pro Person",
       "beschreibung": "Wie viele Brötchen, wie viel Käse und Aufschnitt pro Gast? Die Mengen für den Brunch zuhause. #brunch #brunchideen #frühstück #sonntagsbrunch #gastgeben"
+    },
+    {
+      "site": "wichtelgeschenke",
+      "id": "bis10",
+      "anker": "bis-10-euro",
+      "farbe": "gruen",
+      "kicker": "Wichteln 2026",
+      "titel": "Wichtelgeschenke bis 10 €",
+      "unter": "Die sicheren Treffer",
+      "art": "liste",
+      "punkte": [
+        "Kuschelsocken oder Hüttenschuhe",
+        "Eine Duftkerze im Glas",
+        "Ein kleines Kartenspiel",
+        "Glühweingewürz-Set mit Rezeptkarte",
+        "Kirschkernkissen für kalte Füße",
+        "Tasse mit Spruch, gefüllt mit Süßem"
+      ],
+      "fuss": "",
+      "pin_titel": "Wichtelgeschenke bis 10 Euro: Ideen, die immer passen",
+      "beschreibung": "Wichteln mit kleinem Budget: Geschenkideen bis 10 Euro, die man wirklich benutzt – für Freunde, Familie und Kollegen. #wichtelgeschenke #wichteln #geschenkideen #weihnachten #geschenkebis10euro"
+    },
+    {
+      "site": "wichtelgeschenke",
+      "id": "buero",
+      "anker": "buero",
+      "farbe": "nacht",
+      "kicker": "Büro-Wichteln",
+      "titel": "Wichtelgeschenke fürs Büro",
+      "unter": "Neutral, verbrauchbar, 5 bis 10 €",
+      "art": "liste",
+      "punkte": [
+        "Notizbuch oder Kalender fürs neue Jahr",
+        "Tasse plus guter Kaffee oder Tee",
+        "Kleine Schreibtischpflanze",
+        "Knobelrätsel für den Schreibtisch",
+        "Eine Dose Kekse oder Nüsse"
+      ],
+      "fuss": "",
+      "pin_titel": "Wichtelgeschenke fürs Büro: neutral und trotzdem schön",
+      "beschreibung": "Was schenkt man beim Büro-Wichteln, wenn man die Kollegen kaum kennt? Ideen von 5 bis 10 Euro, die fast jedem gefallen. #bürowichteln #wichtelgeschenke #weihnachtsfeier #kollegen #geschenkideen"
+    },
+    {
+      "site": "wichtelgeschenke",
+      "id": "regeln",
+      "anker": "regeln",
+      "farbe": "terrakotta",
+      "kicker": "Wichteln",
+      "titel": "3 Regeln für gute Wichtelgeschenke",
+      "unter": "",
+      "art": "nummern",
+      "punkte": [
+        "Budget einhalten – nach oben wie nach unten",
+        "Verbrauchbar schlägt dekorativ",
+        "Hübsch verpackt zählt doppelt"
+      ],
+      "fuss": "",
+      "pin_titel": "Wichteln: 3 Regeln, damit dein Geschenk gut ankommt",
+      "beschreibung": "Warum das 30-Euro-Geschenk in der 10-Euro-Runde ein Fehler ist und was stattdessen immer funktioniert. #wichteln #wichtelgeschenke #geschenkideen #weihnachten #adventszeit"
     }
   ]
 }

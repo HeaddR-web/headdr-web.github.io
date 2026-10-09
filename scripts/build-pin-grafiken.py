@@ -72,6 +72,8 @@ REIHENFOLGE = [
     "weihnachtsfeier-termin", "silvester-essen", "kindergeburtstag-gaeste", "ratgeber-fuenf",
     "cocktailabend-mengen", "girlsnight-reihenfolge", "weihnachtsfeier-kinderpunsch", "brunch-mengen",
     "silvester-feuerwerk", "cocktailabend-karte", "weihnachtsfeier-spiele", "silvester-sektoeffnen",
+    # Wichtelgeschenke: Freigabe von Hand auf 11.-13.11. (Wichtel-Saison)
+    "wichtelgeschenke-bis10", "wichtelgeschenke-buero", "wichtelgeschenke-regeln",
 ]
 
 FARBEN = {
