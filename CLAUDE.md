@@ -239,8 +239,9 @@ Suche: ohne `BreadcrumbList` zeigt Google unter dem Titel die nackte URL.
   zwischen `<!-- BREADCRUMB:START … -->` und `<!-- BREADCRUMB:END -->` und wird bei jedem Lauf
   komplett ersetzt. Er enthält beides: die sichtbare Zeile **und** das `BreadcrumbList`-JSON-LD.
 - **Die Kategorie kommt aus der Startseite selbst.** In welchem `<section id="…">` die Karte
-  einer Seite steht, das ist ihre Kategorie (`#anlaesse` → „Anlässe", `#mottopartys` →
-  „Mottopartys", `#ratgeber` → „Kaufratgeber"). Verschiebt jemand eine Karte, wandert die
+  einer Seite steht, das ist ihre Kategorie (`#anlaesse` → „Anlässe", `#geschenke` → „Geschenkideen",
+  `#mottopartys` → „Mottopartys", `#ratgeber` → „Kaufratgeber"). Die Saison-Leiste `#saison` steht
+  bewusst **nicht** in `ABSCHNITTE` — sonst landeten die dort verlinkten Seiten in der falschen Kategorie. Verschiebt jemand eine Karte, wandert die
   Brotkrume beim nächsten Lauf mit — es gibt keine zweite Liste, die veralten könnte.
   Der Linktext kommt aus `NAME` in `build-related.py`, damit eine Seite nicht an zwei Stellen
   anders heißt.
@@ -357,6 +358,12 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
   Original auch dann wieder, wenn im Markup laengst die Ableitung steht — der Lauf ist
   beliebig oft wiederholbar. Nach jedem neuen oder getauschten Kachelbild:
   `python3 scripts/build-images.py`
+- **Startseiten-Karten brauchen `height: auto`** (`.occ-media img` im `<style>` von `index.html`).
+  Ohne gilt das `height`-Attribut (720) woertlich: Bis Oktober 2026 war jede Karte 720 px hoch,
+  auf dem Handy ein 328 × 720-Streifen statt 4:3. **Grafiken mit Text** (z. B. die selbst
+  gerenderten Titelbilder der Geschenkideen, 3:2) bekommen fuer die Karte eine eigene 4:3-Fassung
+  `<stamm>-karte.jpg` (oben/unten in der Hintergrundfarbe aufgefuellt) — der 4:3-Zuschnitt
+  schnitte sonst den Text ab.
 - **Kacheln sind echte `<img loading="lazy">`, nie CSS-Hintergruende.** Ein Hintergrund laesst
   sich nicht verzoegern; auf `girlsnight/` luden so elf Kacheln sofort mit. Das `alt` bleibt
   leer: die Kachel wiederholt nur die Ueberschrift daneben.

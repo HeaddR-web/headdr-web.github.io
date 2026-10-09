@@ -48,6 +48,7 @@ ABSCHNITTE = [
     ("cocktail", "Cocktailabend"),
     ("watchparty", "WM- und Fußball-Party"),
     ("anlaesse", "Anlässe"),
+    ("geschenke", "Geschenkideen"),
     ("mottos", "Mottopartys"),
     ("ratgeber", "Kaufratgeber"),
 ]

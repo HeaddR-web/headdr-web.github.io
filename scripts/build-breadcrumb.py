@@ -45,6 +45,7 @@ ABSCHNITTE = {
     "mottopartys": "Mottopartys",
     "ratgeber": "Kaufratgeber",
     "werkzeuge": "Werkzeuge",
+    "geschenke": "Geschenkideen",
 }
 
 AUSGENOMMEN = {
