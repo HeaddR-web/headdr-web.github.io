@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # Hand gepflegt: aus dem <h1> abgeleitete Formulierungen klingen auf Deutsch
 # regelmaessig schief ("Einkaufsliste fuer Sonntags Family Brunch: planen").
 ANLASS = {
+    "adventskalender": "den Adventskalender",
     "brunch": "deinen Brunch",
     "casino": "deinen Casino-Abend",
     "gartenparty": "deine Gartenparty",
