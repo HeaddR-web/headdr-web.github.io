@@ -1897,6 +1897,63 @@
       "fuss": "",
       "pin_titel": "Adventskalender befüllen: der Füllplan für 24 Türchen",
       "beschreibung": "Damit nicht jeden Tag dasselbe drin ist: der Füllplan für den selbst gemachten Adventskalender, mit Budget pro Türchen. #adventskalender #adventskalenderbefüllen #diy #advent #weihnachten"
+    },
+    {
+      "site": "mitbringsel",
+      "id": "etikette",
+      "anker": "etikette",
+      "farbe": "rosa",
+      "kicker": "Eingeladen?",
+      "titel": "Die Etikette fürs Mitbringsel",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Blumen nur mit Vase oder im Topf",
+        "Wein ist ein Geschenk für später",
+        "Essen nur nach Absprache",
+        "10 bis 20 Euro sind üblich"
+      ],
+      "fuss": "",
+      "pin_titel": "Was bringt man dem Gastgeber mit? Die Etikette",
+      "beschreibung": "Blumen ohne Vase, Wein zum Essen, ungefragt Kuchen: was beim Mitbringsel gut ankommt und was nicht. #mitbringsel #gastgeschenk #einladung #etikette #gastgeber"
+    },
+    {
+      "site": "mitbringsel",
+      "id": "advent",
+      "anker": "advent",
+      "farbe": "gruen",
+      "kicker": "Mitbringsel im Advent",
+      "titel": "Was bringe ich im Advent mit?",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Selbst gebackene Plätzchen in einer Dose",
+        "Duftkerze mit Wintergeruch",
+        "Glühweingewürz oder selbst angesetzter Likör",
+        "Weihnachtsstern oder Amaryllis",
+        "Selbst gemachte Marmelade"
+      ],
+      "fuss": "",
+      "pin_titel": "Mitbringsel im Advent: Ideen für Gastgeber",
+      "beschreibung": "Eingeladen im Advent? Mitbringsel-Ideen von Plätzchen bis Amaryllis, die jedem Gastgeber Freude machen. #mitbringsel #advent #gastgeschenk #weihnachten #geschenkideen"
+    },
+    {
+      "site": "mitbringsel",
+      "id": "selbstgemacht",
+      "anker": "selbstgemacht",
+      "farbe": "terrakotta",
+      "kicker": "Mitbringsel selbst gemacht",
+      "titel": "In 15 Minuten fertig",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Kräutersalz|100 g Meersalz, 2 EL Kräuter, Zitronenschale ins Schraubglas",
+        "Gebrannte Mandeln|200 g Mandeln, 100 g Zucker, 50 ml Wasser, Zimt",
+        "Chili-Öl|Olivenöl, getrocknete Chili, Knoblauch – zwei Wochen ziehen lassen"
+      ],
+      "fuss": "",
+      "pin_titel": "Mitbringsel selbst gemacht: 3 Ideen in 15 Minuten",
+      "beschreibung": "Kräutersalz, gebrannte Mandeln, Chili-Öl: drei selbst gemachte Mitbringsel, die fast nichts kosten und persönlich sind. #diy #mitbringsel #geschenkeausderküche #selbstgemacht #gastgeschenk"
     }
   ]
 }

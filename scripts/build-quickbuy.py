@@ -41,6 +41,7 @@ ANLASS = {
     "jga": "den JGA",
     "kindergeburtstag": "den Kindergeburtstag",
     "mexiko-fiesta": "deine Fiesta",
+    "mitbringsel": "dein Mitbringsel",
     "oktoberfest": "deine Wiesn-Party",
     "saison-deko": "die gemuetliche Jahreszeit",
     "silvester": "deine Silvesterparty",
