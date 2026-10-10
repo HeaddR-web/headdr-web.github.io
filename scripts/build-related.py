@@ -35,6 +35,7 @@ NAME = {
     "gartenparty/index.html": "Gartenparty",
     "geburtstag/index.html": "Geburtstag zuhause",
     "kindergeburtstag/index.html": "Kindergeburtstag",
+    "fingerfood/index.html": "Fingerfood für Partys",
     "grillabend/index.html": "Grillabend",
     "jga/index.html": "JGA",
     "saison-deko/index.html": "Saison-Deko",
@@ -86,7 +87,7 @@ NAME = {
 # beieinander stehen, dann passen die Vorschlaege inhaltlich zueinander.
 THEMA = {
     "anlaesse": [
-        "mengenrechner/index.html",
+        "mengenrechner/index.html", "fingerfood/index.html",
         "brunch/index.html", "gartenparty/index.html", "grillabend/index.html",
         "geburtstag/index.html", "kindergeburtstag/index.html", "spieleabend/index.html", "casino/index.html",
         "spa-abend/index.html", "valentinstag/index.html",

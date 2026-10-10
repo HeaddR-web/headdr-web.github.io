@@ -33,6 +33,7 @@ ANLASS = {
     "adventskalender": "den Adventskalender",
     "brunch": "deinen Brunch",
     "casino": "deinen Casino-Abend",
+    "fingerfood": "dein Fingerfood-Buffet",
     "gartenparty": "deine Gartenparty",
     "geburtstag": "deinen Geburtstag",
     "grillabend": "deinen Grillabend",

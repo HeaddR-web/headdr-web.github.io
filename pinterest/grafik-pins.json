@@ -1954,6 +1954,65 @@
       "fuss": "",
       "pin_titel": "Mitbringsel selbst gemacht: 3 Ideen in 15 Minuten",
       "beschreibung": "Kräutersalz, gebrannte Mandeln, Chili-Öl: drei selbst gemachte Mitbringsel, die fast nichts kosten und persönlich sind. #diy #mitbringsel #geschenkeausderküche #selbstgemacht #gastgeschenk"
+    },
+    {
+      "site": "fingerfood",
+      "id": "mengen",
+      "anker": "mengen",
+      "farbe": "nacht",
+      "kicker": "Fingerfood",
+      "titel": "Wie viel pro Gast?",
+      "unter": "",
+      "art": "tabelle",
+      "punkte": [
+        "Als Hauptessen (3 Std.)|10–12 Stück",
+        "Jede weitere Stunde|+2 Stück",
+        "Zum Fußball|8 + Würstchen",
+        "Zu Drinks am Abend|6 Stück",
+        "Dips|40–50 ml"
+      ],
+      "fuss": "",
+      "pin_titel": "Fingerfood: Wie viel Stück pro Person?",
+      "beschreibung": "Wie viel Fingerfood braucht man pro Gast – als Hauptessen, zum Fußball oder zu Drinks? Die Mengen für jede Party. #fingerfood #partyfood #partyplanung #buffet #partysnacks"
+    },
+    {
+      "site": "fingerfood",
+      "id": "kalt",
+      "anker": "kalt",
+      "farbe": "gruen",
+      "kicker": "Fingerfood-Rezepte",
+      "titel": "6 kalte Häppchen fürs Buffet",
+      "unter": "",
+      "art": "liste",
+      "punkte": [
+        "Caprese-Spieße",
+        "Gefüllte Eier",
+        "Wraps-Röllchen",
+        "Obatzda mit Brezeln",
+        "Guacamole mit Chips",
+        "Gemüsesticks mit drei Dips"
+      ],
+      "fuss": "",
+      "pin_titel": "Kaltes Fingerfood: 6 Häppchen, die man vorbereiten kann",
+      "beschreibung": "Caprese-Spieße, gefüllte Eier, Wraps-Röllchen und mehr: kaltes Fingerfood fürs Party-Buffet, mit Rezepten. #fingerfood #partyrezepte #buffetideen #kalteshäppchen #partyfood"
+    },
+    {
+      "site": "fingerfood",
+      "id": "vortag",
+      "anker": "vorbereiten",
+      "farbe": "terrakotta",
+      "kicker": "Fingerfood",
+      "titel": "Was am Vortag fertig sein kann",
+      "unter": "",
+      "art": "block",
+      "punkte": [
+        "Fertig am Vortag|Gefüllte Eier, Wraps-Röllchen, Mini-Frikadellen, Obatzda, Dips",
+        "Vorbereiten, frisch backen|Blätterteigschnecken, Mumien-Würstchen, marinierte Wings",
+        "Erst am Tag selbst|Guacamole, Caprese-Spieße, Gemüsesticks, Nachos"
+      ],
+      "fuss": "",
+      "pin_titel": "Fingerfood vorbereiten: was schon am Vortag geht",
+      "beschreibung": "Damit du auf der eigenen Party nicht in der Küche stehst: welches Fingerfood am Vortag fertig sein kann und was frisch sein muss. #fingerfood #partyvorbereitung #partyfood #buffet #gastgeben"
     }
   ]
 }
