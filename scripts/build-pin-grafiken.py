@@ -77,6 +77,7 @@ REIHENFOLGE = [
     # Adventskalender: Freigabe von Hand auf 25.-27.10. (jeweils dritter Pin des Tages)
     "adventskalender-genuss", "adventskalender-gutscheine", "adventskalender-plan",
     "mitbringsel-etikette", "mitbringsel-advent", "mitbringsel-selbstgemacht",
+    "fingerfood-mengen", "fingerfood-kalt", "fingerfood-vortag",
 ]
 
 FARBEN = {
