@@ -519,7 +519,11 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Lücke ab morgen (nicht hinter dem spätesten Termin, sonst rutschte alles hinter die von Hand
   vorgeplanten Saison-Pins). Bestätigt am 01.10.2026: Die ersten 5 Feed-Pins kamen je einmal an. **Saisonales darf vorgezogen werden:** Liegt der nächste freie Tag zu nah am Anlass
   (Halloween-Pins wären am 23.10. drangekommen), den `"freigabe"`-Wert in der Queue von Hand auf
-  einen früheren Tag setzen — höchstens **drei** Pins pro Tag. **Nie** die Freigabe weglassen — ohne sie stünde alles auf einmal im Feed, und
+  einen früheren Tag setzen — höchstens **drei** Pins pro Tag.
+  **Saison schlägt Reihenfolge:** Im Oktober 2026 liefen Grill-, Tiki- und Margarita-Pins,
+  während auf Pinterest Halloween und Advent gesucht wurden — die 21 Pins ab 02.10. kamen
+  zusammen auf 11 Impressionen. Seit 14.10.2026 gilt: Pins zum nächsten Anlass zuerst, Ganzjähriges
+  danach, Sommerthemen (Grill, Terrasse, Tiki, Garten) bekommen eine Freigabe ab April. **Nie** die Freigabe weglassen — ohne sie stünde alles auf einmal im Feed, und
   Pinterest legt es am Stück an. Weder die API noch die Bulk-CSV fassen `rss`-Einträge an.
   Die Bulk-CSV (`make_bulk_csv.py --queue`) bleibt als Handweg für `"kanal": "api"`-Einträge;
   `mark-published-only` erst laufen lassen, **wenn der Upload wirklich passiert ist** (am
