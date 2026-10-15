@@ -7,5 +7,9 @@ Pillow>=10.0
 # Punkt 18 des Konsistenz-Checks, scripts/check-fonts.py). brotli ist kein
 # Extra-Luxus, sondern die Kompression von woff2 - ohne das Modul schreibt
 # fontTools die Datei gar nicht erst.
-fonttools>=4.50
-Brotli>=1.1
+# Exakt gepinnt: check-fonts.py vergleicht die Ableitung Byte fuer Byte. Mit
+# fonttools 4.67.0 (Oktober 2026) kam eine andere woff2 heraus, und Punkt 18
+# wurde in CI rot, ohne dass sich an der Schrift etwas geaendert hatte.
+# Version nur zusammen mit 'python3 scripts/build-fonts.py' anheben.
+fonttools==4.66.0
+Brotli==1.2.0
