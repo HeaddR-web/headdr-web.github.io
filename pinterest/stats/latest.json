@@ -1,6 +1,6 @@
 {
- "stand": "2026-10-12",
- "von": "2026-07-15",
+ "stand": "2026-10-15",
+ "von": "2026-07-18",
  "pins": [
   {
    "id": "1136877499711133090",
@@ -465,7 +465,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -484,7 +484,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 24,
+    "IMPRESSION": 19,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -503,7 +503,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 29,
+    "IMPRESSION": 26,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -522,7 +522,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 37,
+    "IMPRESSION": 35,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -541,7 +541,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -560,7 +560,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -579,7 +579,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 72,
+    "IMPRESSION": 70,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -598,7 +598,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 11,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -617,7 +617,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 53,
+    "IMPRESSION": 52,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -674,7 +674,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 141,
+    "IMPRESSION": 140,
     "SAVE": 0,
     "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 0
@@ -731,7 +731,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1119,
+    "IMPRESSION": 1118,
     "SAVE": 10,
     "PIN_CLICK": 65,
     "OUTBOUND_CLICK": 3
@@ -908,7 +908,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -927,7 +927,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1092,7 +1092,7 @@
    "erstellt": "2026-07-03",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 15,
+    "IMPRESSION": 11,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1111,7 +1111,7 @@
    "erstellt": "2026-06-30",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 21,
+    "IMPRESSION": 11,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1130,7 +1130,7 @@
    "erstellt": "2026-06-29",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 8,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1149,9 +1149,9 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 44,
+    "IMPRESSION": 23,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -1168,9 +1168,9 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 36,
+    "IMPRESSION": 17,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -1187,13 +1187,13 @@
    "erstellt": "2026-06-27",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 834,
+    "IMPRESSION": 815,
     "SAVE": 4,
     "PIN_CLICK": 10,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 340,
+    "IMPRESSION": 333,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -1206,13 +1206,13 @@
    "erstellt": "2026-06-26",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 177,
+    "IMPRESSION": 173,
     "SAVE": 2,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 84,
+    "IMPRESSION": 75,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1225,7 +1225,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 7,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1244,7 +1244,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1263,7 +1263,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 18,
+    "IMPRESSION": 16,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1282,13 +1282,13 @@
    "erstellt": "2026-06-24",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 889,
-    "SAVE": 2,
-    "PIN_CLICK": 28,
+    "IMPRESSION": 629,
+    "SAVE": 1,
+    "PIN_CLICK": 18,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 64,
+    "IMPRESSION": 52,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1320,15 +1320,15 @@
    "erstellt": "2026-06-23",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 58,
-    "SAVE": 0,
-    "PIN_CLICK": 1,
+    "IMPRESSION": 56,
+    "SAVE": 1,
+    "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 9,
-    "SAVE": 0,
-    "PIN_CLICK": 0,
+    "IMPRESSION": 6,
+    "SAVE": 1,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1339,7 +1339,7 @@
    "erstellt": "2026-06-22",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 30,
+    "IMPRESSION": 28,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1358,13 +1358,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 420,
-    "SAVE": 1,
-    "PIN_CLICK": 9,
-    "OUTBOUND_CLICK": 1
+    "IMPRESSION": 337,
+    "SAVE": 0,
+    "PIN_CLICK": 8,
+    "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 68,
+    "IMPRESSION": 70,
     "SAVE": 0,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
@@ -1377,15 +1377,15 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 294,
-    "SAVE": 2,
-    "PIN_CLICK": 8,
+    "IMPRESSION": 242,
+    "SAVE": 0,
+    "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 95,
+    "IMPRESSION": 92,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1396,13 +1396,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 23,
+    "IMPRESSION": 25,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 18,
+    "IMPRESSION": 20,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1415,7 +1415,7 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 32,
+    "IMPRESSION": 30,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1434,13 +1434,13 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 117,
+    "IMPRESSION": 115,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 74,
+    "IMPRESSION": 75,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1453,16 +1453,16 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2022,
+    "IMPRESSION": 2011,
     "SAVE": 6,
-    "PIN_CLICK": 55,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 56,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 548,
-    "SAVE": 1,
+    "IMPRESSION": 475,
+    "SAVE": 0,
     "PIN_CLICK": 9,
-    "OUTBOUND_CLICK": 0
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -1472,7 +1472,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 33,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1491,15 +1491,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1060,
-    "SAVE": 3,
-    "PIN_CLICK": 23,
+    "IMPRESSION": 1023,
+    "SAVE": 2,
+    "PIN_CLICK": 22,
     "OUTBOUND_CLICK": 2
    },
    "30t": {
-    "IMPRESSION": 341,
+    "IMPRESSION": 299,
     "SAVE": 0,
-    "PIN_CLICK": 8,
+    "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 1
    }
   },
@@ -1529,7 +1529,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 152,
+    "IMPRESSION": 145,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1548,8 +1548,8 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 39,
-    "SAVE": 1,
+    "IMPRESSION": 32,
+    "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
@@ -1567,13 +1567,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 89,
+    "IMPRESSION": 90,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 52,
+    "IMPRESSION": 53,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -1586,7 +1586,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1605,16 +1605,16 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1056,
+    "IMPRESSION": 1110,
     "SAVE": 1,
     "PIN_CLICK": 14,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 625,
+    "IMPRESSION": 718,
     "SAVE": 0,
-    "PIN_CLICK": 5,
-    "OUTBOUND_CLICK": 1
+    "PIN_CLICK": 3,
+    "OUTBOUND_CLICK": 0
    }
   },
   {
@@ -1624,15 +1624,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1917,
-    "SAVE": 3,
-    "PIN_CLICK": 41,
+    "IMPRESSION": 1700,
+    "SAVE": 2,
+    "PIN_CLICK": 38,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 332,
+    "IMPRESSION": 319,
     "SAVE": 1,
-    "PIN_CLICK": 10,
+    "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 1
    }
   },
@@ -1643,15 +1643,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 331,
-    "SAVE": 1,
-    "PIN_CLICK": 15,
+    "IMPRESSION": 347,
+    "SAVE": 2,
+    "PIN_CLICK": 18,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 97,
-    "SAVE": 0,
-    "PIN_CLICK": 4,
+    "IMPRESSION": 96,
+    "SAVE": 1,
+    "PIN_CLICK": 6,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1662,13 +1662,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 36,
+    "IMPRESSION": 35,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 16,
+    "IMPRESSION": 18,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1681,15 +1681,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 145,
+    "IMPRESSION": 183,
     "SAVE": 2,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 83,
+    "IMPRESSION": 108,
     "SAVE": 1,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1700,13 +1700,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 539,
+    "IMPRESSION": 522,
     "SAVE": 0,
-    "PIN_CLICK": 21,
+    "PIN_CLICK": 20,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 230,
+    "IMPRESSION": 233,
     "SAVE": 0,
     "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 0
@@ -1719,13 +1719,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 231,
+    "IMPRESSION": 176,
     "SAVE": 0,
-    "PIN_CLICK": 6,
+    "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 54,
+    "IMPRESSION": 49,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -1738,15 +1738,129 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 914,
+    "IMPRESSION": 889,
     "SAVE": 1,
-    "PIN_CLICK": 16,
+    "PIN_CLICK": 15,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 286,
+    "IMPRESSION": 242,
     "SAVE": 0,
-    "PIN_CLICK": 4,
+    "PIN_CLICK": 3,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718330728",
+   "titel": "5 Grillfehler, die fast jeder macht – und wie es besser geht",
+   "link": "https://bethathost.de/grillabend/?pin=fehler#fehler",
+   "erstellt": "2026-10-14",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718330726",
+   "titel": "Grillabend-Zeitplan: Was du wann vorbereitest",
+   "link": "https://bethathost.de/grillabend/?pin=zeitplan#zeitplan",
+   "erstellt": "2026-10-14",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718251493",
+   "titel": "Agua fresca & Agua de Jamaica: Mexikanische Drinks ohne Alkohol",
+   "link": "https://bethathost.de/mexiko-fiesta/?pin=aguafresca#cat-drinks",
+   "erstellt": "2026-10-13",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718251492",
+   "titel": "Luau-Buffet für die Hawaii-Party: 5 Ideen mit Rezept",
+   "link": "https://bethathost.de/hawaii-tiki/?pin=luau#essen",
+   "erstellt": "2026-10-13",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718171659",
+   "titel": "Taco-Bar aufbauen: Reihenfolge und Mengen für die Taco-Party",
+   "link": "https://bethathost.de/mexiko-fiesta/?pin=tacobar#cat-buffet",
+   "erstellt": "2026-10-12",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718171651",
+   "titel": "Zwei-Zonen-Glut: Der wichtigste Trick am Holzkohlegrill",
+   "link": "https://bethathost.de/grillabend/?pin=zonen#cat-setup",
+   "erstellt": "2026-10-12",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -2118,13 +2232,13 @@
    "erstellt": "2026-10-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 17,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 17,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 1
@@ -2137,13 +2251,13 @@
    "erstellt": "2026-10-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2314,7 +2428,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2365,7 +2479,7 @@
    "erstellt": "2026-07-03",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 36,
+    "IMPRESSION": 27,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2384,7 +2498,7 @@
    "erstellt": "2026-07-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 17,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2403,13 +2517,13 @@
    "erstellt": "2026-07-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 27,
+    "IMPRESSION": 19,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2422,13 +2536,13 @@
    "erstellt": "2026-07-01",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 32,
+    "IMPRESSION": 22,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2441,7 +2555,7 @@
    "erstellt": "2026-07-01",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 250,
+    "IMPRESSION": 206,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -2460,7 +2574,7 @@
    "erstellt": "2026-06-30",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 14,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2479,7 +2593,7 @@
    "erstellt": "2026-06-30",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 12,
+    "IMPRESSION": 11,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2498,7 +2612,7 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 21,
+    "IMPRESSION": 16,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2517,7 +2631,7 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 34,
+    "IMPRESSION": 24,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2536,7 +2650,7 @@
    "erstellt": "2026-06-28",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 7,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2555,7 +2669,7 @@
    "erstellt": "2026-06-28",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2574,7 +2688,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 9,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2593,7 +2707,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 23,
+    "IMPRESSION": 14,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2612,7 +2726,7 @@
    "erstellt": "2026-06-26",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 12,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2631,7 +2745,7 @@
    "erstellt": "2026-06-26",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 47,
+    "IMPRESSION": 37,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2650,13 +2764,13 @@
    "erstellt": "2026-06-25",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2669,13 +2783,13 @@
    "erstellt": "2026-06-25",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 26,
+    "IMPRESSION": 14,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2688,7 +2802,7 @@
    "erstellt": "2026-06-25",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 41,
+    "IMPRESSION": 27,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2707,13 +2821,13 @@
    "erstellt": "2026-06-24",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 16,
+    "IMPRESSION": 13,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2726,7 +2840,7 @@
    "erstellt": "2026-06-29",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2745,13 +2859,13 @@
    "erstellt": "2026-06-21",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 1213,
-    "SAVE": 4,
-    "PIN_CLICK": 22,
+    "IMPRESSION": 782,
+    "SAVE": 3,
+    "PIN_CLICK": 10,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 98,
+    "IMPRESSION": 85,
     "SAVE": 0,
     "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
@@ -2764,13 +2878,13 @@
    "erstellt": "2026-06-20",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 134,
+    "IMPRESSION": 105,
     "SAVE": 1,
-    "PIN_CLICK": 8,
+    "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 25,
+    "IMPRESSION": 19,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2783,9 +2897,9 @@
    "erstellt": "2026-06-19",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 34,
+    "IMPRESSION": 22,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -2802,15 +2916,15 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 4316,
+    "IMPRESSION": 4280,
     "SAVE": 20,
-    "PIN_CLICK": 201,
+    "PIN_CLICK": 199,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 2844,
-    "SAVE": 9,
-    "PIN_CLICK": 105,
+    "IMPRESSION": 2492,
+    "SAVE": 8,
+    "PIN_CLICK": 86,
     "OUTBOUND_CLICK": 1
    }
   },
@@ -2821,7 +2935,7 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 41,
+    "IMPRESSION": 32,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2840,15 +2954,15 @@
    "erstellt": "2026-06-17",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 26285,
-    "SAVE": 86,
-    "PIN_CLICK": 1022,
-    "OUTBOUND_CLICK": 8
+    "IMPRESSION": 25724,
+    "SAVE": 84,
+    "PIN_CLICK": 1002,
+    "OUTBOUND_CLICK": 7
    },
    "30t": {
-    "IMPRESSION": 9657,
-    "SAVE": 25,
-    "PIN_CLICK": 365,
+    "IMPRESSION": 8812,
+    "SAVE": 21,
+    "PIN_CLICK": 339,
     "OUTBOUND_CLICK": 3
    }
   },
@@ -2878,15 +2992,15 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 628,
+    "IMPRESSION": 429,
     "SAVE": 1,
-    "PIN_CLICK": 19,
+    "PIN_CLICK": 16,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 94,
+    "IMPRESSION": 77,
     "SAVE": 1,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -2897,7 +3011,7 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 91,
+    "IMPRESSION": 66,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2916,25 +3030,25 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 1356,
-    "SAVE": 5,
-    "PIN_CLICK": 43,
+    "IMPRESSION": 1221,
+    "SAVE": 4,
+    "PIN_CLICK": 41,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 473,
+    "IMPRESSION": 470,
     "SAVE": 1,
-    "PIN_CLICK": 16,
+    "PIN_CLICK": 19,
     "OUTBOUND_CLICK": 0
    }
   }
  ],
  "wochen": {
   "2026-07-13": {
-   "IMPRESSION": 3657,
-   "SAVE": 14,
-   "PIN_CLICK": 99,
-   "OUTBOUND_CLICK": 2
+   "IMPRESSION": 833,
+   "SAVE": 3,
+   "PIN_CLICK": 28,
+   "OUTBOUND_CLICK": 0
   },
   "2026-07-20": {
    "IMPRESSION": 3611,
@@ -3003,16 +3117,16 @@
    "OUTBOUND_CLICK": 1
   },
   "2026-10-05": {
-   "IMPRESSION": 829,
+   "IMPRESSION": 926,
    "SAVE": 3,
-   "PIN_CLICK": 15,
+   "PIN_CLICK": 17,
    "OUTBOUND_CLICK": 1
   },
   "2026-10-12": {
-   "IMPRESSION": 0,
-   "SAVE": 0,
-   "PIN_CLICK": 0,
-   "OUTBOUND_CLICK": 0
+   "IMPRESSION": 320,
+   "SAVE": 2,
+   "PIN_CLICK": 9,
+   "OUTBOUND_CLICK": 1
   }
  }
 }
