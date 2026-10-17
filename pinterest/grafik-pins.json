@@ -2013,6 +2013,72 @@
       "fuss": "",
       "pin_titel": "Fingerfood vorbereiten: was schon am Vortag geht",
       "beschreibung": "Damit du auf der eigenen Party nicht in der Küche stehst: welches Fingerfood am Vortag fertig sein kann und was frisch sein muss. #fingerfood #partyvorbereitung #partyfood #buffet #gastgeben"
+    },
+    {
+      "site": "halloween",
+      "id": "foto-buffet",
+      "anker": "cat-buffet",
+      "art": "foto",
+      "foto": "pinterest/fotos/halloween-foto-buffet.jpg",
+      "kicker": "Halloween zuhause",
+      "titel": "Das Halloween-Buffet: gruselig gut und schnell gemacht",
+      "pin_titel": "Halloween-Buffet zuhause: Mumien-Würstchen, Hexenpunsch & Co.",
+      "beschreibung": "Mumien-Würstchen im Blätterteig, Geister-Muffins, Hexenpunsch aus dem Kessel: das Halloween-Buffet, das schnell steht und auf jedem Foto gut aussieht. Alle Rezepte und die Deko-Ideen auf bethathost.de. #halloween #halloweenparty #halloweenbuffet #halloweenfood #partyfood"
+    },
+    {
+      "site": "weihnachtsfeier",
+      "id": "foto-gluehwein",
+      "anker": "gluehwein",
+      "art": "foto",
+      "foto": "pinterest/fotos/weihnachtsfeier-foto-gluehwein.jpg",
+      "kicker": "Weihnachtsfeier zuhause",
+      "titel": "Die Glühwein-Station, an der sich alle selbst bedienen",
+      "pin_titel": "Glühwein-Station für die Weihnachtsfeier zuhause",
+      "beschreibung": "Ein großer Topf Glühwein mit Orangen, Zimt und Sternanis, daneben Tassen und Plätzchen – so bedienen sich die Gäste selbst und du hast den Abend frei. Rezept und Mengen auf bethathost.de. #glühwein #weihnachtsfeier #advent #weihnachten #gastgeben"
+    },
+    {
+      "site": "adventskalender",
+      "id": "foto-diy",
+      "anker": "befuellen",
+      "art": "foto",
+      "foto": "pinterest/fotos/adventskalender-foto-diy.jpg",
+      "kicker": "Adventskalender",
+      "titel": "24 Ideen zum Befüllen – für Erwachsene",
+      "pin_titel": "Adventskalender befüllen: 24 Ideen für Erwachsene",
+      "beschreibung": "Säckchen statt Schokolade von der Stange: 24 Ideen für einen selbst befüllten Adventskalender für Erwachsene, vom Genuss-Türchen bis zum Gutschein. Die ganze Liste auf bethathost.de. #adventskalender #adventskalenderfüllen #diy #advent #geschenkideen"
+    },
+    {
+      "site": "wichtelgeschenke",
+      "id": "foto-bis10",
+      "anker": "bis-10-euro",
+      "art": "foto",
+      "foto": "pinterest/fotos/wichtelgeschenke-foto-bis10.jpg",
+      "kicker": "Wichteln",
+      "titel": "Wichtelgeschenke bis 10 Euro, die wirklich ankommen",
+      "pin_titel": "Wichtelgeschenke bis 10 Euro: Ideen, die wirklich ankommen",
+      "beschreibung": "Kleines Budget, trotzdem gut: Wichtelgeschenke bis 10 Euro fürs Büro, für Freunde und für Leute, die man kaum kennt. Alle 23 Ideen nach Budget auf bethathost.de. #wichteln #wichtelgeschenke #geschenkideen #weihnachten #secretsanta"
+    },
+    {
+      "site": "mitbringsel",
+      "id": "foto-advent",
+      "anker": "advent",
+      "art": "foto",
+      "foto": "pinterest/fotos/mitbringsel-foto-advent.jpg",
+      "kicker": "Mitbringsel",
+      "titel": "Was bringe ich im Advent mit?",
+      "pin_titel": "Mitbringsel im Advent: Ideen für Gastgeber",
+      "beschreibung": "Plätzchen im Glas, ein selbst angesetzter Likör, eine Amaryllis: Mitbringsel für Einladungen im Advent, die Freude machen statt Arbeit. Dazu die kleine Etikette auf bethathost.de. #mitbringsel #gastgeschenk #advent #weihnachten #selbstgemacht"
+    },
+    {
+      "site": "silvester",
+      "id": "foto-raclette",
+      "anker": "cat-essen",
+      "art": "foto",
+      "foto": "pinterest/fotos/silvester-foto-raclette.jpg",
+      "kicker": "Silvester zuhause",
+      "titel": "Silvester mit Raclette: entspannt bis Mitternacht",
+      "pin_titel": "Silvester mit Raclette zuhause: so wird der Abend entspannt",
+      "beschreibung": "Raclette ist das entspannteste Silvester-Essen: alle kochen selbst, der Abend zieht sich bis Mitternacht. Mengen pro Person, Zutaten und der Zeitplan auf bethathost.de. #silvester #raclette #silvesterparty #neujahr #partyfood"
     }
   ]
 }

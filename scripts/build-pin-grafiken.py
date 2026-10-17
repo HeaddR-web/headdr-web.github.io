@@ -78,6 +78,10 @@ REIHENFOLGE = [
     "adventskalender-genuss", "adventskalender-gutscheine", "adventskalender-plan",
     "mitbringsel-etikette", "mitbringsel-advent", "mitbringsel-selbstgemacht",
     "fingerfood-mengen", "fingerfood-kalt", "fingerfood-vortag",
+    # Foto-Pins (Vergleich mit den Text-Karten), Freigabe von Hand 18.-23.10.,
+    # jeweils als dritter Pin des Tages
+    "halloween-foto-buffet", "weihnachtsfeier-foto-gluehwein", "adventskalender-foto-diy",
+    "wichtelgeschenke-foto-bis10", "mitbringsel-foto-advent", "silvester-foto-raclette",
 ]
 
 FARBEN = {
@@ -137,6 +141,37 @@ li:first-child{{border-top:none}}
 </div></body></html>"""
 
 
+# Foto-Pin ("art": "foto"): ein Foto ueber die ganze Karte, oben Kicker und
+# Titel auf einem Verlauf, unten die Marke. Warum es die Variante gibt: Die
+# 35 Text-Karten aus September/Oktober 2026 kamen zusammen auf 26 Impressionen
+# (1 pro Pin), die Foto-Pins aus dem Juni auf 741 pro Pin. Ob das an der Optik
+# liegt oder an einer Drosselung des Kontos, soll der direkte Vergleich zeigen:
+# Foto-Pins laufen in denselben Tagen wie Text-Karten. Das Foto liegt unter
+# pinterest/fotos/ (2:3, eigenes Motiv - nie ein Lead- oder og:image-Bild).
+FOTO_VORLAGE = """<!doctype html><html lang="de"><head><meta charset="utf-8">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+html,body{{margin:0;width:1000px;height:1500px;overflow:hidden}}
+body{{background:#241f1a url('/{foto}') center/cover no-repeat;color:#fbf6ec;
+  font-family:"Hanken Grotesk",sans-serif;-webkit-font-smoothing:antialiased}}
+.verlauf{{position:absolute;left:0;right:0;top:0;height:760px;
+  background:linear-gradient(180deg,rgba(20,16,12,.86) 0%,rgba(20,16,12,.62) 55%,rgba(20,16,12,0) 100%)}}
+.kopf{{position:absolute;left:80px;right:80px;top:84px}}
+.kicker{{font-weight:700;font-size:28px;letter-spacing:.2em;text-transform:uppercase;color:#e9c98a}}
+h1{{font-family:Fraunces,serif;font-weight:800;font-size:var(--h1,104px);line-height:1.02;
+  letter-spacing:-.02em;margin:22px 0 0;hyphens:manual;text-shadow:0 2px 18px rgba(0,0,0,.35)}}
+.marke{{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);white-space:nowrap;
+  background:rgba(251,246,236,.94);color:#241f1a;border-radius:999px;padding:18px 40px;
+  font-size:30px;font-weight:700}}
+.marke b{{font-family:Fraunces,serif;font-weight:800}}
+.marke b i{{font-style:normal;color:#b9543f}}
+</style></head><body>
+<div class="verlauf"></div>
+<div class="kopf"><div class="kicker">{kicker}</div><h1 id="titel">{titel}</h1></div>
+<div class="marke"><b>Be<i>That</i>Host</b> · {url}</div>
+</body></html>"""
+
+
 def e(t):
     return html.escape(t, quote=False)
 
@@ -194,6 +229,10 @@ def teaser(pin):
 
 
 def seite_html(pin):
+    if pin["art"] == "foto":
+        return FOTO_VORLAGE.format(
+            foto=pin["foto"], kicker=e(pin["kicker"]), titel=e(pin["titel"]),
+            url="bethathost.de" if pin.get("pfad") else f"bethathost.de/{pin['site']}")
     bg, fg, mut, akzent, linie = FARBEN[pin["farbe"]]
     if pin.get("teaser", True):
         rumpf, fuss = teaser(pin)
@@ -251,6 +290,26 @@ def rendern(pins):
                 tmp.write_text(seite_html(pin), encoding="utf-8")
                 page.goto(f"http://127.0.0.1:{port}/assets/pins/{tmp.name}")
                 page.evaluate("document.fonts.ready")
+                if pin["art"] == "foto":
+                    page.wait_for_load_state("networkidle")
+                    # Titel hoechstens vier Zeilen, damit das Foto sichtbar bleibt.
+                    ok = page.evaluate("""() => {
+                      const t = document.getElementById('titel'), r = document.documentElement.style;
+                      let h1 = 104; r.setProperty('--h1', h1 + 'px');
+                      while (t.getBoundingClientRect().height > 4.2 * h1 && h1 > 64) {
+                        h1 -= 2; r.setProperty('--h1', h1 + 'px'); }
+                      return t.getBoundingClientRect().height <= 4.2 * h1;
+                    }""")
+                    if not ok:
+                        raise SystemExit(f"{pin['site']}-{pin['id']}: Titel zu lang - kuerzen")
+                    png = ZIEL / f"_{pin['site']}-{pin['id']}.png"
+                    page.screenshot(path=str(png))
+                    Image.open(png).convert("RGB").save(
+                        ZIEL / f"{pin['site']}-{pin['id']}.jpg", "JPEG", quality=86, optimize=True, progressive=True)
+                    png.unlink()
+                    tmp.unlink()
+                    tmp = None
+                    continue
                 # Schrift und Titel so lange verkleinern, bis alles in die Karte passt.
                 ok = page.evaluate("""() => {
                   const inh = document.getElementById('inhalt'), r = document.documentElement.style;
@@ -357,6 +416,8 @@ def pruefen(pins):
             raise SystemExit(f"Seite fehlt: {datei}")
         if f'id="{pin["anker"]}"' not in datei.read_text(encoding="utf-8"):
             raise SystemExit(f"{pin['site']}: Anker #{pin['anker']} gibt es nicht")
+        if pin["art"] == "foto" and not (ROOT / pin["foto"]).exists():
+            raise SystemExit(f"{pin['site']}-{pin['id']}: Foto fehlt: {pin['foto']}")
     ids = [f"{p['site']}-{p['id']}" for p in pins]
     doppelt = {i for i in ids if ids.count(i) > 1}
     if doppelt:
