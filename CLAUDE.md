@@ -588,6 +588,14 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
   `python3 scripts/build-pin-grafiken.py`. Ist die Queue leer oder fast leer, zeigt der
   Publish-Workflow eine **Warnung** im Actions-Log statt still grün durchzulaufen.
+- **Foto-Pins (`"art": "foto"`) — Vergleich seit 18.10.2026.** Die 35 Text-Karten aus
+  September/Oktober 2026 bekamen zusammen 26 Impressionen (1 pro Pin), die Foto-Pins aus dem
+  Juni 741 pro Pin. Ob das an der Optik liegt oder an einer Drosselung des Kontos, zeigt der
+  direkte Vergleich: sechs Foto-Pins (`?pin=foto-…`, 18.–23.10., je als dritter Pin neben zwei
+  Text-Karten). Gleiches Skript, gleiche Queue; das Foto liegt unter `pinterest/fotos/`
+  (2:3, eigenes Motiv, nie ein Lead- oder og:image-Bild), darauf nur Kicker, Titel und Marke.
+  **Auswertung ab etwa 02.11.:** Impressionen der `foto-`-Pins gegen die Text-Karten derselben
+  Tage. Liegen die Fotos klar vorn, nur noch Foto-Pins bauen.
 - **Kanal:** `"kanal": "rss"` = geht tropfweise über `feed.xml` raus (Standard seit 28.09.2026).
   `"kanal": "api"` = per Bulk-CSV bzw. API, sobald Standard-Zugang da ist, und **nie** im Feed.
   Einträge ohne das Feld sind alt und längst draußen.
