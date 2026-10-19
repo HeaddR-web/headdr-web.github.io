@@ -1,6 +1,6 @@
 # Besucher & Google-Suche
 
-Stand: 2026-10-12 · erzeugt von `scripts/web_stats.py` (Workflow `web-stats.yml`, montags). Nicht von Hand bearbeiten.
+Stand: 2026-10-19 · erzeugt von `scripts/web_stats.py` (Workflow `web-stats.yml`, montags). Nicht von Hand bearbeiten.
 
 ## Besucher (Cloudflare Web Analytics)
 
