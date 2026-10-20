@@ -1,8 +1,8 @@
 # Pinterest-Statistik
 
-Stand: 2026-10-19 · erzeugt von `scripts/pinterest_stats.py` (Workflow `pinterest-stats.yml`, montags). Nicht von Hand bearbeiten.
+Stand: 2026-10-20 · erzeugt von `scripts/pinterest_stats.py` (Workflow `pinterest-stats.yml`, montags). Nicht von Hand bearbeiten.
 
-**171 Pins** auf 4 Boards. Letzte 30 Tage: 12.741 Impressionen, 29× gemerkt, 430 Pin-Klicks, **7 Klicks zur Seite** (Klickrate zur Seite 0,1 %).
+**174 Pins** auf 4 Boards. Letzte 30 Tage: 12.226 Impressionen, 26× gemerkt, 403 Pin-Klicks, **6 Klicks zur Seite** (Klickrate zur Seite 0,0 %).
 
 Pinterest braucht erfahrungsgemaess einige Wochen, bis neue Pins nennenswert ausgespielt
 werden. Die Zahlen der letzten zwei, drei Tage sind oft noch unvollstaendig.
@@ -11,9 +11,9 @@ werden. Die Zahlen der letzten zwei, drei Tage sind oft noch unvollstaendig.
 
 | Woche ab | Neue Pins | Impressionen | Gemerkt | Pin-Klicks | Klicks zur Seite |
 |---|---:|---:|---:|---:|---:|
-| 20.07.2026 | 0 | 2.640 | 10 | 83 | 2 |
-| 27.07.2026 | 2 | 3.497 | 10 | 119 | 1 |
-| 03.08.2026 | 0 | 5.037 | 20 | 197 | 4 |
+| 20.07.2026 | 0 | 2.211 | 10 | 74 | 2 |
+| 27.07.2026 | 2 | 3.495 | 10 | 119 | 1 |
+| 03.08.2026 | 0 | 5.036 | 20 | 197 | 4 |
 | 10.08.2026 | 0 | 3.156 | 9 | 113 | 1 |
 | 17.08.2026 | 0 | 3.557 | 12 | 121 | 0 |
 | 24.08.2026 | 0 | 3.870 | 19 | 146 | 0 |
@@ -23,34 +23,34 @@ werden. Die Zahlen der letzten zwei, drei Tage sind oft noch unvollstaendig.
 | 21.09.2026 | 0 | 6.487 | 11 | 228 | 3 |
 | 28.09.2026 | 15 | 3.353 | 9 | 115 | 1 |
 | 05.10.2026 | 14 | 926 | 3 | 17 | 1 |
-| 12.10.2026 | 18 | 801 | 2 | 22 | 1 |
-| 19.10.2026 | 0 | 0 | 0 | 0 | 0 |
+| 12.10.2026 | 18 | 898 | 2 | 23 | 1 |
+| 19.10.2026 | 3 | 0 | 0 | 0 | 0 |
 
 ## Top 15 Pins (letzte 30 Tage, nach Impressionen)
 
 | Pin | Seite | Impressionen | Gemerkt | Klicks zur Seite |
 |---|---|---:|---:|---:|
-| Deutschland-Deko für die WM-Party (Checkliste) | (andere) | 6.897 | 12 | 3 |
-| Currywurst & Co.: die perfekten WM-Snacks | (andere) | 1.911 | 7 | 1 |
-| The Coziest Throw Blankets, Ranked | (andere) | 835 | 0 | 0 |
-| Getränke-Station für die WM-Party | (andere) | 446 | 1 | 0 |
-| How to Create a Cozy Entryway | (andere) | 394 | 0 | 1 |
-| Der Spa- & Pflegeabend zuhause, Schritt für Schritt | (andere) | 314 | 1 | 0 |
-| Cozy Desk Setup Ideas That Still Look Tidy | (andere) | 272 | 1 | 0 |
-| How to Style a Cozy Bookshelf | (andere) | 268 | 0 | 1 |
-| Cozy Living Room Ideas for Small Apartments | (andere) | 245 | 0 | 0 |
-| Cozy Bedroom Aesthetic on a Budget | (andere) | 191 | 0 | 0 |
+| Deutschland-Deko für die WM-Party (Checkliste) | (andere) | 6.579 | 9 | 3 |
+| Currywurst & Co.: die perfekten WM-Snacks | (andere) | 1.797 | 7 | 0 |
+| The Coziest Throw Blankets, Ranked | (andere) | 853 | 0 | 0 |
+| Getränke-Station für die WM-Party | (andere) | 443 | 1 | 0 |
+| How to Create a Cozy Entryway | (andere) | 383 | 0 | 1 |
+| Der Spa- & Pflegeabend zuhause, Schritt für Schritt | (andere) | 306 | 1 | 0 |
+| Cozy Desk Setup Ideas That Still Look Tidy | (andere) | 266 | 1 | 0 |
+| How to Style a Cozy Bookshelf | (andere) | 256 | 0 | 1 |
+| Cozy Living Room Ideas for Small Apartments | (andere) | 217 | 0 | 0 |
+| Cozy Bedroom Aesthetic on a Budget | (andere) | 179 | 0 | 0 |
 | 12 Cozy Reading Nook Ideas for Any Space | (andere) | 114 | 1 | 0 |
-| Warm Paint Colors That Make a Room Feel Cozy | (andere) | 101 | 1 | 0 |
-| How to Make a Rental Feel Cozy | (andere) | 97 | 0 | 0 |
-| The Best Cozy Rugs to Warm Up Any Room | (andere) | 84 | 1 | 0 |
-| 12 Themen- & Deko-Ideen für den Mädelsabend | (andere) | 66 | 0 | 0 |
+| Warm Paint Colors That Make a Room Feel Cozy | (andere) | 104 | 1 | 0 |
+| The Best Cozy Rugs to Warm Up Any Room | (andere) | 93 | 1 | 0 |
+| How to Make a Rental Feel Cozy | (andere) | 91 | 0 | 0 |
+| WM im Garten: Public Viewing für zuhause | (andere) | 64 | 0 | 0 |
 
 ## Je Seite (letzte 30 Tage)
 
 | Seite | Pins | Impressionen | Gemerkt | Klicks zur Seite |
 |---|---:|---:|---:|---:|
-| (andere) | 38 | 12.686 | 29 | 6 |
+| (andere) | 38 | 12.171 | 26 | 5 |
 | /oktoberfest/ | 4 | 19 | 0 | 1 |
 | /watchparty/ | 6 | 10 | 0 | 0 |
 | /halloween/ | 9 | 5 | 0 | 0 |
@@ -70,11 +70,14 @@ werden. Die Zahlen der letzten zwei, drei Tage sind oft noch unvollstaendig.
 | /geburtstag/ | 6 | 0 | 0 | 0 |
 | /gartenparty/ | 6 | 0 | 0 | 0 |
 | /girlsnight/ | 7 | 0 | 0 | 0 |
+| /weihnachtsfeier/ | 4 | 0 | 0 | 0 |
+| /ratgeber/raclette-fondue-set.html | 1 | 0 | 0 | 0 |
 | /wichtelgeschenke/ | 1 | 0 | 0 | 0 |
 | /adventskalender/ | 3 | 0 | 0 | 0 |
-| /weihnachtsfeier/ | 2 | 0 | 0 | 0 |
 
 ## Aufräumbedarf
 
 - **5 Titel mehrfach** auf den Boards, zusammen 10 Pins (bis zu 2× derselbe). Pinterest wertet Wiederholungen als Spam-Muster und drosselt die Reichweite.
 - **38 Pins** verlinken nicht auf bethathost.de (alte Adresse oder Cozylore).
+
+_2 Pin(s) ohne Zahlen (API-Fehler), z. B.: `1136877499709441359: HTTP 500 Internal Server Error — {"code":12,"message":"Something went wrong on our end. Sorry about that.","details":{"request_id":"4811775564216967"}}`_

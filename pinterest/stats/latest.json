@@ -1,6 +1,6 @@
 {
- "stand": "2026-10-19",
- "von": "2026-07-22",
+ "stand": "2026-10-20",
+ "von": "2026-07-23",
  "pins": [
   {
    "id": "1136877499711133090",
@@ -503,7 +503,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 26,
+    "IMPRESSION": 24,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1092,7 +1092,7 @@
    "erstellt": "2026-07-03",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 8,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1130,7 +1130,7 @@
    "erstellt": "2026-06-29",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 5,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1149,7 +1149,7 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 15,
+    "IMPRESSION": 12,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1168,7 +1168,7 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1187,13 +1187,13 @@
    "erstellt": "2026-06-27",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 834,
+    "IMPRESSION": 839,
     "SAVE": 3,
     "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 314,
+    "IMPRESSION": 306,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1206,13 +1206,13 @@
    "erstellt": "2026-06-26",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 164,
+    "IMPRESSION": 161,
     "SAVE": 2,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 66,
+    "IMPRESSION": 63,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1225,7 +1225,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1243,12 +1243,7 @@
    "link": "https://bethathost.de/geburtstag/",
    "erstellt": "2026-06-25",
    "board": "Astethic",
-   "summe": {
-    "IMPRESSION": 4,
-    "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
-   },
+   "summe": {},
    "30t": {
     "IMPRESSION": 0,
     "SAVE": 0,
@@ -1263,7 +1258,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1282,13 +1277,13 @@
    "erstellt": "2026-06-24",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 403,
+    "IMPRESSION": 362,
     "SAVE": 0,
     "PIN_CLICK": 11,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 40,
+    "IMPRESSION": 38,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1320,13 +1315,13 @@
    "erstellt": "2026-06-23",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 47,
+    "IMPRESSION": 48,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 8,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1358,13 +1353,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 239,
+    "IMPRESSION": 214,
     "SAVE": 0,
     "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 65,
+    "IMPRESSION": 61,
     "SAVE": 0,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
@@ -1377,13 +1372,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 233,
+    "IMPRESSION": 236,
     "SAVE": 0,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 97,
+    "IMPRESSION": 91,
     "SAVE": 0,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
@@ -1434,13 +1429,13 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 133,
+    "IMPRESSION": 146,
     "SAVE": 1,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 84,
+    "IMPRESSION": 93,
     "SAVE": 1,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
@@ -1453,13 +1448,13 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2066,
+    "IMPRESSION": 2084,
     "SAVE": 6,
-    "PIN_CLICK": 54,
+    "PIN_CLICK": 55,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 394,
+    "IMPRESSION": 383,
     "SAVE": 0,
     "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 1
@@ -1491,13 +1486,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1022,
+    "IMPRESSION": 1020,
     "SAVE": 2,
     "PIN_CLICK": 23,
     "OUTBOUND_CLICK": 2
    },
    "30t": {
-    "IMPRESSION": 268,
+    "IMPRESSION": 256,
     "SAVE": 0,
     "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 1
@@ -1510,7 +1505,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1535,7 +1530,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 35,
+    "IMPRESSION": 33,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1548,45 +1543,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 25,
-    "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
-   },
-   "30t": {
-    "IMPRESSION": 3,
-    "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
-   }
-  },
-  {
-   "id": "1136877499708714656",
-   "titel": "Cozy Balcony Ideas for Small Outdoor Spaces",
-   "link": "https://headdr-web.github.io/cozy/posts/cozy-balcony-ideas.html",
-   "erstellt": "2026-06-15",
-   "board": "Astethic",
-   "summe": {
-    "IMPRESSION": 92,
-    "SAVE": 1,
-    "PIN_CLICK": 3,
-    "OUTBOUND_CLICK": 0
-   },
-   "30t": {
-    "IMPRESSION": 56,
-    "SAVE": 1,
-    "PIN_CLICK": 3,
-    "OUTBOUND_CLICK": 0
-   }
-  },
-  {
-   "id": "1136877499708714328",
-   "titel": "Cheap Cozy Decor Finds Under €25",
-   "link": "https://headdr-web.github.io/cozy/posts/cheap-cozy-decor-under-25.html",
-   "erstellt": "2026-06-15",
-   "board": "Astethic",
-   "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 24,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1599,19 +1556,57 @@
    }
   },
   {
+   "id": "1136877499708714656",
+   "titel": "Cozy Balcony Ideas for Small Outdoor Spaces",
+   "link": "https://headdr-web.github.io/cozy/posts/cozy-balcony-ideas.html",
+   "erstellt": "2026-06-15",
+   "board": "Astethic",
+   "summe": {
+    "IMPRESSION": 90,
+    "SAVE": 1,
+    "PIN_CLICK": 3,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 52,
+    "SAVE": 1,
+    "PIN_CLICK": 3,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499708714328",
+   "titel": "Cheap Cozy Decor Finds Under €25",
+   "link": "https://headdr-web.github.io/cozy/posts/cheap-cozy-decor-under-25.html",
+   "erstellt": "2026-06-15",
+   "board": "Astethic",
+   "summe": {
+    "IMPRESSION": 9,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 3,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
    "id": "1136877499708714271",
    "titel": "The Coziest Throw Blankets, Ranked",
    "link": "https://headdr-web.github.io/cozy/posts/coziest-throw-blankets.html",
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1251,
+    "IMPRESSION": 1268,
     "SAVE": 1,
     "PIN_CLICK": 14,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 835,
+    "IMPRESSION": 853,
     "SAVE": 0,
     "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
@@ -1624,13 +1619,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1596,
+    "IMPRESSION": 1576,
     "SAVE": 2,
     "PIN_CLICK": 36,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 272,
+    "IMPRESSION": 266,
     "SAVE": 1,
     "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 0
@@ -1643,13 +1638,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 353,
+    "IMPRESSION": 355,
     "SAVE": 2,
     "PIN_CLICK": 19,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 101,
+    "IMPRESSION": 104,
     "SAVE": 1,
     "PIN_CLICK": 6,
     "OUTBOUND_CLICK": 0
@@ -1668,7 +1663,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 19,
+    "IMPRESSION": 17,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1681,7 +1676,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 197,
+    "IMPRESSION": 201,
     "SAVE": 2,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
@@ -1700,15 +1695,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 542,
+    "IMPRESSION": 545,
     "SAVE": 0,
     "PIN_CLICK": 20,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 245,
+    "IMPRESSION": 217,
     "SAVE": 0,
-    "PIN_CLICK": 8,
+    "PIN_CLICK": 6,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1719,13 +1714,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 172,
+    "IMPRESSION": 171,
     "SAVE": 0,
-    "PIN_CLICK": 5,
+    "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 46,
+    "IMPRESSION": 44,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -1738,15 +1733,72 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 894,
+    "IMPRESSION": 892,
     "SAVE": 1,
     "PIN_CLICK": 15,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 191,
+    "IMPRESSION": 179,
     "SAVE": 0,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 2,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718761840",
+   "titel": "Glühwein-Station für die Weihnachtsfeier zuhause",
+   "link": "https://bethathost.de/weihnachtsfeier/?pin=foto-gluehwein#gluehwein",
+   "erstellt": "2026-10-19",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718761835",
+   "titel": "Plätzchen-Tausch: die schönste Idee für die Weihnachtsfeier",
+   "link": "https://bethathost.de/weihnachtsfeier/?pin=plaetzchen#buffet",
+   "erstellt": "2026-10-19",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499718761833",
+   "titel": "Raclette & Fondue: So viel Käse brauchst du pro Person",
+   "link": "https://bethathost.de/ratgeber/raclette-fondue-set.html?pin=raclette#mengen-und-kaese",
+   "erstellt": "2026-10-19",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1889,12 +1941,7 @@
    "link": "https://bethathost.de/adventskalender/?pin=plan#budget",
    "erstellt": "2026-10-16",
    "board": "Party & Gastgeben Ideen",
-   "summe": {
-    "IMPRESSION": 0,
-    "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
-   },
+   "summe": {},
    "30t": {
     "IMPRESSION": 0,
     "SAVE": 0,
@@ -2688,7 +2735,7 @@
    "erstellt": "2026-07-03",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 20,
+    "IMPRESSION": 17,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2707,7 +2754,7 @@
    "erstellt": "2026-07-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 7,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2764,7 +2811,7 @@
    "erstellt": "2026-07-01",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 146,
+    "IMPRESSION": 129,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -2783,7 +2830,7 @@
    "erstellt": "2026-06-30",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2821,7 +2868,7 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 12,
+    "IMPRESSION": 9,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2840,7 +2887,7 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 15,
+    "IMPRESSION": 13,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2859,7 +2906,7 @@
    "erstellt": "2026-06-28",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2897,7 +2944,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 4,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2916,7 +2963,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 12,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -2954,7 +3001,7 @@
    "erstellt": "2026-06-26",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 28,
+    "IMPRESSION": 27,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3068,13 +3115,13 @@
    "erstellt": "2026-06-21",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 448,
+    "IMPRESSION": 404,
     "SAVE": 2,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 65,
+    "IMPRESSION": 64,
     "SAVE": 0,
     "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
@@ -3087,13 +3134,13 @@
    "erstellt": "2026-06-20",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 75,
+    "IMPRESSION": 73,
     "SAVE": 1,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 9,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -3106,7 +3153,7 @@
    "erstellt": "2026-06-19",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3125,16 +3172,16 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 4257,
+    "IMPRESSION": 4243,
     "SAVE": 20,
-    "PIN_CLICK": 199,
+    "PIN_CLICK": 198,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 1911,
+    "IMPRESSION": 1797,
     "SAVE": 7,
-    "PIN_CLICK": 65,
-    "OUTBOUND_CLICK": 1
+    "PIN_CLICK": 62,
+    "OUTBOUND_CLICK": 0
    }
   },
   {
@@ -3144,13 +3191,13 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 31,
+    "IMPRESSION": 29,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 5,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3163,15 +3210,15 @@
    "erstellt": "2026-06-17",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 25279,
+    "IMPRESSION": 25113,
     "SAVE": 81,
-    "PIN_CLICK": 982,
+    "PIN_CLICK": 975,
     "OUTBOUND_CLICK": 6
    },
    "30t": {
-    "IMPRESSION": 6897,
-    "SAVE": 12,
-    "PIN_CLICK": 273,
+    "IMPRESSION": 6579,
+    "SAVE": 9,
+    "PIN_CLICK": 255,
     "OUTBOUND_CLICK": 3
    }
   },
@@ -3201,13 +3248,13 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 400,
+    "IMPRESSION": 394,
     "SAVE": 1,
     "PIN_CLICK": 15,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 57,
+    "IMPRESSION": 51,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -3220,7 +3267,7 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 47,
+    "IMPRESSION": 43,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3239,34 +3286,34 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 1214,
+    "IMPRESSION": 1201,
     "SAVE": 4,
     "PIN_CLICK": 42,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 446,
+    "IMPRESSION": 443,
     "SAVE": 1,
-    "PIN_CLICK": 20,
+    "PIN_CLICK": 17,
     "OUTBOUND_CLICK": 0
    }
   }
  ],
  "wochen": {
   "2026-07-20": {
-   "IMPRESSION": 2640,
+   "IMPRESSION": 2211,
    "SAVE": 10,
-   "PIN_CLICK": 83,
+   "PIN_CLICK": 74,
    "OUTBOUND_CLICK": 2
   },
   "2026-07-27": {
-   "IMPRESSION": 3497,
+   "IMPRESSION": 3495,
    "SAVE": 10,
    "PIN_CLICK": 119,
    "OUTBOUND_CLICK": 1
   },
   "2026-08-03": {
-   "IMPRESSION": 5037,
+   "IMPRESSION": 5036,
    "SAVE": 20,
    "PIN_CLICK": 197,
    "OUTBOUND_CLICK": 4
@@ -3326,9 +3373,9 @@
    "OUTBOUND_CLICK": 1
   },
   "2026-10-12": {
-   "IMPRESSION": 801,
+   "IMPRESSION": 898,
    "SAVE": 2,
-   "PIN_CLICK": 22,
+   "PIN_CLICK": 23,
    "OUTBOUND_CLICK": 1
   },
   "2026-10-19": {
