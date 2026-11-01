@@ -121,7 +121,8 @@
       header.site nav a:hover { color: var(--rose); }
 
       /* ---------- Hero (asymmetrisch, redaktionell) ---------- */
-      .hero { padding: 80px 0 30px; }
+      /* nur oben/unten: die Sektion trägt auch .wrap, deren Seitenrand bleiben muss */
+      .hero { padding-top: 80px; padding-bottom: 30px; }
       .hero .kick {
         font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.28em;
         color: var(--rose); font-weight: 700; margin: 0 0 22px;
@@ -245,7 +246,7 @@
         .occ-row { grid-template-columns: 1fr; gap: 18px; padding: 36px 0; }
         /* Bild zuerst auf dem Handy, einheitlich */
         .occ-media { order: -1; }
-        .hero { padding: 52px 0 20px; }
+        .hero { padding-top: 52px; padding-bottom: 20px; }
         footer.site .inner { flex-direction: column; gap: 8px; }
       }
       @media (max-width: 420px) {
@@ -301,7 +302,6 @@
       <section id="saison" class="wrap" aria-label="Jetzt planen">
         <div class="saison">
           <p class="sec-label">Jetzt planen</p>
-          <a href="/halloween/"><b>Halloween-Party</b><span>Samstag, 31. Oktober</span></a>
           <a href="/weihnachtsfeier/"><b>Weihnachtsfeier</b><span>Advent ab 29. November</span></a>
           <a href="/adventskalender/"><b>Adventskalender</b><span>24 Ideen, ab 1. Dezember</span></a>
           <a href="/wichtelgeschenke/"><b>Wichtelgeschenke</b><span>Ideen bis 10 &amp; 20 €</span></a>
