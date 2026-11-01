@@ -1786,3 +1786,546 @@ table.faustregeln tbody th {
 .hub-text a {
   color: var(--rose-deep);
 }
+
+/* ---------- Shop-Schaufenster (/shop/) ----------
+ * Hallmark · macrostructure: 11-catalogue · Richtung C Namensprobe (Stefanie, 01.11.2026)
+ * pre-emit critique: P4 H4 E4 S5 R5 V4
+ * Signaturmotiv: dunkles Tintenband, Papier-Tischkarten auf Standfuß ragen über die Kante. Gilt nur unter body.shop.
+ * Bis zu echten Listings ist der Kaufweg ein Status (.shop-etsy als span), kein Link. */
+body.shop header.site {
+  border-bottom: 0;
+}
+/* Sprunglink, sichtbar erst mit Tastaturfokus */
+.shop-sprung {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 40;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 0.95rem/1 var(--ui);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+}
+.shop-sprung:focus-visible {
+  top: 12px;
+  outline: 3px solid var(--rose-deep);
+  outline-offset: 2px;
+}
+body.shop main:focus {
+  outline: none;
+}
+/* Kopfzeile klebt oben (gemessen 71 bis 108 px hoch): Fokus nie darunter */
+html:has(body.shop) {
+  scroll-padding-top: 8rem;
+}
+/* Cookie-Banner (fest unten, gemessen 79 bis 119 px hoch): Platz lassen, solange er steht */
+html:has(body.shop #bth-consent-banner) {
+  scroll-padding-bottom: 8rem;
+}
+body.shop:has(#bth-consent-banner) {
+  padding-bottom: 8rem;
+}
+@media (prefers-reduced-transparency: reduce) {
+  body.shop header.site {
+    background: var(--bg);
+    backdrop-filter: none;
+  }
+}
+/* muted auf bg nur 3.56:1, im Shop ink */
+body.shop header.site nav a,
+body.shop footer.site,
+body.shop footer.site a,
+body.shop footer.site .cookie-settings-link {
+  color: var(--ink);
+  font-size: 0.875rem;
+}
+/* R5: sitewide 12,5 bis 13,6 px, im Shop mindestens 14 px */
+@media (max-width: 620px) {
+  body.shop #bth-consent-banner .bth-consent-text {
+    font-size: 0.875rem;
+  }
+}
+body.shop footer.site {
+  border-top: 0;
+}
+/* sitewide bricht "Offenlegung & Datenschutz" bei 375 px um, im Shop nicht */
+body.shop footer.site a {
+  white-space: nowrap;
+}
+body.shop main {
+  max-width: none;
+  padding: 0;
+}
+body.shop h1,
+body.shop h2,
+body.shop h3 {
+  font-style: normal;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+body.shop figure {
+  margin: 0;
+}
+.shop-tuch {
+  background: var(--ink);
+  color: var(--paper);
+}
+.shop-tuch ::selection {
+  background: var(--sand-light);
+  color: var(--ink);
+}
+.shop-innen {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 52px 24px 44px;
+}
+.shop-kopf {
+  padding-bottom: 36px;
+}
+.shop-kopf h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+  color: var(--paper);
+}
+.shop-weg {
+  margin: 0;
+  font-weight: 600;
+}
+/* Eingabe direkt auf dem Band, kein zweiter heller Kasten neben der Überschrift */
+.shop-probe {
+  margin-top: 32px;
+  max-width: 760px;
+}
+.shop-probe label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.shop-probe input {
+  width: 100%;
+  box-sizing: border-box;
+  font: 400 1.05rem/1.4 var(--ui);
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--paper);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+body.shop ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+.shop-probe input {
+  caret-color: var(--rose-deep);
+}
+.shop-probe input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+.shop-probe small {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.shop-tafel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.shop-karte {
+  background: var(--paper);
+  border-radius: var(--radius-lg) var(--radius-lg) 2px 2px;
+  aspect-ratio: 2 / 1;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  margin-bottom: 14px;
+  position: relative;
+  box-shadow: var(--shadow-card);
+  container-type: inline-size;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+/* Standfuß des Halters, unter der Karte */
+.shop-karte::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  bottom: -14px;
+  height: 14px;
+  border-radius: 0 0 3px 3px;
+  background: var(--sand-light);
+}
+/* die Karte zum Namen, an dem der Cursor steht: hebt sich, Fuß wird gold */
+.shop-karte.ist-aktiv {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 40px rgba(26, 22, 17, 0.45);
+}
+.shop-karte.ist-aktiv::after {
+  background: var(--gold);
+}
+@media (prefers-reduced-motion: reduce) {
+  .shop-karte {
+    transition: none;
+  }
+}
+.shop-karte span {
+  font-family: var(--display);
+  font-weight: 400;
+  /* lange Namen (--n = Zeichenzahl, gesetzt vom Skript) passen in zwei Zeilen */
+  font-size: min(clamp(1.4rem, 3vw, 2.4rem), calc(260cqi / max(var(--n, 6), 6)));
+  line-height: 1.15;
+  color: var(--ink-strong);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.shop-breit {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 44px 24px 72px;
+}
+/* Karten und Fotofläche ragen über die Unterkante des Bands */
+.shop-tuch-haengt .shop-innen {
+  padding-bottom: 0;
+}
+/* ohne eigenen Formatierungskontext rutscht der negative Rand nach außen durch */
+.shop-tuch-haengt,
+.shop-tuch-haengt .shop-innen {
+  display: flow-root;
+}
+.shop-haengt {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -64px;
+}
+.shop-tuch-haengt + .shop-breit {
+  padding-top: 112px;
+}
+.shop-reihe {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+/* Übersicht: zwei Produkte bewusst ungleich gewichtet */
+.shop-reihe[aria-label] {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 40px;
+  align-items: start;
+}
+.shop-reihe[aria-label] .shop-produkt:nth-child(2) {
+  margin-top: 72px;
+}
+.shop-reihe[aria-label] .shop-produkt:nth-child(2) .shop-ph {
+  aspect-ratio: 4 / 5;
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+.shop-ph {
+  background: var(--sand-light);
+  color: var(--ink);
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font: 500 0.875rem/1.4 var(--ui);
+  letter-spacing: 0.02em;
+  padding: 16px;
+  aspect-ratio: 4 / 3;
+}
+.shop-produkt h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  margin: 14px 0 4px;
+}
+.shop-produkt p {
+  margin: 0 0 12px;
+}
+.shop-preis {
+  font: 600 1rem/1.3 var(--ui);
+  margin: 0 0 4px;
+}
+.shop-mehr {
+  display: inline-block;
+  color: var(--rose-deep);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 10px 0;
+}
+.shop-mehr:hover {
+  color: var(--ink);
+}
+.shop-mehr:active,
+.shop-zurueck:active {
+  color: var(--ink-strong);
+  text-decoration-thickness: 2px;
+}
+.shop-mehr:focus-visible,
+.shop-zurueck:focus-visible {
+  outline: 3px solid var(--rose-deep);
+  outline-offset: 2px;
+}
+/* Kaufweg-Status: bis echte Listings da sind KEIN Link */
+.shop-etsy {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--ink-strong);
+  font: 600 0.95rem/1 var(--ui);
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+.shop-etsy-hinweis {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 10px 0 0;
+  max-width: 42ch;
+}
+.shop-daten {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 16px;
+  margin: 12px 0 18px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.shop-daten dt {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.875rem;
+  padding-top: 1px;
+}
+.shop-daten dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+/* schmale Handys: Beschriftung über dem Wert statt daneben */
+@media (max-width: 420px) {
+  .shop-daten {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .shop-daten dd {
+    margin-bottom: 8px;
+  }
+}
+.shop-gpsr {
+  background: var(--card-2);
+  color: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin: 0 0 18px;
+}
+.shop-gpsr h2,
+.shop-gpsr h3 {
+  font: 700 0.875rem/1.3 var(--ui);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 8px;
+}
+.shop-gpsr p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.shop-ablauf {
+  margin-top: 88px;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px;
+  align-items: start;
+}
+.shop-ablauf h2,
+.shop-zwischen {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+.shop-ablauf h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+/* Wortpaar mit Bindestrich nicht trennen */
+.shop-ganz {
+  display: inline-block;
+}
+.shop-klein {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 36ch;
+}
+.shop-schritte {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: schritt;
+}
+.shop-schritte li {
+  counter-increment: schritt;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  column-gap: 16px;
+  padding: 0 0 24px;
+}
+.shop-schritte li::before {
+  content: counter(schritt);
+  grid-row: span 2;
+  font: 400 4rem/0.9 var(--display);
+  color: var(--rose-deep);
+}
+.shop-schritte h3 {
+  font: 600 1.125rem/1.3 var(--ui);
+  margin: 4px 0 4px;
+}
+.shop-schritte p {
+  margin: 0;
+}
+/* Produktseite */
+.shop-zurueck {
+  display: inline-block;
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 6px 0;
+  margin-bottom: 18px;
+}
+.shop-zurueck:hover,
+.shop-zurueck:active {
+  color: var(--sand-light);
+}
+.shop-zurueck:focus-visible {
+  outline-color: var(--gold);
+}
+.shop-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 36px;
+  align-items: start;
+}
+.shop-detail .shop-ph {
+  box-shadow: var(--shadow-card);
+  background: var(--paper);
+  align-content: center;
+  gap: 28px;
+}
+.shop-karte-einzeln {
+  width: min(70%, 360px);
+  background: var(--bg);
+  box-shadow: var(--shadow-media);
+}
+.shop-karte-einzeln span {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+/* JGA: vier Anhänger als Set, die Form folgt dem Musterdruck */
+.shop-set {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.shop-set i {
+  width: clamp(48px, 9vw, 88px);
+  aspect-ratio: 2 / 3;
+  border-radius: 999px 999px 14px 14px;
+  background: var(--sand-light);
+  position: relative;
+}
+.shop-set i:nth-child(even) {
+  margin-top: 28px;
+  background: var(--card-2);
+}
+/* Loch für den Ring */
+.shop-set i::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  width: 22%;
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 3px var(--ink);
+}
+.shop-detail h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  color: var(--paper);
+}
+.shop-detail .shop-preis {
+  margin-bottom: 18px;
+}
+@media (max-width: 760px) {
+  .shop-reihe,
+  .shop-reihe[aria-label],
+  .shop-detail,
+  .shop-ablauf {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shop-reihe[aria-label] .shop-produkt:nth-child(2) {
+    margin-top: 0;
+  }
+  .shop-reihe[aria-label] .shop-produkt:nth-child(2) .shop-ph {
+    aspect-ratio: 16 / 9;
+  }
+  .shop-ablauf {
+    margin-top: 56px;
+    gap: 16px;
+  }
+  .shop-haengt {
+    margin-bottom: -40px;
+  }
+  .shop-tuch-haengt + .shop-breit {
+    padding-top: 80px;
+  }
+  .shop-schritte li {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+  .shop-schritte li::before {
+    font-size: 2.8rem;
+  }
+  .shop-innen {
+    padding: 32px 16px 36px;
+  }
+  .shop-breit {
+    padding: 36px 16px 56px;
+  }
+  .shop-tafel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 12px;
+  }
+  .shop-kopf {
+    padding-bottom: 28px;
+  }
+  /* Platzhalter flach halten, bis echte Fotos ihr eigenes Format mitbringen */
+  .shop-ph {
+    aspect-ratio: 16 / 9;
+  }
+  .shop-detail {
+    gap: 24px;
+  }
+  /* Handy: erst Titel und Kaufweg, dann ragt die Fotofläche über die Kante */
+  .shop-detail .shop-ph {
+    order: 2;
+  }
+}

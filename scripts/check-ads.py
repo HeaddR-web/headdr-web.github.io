@@ -33,6 +33,9 @@ OHNE_WERBUNG = {
     "cocktailabend/disclosure.html": "Affiliate-Offenlegung",
     "girlsnight/disclosure.html": "Affiliate-Offenlegung",
     "watchparty/disclosure.html": "Affiliate-Offenlegung",
+    "shop/index.html": "Shop-Schaufenster, fremde Werbung neben dem Etsy-Kaufweg",
+    "shop/platzkartenhalter.html": "Shop-Produktseite",
+    "shop/jga-anhaenger.html": "Shop-Produktseite",
 }
 
 SLOT_RE = re.compile(r'<div class="ad-slot[^"]*">(.*?)</div>', re.S)

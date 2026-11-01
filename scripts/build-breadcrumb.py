@@ -53,6 +53,8 @@ AUSGENOMMEN = {
     "dashboard.html", "produkt-review.html", "ueber-uns.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",
+    # Shop-Schaufenster: keine Karte auf der Startseite, bis der Shop live geht
+    "shop/index.html", "shop/platzkartenhalter.html", "shop/jga-anhaenger.html",
 }
 
 BLOCK_RE = re.compile(r'[ \t]*<!-- BREADCRUMB:START.*?<!-- BREADCRUMB:END -->\n?', re.S)
