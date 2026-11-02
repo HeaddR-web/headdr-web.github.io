@@ -3219,7 +3219,12 @@
    "link": "https://bethathost.de/halloween/?pin=kuerbis#kuerbis",
    "erstellt": "2026-09-30",
    "board": "Party & Gastgeben Ideen",
-   "summe": {},
+   "summe": {
+    "IMPRESSION": 1,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
    "30t": {
     "IMPRESSION": 0,
     "SAVE": 0,
@@ -3924,7 +3929,7 @@
    "OUTBOUND_CLICK": 3
   },
   "2026-09-28": {
-   "IMPRESSION": 3352,
+   "IMPRESSION": 3353,
    "SAVE": 9,
    "PIN_CLICK": 115,
    "OUTBOUND_CLICK": 1
