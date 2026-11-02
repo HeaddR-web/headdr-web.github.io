@@ -18,7 +18,7 @@
     <meta property="og:title" content="Platzkartenhalter und JGA-Anhänger mit Namen" />
     <meta property="og:description" content="Personalisierte Teile aus dem 3D-Drucker für Hochzeit, Geburtstag und JGA. Hier ansehen, auf Etsy kaufen." />
     <meta property="og:type" content="website" />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-grotesk.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="stylesheet" href="/assets/style.css" />
@@ -37,58 +37,101 @@
     </header>
 
     <main id="inhalt" tabindex="-1">
-      <section class="shop-tuch shop-tuch-haengt">
-        <div class="shop-innen">
-          <div class="shop-kopf">
-            <h1>Deine Gäste,<br /> schon am Tisch.</h1>
-            <p class="shop-weg">Hier ansehen, bei Etsy kaufen. Diese Seite hat keine Kasse.</p>
-            <div class="shop-probe" id="namensprobe">
-              <label for="namen">Tipp deine Gästeliste ein, mit Komma getrennt</label>
-              <input id="namen" value="Anna, Ben, Clara, Deniz, Emil, Frieda" autocomplete="off" maxlength="300" aria-describedby="namen-hinweis namen-stand" />
-              <small id="namen-hinweis">Vorschau für bis zu 9 Namen mit je bis zu 24 Zeichen, kein Druckbild. Diese Seite überträgt oder speichert deine Eingabe nicht.</small>
-              <small id="namen-stand" aria-live="polite"></small>
-              <noscript><small>Ohne JavaScript zeigt die Vorschau nur das Beispiel.</small></noscript>
+      <section class="shop-druck" aria-labelledby="titel">
+        <div class="shop-innen shop-buehne">
+          <div class="shop-text">
+            <p class="shop-name druckt" aria-hidden="true"><span class="shop-name-text">Lena</span><span class="shop-duese"></span></p>
+            <h1 id="titel">Platzkartenhalter und JGA-Anhänger mit Namen</h1>
+            <p class="shop-lead">Jeder Name wird Schicht für Schicht gedruckt. Entworfen von BeThatHost, gedruckt bei einem 3D-Druck-Partner, verschickt von uns selbst.</p>
+            <div class="shop-kauf">
+              <span class="shop-etsy">Etsy-Link folgt</span>
+              <span class="shop-mono">Preis folgt</span>
+            </div>
+            <p class="shop-etsy-hinweis">Sobald das Etsy-Listing steht, führt dieser Knopf dorthin. Den Namen gibst du dort bei der Bestellung an. Diese Seite hat keine eigene Kasse.</p>
+          </div>
+          <figure class="shop-teile">
+            <svg class="shop-svg-halter" viewBox="0 0 300 230" aria-hidden="true" focusable="false">
+              <defs><pattern id="h0" width="8" height="4" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="4" fill="#ff6b4a"/><rect y="3" width="8" height="1" fill="#000" opacity="0.12"/></pattern><linearGradient id="h0k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1ebe0"/></linearGradient></defs>
+              <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
+              <g transform="translate(150 40) skewX(-4)">
+                <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#h0k)" stroke="#00000014"/>
+                <text x="0" y="74" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="34.0" font-weight="700" fill="#2a2420">Lena</text>
+                <text x="0" y="102" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="13" fill="#2a242099">Tisch 4</text>
+              </g>
+              <path class="t-hell" d="M30 168 L270 168 L282 182 L18 182 Z" fill="#ff8a6e"/>
+              <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#h0)"/>
+              <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
+            </svg>
+            <figcaption class="shop-mono">Gezeichnetes Muster, kein Foto. Form, Farben und Fotos folgen nach dem Musterdruck.</figcaption>
+          </figure>
+          <div class="shop-spulen" role="group" aria-labelledby="spulen-titel">
+            <p id="spulen-titel" class="shop-mono">Beispielfarben</p>
+            <div class="shop-spulen-reihe">
+              <button type="button" class="shop-spule" aria-pressed="true" data-teil="#ff6b4a" data-dunkel="#d9543a" data-name="#ff6b4a" data-text="#0000008c" style="--c: #ff6b4a"><i></i>Koralle</button>
+              <button type="button" class="shop-spule" aria-pressed="false" data-teil="#3fbf9b" data-dunkel="#2f9b7c" data-name="#3fbf9b" data-text="#0000008c" style="--c: #3fbf9b"><i></i>Minze</button>
+              <button type="button" class="shop-spule" aria-pressed="false" data-teil="#ffc23d" data-dunkel="#d99e1f" data-name="#ffc23d" data-text="#0000008c" style="--c: #ffc23d"><i></i>Sonne</button>
+              <button type="button" class="shop-spule" aria-pressed="false" data-teil="#2b2b29" data-dunkel="#121211" data-name="#2b2b29" data-text="#f7f6f1d9" style="--c: #2b2b29"><i></i>Graphit</button>
+              <button type="button" class="shop-spule" aria-pressed="false" data-teil="#f7f6f1" data-dunkel="#cfcabd" data-name="#d9d5c9" data-text="#0000008c" style="--c: #f7f6f1"><i></i>Kreide</button>
             </div>
           </div>
-          <div class="shop-tafel shop-haengt" id="tafel" aria-hidden="true">
-            <div class="shop-karte ist-aktiv"><span>Anna</span></div>
-            <div class="shop-karte"><span>Ben</span></div>
-            <div class="shop-karte"><span>Clara</span></div>
-            <div class="shop-karte"><span>Deniz</span></div>
-            <div class="shop-karte"><span>Emil</span></div>
-            <div class="shop-karte"><span>Frieda</span></div>
+        </div>
+      </section>
+      <section class="shop-reihe" aria-labelledby="produkte">
+        <div class="shop-innen">
+          <h2 id="produkte">Für die Tafel und den JGA</h2>
+          <div class="shop-produkte">
+          <div class="shop-produkt">
+            <figure class="shop-bett">
+              <svg class="shop-svg-halter" viewBox="0 0 300 230" aria-hidden="true" focusable="false">
+              <defs><pattern id="h1" width="8" height="4" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="4" fill="#ff6b4a"/><rect y="3" width="8" height="1" fill="#000" opacity="0.12"/></pattern><linearGradient id="h1k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1ebe0"/></linearGradient></defs>
+              <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
+              <g transform="translate(150 40) skewX(-4)">
+                <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#h1k)" stroke="#00000014"/>
+                <text x="0" y="74" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="34.0" font-weight="700" fill="#2a2420">Lena</text>
+                <text x="0" y="102" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="13" fill="#2a242099">Tisch 4</text>
+              </g>
+              <path class="t-hell" d="M30 168 L270 168 L282 182 L18 182 Z" fill="#ff8a6e"/>
+              <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#h1)"/>
+              <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
+            </svg>
+              <figcaption class="shop-mono">Teil 01 · gezeichnetes Muster</figcaption>
+            </figure>
+            <h3>Platzkartenhalter mit Namen</h3>
+            <p class="shop-preis">Preis folgt (Endpreis), Versand laut Etsy-Listing</p>
+            <p>Ein Halter je Gast, mit dem Namen gedruckt. Für Hochzeit und Geburtstag.</p>
+            <a class="shop-mehr" href="/shop/platzkartenhalter.html">Details zum Platzkartenhalter</a>
+          </div>
+          <div class="shop-produkt">
+            <figure class="shop-bett">
+              <svg class="shop-svg-anhaenger" viewBox="0 0 260 120" aria-hidden="true" focusable="false">
+              <defs><pattern id="a2" width="8" height="3" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="3" fill="#ff6b4a"/><rect y="2" width="8" height="1" fill="#000" opacity="0.12"/></pattern><linearGradient id="a2m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f2f2"/><stop offset=".5" stop-color="#9a9a9a"/><stop offset="1" stop-color="#dcdcdc"/></linearGradient></defs>
+              <ellipse cx="140" cy="108" rx="110" ry="7" fill="#000" opacity="0.10"/>
+              <circle cx="36" cy="56" r="26" fill="none" stroke="url(#a2m)" stroke-width="5"/>
+              <rect x="50" y="24" width="196" height="70" rx="35" fill="url(#a2)"/>
+              <circle cx="80" cy="59" r="9" fill="#00000026"/>
+              <text x="164" y="70" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="30.0" font-weight="700" fill="#ffffff40">BRAUT</text>
+              <text class="t-text" x="163" y="69" text-anchor="middle" font-family='"Big Shoulders Display", "Arial Narrow", sans-serif' font-size="30.0" font-weight="700" fill="#0000008c">BRAUT</text>
+            </svg>
+              <figcaption class="shop-mono">Teil 02 · gezeichnetes Muster</figcaption>
+            </figure>
+            <h3>JGA-Anhänger im Set</h3>
+            <p class="shop-preis">Preis folgt (Endpreis), Versand laut Etsy-Listing</p>
+            <p>Schlüsselanhänger im Set für die ganze Gruppe beim Junggesellenabschied.</p>
+            <a class="shop-mehr" href="/shop/jga-anhaenger.html">Details zum JGA-Anhänger</a>
+          </div>
           </div>
         </div>
       </section>
-      <div class="shop-breit">
-        <section class="shop-reihe" aria-label="Produkte">
-        <div class="shop-produkt">
-          <div class="shop-ph">Platzhalter, Musterfoto Platzkartenhalter folgt</div>
-          <h2>Platzkartenhalter mit Namen</h2>
-          <p class="shop-preis">Preis folgt (Endpreis), Versand laut Etsy-Listing</p>
-          <p>Ein Halter je Gast, mit dem Namen gedruckt. Für Hochzeit und Geburtstag.</p>
-          <a class="shop-mehr" href="/shop/platzkartenhalter.html">Details ansehen</a>
-        </div>
-        <div class="shop-produkt">
-          <div class="shop-ph">Platzhalter, Musterfoto JGA-Anhänger folgt</div>
-          <h2>JGA-Anhänger im Set</h2>
-          <p class="shop-preis">Preis folgt (Endpreis), Versand laut Etsy-Listing</p>
-          <p>Schlüsselanhänger im Set für die ganze Gruppe beim Junggesellenabschied.</p>
-          <a class="shop-mehr" href="/shop/jga-anhaenger.html">Details ansehen</a>
-        </div>
-        </section>
       <section class="shop-ablauf" aria-labelledby="ablauf">
-        <div>
-          <h2 id="ablauf">So bestellst du Platzkartenhalter und <span class="shop-ganz">JGA-Anhänger</span></h2>
-          <p class="shop-klein">Herstellerangaben nach GPSR stehen bei jedem Produkt. Solange die Listings noch nicht stehen, sind sie Platzhalter.</p>
+        <div class="shop-innen shop-ablauf-streifen">
+          <h2 id="ablauf">So läuft die Bestellung</h2>
+          <ol class="shop-schritte">
+            <li><span class="shop-nr" aria-hidden="true">1</span><div><h3>Auf Etsy bestellen</h3><p>Im Etsy-Listing gibst du den Namen oder Text an, bezahlst und bekommst die Bestellbestätigung.</p></div></li>
+            <li><span class="shop-nr" aria-hidden="true">2</span><div><h3>Druck und Versand</h3><p>Entworfen von BeThatHost, gedruckt bei einem 3D-Druck-Partner. Den Versand an dich machen wir selbst.</p></div></li>
+          </ol>
+          <p class="shop-ablauf-fuss">Herstellerangaben nach GPSR stehen bei jedem Produkt. Solange die Listings noch nicht stehen, sind sie Platzhalter.</p>
         </div>
-        <ol class="shop-schritte">
-          <li><h3>Ansehen</h3><p>Du siehst dir das Teil hier an.</p></li>
-          <li><h3>Auf Etsy bestellen</h3><p>Im Etsy-Listing gibst du den Namen oder Text an, bezahlst und bekommst die Bestellbestätigung.</p></li>
-          <li><h3>Druck und Versand</h3><p>Entworfen von BeThatHost, gedruckt bei einem 3D-Druck-Partner. Den Versand an dich machen wir selbst.</p></li>
-        </ol>
       </section>
-      </div>
     </main>
 
     <footer class="site">
@@ -106,34 +149,20 @@
     </script>
     <script>
       (function () {
-        var f = document.getElementById("namen"), t = document.getElementById("tafel"), st = document.getElementById("namen-stand");
-        var seg = window.Intl && Intl.Segmenter ? new Intl.Segmenter("de", { granularity: "grapheme" }) : null;
-        function zeichen(s) { return seg ? Array.from(seg.segment(s), function (g) { return g.segment; }) : Array.from(s); }
-        function zeichne(e) {
-          var teile = f.value.split(","), alle = [], aktiv = 0, pos = 0, cur = !e || f.selectionStart == null ? 0 : f.selectionStart;
-          teile.forEach(function (s, i) {
-            var x = zeichen(s.trim()).slice(0, 24).join("");
-            if (x) { if (cur >= pos) aktiv = alle.length; alle.push(x); }
-            pos += s.length + 1;
+        var knoepfe = document.querySelectorAll(".shop-spule"), name = document.querySelector(".shop-name");
+        var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        Array.prototype.forEach.call(knoepfe, function (k) {
+          k.addEventListener("click", function () {
+            if (k.getAttribute("aria-pressed") === "true") return;
+            Array.prototype.forEach.call(knoepfe, function (x) { x.setAttribute("aria-pressed", x === k ? "true" : "false"); });
+            var s = document.body.style;
+            s.setProperty("--teil", k.dataset.teil);
+            s.setProperty("--teil-dunkel", k.dataset.dunkel);
+            s.setProperty("--teil-name", k.dataset.name);
+            s.setProperty("--teil-text", k.dataset.text);
+            if (name && !ruhig) { name.classList.remove("druckt"); void name.offsetWidth; name.classList.add("druckt"); }
           });
-          var n = alle.slice(0, 9);
-          if (aktiv > 8) aktiv = 8;
-          if (!n.length) n = ["Dein Gast"];
-          t.textContent = "";
-          n.forEach(function (x, i) {
-            var d = document.createElement("div"), s = document.createElement("span");
-            d.className = i === aktiv ? "shop-karte ist-aktiv" : "shop-karte";
-            s.textContent = x;
-            s.style.setProperty("--n", zeichen(x).length);
-            d.appendChild(s);
-            t.appendChild(d);
-          });
-          st.textContent = alle.length > 9 ? "Vorschau zeigt die ersten 9 von " + alle.length + " Namen." : "";
-        }
-        f.addEventListener("input", zeichne);
-        f.addEventListener("keyup", zeichne);
-        f.addEventListener("click", zeichne);
-        zeichne();
+        });
       })();
     </script>
     <script defer src="/assets/motion.js"></script>

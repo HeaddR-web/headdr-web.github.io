@@ -1788,11 +1788,39 @@ table.faustregeln tbody th {
 }
 
 /* ---------- Shop-Schaufenster (/shop/) ----------
- * Hallmark · macrostructure: 11-catalogue · Richtung C Namensprobe (Stefanie, 01.11.2026)
- * pre-emit critique: P4 H4 E4 S5 R5 V4
- * Signaturmotiv: dunkles Tintenband, Papier-Tischkarten auf Standfuß ragen über die Kante. Gilt nur unter body.shop.
+ * Hallmark · macrostructure: 11-catalogue · Richtung A "Schicht für Schicht" (Stefanie, 02.11.2026)
+ * Signaturmotiv: Schichtlinien. Der große Name druckt sich beim Laden von unten nach oben ein,
+ * die Spulen färben die gezeichneten Teile um. Gilt nur unter body.shop.
  * Bis zu echten Listings ist der Kaufweg ein Status (.shop-etsy als span), kein Link. */
+@property --druck {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+body.shop {
+  --bg: #ecebe6;
+  --ink: #1f1f1d;
+  --ink-strong: #121211;
+  --paper: #f7f6f1;
+  --shop-feld: #e2e0d8;
+  --shop-muted: #55544f;
+  --shop-graphit: #262624;
+  --shop-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --shop-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  /* Beispielfarbe der Teile, die Spulen setzen sie neu */
+  --teil: #ff6b4a;
+  --teil-dunkel: #d9543a;
+  --teil-name: #ff6b4a;
+  --teil-text: #0000008c;
+  background: var(--bg);
+  color: var(--ink);
+}
+body.shop ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
 body.shop header.site {
+  background: rgba(236, 235, 230, 0.88);
   border-bottom: 0;
 }
 /* Sprunglink, sichtbar erst mit Tastaturfokus */
@@ -1809,7 +1837,7 @@ body.shop header.site {
 }
 .shop-sprung:focus-visible {
   top: 12px;
-  outline: 3px solid var(--rose-deep);
+  outline: 3px solid var(--teil-dunkel);
   outline-offset: 2px;
 }
 body.shop main:focus {
@@ -1832,7 +1860,7 @@ body.shop:has(#bth-consent-banner) {
     backdrop-filter: none;
   }
 }
-/* muted auf bg nur 3.56:1, im Shop ink */
+/* muted auf bg zu schwach, im Shop ink */
 body.shop header.site nav a,
 body.shop footer.site,
 body.shop footer.site a,
@@ -1860,472 +1888,544 @@ body.shop main {
 body.shop h1,
 body.shop h2,
 body.shop h3 {
+  font-family: var(--shop-display);
   font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+  text-wrap: balance;
   overflow-wrap: anywhere;
   min-width: 0;
+  color: var(--ink);
 }
 body.shop figure {
   margin: 0;
 }
-.shop-tuch {
-  background: var(--ink);
-  color: var(--paper);
-}
-.shop-tuch ::selection {
-  background: var(--sand-light);
-  color: var(--ink);
-}
 .shop-innen {
   max-width: var(--max);
-  margin: 0 auto;
-  padding: 52px 24px 44px;
+  margin-inline: auto;
+  padding-inline: max(16px, 4vw);
 }
-.shop-kopf {
-  padding-bottom: 36px;
-}
-.shop-kopf h1 {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.8rem, 8vw, 7rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  margin: 0 0 14px;
-  color: var(--paper);
-}
-.shop-weg {
+.shop-mono {
+  font: 500 0.875rem/1.5 var(--shop-mono);
+  color: var(--shop-muted);
   margin: 0;
-  font-weight: 600;
 }
-/* Eingabe direkt auf dem Band, kein zweiter heller Kasten neben der Überschrift */
-.shop-probe {
-  margin-top: 32px;
-  max-width: 760px;
+
+/* Bühne: Text und Spulen links, das gezeichnete Teil rechts.
+ * Die Spulen stehen neben dem Text, damit das Teil auf dem Handy vor der Farbwahl kommt. */
+.shop-druck {
+  padding-block: clamp(24px, 5vw, 56px) clamp(48px, 7vw, 88px);
 }
-.shop-probe label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.shop-probe input {
-  width: 100%;
-  box-sizing: border-box;
-  font: 400 1.05rem/1.4 var(--ui);
-  color: var(--ink);
-  background: var(--paper);
-  border: 2px solid var(--paper);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-}
-body.shop ::selection {
-  background: var(--ink);
-  color: var(--paper);
-}
-.shop-probe input {
-  caret-color: var(--rose-deep);
-}
-.shop-probe input:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
-.shop-probe small {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-.shop-tafel {
+.shop-buehne {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-areas: "text figur" "spulen figur";
+  column-gap: clamp(24px, 4vw, 56px);
+  align-content: center;
 }
-.shop-karte {
-  background: var(--paper);
-  border-radius: var(--radius-lg) var(--radius-lg) 2px 2px;
-  aspect-ratio: 2 / 1;
-  display: grid;
-  place-items: center;
-  padding: 12px;
-  margin-bottom: 14px;
+.shop-text {
+  grid-area: text;
+  align-self: end;
+  min-width: 0;
+}
+.shop-buehne > .shop-teile {
+  grid-area: figur;
+  align-self: center;
+}
+.shop-buehne > .shop-spulen {
+  grid-area: spulen;
+  align-self: start;
+}
+body.shop .shop-druck h1 {
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  letter-spacing: -0.01em;
+  margin: 18px 0 12px;
+}
+.shop-lead {
+  max-width: 36rem;
+  margin: 0 0 22px;
+  color: var(--shop-muted);
+  font-size: 1.05rem;
+}
+
+/* Der große Name: Schichtlinien als Verlauf, eine Maske legt ihn Lage für Lage frei */
+.shop-name {
   position: relative;
-  box-shadow: var(--shadow-card);
-  container-type: inline-size;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  display: inline-block;
+  margin: 0;
+  padding-top: 0.06em;
+  font: 900 clamp(5.5rem, 16vw, 14rem)/0.8 var(--shop-display);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--teil-name);
 }
-/* Standfuß des Halters, unter der Karte */
-.shop-karte::after {
+.shop-name-text {
+  display: block;
+  background: repeating-linear-gradient(to bottom, var(--teil-name) 0 7px, var(--teil-dunkel) 7px 8px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-mask: linear-gradient(to top, #000 var(--druck), transparent var(--druck));
+  mask: linear-gradient(to top, #000 var(--druck), transparent var(--druck));
+}
+/* Düse: Querbalken mit Druckkopf, sitzt immer auf der obersten gedruckten Lage.
+ * Die Ebene ist so hoch wie der Name und wandert per translate, damit beim Drucken nichts neu umbricht. */
+.shop-duese {
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  top: 0;
+  bottom: 0;
+  container-type: inline-size;
+  translate: 0 calc(var(--druck) * -1);
+  pointer-events: none;
+}
+.shop-duese::before {
   content: "";
   position: absolute;
-  left: 22%;
-  right: 22%;
-  bottom: -14px;
-  height: 14px;
-  border-radius: 0 0 3px 3px;
-  background: var(--sand-light);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--ink);
+  border-radius: 2px;
 }
-/* die Karte zum Namen, an dem der Cursor steht: hebt sich, Fuß wird gold */
-.shop-karte.ist-aktiv {
-  transform: translateY(-8px);
-  box-shadow: 0 22px 40px rgba(26, 22, 17, 0.45);
+.shop-duese::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 22px;
+  height: 24px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 62% 100%, 38% 100%, 0 55%);
 }
-.shop-karte.ist-aktiv::after {
-  background: var(--gold);
-}
-@media (prefers-reduced-motion: reduce) {
-  .shop-karte {
-    transition: none;
+@media (prefers-reduced-motion: no-preference) {
+  .shop-name.druckt {
+    animation: shop-druck 2.4s steps(24, end) 0.2s both;
+  }
+  .shop-name.druckt .shop-duese::after {
+    animation: shop-hin 0.2s ease-in-out 0.2s 12 alternate both;
   }
 }
-.shop-karte span {
-  font-family: var(--display);
-  font-weight: 400;
-  /* lange Namen (--n = Zeichenzahl, gesetzt vom Skript) passen in zwei Zeilen */
-  font-size: min(clamp(1.4rem, 3vw, 2.4rem), calc(260cqi / max(var(--n, 6), 6)));
-  line-height: 1.15;
-  color: var(--ink-strong);
-  overflow-wrap: anywhere;
-  text-align: center;
+@keyframes shop-druck {
+  from {
+    --druck: 0%;
+  }
+  to {
+    --druck: 100%;
+  }
 }
-.shop-breit {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 44px 24px 72px;
+@keyframes shop-hin {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: calc(100cqw - 22px) 0;
+  }
 }
-/* Karten und Fotofläche ragen über die Unterkante des Bands */
-.shop-tuch-haengt .shop-innen {
-  padding-bottom: 0;
-}
-/* ohne eigenen Formatierungskontext rutscht der negative Rand nach außen durch */
-.shop-tuch-haengt,
-.shop-tuch-haengt .shop-innen {
-  display: flow-root;
-}
-.shop-haengt {
-  position: relative;
-  z-index: 1;
-  margin-bottom: -64px;
-}
-.shop-tuch-haengt + .shop-breit {
-  padding-top: 112px;
-}
-.shop-reihe {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-}
-/* Übersicht: zwei Produkte bewusst ungleich gewichtet */
-.shop-reihe[aria-label] {
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 40px;
-  align-items: start;
-}
-.shop-reihe[aria-label] .shop-produkt:nth-child(2) {
-  margin-top: 72px;
-}
-.shop-reihe[aria-label] .shop-produkt:nth-child(2) .shop-ph {
-  aspect-ratio: 4 / 5;
-  background: var(--paper);
-  box-shadow: var(--shadow-card);
-}
-.shop-ph {
-  background: var(--sand-light);
-  color: var(--ink);
-  border-radius: var(--radius-lg);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  font: 500 0.875rem/1.4 var(--ui);
-  letter-spacing: 0.02em;
-  padding: 16px;
-  aspect-ratio: 4 / 3;
-}
-.shop-produkt h2 {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 1.15;
-  margin: 14px 0 4px;
-}
-.shop-produkt p {
-  margin: 0 0 12px;
-}
-.shop-preis {
-  font: 600 1rem/1.3 var(--ui);
-  margin: 0 0 4px;
-}
-.shop-mehr {
-  display: inline-block;
-  color: var(--rose-deep);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 10px 0;
-}
-.shop-mehr:hover {
-  color: var(--ink);
-}
-.shop-mehr:active,
-.shop-zurueck:active {
-  color: var(--ink-strong);
-  text-decoration-thickness: 2px;
-}
-.shop-mehr:focus-visible,
-.shop-zurueck:focus-visible {
-  outline: 3px solid var(--rose-deep);
-  outline-offset: 2px;
-}
+
 /* Kaufweg-Status: bis echte Listings da sind KEIN Link */
+.shop-kauf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
 .shop-etsy {
   display: inline-flex;
   align-items: center;
-  background: var(--gold);
-  color: var(--ink-strong);
+  background: var(--ink);
+  color: var(--paper);
   font: 600 0.95rem/1 var(--ui);
-  padding: 14px 20px;
-  border-radius: var(--radius);
+  padding: 15px 20px;
+  border-radius: 3px;
   white-space: nowrap;
 }
 .shop-etsy-hinweis {
   font-size: 0.875rem;
   line-height: 1.5;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
+  max-width: 44ch;
+  color: var(--shop-muted);
+}
+.shop-preis {
+  font: 500 0.875rem/1.5 var(--shop-mono);
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+
+/* Spulen: echte Knöpfe, aria-pressed zeigt die gewählte Farbe. Bewusst kleiner als der Kaufweg. */
+.shop-spulen {
+  margin-top: 28px;
+}
+/* immer 3 + 2, nie eine einzelne Spule allein in der letzten Zeile (gemessen: 5 Spulen brauchen 536 px, die Spalte hat 507) */
+.shop-spulen-reihe {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 6px;
+  margin-top: 8px;
+}
+.shop-spule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 12px 4px 4px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 0.875rem/1 var(--shop-mono);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.shop-spule i {
+  display: block;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--bg) 0 4px, #0003 4px 6px, var(--c) 6px);
+  box-shadow: inset 0 0 0 2px #0000001f;
+}
+.shop-spule:hover {
+  background: #0000000d;
+}
+.shop-spule:active {
+  transform: translateY(1px);
+}
+.shop-spule[aria-pressed="true"] {
+  background: var(--paper);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.shop-spule:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* gezeichnete Teile, Farbe aus den Spulen */
+body.shop .t-farbe {
+  fill: var(--teil);
+}
+body.shop .t-hell {
+  fill: color-mix(in srgb, var(--teil) 78%, #fff);
+}
+body.shop .t-text {
+  fill: var(--teil-text);
+}
+.shop-teile {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+.shop-teile svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.shop-teile .shop-svg-halter {
+  width: min(100%, 520px);
+}
+.shop-teile figcaption {
+  margin-top: 14px;
+  max-width: 34ch;
+  text-align: center;
+}
+
+/* Übersicht: zwei Produkte in einer Zeile, gleiche Oberkante, gleich hohe Beete */
+.shop-reihe {
+  background: var(--shop-feld);
+  padding-block: clamp(48px, 7vw, 80px) clamp(56px, 8vw, 96px);
+}
+.shop-reihe h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin: 0 0 24px;
+}
+.shop-produkte {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+.shop-bett {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  align-items: center;
+  gap: 14px;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  padding: clamp(20px, 3vw, 32px) 20px 18px;
+  background: var(--paper);
+  border-radius: 6px;
+}
+.shop-bett svg {
+  display: block;
+  width: min(100%, 340px);
+  max-height: 100%;
+  height: auto;
+}
+.shop-produkt h3 {
+  font-size: 1.6rem;
+  margin: 20px 0 6px;
+}
+.shop-produkt .shop-preis {
+  margin-bottom: 8px;
+}
+.shop-produkt p:not(.shop-preis) {
+  margin: 0 0 14px;
   max-width: 42ch;
+}
+.shop-mehr,
+.shop-zurueck {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--teil-dunkel);
+}
+.shop-mehr::after {
+  content: "→";
+  margin-left: 8px;
+  transition: transform 0.15s ease;
+}
+.shop-mehr:hover::after {
+  transform: translateX(3px);
+}
+.shop-zurueck::before {
+  content: "←";
+  margin-right: 8px;
+}
+.shop-mehr:hover,
+.shop-zurueck:hover {
+  text-decoration-color: var(--ink);
+}
+.shop-mehr:active,
+.shop-zurueck:active {
+  transform: translateY(1px);
+}
+.shop-mehr:focus-visible,
+.shop-zurueck:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Ablauf: Graphit-Band, die Ziffern tragen die Schichtlinien */
+.shop-ablauf {
+  background: var(--shop-graphit);
+  color: var(--paper);
+  padding-block: clamp(48px, 7vw, 88px);
+}
+.shop-ablauf ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+/* Streifen: Überschrift schmal links, zwei Schritte rechts untereinander, Ziffer groß vor dem Text */
+.shop-ablauf-streifen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  column-gap: clamp(24px, 5vw, 72px);
+  row-gap: 32px;
+  align-items: start;
+}
+body.shop .shop-ablauf h2,
+body.shop .shop-ablauf h3 {
+  color: var(--paper);
+}
+.shop-ablauf h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin: 0;
+}
+.shop-ablauf-fuss {
+  grid-column: 2;
+  margin: 0;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  color: #f7f6f1c7;
+}
+.shop-schritte {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+}
+.shop-schritte li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 28px);
+  align-items: start;
+}
+.shop-nr {
+  display: block;
+  font: 900 6rem/0.8 var(--shop-display);
+  background: repeating-linear-gradient(to bottom, var(--teil-name) 0 5px, var(--teil-dunkel) 5px 6px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.shop-schritte h3 {
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+}
+.shop-schritte p {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f7f6f1d9;
+}
+
+/* Produktseite: Bildfeld links so hoch wie Text und Spulen zusammen, Oberkanten bündig */
+.shop-druck-detail {
+  padding-top: 16px;
+}
+.shop-druck-detail .shop-buehne {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "figur text" "figur spulen";
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  margin-top: 12px;
+}
+.shop-druck-detail .shop-text {
+  align-self: start;
+}
+.shop-druck-detail .shop-buehne > .shop-teile {
+  align-self: stretch;
+}
+.shop-teile-einzeln {
+  align-content: center;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: clamp(28px, 5vw, 56px) 20px 22px;
+}
+.shop-teile-einzeln svg {
+  width: min(100%, 420px);
+}
+body.shop .shop-druck-detail h1 {
+  margin-top: 8px;
+}
+.shop-unten {
+  padding-block: 8px clamp(56px, 8vw, 96px);
+}
+/* Details im selben Raster wie die Bühne: Daten und offene Angaben links, GPSR klein rechts */
+.shop-unten-reihe {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "kopf kopf" "daten gpsr" "offen gpsr";
+  grid-template-rows: auto auto 1fr;
+  column-gap: clamp(24px, 4vw, 56px);
+  row-gap: 16px;
+}
+.shop-unten-reihe > * {
+  margin: 0;
+}
+.shop-unten-reihe > h2 {
+  grid-area: kopf;
+}
+.shop-unten-reihe > .shop-daten {
+  grid-area: daten;
+}
+.shop-unten-reihe > .shop-offen {
+  grid-area: offen;
+}
+.shop-unten-reihe > .shop-gpsr {
+  grid-area: gpsr;
+  align-self: start;
+}
+.shop-unten h2 {
+  font-size: 1.6rem;
+}
+.shop-offen {
+  color: var(--ink);
+}
+.shop-gpsr h3 {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
 }
 .shop-daten {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 4px 16px;
-  margin: 12px 0 18px;
-  font-size: 0.92rem;
+  gap: 8px 18px;
+  margin: 0;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 .shop-daten dt {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.875rem;
-  padding-top: 1px;
+  font: 500 0.875rem/1.5 var(--shop-mono);
+  color: var(--shop-muted);
 }
 .shop-daten dd {
   margin: 0;
   overflow-wrap: anywhere;
   hyphens: auto;
 }
-/* schmale Handys: Beschriftung über dem Wert statt daneben */
-@media (max-width: 420px) {
-  .shop-daten {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-  }
-  .shop-daten dd {
-    margin-bottom: 8px;
-  }
-}
 .shop-gpsr {
-  background: var(--card-2);
-  color: var(--ink);
-  border-radius: var(--radius-lg);
+  background: var(--paper);
+  border-radius: 6px;
   padding: 16px 18px;
-  margin: 0 0 18px;
-}
-.shop-gpsr h2,
-.shop-gpsr h3 {
-  font: 700 0.875rem/1.3 var(--ui);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 8px;
 }
 .shop-gpsr p {
   margin: 0;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
-.shop-ablauf {
-  margin-top: 88px;
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 40px;
-  align-items: start;
-}
-.shop-ablauf h2,
-.shop-zwischen {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 1.15;
-  margin: 0 0 10px;
-}
-.shop-ablauf h2 {
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-/* Wortpaar mit Bindestrich nicht trennen */
-.shop-ganz {
-  display: inline-block;
-}
-.shop-klein {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin: 0;
-  max-width: 36ch;
-}
-.shop-schritte {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: schritt;
-}
-.shop-schritte li {
-  counter-increment: schritt;
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  column-gap: 16px;
-  padding: 0 0 24px;
-}
-.shop-schritte li::before {
-  content: counter(schritt);
-  grid-row: span 2;
-  font: 400 4rem/0.9 var(--display);
-  color: var(--rose-deep);
-}
-.shop-schritte h3 {
-  font: 600 1.125rem/1.3 var(--ui);
-  margin: 4px 0 4px;
-}
-.shop-schritte p {
-  margin: 0;
-}
-/* Produktseite */
-.shop-zurueck {
-  display: inline-block;
-  color: var(--paper);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 6px 0;
-  margin-bottom: 18px;
-}
-.shop-zurueck:hover,
-.shop-zurueck:active {
-  color: var(--sand-light);
-}
-.shop-zurueck:focus-visible {
-  outline-color: var(--gold);
-}
-.shop-detail {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 36px;
-  align-items: start;
-}
-.shop-detail .shop-ph {
-  box-shadow: var(--shadow-card);
-  background: var(--paper);
-  align-content: center;
-  gap: 28px;
-}
-.shop-karte-einzeln {
-  width: min(70%, 360px);
-  background: var(--bg);
-  box-shadow: var(--shadow-media);
-}
-.shop-karte-einzeln span {
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-}
-/* JGA: vier Anhänger als Set, die Form folgt dem Musterdruck */
-.shop-set {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-}
-.shop-set i {
-  width: clamp(48px, 9vw, 88px);
-  aspect-ratio: 2 / 3;
-  border-radius: 999px 999px 14px 14px;
-  background: var(--sand-light);
-  position: relative;
-}
-.shop-set i:nth-child(even) {
-  margin-top: 28px;
-  background: var(--card-2);
-}
-/* Loch für den Ring */
-.shop-set i::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 14%;
-  width: 22%;
-  aspect-ratio: 1;
-  translate: -50% 0;
-  border-radius: 50%;
-  background: var(--paper);
-  box-shadow: inset 0 0 0 3px var(--ink);
-}
-.shop-detail h1 {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin: 0 0 14px;
-  color: var(--paper);
-}
-.shop-detail .shop-preis {
-  margin-bottom: 18px;
-}
+
 @media (max-width: 760px) {
-  .shop-reihe,
-  .shop-reihe[aria-label],
-  .shop-detail,
-  .shop-ablauf {
+  /* Handy: erst Titel und Kaufweg, dann das gezeichnete Teil, dann die Farbwahl */
+  .shop-buehne,
+  .shop-druck-detail .shop-buehne {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "text" "figur" "spulen";
+    grid-template-rows: none;
+    row-gap: 24px;
   }
-  .shop-reihe[aria-label] .shop-produkt:nth-child(2) {
+  .shop-buehne > .shop-spulen {
     margin-top: 0;
   }
-  .shop-reihe[aria-label] .shop-produkt:nth-child(2) .shop-ph {
-    aspect-ratio: 16 / 9;
+  .shop-produkte,
+  .shop-ablauf-streifen {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .shop-ablauf {
-    margin-top: 56px;
-    gap: 16px;
+  .shop-unten-reihe {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "kopf" "daten" "offen" "gpsr";
+    grid-template-rows: none;
   }
-  .shop-haengt {
-    margin-bottom: -40px;
+  .shop-ablauf-fuss {
+    grid-column: 1;
   }
-  .shop-tuch-haengt + .shop-breit {
-    padding-top: 80px;
+  .shop-teile .shop-svg-halter {
+    width: min(100%, 340px);
   }
   .shop-schritte li {
-    grid-template-columns: 3rem minmax(0, 1fr);
+    grid-template-columns: 3.5rem minmax(0, 1fr);
   }
-  .shop-schritte li::before {
-    font-size: 2.8rem;
+  .shop-nr {
+    font-size: 4rem;
   }
-  .shop-innen {
-    padding: 32px 16px 36px;
+}
+/* schmale Handys: Beschriftung über dem Wert statt daneben */
+@media (max-width: 420px) {
+  .shop-daten {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
   }
-  .shop-breit {
-    padding: 36px 16px 56px;
+  .shop-daten dd {
+    margin-bottom: 10px;
   }
-  .shop-tafel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 12px;
-  }
-  .shop-kopf {
-    padding-bottom: 28px;
-  }
-  /* Platzhalter flach halten, bis echte Fotos ihr eigenes Format mitbringen */
-  .shop-ph {
-    aspect-ratio: 16 / 9;
-  }
-  .shop-detail {
-    gap: 24px;
-  }
-  /* Handy: erst Titel und Kaufweg, dann ragt die Fotofläche über die Kante */
-  .shop-detail .shop-ph {
-    order: 2;
+}
+/* unter 375 px passen drei Spulen nicht mehr nebeneinander (3 x 111 px plus Abstand) */
+@media (max-width: 374px) {
+  .shop-spulen-reihe {
+    grid-template-columns: repeat(2, max-content);
   }
 }
