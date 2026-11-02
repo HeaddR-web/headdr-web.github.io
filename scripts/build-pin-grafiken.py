@@ -82,6 +82,13 @@ REIHENFOLGE = [
     # jeweils als dritter Pin des Tages
     "halloween-foto-buffet", "weihnachtsfeier-foto-gluehwein", "adventskalender-foto-diy",
     "wichtelgeschenke-foto-bis10", "mitbringsel-foto-advent", "silvester-foto-raclette",
+    # Ab 03.11.: nur noch Foto-Pins (Vergleich: 32 statt 0,7 Impressionen pro Pin),
+    # einer pro Tag, Freigabe steht im Eintrag
+    "adventskalender-foto-genuss", "weihnachtsfeier-foto-buffet", "wichtelgeschenke-foto-buero",
+    "saison-deko-foto-licht", "fingerfood-foto-kalt", "ratgeber-foto-kaese",
+    "weihnachtsfeier-foto-deko", "mitbringsel-foto-selbst", "kindergeburtstag-foto-schatzsuche",
+    "fingerfood-foto-warm", "silvester-foto-sekt", "cocktailabend-foto-alkoholfrei",
+    "silvester-foto-deko", "silvester-foto-wachs",
 ]
 
 FARBEN = {
@@ -369,6 +376,9 @@ def freigabe_tage():
 
 
 def queues_fuellen(pins):
+    # "pausiert": true - Karte bleibt in der Quelle, kommt aber nicht in die Queue
+    # (seit 02.11.2026 die Text-Karten, siehe Foto-Pins in CLAUDE.md).
+    pins = [p for p in pins if not p.get("pausiert")]
     rang = {k: i for i, k in enumerate(REIHENFOLGE, 1)}
     fehlt = [f"{p['site']}-{p['id']}" for p in pins if f"{p['site']}-{p['id']}" not in rang]
     if fehlt:
@@ -401,7 +411,8 @@ def queues_fuellen(pins):
             "pin_id": "",
             "kanal": "rss",
             "prio": rang[f"{pin['site']}-{pin['id']}"],
-            "freigabe": next(tage),
+            # Fester Tag aus der Quelle (Saison-Planung), sonst die naechste Luecke.
+            "freigabe": pin.get("freigabe") or next(tage),
         })
         qf.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         neu += 1
@@ -428,7 +439,7 @@ def main():
     pins = json.loads(QUELLE.read_text(encoding="utf-8"))["pins"]
     pruefen(pins)
     if "--nur-queue" not in sys.argv:
-        rendern(pins)
+        rendern([p for p in pins if not p.get("pausiert")])
         print(f"{len(pins)} Grafiken in {ZIEL.relative_to(ROOT)}/")
     print(f"{queues_fuellen(pins)} neue Queue-Eintraege")
 
