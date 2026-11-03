@@ -5,9 +5,10 @@ name: Pinterest-Statistik
 # Nur lesend gegenueber Pinterest; nutzt dieselben drei Secrets wie
 # pinterest-publish.yml. Logik: scripts/pinterest_stats.py
 
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
-  schedule:
-    - cron: "0 7 * * 1"   # montags ~07:00 UTC
+  # schedule:
+  #   - cron: "0 7 * * 1"   # montags ~07:00 UTC
   workflow_dispatch: {}
 
 permissions:

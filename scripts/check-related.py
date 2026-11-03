@@ -26,6 +26,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 spec = importlib.util.spec_from_file_location("build_related", "scripts/build-related.py")
 br = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(br)
@@ -49,6 +52,8 @@ def main():
     # 1) Block vorhanden und aktuell?
     veraltet = []
     for seite, ziel_liste in sorted(plan.items()):
+        if ist_weiterleitung(seite):
+            continue
         html = open(seite, encoding="utf-8").read()
         block = br.BLOCK_RE.search(html)
         if not block or block.group(0) != br.block_fuer(ziel_liste):
@@ -58,7 +63,8 @@ def main():
 
     # 2) Waisen und tote Links ueber alle Seiten
     seiten = [f for f in sorted(glob.glob("**/*.html", recursive=True))
-              if not f.startswith("cozy/") and not f.endswith("disclosure.html")]
+              if not f.startswith("cozy/") and not f.endswith("disclosure.html")
+              and not ist_weiterleitung(f)]
     ein = collections.Counter()
     for f in seiten:
         html = open(f, encoding="utf-8").read()

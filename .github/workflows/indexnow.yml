@@ -3,11 +3,12 @@ name: IndexNow
 # Meldet nach jeder Aenderung an sitemap.xml alle URLs per IndexNow an Bing,
 # Yandex & Co. (kein Konto noetig). Logik: scripts/indexnow.py
 
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "sitemap.xml"
+  # push:
+  #   branches: ["main"]
+  #   paths:
+  #     - "sitemap.xml"
   workflow_dispatch: {}
 
 jobs:

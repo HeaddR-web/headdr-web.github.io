@@ -15,6 +15,7 @@ name: Pinterest auto-publish
 # Lauf fehl. Posten laeuft bis zur Standard-Freigabe ueber die Bulk-CSV
 # (pinterest/make_bulk_csv.py --queue). Nach der Freigabe den Zeitplan wieder
 # einkommentieren.
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
   # schedule:
   #   - cron: "0 9 * * *"   # taeglich ~09:00 UTC

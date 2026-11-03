@@ -1,34 +1,17 @@
-/* Hallmark · system: BeThatHost editorial warm (von der Startseite übernommen)
- * paper: #f4ede1 · ink: #241f1a · accent: terracotta #b9543f · display: Fraunces · ui: Hanken Grotesk
- * Signaturdetail: feines Korn (feTurbulence) · CTAs: solide Terrakotta-Buttons + Unterstreichungs-Links
- * Keine Verläufe, keine Glow-Schatten, keine Pillen-Buttons. */
+/* BeThatHost · zentrale Design-Quelle für Startseite, Produktseiten, 404 und Rechtsseiten (cozy/ hat eine eigene).
+ * Seit 02.11.2026 ist die Domain nur noch der Shop. Die Regeln der alten Anlass- und Ratgeberseiten
+ * sind entfernt, der alte Stand liegt in der Git-Historie.
+ * Oben die Grundschicht (Reset, Kopf- und Fußzeile), darunter das Shop-Schaufenster unter body.shop. */
 :root {
   color-scheme: light;
-  --bg: #f4ede1;
-  --bg-2: #ece3d4;
-  --paper: #fbf6ec;
-  --card: var(--paper);
-  --card-2: #f1e9db;
-  --ink: #241f1a;
-  --ink-strong: #1a1611;
-  --muted: #8a7a68;
-  --rose: #b9543f;
-  --rose-deep: #963f2e;
-  --gold: #a9824a;
-  --sand-light: #f3dcc3;
-  /* Kompatibilitäts-Aliase (alte Namen) — zeigen auf die neuen Töne */
-  --pink: var(--rose);
-  --pink-deep: var(--rose-deep);
-  --purple: var(--gold);
+  --bg: #f8f7f2;
+  --ink: #1d2420;
+  --muted: #4d5a52;
+  --link: #2f5d46;
   --line: rgba(36, 31, 26, 0.16);
-  --line-soft: rgba(36, 31, 26, 0.08);
   --max: 1120px;
-  --read: 720px;
   --radius: 4px;
-  --radius-lg: 8px;
-  --shadow-card: 0 10px 30px rgba(36, 31, 26, 0.08);
-  --shadow-media: 0 24px 60px rgba(36, 31, 26, 0.14);
-  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --display: "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
   --ui: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
 }
 
@@ -47,7 +30,7 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
-/* feines Korn für Tactility (identisch zur Startseite) */
+/* feines Korn für Tactility */
 body::before {
   content: "";
   position: fixed;
@@ -68,17 +51,7 @@ img {
   height: auto;
 }
 a {
-  color: var(--rose-deep);
-}
-
-.eyebrow {
-  font-family: var(--ui);
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--rose);
-  margin: 0 0 14px;
+  color: var(--link);
 }
 
 /* ---------- Header ---------- */
@@ -86,7 +59,7 @@ header.site {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(244, 237, 225, 0.85);
+  background: rgba(248, 247, 242, 0.85);
   backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -109,10 +82,6 @@ header.site a.brand {
   color: var(--ink);
   white-space: nowrap;
 }
-header.site a.brand b {
-  color: var(--rose);
-  font-weight: 700;
-}
 header.site nav {
   display: flex;
   align-items: baseline;
@@ -128,1004 +97,11 @@ header.site nav a {
   text-decoration: none;
   padding: 6px 0;
 }
-header.site nav a:hover {
-  color: var(--rose);
-}
-header.site nav a.nav-cta {
-  color: var(--rose-deep);
-  border-bottom: 2px solid var(--rose);
-  padding-bottom: 4px;
-}
-.nav-count {
-  display: inline-block;
-  min-width: 18px;
-  padding: 0 5px;
-  margin-left: 4px;
-  border-radius: 999px;
-  background: rgba(36, 31, 26, 0.12);
-  font-size: 0.72rem;
-  line-height: 18px;
-  text-align: center;
-}
 
 main {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 24px 80px;
-}
-
-/* ---------- Hero (Event-Seiten: Bild bleibt, aber redaktionell linksbündig) ---------- */
-.hero {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  text-align: left;
-  min-height: 460px;
-  padding: 96px 40px 44px;
-  margin: 26px 0 22px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  color: #fff;
-  background-image: linear-gradient(180deg, rgba(24, 19, 15, 0.18) 30%, rgba(24, 19, 15, 0.66)),
-    var(--hero-img);
-  background-size: cover;
-  background-position: center 42%;
-  box-shadow: var(--shadow-media);
-}
-.hero .hero-inner {
-  max-width: 620px;
-}
-.hero .eyebrow {
-  color: var(--sand-light);
-}
-.hero h1 {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(2.4rem, 6.4vw, 4.3rem);
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  margin: 0 0 16px;
-  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.35);
-}
-/* Hervorgehobenes Wort: solide Sand-Farbe statt Verlaufs-Füllung */
-.hero h1 .glow {
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  color: var(--sand-light);
-}
-.hero .hero-sub {
-  font-size: clamp(1rem, 2.4vw, 1.18rem);
-  color: rgba(255, 255, 255, 0.94);
-  margin: 0 0 26px;
-  max-width: 520px;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
-}
-/* Hero-CTA: typografischer Link wie auf der Startseite */
-.btn-primary {
-  display: inline-block;
-  background: none;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.98rem;
-  padding: 0 0 4px;
-  border: none;
-  border-bottom: 2px solid var(--sand-light);
-  border-radius: 0;
-  cursor: pointer;
-  font-family: var(--ui);
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.btn-primary:hover {
-  color: var(--sand-light);
-}
-.btn-primary:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 4px;
-}
-
-/* ---------- Progress tracker ---------- */
-.tracker {
-  position: sticky;
-  top: 64px;
-  z-index: 20;
-  background: rgba(251, 246, 236, 0.94);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 16px 22px;
-  margin: 0 0 36px;
-  box-shadow: var(--shadow-card);
-}
-.tracker .row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.tracker .label {
-  font-weight: 700;
-  font-size: 0.98rem;
-}
-.tracker .label b {
-  color: var(--rose-deep);
-}
-.tracker .hint {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-.bar {
-  margin-top: 12px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(36, 31, 26, 0.1);
-  overflow: hidden;
-  border: 1px solid var(--line-soft);
-}
-.bar > span {
-  display: block;
-  height: 100%;
-  width: 0%;
-  border-radius: 999px;
-  background: var(--rose);
-  transition: width 0.4s ease;
-}
-
-/* ---------- Section heading ---------- */
-.section-head {
-  margin: 56px 0 24px;
-}
-.section-head .eyebrow {
-  margin-bottom: 10px;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
-  padding-top: 18px;
-}
-.section-head h2 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  margin: 0;
-}
-.section-head p {
-  color: var(--muted);
-  margin: 8px 0 0;
-  max-width: 640px;
-}
-
-/* ---------- Build grid (category cards) ---------- */
-.build-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 26px;
-}
-.cat-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-}
-.cat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(36, 31, 26, 0.14);
-}
-.cat-card.is-planned {
-  border-color: var(--rose);
-  box-shadow: 0 0 0 1px var(--rose), 0 18px 40px rgba(36, 31, 26, 0.12);
-}
-.cat-card .cover {
-  position: relative;
-  height: 190px;
-  background-size: cover;
-  background-position: center;
-}
-.cat-card .cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 35%, rgba(24, 19, 15, 0.72));
-}
-.cat-card .cover .tag {
-  position: absolute;
-  left: 16px;
-  bottom: 12px;
-  z-index: 2;
-  color: #fff;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.4rem;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-}
-.cat-card .cover .done {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 2;
-  background: var(--rose);
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 11px;
-  border-radius: var(--radius);
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.cat-card.is-planned .cover .done {
-  opacity: 1;
-  transform: scale(1);
-}
-.cat-card .cat-body {
-  padding: 16px 18px 18px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.cat-card .blurb {
-  color: var(--muted);
-  font-size: 0.92rem;
-  margin: 0 0 14px;
-}
-.picks {
-  list-style: none;
-  margin: 0 0 14px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.picks li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  background: var(--bg-2);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 9px 10px 9px 13px;
-  font-size: 0.9rem;
-}
-.picks .pick-name {
-  line-height: 1.3;
-}
-.picks .pick-name a {
-  color: var(--muted);
-  font-size: 0.76rem;
-  text-decoration: none;
-}
-.picks .pick-name a:hover {
-  color: var(--rose-deep);
-}
-.add-btn {
-  flex: none;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--ui);
-  font-weight: 700;
-  font-size: 0.8rem;
-  border-radius: var(--radius);
-  padding: 6px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-.add-btn:hover {
-  border-color: var(--rose);
-  color: var(--rose-deep);
-}
-.add-btn.added {
-  background: var(--rose);
-  border-color: var(--rose);
-  color: #fff;
-}
-.add-btn:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 2px;
-}
-.cat-card .guide-link {
-  margin-top: auto;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 2px solid var(--rose);
-  padding-bottom: 2px;
-  align-self: flex-start;
-}
-.cat-card .guide-link:hover {
-  color: var(--rose);
-}
-
-/* ---------- My Night panel ---------- */
-.mynight {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 28px 26px;
-  margin: 18px 0 0;
-  box-shadow: var(--shadow-card);
-}
-.mynight h2 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.8rem;
-  letter-spacing: -0.015em;
-  margin: 0 0 4px;
-}
-.mynight .sub {
-  color: var(--muted);
-  margin: 0 0 18px;
-  font-size: 0.95rem;
-}
-.mynight .empty {
-  color: var(--muted);
-  background: var(--bg-2);
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  padding: 26px 20px;
-  text-align: center;
-  font-size: 0.95rem;
-}
-.mynight .group {
-  margin: 0 0 18px;
-}
-.mynight .group h3 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  margin: 0 0 8px;
-}
-.mynight ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.mynight li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  background: var(--bg-2);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 10px 12px;
-}
-.mynight li .name {
-  font-size: 0.94rem;
-}
-.mynight li .actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: none;
-}
-.mynight li a.shop {
-  background: var(--rose);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.8rem;
-  padding: 7px 13px;
-  border-radius: var(--radius);
-  transition: background 0.15s ease;
-}
-.mynight li a.shop:hover {
-  background: var(--rose-deep);
-}
-.mynight li button.remove {
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 2px 4px;
-}
-.mynight li button.remove:hover {
-  color: var(--rose-deep);
-}
-.mynight .toolbar {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-.btn-ghost {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  font-family: var(--ui);
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 10px 18px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.btn-ghost:hover {
-  border-color: var(--rose);
-  color: var(--rose-deep);
-}
-.btn-ghost:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 2px;
-}
-.mynight .tiny {
-  margin-top: 14px;
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-/* ---------- Article grid (guides) ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 26px;
-}
-.post-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-.post-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(36, 31, 26, 0.14);
-}
-.post-card .thumb {
-  height: 210px;
-  background: var(--bg-2);
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.4s ease;
-}
-.post-card:hover .thumb {
-  transform: scale(1.04);
-}
-.post-card .body {
-  padding: 18px 20px 22px;
-}
-.post-card .kicker {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.post-card h3 {
-  font-family: var(--display);
-  font-weight: 700;
-  margin: 0 0 8px;
-  font-size: 1.25rem;
-  line-height: 1.25;
-}
-.post-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-/* ---------- Article ---------- */
-article {
-  max-width: var(--read);
-  margin: 0 auto;
-}
-article h1 {
-  /* Lange deutsche Komposita ("Junggesellinnenabschied-Ideen") passen bei 390 px
-     nicht in eine Zeile und wurden rechts abgeschnitten. Silbentrennung ueber
-     lang="de", overflow-wrap als Rueckfall fuer Browser ohne Woerterbuch. */
-  hyphens: auto;
-  overflow-wrap: break-word;
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(2rem, 4.8vw, 2.9rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  margin: 18px 0 10px;
-}
-article .meta {
-  color: var(--muted);
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 24px;
-}
-article h2 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.65rem;
-  letter-spacing: -0.01em;
-  margin: 44px 0 12px;
-}
-article h3 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin: 28px 0 6px;
-}
-article p,
-article li {
-  font-size: 1.07rem;
-  color: #453d34;
-}
-article strong {
-  color: var(--ink-strong);
-}
-article img.lead {
-  width: 100%;
-  height: auto;
-  max-height: 460px;
-  object-fit: cover;
-  display: block;
-  border-radius: var(--radius);
-  margin: 8px 0 32px;
-  box-shadow: var(--shadow-media);
-}
-article a {
-  color: var(--rose-deep);
-}
-.backlink {
-  display: inline-block;
-  margin: 4px 0 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line);
-}
-.backlink:hover {
-  color: var(--rose);
-  border-color: var(--rose);
-}
-
-/* ---------- Brotkrumen (erzeugt von scripts/build-breadcrumb.py) ---------- */
-.breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2px 6px;
-  margin: 4px 0 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-.breadcrumb a,
-.breadcrumb span {
-  color: inherit;
-  text-decoration: none;
-}
-.breadcrumb a {
-  border-bottom: 1px solid var(--line);
-}
-.breadcrumb a:hover {
-  color: var(--rose);
-  border-color: var(--rose);
-}
-.breadcrumb a:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 3px;
-}
-/* Das Trennzeichen steckt im CSS, nicht im Markup: So liest ein Screenreader
-   die Kette als Wortfolge und nicht als "Casino Groesser-als Abend". */
-.breadcrumb > * + *::before {
-  content: "\203A";
-  margin-right: 6px;
-  color: var(--line);
-}
-.breadcrumb [aria-current="page"] {
-  color: var(--ink);
-}
-/* Im Hero der Hub-Seiten steht die Zeile auf einem dunklen Foto. */
-.hero .breadcrumb {
-  margin: 0 0 12px;
-  color: var(--sand-light);
-}
-.hero .breadcrumb a {
-  border-bottom-color: rgba(255, 255, 255, 0.35);
-}
-.hero .breadcrumb a:hover {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-.hero .breadcrumb > * + *::before {
-  color: rgba(255, 255, 255, 0.5);
-}
-.hero .breadcrumb [aria-current="page"] {
-  color: #fff;
-}
-
-/* ---------- Affiliate pick ---------- */
-.pick {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  margin: 26px 0;
-  box-shadow: var(--shadow-card);
-}
-.pick .label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  font-weight: 700;
-}
-.pick h4 {
-  font-family: var(--display);
-  font-weight: 700;
-  margin: 6px 0 6px;
-  font-size: 1.2rem;
-}
-.pick p {
-  margin: 0 0 14px;
-  font-size: 0.96rem;
-  color: var(--muted);
-}
-.pick a.cta {
-  display: inline-block;
-  background: var(--rose);
-  color: #fff;
-  text-decoration: none;
-  padding: 11px 22px;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  font-weight: 700;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.pick a.cta:hover {
-  background: var(--rose-deep);
-  transform: translateY(-1px);
-}
-.pick a.cta:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 3px;
-}
-
-/* ---------- Kaufratgeber-Liste auf der Startseite ---------- */
-/* Die /ratgeber/-Seiten sind die einzigen mit Kaufabsicht im Titel und waren
-   von der Startseite aus ueberhaupt nicht erreichbar. */
-.guides {
-  padding-block: 10px 30px;
-}
-.guide-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 10px;
-}
-.guide-list li {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-.guide-list a {
-  display: block;
-  padding: 14px 16px;
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1.35;
-}
-.guide-list a::after {
-  content: " \2192";
-  color: var(--gold);
-}
-.guide-list a:hover {
-  color: var(--rose-deep);
-}
-.guide-list a:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 2px;
-}
-
-/* ---------- Schnellkauf-Block ("Die Einkaufsliste") ---------- */
-/* Steht direkt unter der Einleitung, damit die Empfehlungen nicht erst bei
-   40 % Seitentiefe auftauchen. Bewusst kompakt und textlastig: Der Block soll
-   den Fliesstext anreissen, nicht ersetzen. */
-/* Inhaltsverzeichnis. Die Artikel haben vier bis neun Abschnitte; ohne das
-   Verzeichnis sieht der Leser beim Ankommen nur die Einleitung und muss raten,
-   ob sein Thema ueberhaupt vorkommt. Erzeugt von scripts/build-toc.py. */
-.toc {
-  margin: 0 0 34px;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-.toc .toc-title {
-  margin: 0 0 10px;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.toc ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: toc;
-  display: grid;
-  gap: 7px;
-}
-.toc li {
-  counter-increment: toc;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-size: 0.95rem;
-}
-.toc li::before {
-  content: counter(toc);
-  min-width: 1.15em;
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: var(--rose);
-}
-.toc a {
-  color: var(--ink-strong);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-.toc a:hover { border-bottom-color: var(--rose); }
-.toc a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
-
-/* Damit der Sprung aus dem Verzeichnis die Ueberschrift nicht unter den
-   Seitenkopf schiebt. Gilt auch fuer die Pinterest-Anker (#cat-*). */
-article [id] { scroll-margin-top: 90px; }
-
-.quickbuy {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--rose);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  margin: 26px 0 34px;
-  box-shadow: var(--shadow-card);
-}
-.quickbuy .qb-head {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.18rem;
-  margin: 0 0 4px;
-  color: var(--ink-strong);
-}
-.quickbuy .qb-sub {
-  margin: 0 0 14px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-.quickbuy .qb-list {
-  list-style: none;
-  margin: 0 0 14px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 16px;
-}
-.quickbuy .qb-list li {
-  border-top: 1px solid var(--line-soft);
-  padding-top: 8px;
-}
-.quickbuy .qb-list a {
-  display: block;
-  /* Volle Zeilenhoehe als Trefferflaeche: auf dem Handy wird hier mit dem
-     Daumen getippt, ein reiner Textlink ist dafuer zu schmal. */
-  padding: 4px 0;
-  min-height: 24px;
-  color: var(--rose-deep);
-  font-weight: 600;
-  font-size: 0.94rem;
-  line-height: 1.35;
-  text-decoration: none;
-}
-.quickbuy .qb-list a::after {
-  content: " \2192";
-  color: var(--gold);
-}
-.quickbuy .qb-list a:hover {
-  text-decoration: underline;
-}
-.quickbuy .qb-list a:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 3px;
-}
-.quickbuy .qb-note {
-  margin: 0;
-  font-size: 0.76rem;
-  color: var(--muted);
-}
-@media (max-width: 620px) {
-  .quickbuy {
-    padding: 16px 16px;
-  }
-  .quickbuy .qb-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- Ad slot ---------- */
-/* Werbeplatz. Solange nichts darin steht, ist er nicht da: ein leerer
-   gestrichelter Kasten auf jeder Seite waere fuer den Leser nur eine Luecke
-   mit der Aufschrift "hier fehlt etwas". Erst wenn consent.js nach der
-   Einwilligung eine Anzeige eingesetzt hat, bekommt der Platz Abstand,
-   Rahmen und die Kennzeichnung. */
-.ad-slot:empty {
-  display: none;
-}
-
-.ad-slot {
-  margin: 34px 0;
-  padding: 14px;
-  text-align: center;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--paper);
-}
-
-/* Kennzeichnungspflicht fuer Werbung (§ 6 Abs. 1 Nr. 1 TMG / DDG, § 5a UWG):
-   bezahlte Anzeigen muessen als solche erkennbar sein, wenn sie neben
-   redaktionellem Text stehen. */
-.ad-slot .ad-label {
-  display: block;
-  margin: 0 0 8px;
-  color: var(--muted);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.ad-slot ins {
-  display: block;
-}
-
-/* ---------- Subscribe ---------- */
-/* Weiterlesen-Block am Artikelende. Vorher endeten vier Seiten ohne einen
-   einzigen ausgehenden Link und neun bekamen von keinem Artikel einen
-   eingehenden - wer dort ankam, hatte als Weg weiter nur den Zurueck-Button.
-   Erzeugt von scripts/build-related.py. */
-.related {
-  margin: 48px 0 8px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
-}
-.related .rel-head {
-  margin: 0 0 14px;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-}
-.related ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.related a {
-  display: inline-block;
-  padding: 9px 15px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink-strong);
-  font-size: 0.92rem;
-  text-decoration: none;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.related a::after { content: " \2192"; color: var(--muted); }
-.related a:hover { border-color: var(--rose); color: var(--rose); }
-.related a:hover::after { color: var(--rose); }
-.related a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
-
-/* Newsletter-Kasten. Steht derzeit auf keiner Seite: das einzige Exemplar
-   (oktoberfest/) hatte action="#" und hat jede eingegebene Adresse
-   stillschweigend verworfen - schlimmer als kein Formular, weil der Leser
-   glaubt, angemeldet zu sein, und die Abfrage ohne genannten Empfaenger
-   ausserdem in der Datenschutzerklaerung fehlte. Die Regeln bleiben hier,
-   damit der Kasten zurueckkann, sobald ein echtes Formular (beehiiv,
-   MailerLite o. ae.) dahinterhaengt - dann gehoert er auf alle Anlass-Seiten.
-*/
-.subscribe {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  text-align: center;
-  margin: 56px 0;
-  box-shadow: var(--shadow-card);
-}
-.subscribe h3 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.7rem;
-  letter-spacing: -0.015em;
-  margin: 0 0 8px;
-}
-.subscribe p {
-  color: var(--muted);
-  margin: 0 0 20px;
-}
-.subscribe form {
-  display: flex;
-  gap: 10px;
-  max-width: 440px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.subscribe input {
-  flex: 1;
-  min-width: 210px;
-  padding: 13px 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  font-family: var(--ui);
-  background: #fffdf8;
-  color: var(--ink);
-}
-.subscribe input:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 1px;
-}
-.subscribe input::placeholder {
-  color: var(--muted);
-}
-.subscribe button {
-  padding: 13px 26px;
-  border: none;
-  border-radius: var(--radius);
-  background: var(--rose);
-  color: #fff;
-  font-weight: 700;
-  font-family: var(--ui);
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.subscribe button:hover {
-  background: var(--rose-deep);
-}
-
-/* ---------- FAQ ---------- */
-.faq details {
-  border-bottom: 1px solid var(--line);
-  padding: 16px 0;
-}
-.faq summary {
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1.02rem;
-}
-.faq p {
-  color: var(--muted);
-  margin: 10px 0 0;
 }
 
 /* ---------- Footer ---------- */
@@ -1143,49 +119,7 @@ footer.site .inner {
 footer.site a {
   color: var(--muted);
 }
-footer.site a:hover {
-  color: var(--rose);
-}
-footer.site .cookie-settings-link {
-  display: block;
-  margin: 0 0 10px;
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--muted);
-  background: none;
-  border: none;
-  padding: 0;
-  text-decoration: underline;
-  cursor: pointer;
-}
-footer.site .cookie-settings-link:hover {
-  color: var(--rose);
-}
 
-/* ---------- Toast ---------- */
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 26px;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--ink);
-  color: var(--paper);
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 12px 22px;
-  border-radius: var(--radius);
-  box-shadow: 0 14px 30px rgba(36, 31, 26, 0.3);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 50;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ---------- Mobile (Pinterest-Traffic ist überwiegend mobil → muss perfekt sein) ---------- */
 @media (max-width: 640px) {
   header.site .inner {
     flex-direction: column;
@@ -1195,594 +129,981 @@ footer.site .cookie-settings-link:hover {
   main {
     padding: 0 16px 56px;
   }
-  .hero {
-    min-height: 400px;
-    padding: 64px 20px 28px;
-    margin: 14px 0 18px;
-  }
-  .hero .hero-sub {
-    margin-bottom: 24px;
-  }
-  .tracker {
-    top: 0;
-    position: static;
-  }
-  .build-grid,
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  /* Größere Tap-Ziele (Richtwert 44px) für Daumen-Bedienung */
-  .add-btn {
-    padding: 10px 15px;
-    font-size: 0.84rem;
-  }
-  .picks li {
-    padding: 11px 11px 11px 14px;
-  }
-  .pick a.cta,
-  .mynight li a.shop {
-    padding: 13px 24px;
-  }
-  .subscribe {
-    padding: 32px 20px;
-  }
-  .subscribe input,
-  .subscribe button {
-    min-width: 0;
-    width: 100%;
-    padding: 15px 18px;
-  }
 }
 
-/* ---------- Simplified category view (direct Amazon links per pick) ---------- */
-.picks li { align-items: center; }
-.picks .pick-name { display: flex; flex-direction: column; }
-.pick-desc { display: block; color: var(--muted); font-size: 0.76rem; margin-top: 2px; line-height: 1.35; }
-a.add-btn { text-decoration: none; }
-
-/* ---------- Kuratierter Einzel-Pick pro Kategorie (1 Sache = 1 Link) ---------- */
-.hero-pick {
-  background: var(--bg-2);
-  border: 1px solid var(--line-soft);
+/* ---------- Shop-Schaufenster (Startseite und /shop/) ----------
+ * Hallmark · macrostructure: 11-catalogue · Richtung A "Schicht für Schicht", Shop-Aufbau (Stefanie, 02.11.2026)
+ * Farbe und Schrift seit 02.11.2026 "Salbei" mit Bricolage Grotesque (Stefanie): Creme als Grund, Salbei für Flächen,
+ * Waldgrün als einziger Akzent, Tinte für Text. Kein Schwarz- oder Graphitblock, kein Weiß auf hellen Feldern.
+ * Aufbau wie ein Shop: Produktraster, Produktseite mit Bild links und Kaufspalte rechts, Akkordeon.
+ * Signaturmotiv bleibt klein im Produktbild: der Name druckt sich Lage für Lage, die Düse fährt mit.
+ * Gilt nur unter body.shop. Bis zu echten Listings ist der Kaufweg ein Status (.shop-etsy als span), kein Link. */
+body.shop {
+  --bg: #f8f7f2;
+  --ink: #1d2420;
+  --ink-strong: #111613;
+  --paper: #fdfcf9;
+  --shop-salbei: #e3eadf;
+  --shop-salbei-hell: #eef2eb;
+  --shop-salbei-tief: #d4e0cf;
+  --shop-feld: var(--shop-salbei);
+  --shop-muted: #4d5a52;
+  --shop-akzent: #2f5d46;
+  --shop-akzent-tief: #24493a;
+  --shop-display: "Bricolage Grotesque", "Arial Narrow", sans-serif;
+  --shop-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  /* Beispielfarbe der Teile, die Spulen setzen sie neu: Grundfarbe, Schichtlinie, Text auf dem Anhänger */
+  --teil: #2f5d46;
+  --teil-dunkel: #24493a;
+  --teil-text: #f7f6f1d9;
+  background: var(--bg);
+  color: var(--ink);
+  accent-color: var(--ink);
+  caret-color: var(--ink);
+}
+body.shop ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+html:has(body.shop) {
+  scrollbar-color: var(--shop-muted) var(--bg);
+  /* Kopfzeile klebt oben: Fokus nie darunter */
+  scroll-padding-top: 7rem;
+}
+/* Sprunglink, sichtbar erst mit Tastaturfokus */
+.shop-sprung {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 40;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 0.95rem/1 var(--ui);
+  padding: 12px 16px;
   border-radius: var(--radius);
-  padding: 16px 16px 18px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 14px;
 }
-.hero-pick .hp-label {
-  font-size: 0.66rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: var(--gold);
+.shop-sprung:focus-visible {
+  top: 12px;
+  outline: 3px solid var(--shop-akzent);
+  outline-offset: 2px;
 }
-.hero-pick .hp-name {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.18rem;
-  line-height: 1.25;
-  color: var(--ink-strong);
-  margin: 3px 0 4px;
+body.shop main:focus {
+  outline: none;
 }
-.hero-pick .hp-desc {
-  color: var(--muted);
-  font-size: 0.92rem;
-  margin: 0 0 14px;
-}
-.hero-pick .hp-btn {
-  align-self: flex-start;
-  display: inline-block;
-  background: var(--rose);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 11px 20px;
-  border-radius: var(--radius);
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.hero-pick .hp-btn:hover {
-  background: var(--rose-deep);
-  transform: translateY(-1px);
-}
-.hero-pick .hp-btn:focus-visible {
-  outline: 2px solid var(--rose);
+body.shop a:focus-visible {
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
-}
-
-/* ---------- Preis- & Bewertungs-Chips (Pick-Karten, JS + statisch) ---------- */
-.hp-meta,
-.pick-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 10px;
-  margin: 0 0 14px;
-}
-.hp-price,
-.pick-price {
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--ink-strong);
-  background: var(--bg-2);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 3px 12px;
-  font-variant-numeric: tabular-nums;
-}
-.hp-rating,
-.pick-rating {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--gold);
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-.hp-rating small,
-.pick-rating small {
-  color: var(--muted);
-  font-weight: 500;
-}
-
-/* ---------- Produktkarten mit Bild (optional, via .pick-photo) ---------- */
-.pick:has(.pick-photo) {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-.pick .pick-photo {
-  flex: 0 0 190px;
-  width: 190px;
-  background: #fffdf8;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 10px;
-}
-.pick .pick-photo img {
-  display: block;
-  width: 100%;
-  height: auto; /* sonst gilt das height-Attribut woertlich */
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
   border-radius: 2px;
 }
-.pick .pick-text {
-  flex: 1 1 auto;
-  min-width: 0;
+
+/* Kopfzeile: Logo links, die zwei Produkte rechts, in normaler Schreibweise */
+body.shop header.site {
+  background: rgba(248, 247, 242, 0.9);
+  border-bottom: 0;
 }
-.pick .pick-text > :first-child {
-  margin-top: 0;
-}
-.pick .pick-text p {
-  margin-bottom: 14px;
-}
-@media (max-width: 640px) {
-  .pick:has(.pick-photo) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-  }
-  .pick .pick-photo {
-    flex-basis: auto;
-    width: 100%;
-    max-width: 260px;
-    margin: 0 auto;
+@media (prefers-reduced-transparency: reduce) {
+  body.shop header.site {
+    background: var(--bg);
+    backdrop-filter: none;
   }
 }
+body.shop header.site .inner {
+  align-items: center;
+  gap: 0 24px;
+  padding-block: 6px;
+  padding-inline: max(16px, 4vw);
+}
+body.shop header.site a.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+body.shop header.site nav {
+  align-items: center;
+  gap: 0 22px;
+}
+body.shop header.site nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-decoration-color: transparent;
+  white-space: nowrap;
+}
+body.shop header.site nav a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--shop-muted);
+}
+body.shop header.site nav a:active {
+  transform: translateY(1px);
+}
+body.shop header.site nav a[aria-current="page"] {
+  text-decoration-color: var(--shop-akzent);
+}
 
-/* Kachelbilder als echtes <img>: nur so laesst sich loading="lazy" setzen.
-   Vorher waren es CSS-Hintergruende - die laedt der Browser immer sofort,
-   auf girlsnight/ elf Stueck auf einmal (siehe scripts/build-images.py). */
-.cat-card .cover img,
-.post-card .thumb img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* Fußzeile: Bestellweg und Rechtliches, sonst nichts */
+body.shop footer.site {
+  border-top: 0;
+  color: var(--ink);
+  font-size: 0.875rem;
 }
-.post-card .thumb {
-  position: relative;
-  overflow: hidden;
+body.shop footer.site .inner {
+  display: grid;
+  gap: 6px;
+  padding-inline: max(16px, 4vw);
 }
-
-/* Handy-Zuschnitt des Hero-Bildes.
-   Das grosse Bild ist quer (1280 x 858), der Hero-Kasten auf dem Handy hoch
-   (358 x 487 CSS-Pixel bei 390 px Viewport). cover skaliert deshalb nach der
-   Hoehe: rund 40 % der Bildbreite fallen weg, geladen werden sie trotzdem -
-   und 858 Bildpunkte reichen fuer ein 2x-Display ohnehin nicht. Der
-   Hochformat-Zuschnitt (scripts/build-images.py) zeigt denselben Ausschnitt
-   gleich scharf, braucht aber ein Drittel weniger Bytes. Faellt die Variable
-   weg, greift automatisch wieder das grosse Bild. */
-@media (max-width: 460px) {
-  .hero {
-    background-image: linear-gradient(180deg, rgba(24, 19, 15, 0.18) 30%, rgba(24, 19, 15, 0.66)),
-      var(--hero-img-mobil, var(--hero-img));
-  }
+body.shop footer.site p {
+  margin: 0;
 }
-
-/* ---------- Party-Mengenrechner (/mengenrechner/) ---------- */
-.rechner {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--rose);
-  border-radius: var(--radius);
-  padding: 22px 24px 18px;
-  margin: 26px 0 34px;
-  box-shadow: var(--shadow-card);
+body.shop footer.site a {
+  color: var(--ink);
+  white-space: nowrap;
 }
-.rechner .rechner-titel {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin: 0 0 14px;
+body.shop footer.site a:hover {
+  color: var(--shop-akzent);
+}
+body.shop footer.site a:active {
   color: var(--ink-strong);
 }
-.rechner-form {
+
+body.shop main {
+  max-width: none;
+  padding: 0;
+}
+body.shop h1,
+body.shop h2,
+body.shop h3 {
+  font-family: var(--shop-display);
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  color: var(--ink);
+  margin: 0;
+}
+/* unter 32 px keine enge Laufweite, sonst kleben die Buchstaben (Kritiker Runde 1, 02.11.2026) */
+body.shop h3,
+body.shop .shop-karte-titel,
+body.shop .shop-weitere h2 {
+  letter-spacing: 0;
+}
+body.shop figure {
+  margin: 0;
+}
+.shop-innen {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: max(16px, 4vw);
+}
+.shop-mono {
+  font: 500 0.875rem/1.5 var(--shop-mono);
+  color: var(--shop-muted);
+  margin: 0;
+}
+.shop-chip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  font: 500 0.875rem/1.2 var(--shop-mono);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+/* ---------- Startseite: kurzer Kopf, dann gleich die Produkte ---------- */
+.shop-kopf {
+  padding-block: clamp(28px, 5vw, 64px) clamp(24px, 3vw, 36px);
+}
+/* dieselben Spalten wie die Karten darunter, so fluchten Absatz und rechte Karte (Kritiker Runde 2) */
+.shop-kopf-raster {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 16px;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 16px clamp(20px, 3vw, 40px);
+  align-items: end;
 }
-.rechner-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 0.82rem;
+body.shop .shop-kopf h1 {
+  margin-top: 10px;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+}
+.shop-lead {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+/* Links im Fließtext: Waldgrün wie der Akzent, nicht die Farbe der alten Seite */
+.shop-lead a,
+.shop-recht a {
+  color: var(--shop-akzent);
   font-weight: 600;
-  color: var(--muted);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
 }
-.rechner-form .rf-voll {
-  grid-column: 1 / -1;
+.shop-lead a:hover,
+.shop-recht a:hover {
+  color: var(--shop-akzent-tief);
 }
-.rechner-form input[type="number"],
-.rechner-form select {
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 10px 12px;
-  min-height: 44px;
-  width: 100%;
+.shop-lead a:active,
+.shop-recht a:active {
+  color: var(--ink-strong);
 }
-.rechner-form input:focus-visible,
-.rechner-form select:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 1px;
+.shop-sortiment {
+  padding-block: 0 clamp(56px, 8vw, 96px);
 }
-.rechner-form .rf-haken {
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink);
-  min-height: 44px;
-}
-.rechner-form .rf-haken input {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--rose);
-}
-.rechner-ergebnis {
-  margin-top: 22px;
-  border-top: 1px solid var(--line);
-  padding-top: 8px;
-}
-.rechner-ergebnis .rl-kopf {
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin: 8px 0 0;
-}
-article .rechner-ergebnis h3.rl-gruppe {
-  font-size: 1.08rem;
-  margin: 18px 0 6px;
-}
-.rl-liste {
+
+/* Produktraster: ganze Karte ist der Link, das Bild steht auf Papier */
+.shop-raster {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-article .rl-liste li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0 14px;
-  padding: 8px 0;
-  border-top: 1px solid var(--line-soft);
-  font-size: 0.98rem;
-  line-height: 1.4;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 40px);
 }
-.rl-liste .rl-menge {
-  font-weight: 700;
-  color: var(--ink-strong);
-  text-align: right;
-  white-space: nowrap;
-}
-.rl-liste .rl-hinweis {
-  grid-column: 1 / -1;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-article .rechner-ergebnis .rl-weiter {
-  margin: 16px 0 0;
-  font-size: 0.95rem;
-}
-.rechner-knoepfe {
-  display: none;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
-}
-.rechner-js .rechner-knoepfe {
-  display: flex;
-}
-.rechner-knoepfe button {
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--rose-deep);
-  background: transparent;
-  border: 1px solid var(--rose);
-  border-radius: var(--radius);
-  padding: 10px 16px;
-  min-height: 44px;
-  cursor: pointer;
-}
-.rechner-knoepfe button:first-child {
-  background: var(--rose);
-  color: #fff;
-}
-.rechner-knoepfe button:hover {
-  background: var(--rose-deep);
-  border-color: var(--rose-deep);
-  color: #fff;
-}
-.rechner-knoepfe button:focus-visible {
-  outline: 2px solid var(--rose);
-  outline-offset: 3px;
-}
-.rechner .rechner-meldung {
-  min-height: 1.2em;
-  margin: 8px 0 0;
-  font-size: 0.88rem;
-  color: var(--rose-deep);
-}
-.rechner .rechner-hinweis {
-  margin: 4px 0 0;
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-@media (max-width: 520px) {
-  .rechner {
-    padding: 18px 16px 14px;
-  }
-  .rechner-form {
-    gap: 10px 12px;
-  }
-}
-
-/* Faustregel-Tabelle: auf dem Handy seitlich wischbar statt gequetscht */
-.tabelle-scroll {
-  overflow-x: auto;
-  margin: 18px 0 22px;
-  -webkit-overflow-scrolling: touch;
-}
-table.faustregeln {
-  width: 100%;
-  min-width: 560px;
-  border-collapse: collapse;
-  font-size: 0.93rem;
-  line-height: 1.45;
-}
-/* Kleine Tabellen (drei kurze Spalten) passen auch aufs Handy - ohne
-   Mindestbreite, sonst muss man fuer eine Zahl seitlich scrollen. */
-table.faustregeln.kompakt {
+.shop-karte {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  align-content: start;
   min-width: 0;
 }
-table.faustregeln th,
-table.faustregeln td {
-  text-align: left;
-  vertical-align: top;
-  padding: 10px 12px 10px 0;
-  border-top: 1px solid var(--line);
-  color: #453d34;
+.shop-karte-bild {
+  position: relative;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  padding: 48px 20px 20px;
+  background: var(--shop-salbei);
+  border-radius: 8px;
+  overflow: hidden;
 }
-table.faustregeln thead th {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  border-top: none;
+.shop-karte-bild svg,
+.shop-galerie svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
-table.faustregeln tbody th {
-  font-weight: 700;
-  white-space: nowrap;
+.shop-karte-bild svg {
+  width: min(100%, 340px);
 }
-
-/* Druck: nur die Einkaufsliste, ohne Formular, Werbung und Navigation */
-.rl-druckkopf,
-.rl-druckfuss {
-  display: none;
+/* Startseite: links drei Halter wie auf einem gedeckten Tisch, rechts der Anhänger auf dunklerem Salbei */
+/* beide Bilder 4:3, der Fokus kommt nur über die Breite, sonst ist das Set uneinheitlich (Gate R7, 02.11.2026) */
+.shop-raster-start {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
 }
-
-/* Ausdruck / „Als PDF sichern“: nur die Liste, eine A4-Seite, zweispaltig.
-   Bis September 2026 druckte die Seite die Bildschirm-Liste 1:1 — eine lange
-   Spalte ohne Marke, Titel oder Datum, die fuer vier Zeilen auf eine zweite
-   Seite umbrach. */
-@media print {
-  @page {
-    size: A4;
-    margin: 14mm 14mm 12mm;
+.shop-raster-start .shop-karte-bild {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+.shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
+  background: var(--shop-salbei-tief);
+}
+.shop-raster-start .shop-svg-reihe {
+  width: min(100%, 560px);
+}
+.shop-karte-text {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+body.shop .shop-karte-titel {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+.shop-karte-titel a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+}
+/* Die Linkfläche deckt die ganze Karte ab, der Fokusrahmen liegt um die Karte */
+.shop-karte-titel a::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  z-index: 2;
+  border-radius: 12px;
+}
+body.shop .shop-karte-titel a:focus-visible {
+  outline: none;
+}
+.shop-karte-titel a:focus-visible::after {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+.shop-karte:hover .shop-karte-titel a {
+  text-decoration-color: var(--shop-akzent);
+}
+.shop-karte:active .shop-karte-titel a {
+  text-decoration-color: var(--ink);
+}
+.shop-karte:hover .shop-karte-bild svg {
+  transform: scale(1.04);
+}
+.shop-karte:active .shop-karte-bild svg {
+  transform: scale(1.01);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .shop-karte-bild svg {
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-  header.site,
-  footer.site,
-  #bth-consent-banner,
-  .rechner-seite > :not(.rechner),
-  main > :not(article),
-  .rechner-titel,
-  .rechner-form,
-  .rechner-knoepfe,
-  .rechner-meldung,
-  .rechner-hinweis,
-  .rl-weiter {
-    display: none !important;
-  }
-  body::before {
-    display: none;
-  }
-  html,
-  body,
-  .rechner {
-    background: #fff !important;
-    color: #1d1a16;
-  }
-  main,
-  article.rechner-seite,
-  .rechner {
-    max-width: none;
-    width: auto;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-  }
-  .rechner-ergebnis {
-    border: none;
-    margin: 0;
-    padding: 0;
-    font-size: 10pt;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  .rl-druckkopf {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12pt;
-    padding-bottom: 6pt;
-    border-bottom: 2pt solid #b9543f;
-  }
-  .rl-druckkopf .rl-titel {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 20pt;
-    line-height: 1.1;
-  }
-  .rl-druckkopf .rl-marke {
-    order: 2;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 11pt;
-    color: #b9543f;
-    white-space: nowrap;
-  }
-  .rechner-ergebnis .rl-kopf {
-    margin: 6pt 0 10pt;
-    font-size: 8.5pt;
-    color: #6b6155;
-  }
-  .rl-bloecke {
-    column-count: 2;
-    column-gap: 10mm;
-  }
-  .rl-block {
-    break-inside: avoid;
-    margin: 0 0 9pt;
-  }
-  article .rechner-ergebnis h3.rl-gruppe {
-    font-family: var(--display);
-    font-size: 11.5pt;
-    margin: 0 0 3pt;
-    padding-bottom: 2pt;
-    border-bottom: 0.75pt solid #1d1a16;
-    break-after: avoid;
-  }
-  article .rl-liste li {
-    grid-template-columns: 9pt minmax(0, 1fr) auto;
-    gap: 0 6pt;
-    padding: 3.2pt 0;
-    border-top: 0.5pt solid #ddd5c8;
-    font-size: 9.5pt;
-    line-height: 1.3;
-    break-inside: avoid;
-  }
-  article .rl-liste li:first-child {
-    border-top: none;
-  }
-  /* Echtes Kaestchen zum Abhaken statt eines Schriftzeichens */
-  .rl-liste li::before {
-    content: "";
-    width: 7.5pt;
-    height: 7.5pt;
-    margin-top: 1.8pt;
-    border: 0.9pt solid #1d1a16;
-    border-radius: 1.5pt;
-  }
-  .rl-liste .rl-menge {
-    color: #1d1a16;
-    font-size: 9.5pt;
-  }
-  .rl-liste .rl-hinweis {
-    grid-column: 2 / -1;
-    font-size: 7.8pt;
-    color: #6b6155;
-  }
-  .rl-druckfuss {
-    display: block;
-    margin: 8pt 0 0;
-    padding-top: 5pt;
-    border-top: 0.5pt solid #ddd5c8;
-    font-size: 7.8pt;
-    line-height: 1.4;
-    color: #6b6155;
-    break-inside: avoid;
-  }
-  .rl-druckfuss .rl-link {
-    display: block;
-    color: #1d1a16;
-    word-break: break-all;
-  }
+}
+.shop-karte-preis {
+  margin: 0;
+  font: 600 1.05rem/1.4 var(--ui);
+}
+.shop-karte-satz {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--shop-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.shop-punkte {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 0;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-punkte span {
+  display: flex;
+}
+.shop-punkte i {
+  width: 16px;
+  height: 16px;
+  margin-right: -4px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 0 2px var(--bg), inset 0 0 0 1px #0000001f;
 }
 
-/* ---------- Planungswissen auf den Hub-Seiten (.hub-text) ----------
-   Bewusst eine <section> und kein <article>: build-faq.py setzt die FAQ ans
-   Ende des Inhalts-<article>; auf den Hubs gehoert sie vor den Weiterlesen-Block. */
-.hub-text {
-  max-width: var(--read);
-  margin: 64px auto 0;
+/* Ablauf: helles Salbei-Band, die Ziffern tragen die Schichtlinien in Waldgrün */
+.shop-ablauf {
+  background: var(--shop-salbei);
+  color: var(--ink);
+  padding-block: clamp(48px, 7vw, 88px);
 }
-.hub-text h2 {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.65rem;
-  letter-spacing: -0.01em;
-  margin: 44px 0 12px;
-  hyphens: auto;
-  overflow-wrap: break-word;
+.shop-ablauf-streifen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  column-gap: clamp(24px, 5vw, 72px);
+  row-gap: 32px;
+  align-items: start;
 }
-.hub-text h2:first-child {
-  margin-top: 0;
-  border-top: 1px solid var(--line);
-  padding-top: 28px;
+body.shop .shop-ablauf h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
 }
-.hub-text p,
-.hub-text li {
-  font-size: 1.07rem;
-  color: #453d34;
+/* 3vw liegt bis 1066 px Breite unter 32 px, dort kleben „ll“ und „tt“ bei enger Laufweite (Kritiker Runde 2) */
+@media (max-width: 1066px) {
+  body.shop .shop-ablauf h2 {
+    letter-spacing: 0;
+  }
 }
-.hub-text li {
-  margin-bottom: 6px;
+.shop-ablauf-fuss {
+  grid-column: 2;
+  margin: 0;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  color: var(--shop-muted);
 }
-.hub-text strong {
+.shop-schritte {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+}
+.shop-schritte li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 28px);
+  align-items: start;
+}
+.shop-nr {
+  display: block;
+  font: 800 6rem/0.8 var(--shop-display);
+  background: repeating-linear-gradient(to bottom, var(--shop-akzent) 0 5px, var(--shop-akzent-tief) 5px 6px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+body.shop .shop-schritte h3 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+.shop-schritte p {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ---------- Produktseite: Bild links (klebt beim Scrollen), Kaufspalte rechts ---------- */
+.shop-pfad ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 8px 0 12px;
+  font-size: 0.875rem;
+  color: var(--shop-muted);
+}
+.shop-pfad li + li::before {
+  content: "/";
+  margin-inline: 10px;
+}
+.shop-pfad a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+}
+.shop-pfad a:hover {
+  color: var(--shop-akzent);
+}
+.shop-pfad a:active {
   color: var(--ink-strong);
 }
-.hub-text a {
-  color: var(--rose-deep);
+.shop-pdp {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px clamp(28px, 4vw, 64px);
+  align-items: start;
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+.shop-galerie {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  justify-items: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  padding: 56px clamp(20px, 4vw, 48px) 40px;
+  background: var(--shop-salbei);
+  border-radius: 8px;
+}
+.shop-galerie .shop-svg-halter {
+  width: min(100%, 460px);
+}
+.shop-galerie .shop-svg-anhaenger {
+  width: min(100%, 440px);
+}
+.shop-info {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+body.shop .shop-info h1 {
+  margin-top: -12px;
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+}
+.shop-info > p {
+  margin: 0;
+}
+.shop-preis {
+  font: 600 1.35rem/1.3 var(--ui);
+  color: var(--ink);
+}
+.shop-info > .shop-preis-hinweis {
+  margin-top: -16px;
+  font-size: 0.875rem;
+  color: var(--shop-muted);
+}
+.shop-satz {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* Auswahl: Farbe und Probename */
+.shop-option {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.shop-option-kopf {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.shop-wahl {
+  margin-left: 6px;
+  font-weight: 400;
+  color: var(--shop-muted);
+}
+.shop-hilfe {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--shop-muted);
+}
+/* immer 3 + 2, nie eine einzelne Spule allein in der letzten Zeile */
+.shop-spulen-reihe {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 6px;
+}
+.shop-spule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 12px 4px 4px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 0.875rem/1 var(--shop-mono);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.shop-spule i {
+  display: block;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--bg) 0 4px, #0003 4px 6px, var(--c) 6px);
+  box-shadow: inset 0 0 0 2px #0000001f;
+}
+.shop-spule:hover {
+  background: #0000000d;
+}
+.shop-spule:active {
+  transform: translateY(1px);
+}
+.shop-spule[aria-pressed="true"] {
+  background: var(--shop-salbei-hell);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.shop-spule:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.shop-feld {
+  width: 100%;
+  max-width: 24rem;
+  min-height: 50px;
+  padding: 10px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 1.1rem/1.2 var(--ui);
+}
+.shop-feld:focus-visible {
+  outline: 3px solid var(--shop-akzent);
+  outline-offset: 2px;
+}
+
+/* Kaufweg: großer Knopf in voller Breite, bis zum Listing ein Status */
+.shop-kauf {
+  display: grid;
+  gap: 10px;
+}
+.shop-etsy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 20px;
+  border-radius: 4px;
+  /* kein Knopf, solange das Listing fehlt: ruhige Fläche statt Akzentgrün, kein Hover (Kritiker Runde 1) */
+  background: var(--shop-salbei);
+  color: var(--shop-akzent-tief);
+  font: 600 1rem/1.2 var(--ui);
+  text-align: center;
+}
+.shop-etsy-hinweis {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--shop-muted);
+}
+.shop-fakten {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+.shop-fakten li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+/* kleine Lage aus drei Schichten statt eines Hakens */
+.shop-fakten li::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 9px;
+  background: repeating-linear-gradient(to bottom, var(--shop-akzent) 0 2px, transparent 2px 3.5px);
+}
+
+/* Akkordeon: aufklappbare Abschnitte auf hellem Salbei */
+.shop-akkordeon {
+  display: grid;
+  gap: 8px;
+}
+.shop-akkordeon details {
+  background: var(--shop-salbei-hell);
+  border-radius: 6px;
+}
+.shop-akkordeon summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 54px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.15s ease;
+}
+.shop-akkordeon summary::-webkit-details-marker {
+  display: none;
+}
+/* Plus, das beim Öffnen zum Minus wird, aus zwei Balken gezeichnet */
+.shop-akkordeon summary::after {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 14px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 2px 14px no-repeat;
+}
+.shop-akkordeon details[open] summary::after {
+  background: linear-gradient(currentColor, currentColor) center / 14px 2px no-repeat;
+}
+.shop-akkordeon summary:hover {
+  background: #0000000a;
+}
+.shop-akkordeon summary:active {
+  background: #00000014;
+}
+.shop-akkordeon summary:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+.shop-akkordeon-inhalt {
+  display: grid;
+  gap: 12px;
+  padding: 2px 18px 18px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.shop-akkordeon-inhalt p {
+  margin: 0;
+}
+.shop-daten {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 18px;
+  margin: 0;
+}
+.shop-daten dt {
+  font: 500 0.875rem/1.55 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-daten dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.shop-kurzschritte {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+/* Eigenes Band, damit sich die Produktseite nicht in zwei gleichen Flächen wiederholt (Gate R1) */
+.shop-weitere {
+  background: var(--shop-feld);
+  padding-block: clamp(48px, 7vw, 88px);
+}
+/* ein Ton pro Produkt: der Halter liegt überall auf Salbei, auch im Band „Auch im Shop“ (Stefanie 03.11.2026),
+ * der Anhänger auf dem tieferen Salbei, auch in Galerie, 404 und „Auch im Shop“ (Kritiker Runde 2) */
+body.shop .shop-karte-bild:has(.shop-svg-anhaenger),
+body.shop .shop-galerie:has(.shop-svg-anhaenger) {
+  background: var(--shop-salbei-tief);
+}
+body.shop .shop-weitere h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+/* Querkarte: Bild links, Text rechts */
+.shop-raster-eins {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+}
+.shop-karte-quer {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 16px clamp(20px, 3vw, 32px);
+}
+
+/* ---------- Gezeichnete Teile, Farbe aus den Spulen ---------- */
+body.shop .t-farbe {
+  fill: var(--teil);
+}
+body.shop .t-hell {
+  fill: color-mix(in srgb, var(--teil) 78%, #fff);
+}
+body.shop .t-text {
+  fill: var(--teil-text);
+}
+body.shop .t-linie {
+  fill: var(--teil-dunkel);
+}
+/* Druck im Bild: die Maske wächst Lage für Lage von unten, die Düse fährt oben auf der Lage mit.
+ * Ohne Animation steht der Name fertig da und die Düse ist weg. */
+body.shop .t-druck {
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+body.shop .t-duese {
+  opacity: 0;
+}
+/* --hub: wie weit die Düse steigt, --weg: wie weit der Kopf je Lage quer fährt, --verzug: späterer Start in der Reihe */
+.shop-svg-halter {
+  --hub: -42px;
+  --weg: 148px;
+}
+.shop-svg-anhaenger {
+  --hub: -38px;
+  --weg: 120px;
+}
+.shop-svg-reihe {
+  --hub: -62px;
+  --weg: 148px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* mit Skript wartet der Name, bis das Bild im Fenster ist, ohne Skript steht er fertig da */
+  .js body.shop svg[data-druck]:not(.druckt) .t-druck {
+    transform: scaleY(0);
+  }
+  body.shop .druckt .t-druck {
+    animation: shop-lagen 1.6s steps(16, end) calc(0.25s + var(--verzug, 0s)) both;
+  }
+  body.shop .druckt .t-duese {
+    animation: shop-duese 1.6s steps(16, end) calc(0.25s + var(--verzug, 0s)) both;
+  }
+  body.shop .druckt .t-kopf {
+    animation: shop-kopf 0.1s linear calc(0.25s + var(--verzug, 0s)) 16 alternate both;
+  }
+}
+@keyframes shop-kopf {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--weg));
+  }
+}
+@keyframes shop-lagen {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes shop-duese {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(var(--hub));
+    opacity: 0;
+  }
+}
+
+/* ---------- Impressum und Datenschutz: Rechtstext unverändert, nur im Shop-Rahmen ---------- */
+.shop-recht {
+  max-width: 46rem;
+  margin-inline: 0 auto;
+  padding-block: clamp(32px, 5vw, 64px) clamp(56px, 8vw, 96px);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+@media (min-width: 1121px) {
+  .shop-recht {
+    margin-inline: calc((100% - var(--max)) / 2) auto;
+  }
+}
+body.shop .shop-recht h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  margin-bottom: 24px;
+}
+body.shop .shop-recht h2,
+body.shop .shop-recht h3 {
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 36px 0 10px;
+}
+body.shop .shop-recht h3 {
+  font-size: 1.15rem;
+}
+.shop-recht p {
+  max-width: 65ch;
+  margin: 0 0 12px;
+}
+.shop-recht code {
+  font: 500 0.875rem/1.5 var(--shop-mono);
+  overflow-wrap: anywhere;
+}
+.shop-recht strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+.shop-recht .muted {
+  font-size: 0.875rem;
+  color: var(--shop-muted);
+}
+
+/* ---------- Schmalere Fenster ---------- */
+/* Unter 900 px wäre die Kaufspalte zu schmal für drei Spulen nebeneinander */
+@media (max-width: 900px) {
+  .shop-pdp {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* einspaltig klebt das Bild oben, so bleibt der Name beim Tippen im Blick (Kritiker Runde 1, 02.11.2026).
+   * Dafür scrollt die Kopfzeile mit weg, sonst lägen zwei klebende Flächen übereinander. */
+  body.shop header.site {
+    position: relative;
+  }
+  html:has(body.shop) {
+    scroll-padding-top: 1rem;
+  }
+  /* body.shop im :has, sonst gewinnt die Regel darüber und der Fokus landet unter der Galerie (R17, 02.11.2026) */
+  html:has(body.shop .shop-pdp) {
+    scroll-padding-top: 280px;
+  }
+  .shop-galerie {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    aspect-ratio: auto;
+    grid-template-rows: auto;
+    padding-top: 40px;
+    /* zwei harte Kopien im Seitengrund decken den Seitenrand links und rechts, sonst scrollt Inhalt daran vorbei.
+     * 8 px Spreizung, damit auch die runden Ecken zu sind (Kritiker Runde 2, 02.11.2026).
+     * Fester Versatz statt max(16px, 4vw): der Rand ist hier höchstens 36 px (4vw bei 900), 40 px decken also jede Breite,
+     * und der Interaktions-Check liest calc() und max() als 0 und meldete sonst einen Halo, den es nicht gibt */
+    box-shadow:
+      -40px 0 0 8px var(--bg),
+      40px 0 0 8px var(--bg);
+  }
+  /* beide Teile in derselben Bildbox, sonst ist die Galerie je Produkt verschieden hoch (Gate R7) */
+  .shop-galerie .shop-svg-halter,
+  .shop-galerie .shop-svg-anhaenger {
+    width: min(70%, 260px);
+    aspect-ratio: 300 / 230;
+  }
+}
+@media (max-width: 760px) {
+  .shop-kopf-raster,
+  .shop-raster,
+  .shop-raster-start,
+  .shop-ablauf-streifen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* untereinander fällt die Gewichtung über die Breite weg, deshalb wird der Anhänger flacher als der Halter (Stefanie 03.11.2026) */
+  .shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
+    aspect-ratio: 16 / 10;
+  }
+  .shop-ablauf-fuss {
+    grid-column: 1;
+  }
+  .shop-schritte li {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+  .shop-nr {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 640px) {
+  body.shop header.site .inner {
+    flex-direction: row;
+    gap: 0 20px;
+    padding-block: 4px;
+  }
+}
+@media (max-width: 520px) {
+  .shop-karte-quer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* auf der Fehlerseite reichen am Handy Titel und Satz, zwei volle Bildkacheln wären über die Hälfte der Seite (Gate R2) */
+  .shop-raster-fehler .shop-karte-bild {
+    display: none;
+  }
+}
+/* Handy quer: die klebende Galerie nähme fast die ganze Höhe, deshalb scrollt sie dort normal mit */
+@media (max-width: 900px) and (max-height: 520px) {
+  .shop-galerie {
+    position: static;
+    box-shadow: none;
+  }
+  html:has(body.shop .shop-pdp) {
+    scroll-padding-top: 1rem;
+  }
+}
+/* schmale Handys: Beschriftung über dem Wert statt daneben */
+@media (max-width: 420px) {
+  .shop-daten {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .shop-daten dd {
+    margin-bottom: 10px;
+  }
+  .shop-galerie .shop-svg-halter,
+  .shop-galerie .shop-svg-anhaenger {
+    width: min(86%, 240px);
+  }
+}
+/* unter 375 px passen drei Spulen nicht mehr nebeneinander */
+@media (max-width: 374px) {
+  .shop-spulen-reihe {
+    grid-template-columns: repeat(2, max-content);
+  }
 }

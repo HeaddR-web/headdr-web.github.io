@@ -25,11 +25,15 @@ Neue Seite: Karte auf der Startseite ergaenzen und Slug in NAME eintragen
 (beides steht ohnehin in CLAUDE.md), dann python3 scripts/build-breadcrumb.py
 """
 import glob
+import os
 import html as H
 import importlib.util
 import json
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
 
 spec = importlib.util.spec_from_file_location("build_related", "scripts/build-related.py")
 br = importlib.util.module_from_spec(spec)
@@ -53,6 +57,8 @@ AUSGENOMMEN = {
     "dashboard.html", "produkt-review.html", "ueber-uns.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",
+    # Shop-Schaufenster: keine Karte auf der Startseite, bis der Shop live geht
+    "shop/index.html", "shop/platzkartenhalter.html", "shop/jga-anhaenger.html",
 }
 
 BLOCK_RE = re.compile(r'[ \t]*<!-- BREADCRUMB:START.*?<!-- BREADCRUMB:END -->\n?', re.S)
@@ -138,6 +144,8 @@ def baue(kette):
 
 def verarbeite(pfad, schreiben=True):
     """(Kettenlaenge, hat_sich_geaendert) - oder None, wenn die Seite draussen bleibt."""
+    if ist_weiterleitung(pfad):
+        return None
     html = open(pfad, encoding="utf-8").read()
     kette = pfad_fuer(pfad)
 

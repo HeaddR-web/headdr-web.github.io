@@ -29,11 +29,12 @@ while IFS= read -r f; do
   [ "$c" -gt 1 ] && note "Doppelte /assets/style.css-Einbindung in $f (${c}×)"
 done < <(grep -rl --include='*.html' '/assets/style.css' . | grep -v '^./cozy/' || true)
 
-# 5) Alle BeThatHost-Anlass-/Motto-Unterseiten enden im <title> auf "— BeThatHost"
+# 5) Die alten Anlass-Seiten sind Weiterleitungen auf den Shop (seit 02.11.2026).
+#    Taucht dort wieder eine echte Seite auf, ist das ein Rückfall auf den alten Stand.
 for d in girlsnight watchparty cocktailabend brunch geburtstag spa-abend valentinstag \
          saison-deko spieleabend grillabend gartenparty mexiko-fiesta jga hawaii-tiki casino oktoberfest; do
   [ -f "$d/index.html" ] || continue
-  grep -q '<title>.*— BeThatHost</title>' "$d/index.html" || note "$d/index.html: <title> nicht in Form '… — BeThatHost'"
+  grep -q 'name="bth-weiterleitung"' "$d/index.html" || note "$d/index.html: keine Weiterleitung auf den Shop (Marker bth-weiterleitung fehlt)"
 done
 
 # 6) DSGVO: keine direkte Google-Fonts-CDN-Einbindung mehr (self-hosted, siehe assets/fonts/)
@@ -171,6 +172,14 @@ else
     echo "  ✓ $out"
   else
     note "Social-Meta nicht aktuell (python3 scripts/build-social-meta.py):"; echo "$out" | sed 's/^/      /'
+  fi
+
+# 22) Die Shop-Seiten passen zum Generator. Er bettet assets/style.css in ihren
+#     Kopf ein, eine Aenderung dort wirkt erst nach einem Lauf (November 2026).
+  if out=$(python3 scripts/build-shop.py --pruefen 2>&1); then
+    echo "  ✓ $out"
+  else
+    note "Shop-Seiten nicht aktuell (python3 scripts/build-shop.py):"; echo "$out" | sed 's/^/      /'
   fi
 fi
 

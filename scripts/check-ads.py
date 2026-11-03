@@ -20,8 +20,12 @@ Werbeplatz: Werbung neben der Affiliate-Offenlegung oder der Anbieterkennung
 untergraebt genau das Vertrauenssignal, fuer das die Seiten da sind.
 """
 import glob
+import os
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
 
 OHNE_WERBUNG = {
     "datenschutz.html": "Rechtstext",
@@ -33,6 +37,9 @@ OHNE_WERBUNG = {
     "cocktailabend/disclosure.html": "Affiliate-Offenlegung",
     "girlsnight/disclosure.html": "Affiliate-Offenlegung",
     "watchparty/disclosure.html": "Affiliate-Offenlegung",
+    "index.html": "Shop-Startseite, fremde Werbung neben dem Etsy-Kaufweg",
+    "shop/platzkartenhalter.html": "Shop-Produktseite",
+    "shop/jga-anhaenger.html": "Shop-Produktseite",
 }
 
 SLOT_RE = re.compile(r'<div class="ad-slot[^"]*">(.*?)</div>', re.S)
@@ -41,7 +48,7 @@ SLOT_RE = re.compile(r'<div class="ad-slot[^"]*">(.*?)</div>', re.S)
 def main():
     funde = []
     for pfad in sorted(glob.glob("**/*.html", recursive=True)):
-        if pfad.startswith("cozy/"):
+        if pfad.startswith("cozy/") or ist_weiterleitung(pfad):
             continue
 
         slots = SLOT_RE.findall(open(pfad, encoding="utf-8").read())

@@ -4,16 +4,17 @@ name: RSS-Feed aktualisieren
 # Seiten automatisch findet. Logik: scripts/make_feed.py (liest sitemap.xml +
 # og:-Tags jeder Seite, kein API-Token noetig).
 
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "sitemap.xml"
-      - "**/*.html"
-      - "scripts/make_feed.py"
-      - "*/pins/queue.json"
-  schedule:
-    - cron: "0 6 * * *"   # taeglich ~06:00 UTC: gibt die Pins des Tages frei ("freigabe" in */pins/queue.json)
+  # push:
+  #   branches: ["main"]
+  #   paths:
+  #     - "sitemap.xml"
+  #     - "**/*.html"
+  #     - "scripts/make_feed.py"
+  #     - "*/pins/queue.json"
+  # schedule:
+  #   - cron: "0 6 * * *"   # taeglich ~06:00 UTC: gibt die Pins des Tages frei ("freigabe" in */pins/queue.json)
   workflow_dispatch: {}
 
 permissions:
