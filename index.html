@@ -466,6 +466,32 @@ body.shop .shop-kopf h1 {
 .shop-raster-start .shop-svg-reihe {
   width: min(100%, 560px);
 }
+/* Namensfeld in der Halter-Karte: liegt über der Linkfläche, damit Tippen nicht zur Produktseite führt.
+ * Ohne Skript schreibt es nichts ins Bild, dann bleibt es weg. */
+.shop-karte-probe {
+  position: relative;
+  z-index: 3;
+  /* nah an das Bild, in das es schreibt, mit Luft zum Titel darunter (Kritiker Runde 1, 03.11.2026) */
+  margin: -6px 0 16px;
+}
+.shop-karte-probe .shop-feld {
+  max-width: none;
+}
+html:not(.js) .shop-karte-probe {
+  display: none;
+}
+/* Beim Tippen bleibt das Bild ruhig, auch wenn der Zeiger darüber steht. Die Unterstreichung bleibt, die Karte ist ein Link. */
+.shop-karte:has(.shop-karte-probe:focus-within) .shop-karte-bild svg {
+  transform: none;
+}
+.shop-karte:has(.shop-karte-probe:hover) .shop-karte-titel a,
+.shop-karte:has(.shop-karte-probe:active) .shop-karte-titel a {
+  text-decoration-color: transparent;
+}
+.shop-karte:has(.shop-karte-probe:hover) .shop-karte-bild svg,
+.shop-karte:has(.shop-karte-probe:active) .shop-karte-bild svg {
+  transform: none;
+}
 .shop-karte-text {
   display: grid;
   gap: 6px;
@@ -1208,7 +1234,7 @@ body.shop .shop-recht h3 {
                 <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#k0s1)"/>
                 <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
               </g>
-              <g transform="translate(207 95) scale(0.62)" style="--verzug: 0.7s">
+              <g transform="translate(192 78) scale(0.72)" style="--verzug: 0.7s" data-probe="Tom">
                 <mask id="k0d2" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="34" width="172" height="62" fill="#fff"/></mask>
                 <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
                 <g transform="translate(150 40) skewX(-4)">
@@ -1222,6 +1248,11 @@ body.shop .shop-recht h3 {
               </g>
             </svg>
             </div>
+            <div class="shop-option shop-karte-probe">
+              <label class="shop-option-kopf" for="probe-name">Name zum Ausprobieren</label>
+              <input class="shop-feld" id="probe-name" type="text" maxlength="10" value="" autocomplete="off" spellcheck="false" enterkeyhint="done" aria-describedby="probe-hilfe" />
+              <p class="shop-hilfe" id="probe-hilfe">Der Name erscheint auf dem vorderen Halter und auf dem Anhänger, bis zu 10 Zeichen. Gespeichert wird nichts.</p>
+            </div>
             <div class="shop-karte-text">
               <h2 class="shop-karte-titel"><a href="/shop/platzkartenhalter.html">Platzkartenhalter mit Namen</a></h2>
               <p class="shop-karte-preis">Preis folgt</p>
@@ -1232,7 +1263,7 @@ body.shop .shop-recht h3 {
           <li class="shop-karte">
             <div class="shop-karte-bild">
               <span class="shop-chip">Gezeichnetes Muster</span>
-              <svg class="shop-svg-anhaenger" data-druck="" viewBox="0 0 260 120" aria-hidden="true" focusable="false">
+              <svg class="shop-svg-anhaenger" data-druck="" data-probe="BRAUT" data-gross="" viewBox="0 0 260 120" aria-hidden="true" focusable="false">
               <defs><pattern id="k1" width="8" height="3" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="3" fill="#2f5d46"/><rect class="t-linie" y="2" width="8" height="1" fill="#24493a"/></pattern><linearGradient id="k1m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f2f2"/><stop offset=".5" stop-color="#9a9a9a"/><stop offset="1" stop-color="#dcdcdc"/></linearGradient>
                 <clipPath id="k1c"><rect x="0" y="0" width="260" height="59"/></clipPath>
                 <mask id="k1d" maskUnits="userSpaceOnUse" x="96" y="24" width="150" height="70"><rect class="t-druck" x="96" y="42" width="150" height="38" fill="#fff"/></mask></defs>
@@ -1292,6 +1323,197 @@ body.shop .shop-recht h3 {
           });
         }, { threshold: 0.4 });
         Array.prototype.forEach.call(bilder, function (b) { beobachter.observe(b); });
+      })();
+    </script>
+    <script>
+      (function () {
+        var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var stellen = document.querySelectorAll("[data-probe]");
+        function neu(s) {
+          var teile = s.querySelectorAll(".t-druck, .t-duese, .t-kopf");
+          s.style.setProperty("--verzug", "0s");
+          Array.prototype.forEach.call(teile, function (t) { t.style.animation = "none"; });
+          void s.getBoundingClientRect();
+          Array.prototype.forEach.call(teile, function (t) { t.style.animation = ""; });
+        }
+        function imFenster(bild) {
+          var r = bild.getBoundingClientRect();
+          return r.bottom > 0 && r.top < window.innerHeight;
+        }
+        // Liegt ein gedrucktes Bild gerade außerhalb des Fensters, druckt es den neuen Namen erst beim Hinscrollen,
+        // sonst liefe der Neudruck ungesehen ab (Kritiker Runde 1, 03.11.2026)
+        var wartend = [], spaeter = "IntersectionObserver" in window && new IntersectionObserver(function (eintraege) {
+          eintraege.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            spaeter.unobserve(e.target);
+            wartend = wartend.filter(function (s) {
+              if ((s.ownerSVGElement || s) !== e.target) return true;
+              neu(s);
+              return false;
+            });
+          });
+        }, { threshold: 0.4 });
+        function nachdrucken(s) {
+          if (ruhig) return;
+          var bild = s.ownerSVGElement || s;
+          // Noch nie gedruckt: was gerade zu sehen ist, druckt jetzt ganz, der Rest wartet auf DRUCKSTART beim Hinscrollen
+          if (!bild.classList.contains("druckt")) {
+            if (imFenster(bild)) bild.classList.add("druckt");
+            return;
+          }
+          if (spaeter && !imFenster(bild)) {
+            if (wartend.indexOf(s) < 0) wartend.push(s);
+            spaeter.observe(bild);
+            return;
+          }
+          wartend = wartend.filter(function (x) { return x !== s; });
+          neu(s);
+        }
+        function alleNachdrucken() {
+          Array.prototype.forEach.call(stellen, nachdrucken);
+        }
+        // Weitertippen in einen laufenden Neudruck: anhalten, damit der neue Name ganz dasteht, bis die Pause um ist.
+        // Nur Bilder, die schon gedruckt haben, ein wartendes Bild weiter unten druckt sonst beim Hinscrollen nicht mehr.
+        function anhalten(s) {
+          if (ruhig || !(s.ownerSVGElement || s).classList.contains("druckt")) return;
+          Array.prototype.forEach.call(s.querySelectorAll(".t-druck, .t-duese, .t-kopf"), function (t) { t.style.animation = "none"; });
+        }
+        var knoepfe = document.querySelectorAll(".shop-spule"), wahl = document.getElementById("farbe-wahl");
+        Array.prototype.forEach.call(knoepfe, function (k) {
+          k.addEventListener("click", function () {
+            if (k.getAttribute("aria-pressed") === "true") return;
+            Array.prototype.forEach.call(knoepfe, function (x) { x.setAttribute("aria-pressed", x === k ? "true" : "false"); });
+            var s = document.body.style;
+            s.setProperty("--teil", k.dataset.teil);
+            s.setProperty("--teil-dunkel", k.dataset.dunkel);
+            s.setProperty("--teil-text", k.dataset.text);
+            if (wahl) wahl.textContent = k.dataset.farbe;
+            alleNachdrucken();
+          });
+        });
+        var feld = document.getElementById("probe-name"), warte, rahmen;
+        if (!feld || !stellen.length) return;
+        function breiteVon(t) {
+          var zeilen = t.querySelectorAll("tspan"), l = 0;
+          if (!zeilen.length) return t.getComputedTextLength();
+          Array.prototype.forEach.call(zeilen, function (z) { l = Math.max(l, z.getComputedTextLength()); });
+          return l;
+        }
+        // Die Schätzung nimmt eine mittlere Zeichenbreite, breite Buchstaben wie W sprengen sie. Deshalb nachmessen.
+        function einpassen(t, g, breite) {
+          t.setAttribute("font-size", g.toFixed(1));
+          var l = breiteVon(t);
+          if (l > breite) {
+            g = Math.floor(g * breite / l * 10) / 10;
+            t.setAttribute("font-size", g.toFixed(1));
+          }
+          return g;
+        }
+        // Läge der Name auf dem Bildschirm unter 14 px, steht er in zwei Zeilen (Kritiker Runde 1, 02.11.2026)
+        function schreiben(t, w) {
+          var breite = +t.dataset.feld, faktor = +t.dataset.faktor, max = +t.dataset.max;
+          t.textContent = w;
+          t.setAttribute("y", t.dataset.y);
+          var g = einpassen(t, Math.min(max, breite / (w.length * faktor)), breite);
+          // Die Hover-Anhebung der Karte steckt mit in getScreenCTM, sie zählt nicht, sonst stünde der Name danach unter 14 px
+          var m = t.getScreenCTM(), svg = t.ownerSVGElement, r = svg.getBoundingClientRect();
+          var anhebung = svg.clientWidth && r.width ? r.width / svg.clientWidth : 1;
+          var boden = m ? 14.5 * anhebung / Math.hypot(m.a, m.b) : 0;
+          if (g >= boden || w.length < 2) return;
+          // Die Schätzung rechnet eher zu breit. Passt der Name mit 14,5 px gemessen in die Fläche, bleibt er einzeilig.
+          if (breiteVon(t) * boden / g <= breite) {
+            t.setAttribute("font-size", boden.toFixed(1));
+            return;
+          }
+          // Trennstellen: Leerzeichen und nach einem Bindestrich, sonst Silben vor dem letzten Mitlaut vor einem
+          // Selbstlaut (Maxi-milian, Wil-helmina), ch, ck, ph, th und sch bleiben zusammen (Ste-phan, Mi-scha)
+          var laut = /[aeiouyäöü]/i, mitlaut = /[b-df-hj-np-tv-xzß]/i, mitte = Math.ceil(w.length / 2);
+          function baustein(i) {
+            var r = w.slice(i, i + 3).toLowerCase();
+            return r === "sch" ? 3 : /^(ch|ck|ph|th)/.test(r) ? 2 : 1;
+          }
+          var orte = [{ teile: [w.slice(0, mitte) + "-", w.slice(mitte)], mitte: true }];
+          for (var i = 1; i < w.length; i++) {
+            if (w[i] === " ") orte.push({ teile: [w.slice(0, i), w.slice(i + 1)], frei: true });
+            else if (w[i - 1] === "-" && i > 1) orte.push({ teile: [w.slice(0, i), w.slice(i)], frei: true });
+            else if (mitlaut.test(w[i]) && laut.test(w.slice(0, i)) && laut.test(w[i + baustein(i)] || "")
+                     && baustein(i - 1) === 1 && (i < 2 || baustein(i - 2) < 3)) orte.push({ teile: [w.slice(0, i) + "-", w.slice(i)] });
+          }
+          function zeilen(teile) {
+            t.textContent = "";
+            teile.forEach(function (s) {
+              var z = document.createElementNS(t.namespaceURI, "tspan");
+              z.setAttribute("x", t.getAttribute("x"));
+              z.textContent = s;
+              t.appendChild(z);
+            });
+          }
+          // Jede Trennstelle wird mit 14,5 px gemessen. Vorn steht, was passt, erst Leerzeichen und Bindestrich, dann Silben,
+          // die Mitte im Wort nur als Notlösung. Bei gleichem Rang gewinnt die schmalere, passt keine, auch.
+          function rang(k) { return k.passt ? (k.frei ? 0 : k.mitte ? 2 : 1) : 3; }
+          t.setAttribute("font-size", boden.toFixed(1));
+          var beste = null;
+          orte.forEach(function (k) {
+            zeilen(k.teile);
+            k.l = breiteVon(t);
+            k.passt = k.l <= breite;
+            if (!beste || rang(k) < rang(beste) || (rang(k) === rang(beste) && k.l < beste.l)) beste = k;
+          });
+          var teile = beste.teile;
+          zeilen(teile);
+          g = einpassen(t, Math.min(max, breite / (Math.max(teile[0].length, teile[1].length) * faktor)), breite);
+          if (g < boden) {
+            g = boden;
+            t.setAttribute("font-size", g.toFixed(1));
+          }
+          // Passt selbst die beste Trennung mit 14,5 px nicht (zehn breite Versalien am kleinsten Handy),
+          // wird die Zeile schmaler statt kleiner
+          Array.prototype.forEach.call(t.querySelectorAll("tspan"), function (z) {
+            if (z.getComputedTextLength() <= breite) return;
+            z.setAttribute("textLength", breite);
+            z.setAttribute("lengthAdjust", "spacingAndGlyphs");
+          });
+          var c = +t.dataset.mitte, z = t.querySelectorAll("tspan");
+          z[0].setAttribute("y", (c - 0.165 * g).toFixed(1));
+          z[1].setAttribute("y", (c + 0.885 * g).toFixed(1));
+        }
+        // Druckmaske und Düse folgen dem Namen, damit auch zwei Zeilen ganz gedruckt werden
+        function anpassen(s, texte) {
+          var oben = Infinity, unten = -Infinity, maske = s.querySelector(".t-druck"), kopf = s.querySelector(".t-kopf");
+          Array.prototype.forEach.call(texte, function (t) {
+            var b = t.getBBox();
+            oben = Math.min(oben, b.y);
+            unten = Math.max(unten, b.y + b.height);
+          });
+          if (!isFinite(oben) || !maske) return;
+          var y = oben - 2, h = unten - oben + 4;
+          maske.setAttribute("y", y.toFixed(1));
+          maske.setAttribute("height", h.toFixed(1));
+          if (kopf) kopf.setAttribute("y", (y + h - 6).toFixed(1));
+          s.style.setProperty("--hub", -h.toFixed(1) + "px");
+        }
+        function setzen() {
+          var eingabe = feld.value.replace(/\s+/g, " ").trim();
+          Array.prototype.forEach.call(stellen, function (s) {
+            var w = eingabe || s.dataset.probe, texte = s.querySelectorAll(".t-name");
+            if (s.hasAttribute("data-gross")) w = w.toUpperCase();
+            Array.prototype.forEach.call(texte, function (t) { schreiben(t, w); });
+            anpassen(s, texte);
+          });
+        }
+        feld.addEventListener("input", function () {
+          Array.prototype.forEach.call(stellen, anhalten);
+          setzen();
+          clearTimeout(warte);
+          warte = setTimeout(alleNachdrucken, 300);
+        });
+        window.addEventListener("resize", function () {
+          cancelAnimationFrame(rahmen);
+          rahmen = requestAnimationFrame(setzen);
+        });
+        setzen();
+        // Erst mit der echten Schrift stimmt die Messung, vorher misst der Browser die Ersatzschrift
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(setzen);
       })();
     </script>
   </body>
