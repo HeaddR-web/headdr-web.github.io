@@ -173,6 +173,14 @@ else
   else
     note "Social-Meta nicht aktuell (python3 scripts/build-social-meta.py):"; echo "$out" | sed 's/^/      /'
   fi
+
+# 22) Die Shop-Seiten passen zum Generator. Er bettet assets/style.css in ihren
+#     Kopf ein, eine Aenderung dort wirkt erst nach einem Lauf (November 2026).
+  if out=$(python3 scripts/build-shop.py --pruefen 2>&1); then
+    echo "  ✓ $out"
+  else
+    note "Shop-Seiten nicht aktuell (python3 scripts/build-shop.py):"; echo "$out" | sed 's/^/      /'
+  fi
 fi
 
 echo

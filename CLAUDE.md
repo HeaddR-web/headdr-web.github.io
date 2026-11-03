@@ -19,11 +19,16 @@ Das hat Vorrang vor allem, was weiter unten über Anlass-Seiten steht.
 - Titel-Form: `… | BeThatHost`, höchstens 60 Zeichen.
 - Auf den verbleibenden Seiten gibt es kein `consent.js`, kein `motion.css`/`motion.js`,
   keine Werbung und keinen Pinterest-Tag. `sitemap.xml`, `llms.txt` und `feed.xml` führen nur den Shop.
-- `index.html`, `404.html` und `shop/*.html` entstehen aus dem Generator `baue_shop.py`
-  (liegt im Workspace unter `01_aktiv/projekt-kaempf/bethathost-shop/_prozess/generator/`).
-  Nicht von Hand ändern, sonst überschreibt der nächste Lauf die Änderung.
+- `index.html`, `404.html`, `shop/*.html`, `impressum.html` und `datenschutz.html` entstehen aus dem
+  Generator `scripts/build-shop.py` (`python3 scripts/build-shop.py`). Nicht von Hand ändern,
+  sonst überschreibt der nächste Lauf die Änderung.
+- Den Rechtstext von Impressum und Datenschutz übernimmt der Generator Zeichen für Zeichen aus der
+  vorhandenen Datei, zwischen `<!-- recht-anfang -->` und `<!-- recht-ende -->`. Ein neuer Text kommt
+  genau dorthin, danach den Generator laufen lassen.
 - Diese Seiten tragen das CSS und die `@font-face`-Blöcke eingebettet im Kopf (Tempo auf dem
   Handy). Quelle bleibt `assets/style.css`, eine Änderung dort wirkt erst nach einem Generatorlauf.
+  Punkt 22 im Konsistenz-Check (`build-shop.py --pruefen`) meldet einen vergessenen Lauf.
+- Keine Statistik und kein Beacon auf den Shop-Seiten (seit 03.11.2026).
 - Die Abschnitte unten zu Anlass-Seiten, Pick-Karten, Werbeplätzen, Consent und Pinterest
   beschreiben den alten Stand und ruhen. Ebenso die Agenten `page-builder`,
   `consistency-auditor` und `pinterest-manager`.

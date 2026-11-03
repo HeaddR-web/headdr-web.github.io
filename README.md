@@ -11,7 +11,7 @@ Adressen leiten auf den Shop. Cozylore unter `cozy/` ist abgekoppelt und bleibt 
 
 ## Struktur
 ```
-/                     Shop-Startseite (aus dem Generator, siehe CLAUDE.md)
+/                     Shop-Startseite (aus scripts/build-shop.py, siehe CLAUDE.md)
 shop/                 Produktseiten (zum Start Platzkartenhalter und JGA-Anhänger)
 impressum.html        Impressum
 datenschutz.html      Datenschutz
@@ -19,7 +19,7 @@ datenschutz.html      Datenschutz
 assets/style.css      zentrale Design-Quelle, der Generator bettet sie in die Shop-Seiten ein
 assets/fonts/         self-hosted Schriften
 cozy/                 Cozylore, abgekoppelt, nicht anfassen
-scripts/              Hilfsskripte + check-consistency.sh
+scripts/              build-shop.py (Shop-Seiten), Hilfsskripte, check-consistency.sh
 .github/workflows/    Automatisierung
 ```
 
@@ -30,6 +30,6 @@ bash scripts/check-consistency.sh   # muss grün sein, bevor du pushst
 
 ## Konventionen (Kurzfassung)
 - Eine zentrale `/assets/style.css`, niemals pro-Ordner-Kopien. Die Shop-Seiten tragen sie
-  eingebettet, nach einer Änderung den Generator laufen lassen.
+  eingebettet, nach einer Änderung `python3 scripts/build-shop.py` laufen lassen.
 - Titel: `… | BeThatHost`, höchstens 60 Zeichen.
 - Branch je Aufgabe, PR statt Direkt-Push, gemergt wird von Hand. Details: `CLAUDE.md`.

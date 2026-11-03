@@ -855,11 +855,8 @@ body.shop .shop-info h1 {
   background: var(--shop-feld);
   padding-block: clamp(48px, 7vw, 88px);
 }
-/* im Band tauschen die Flächen: Bild auf Papier statt auf Salbei */
-.shop-weitere .shop-karte-bild {
-  background: var(--paper);
-}
-/* ein Ton pro Produkt: der Anhänger liegt überall auf dem tieferen Salbei, auch in Galerie, 404 und „Auch im Shop“ (Kritiker Runde 2) */
+/* ein Ton pro Produkt: der Halter liegt überall auf Salbei, auch im Band „Auch im Shop“ (Stefanie 03.11.2026),
+ * der Anhänger auf dem tieferen Salbei, auch in Galerie, 404 und „Auch im Shop“ (Kritiker Runde 2) */
 body.shop .shop-karte-bild:has(.shop-svg-anhaenger),
 body.shop .shop-galerie:has(.shop-svg-anhaenger) {
   background: var(--shop-salbei-tief);
@@ -1049,6 +1046,10 @@ body.shop .shop-recht h3 {
   .shop-raster-start,
   .shop-ablauf-streifen {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* untereinander fällt die Gewichtung über die Breite weg, deshalb wird der Anhänger flacher als der Halter (Stefanie 03.11.2026) */
+  .shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
+    aspect-ratio: 16 / 10;
   }
   .shop-ablauf-fuss {
     grid-column: 1;

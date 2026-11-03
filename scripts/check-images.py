@@ -16,10 +16,10 @@ Drei Fehler:
     bei jeder Aenderung an den Stufen (etwa Kacheln von 960 auf 720) und
     faellt sonst niemandem auf: die Dateien bleiben im Repo, und spaeter ist
     nicht mehr zu erkennen, welche davon noch gebraucht werden.
+    Ausgenommen sind nur die Altbilder in scripts/altbilder.txt.
 
 Beheben mit: python3 scripts/build-images.py
 """
-import glob
 import importlib.util
 import os
 import sys
@@ -32,6 +32,19 @@ spec.loader.exec_module(bilder)
 HINTERGRUND_RE = bilder.re.compile(
     r'<div class="(?:cover|thumb)" style="[^"]*background-image'
 )
+
+# Seit 02.11.2026 sind die alten Inhaltsseiten Weiterleitungen und verlinken
+# keine Bilder mehr. Ihre Ableitungen bleiben bis zum Aufraeum-PR liegen
+# (nichts loeschen, auch nicht per build-images.py, das Verwaistes entfernt).
+# Erlaubt sind genau die Dateien in dieser Liste, damit neue Reste auffallen.
+ALTBILDER = os.path.join(HIER, "altbilder.txt")
+
+
+def altbilder():
+    if not os.path.exists(ALTBILDER):
+        return set()
+    with open(ALTBILDER, encoding="utf-8") as f:
+        return {z.strip() for z in f if z.strip() and not z.startswith("#")}
 
 
 def main():
@@ -74,21 +87,20 @@ def main():
             gebraucht.update(os.path.join(bilder.PRODUKT_DIR, f"{stamm}-{b}.jpg")
                              for b in bilder.produkt_breiten(stamm))
 
-    # Seit 02.11.2026 sind die alten Inhaltsseiten Weiterleitungen und verlinken
-    # keine Bilder mehr; die Ableitungen bleiben bewusst liegen (nichts loeschen).
-    # Solange es Weiterleitungsseiten gibt, ist "verwaist" deshalb kein Fehler.
-    # Gibt es keine mehr, gilt die Pruefung wieder voll.
-    abgebaut = any(bilder.ist_weiterleitung(p) for p in glob.glob("**/*.html", recursive=True)
-                    if not p.startswith("cozy/"))
-    if not abgebaut:
-        for datei in bilder.verwaist(gebraucht):
-            offen.append(f"Ableitung verwaist: {datei}")
+    erlaubt = altbilder()
+    verwaist = set(bilder.verwaist(gebraucht))
+    for datei in sorted(verwaist - erlaubt):
+        offen.append(f"Ableitung verwaist: {datei}")
+    # eine Zeile, die nicht mehr verwaist ist (geloescht oder wieder gebraucht),
+    # wuerde spaeter eine neue Datei gleichen Namens unbemerkt durchlassen
+    for datei in sorted(erlaubt - verwaist):
+        offen.append(f"Altbild-Liste veraltet, Zeile streichen: {datei}")
 
     if offen:
         print("\n".join(offen))
         sys.exit(1)
     print("Kachel-, Hero-, Lead- und Produktbilder aktuell"
-          + (" (Verwaist-Pruefung ausgesetzt: abgebaute Seiten sind Weiterleitungen)" if abgebaut else ""))
+          + (f" ({len(erlaubt)} Altbilder laut scripts/altbilder.txt)" if erlaubt else ""))
 
 
 if __name__ == "__main__":
