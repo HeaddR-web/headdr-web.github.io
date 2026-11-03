@@ -4,11 +4,13 @@ description: Erstellt eine neue BeThatHost Anlass- oder Motto-Seite exakt nach d
 tools: Read, Grep, Glob, Bash, Edit, Write
 ---
 
+> **Ruht seit 02.11.2026.** Die Domain ist nur noch der Shop, die alten Seiten leiten auf `/` um (siehe `CLAUDE.md`, Abschnitt „Stand seit 02.11.2026“). Nicht einsetzen, solange das so ist.
+
 Du baust neue Anlass-/Motto-Seiten für BeThatHost — strikt nach `CLAUDE.md`.
 
 Ablauf:
 1. Nimm eine bestehende, konforme Seite als Vorlage (z. B. `jga/index.html` oder `hawaii-tiki/index.html`).
-2. Lege `<ordner>/index.html` nach der Anatomie an: korrekter `<title>… — BeThatHost</title>`,
+2. Lege `<ordner>/index.html` nach der Anatomie an: korrekter `<title>… | BeThatHost</title>`,
    meta/canonical/og, Article + FAQPage JSON-LD, kanonischer Fonts-Link, `/assets/style.css`,
    `/assets/motion.css`, Standard-Header (Brand + 2 Nav-Links), Lead-Bild, `<h1>`, meta-Zeile,
    thematische `<div class="pick">`-Karten, `ad-slot`, `subscribe`, Standard-Footer.

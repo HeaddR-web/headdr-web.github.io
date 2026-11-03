@@ -36,17 +36,18 @@
   src: url("/assets/fonts/inter.woff2") format("woff2");
 }
 
-/* Nur im Shop (/shop/) benutzt, @font-face laedt erst, wenn eine Seite die Schrift braucht.
-   Big Shoulders Display (OFL, ohne reservierten Namen): auf Latin plus Latin Extended-A beschnitten.
+/* Nur im Shop benutzt, @font-face laedt erst, wenn eine Seite die Schrift braucht.
+   Bricolage Grotesque (OFL, ohne reservierten Namen, Projekt github.com/ateliertriay/bricolage):
+   statische Instanz ExtraBold 800 (opsz 96, wdth 100), beschnitten auf Latin, Latin-1 und Satzzeichen.
    IBM Plex Mono Medium (OFL mit reserviertem Namen "Plex"): unveraendert, nur als woff2 verpackt,
    denn ein beschnittenes Subset duerfte den Namen nicht mehr tragen.
-   Quelle beider: github.com/google/fonts (ofl/bigshouldersdisplay, ofl/ibmplexmono), 02.11.2026. */
+   Quelle: Google Fonts (Bricolage Grotesque als variable woff2, Plex aus github.com/google/fonts ofl/ibmplexmono), 02.11.2026. */
 @font-face {
-  font-family: "Big Shoulders Display";
+  font-family: "Bricolage Grotesque";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 800;
   font-display: swap;
-  src: url("/assets/fonts/big-shoulders-display.woff2") format("woff2");
+  src: url("/assets/fonts/bricolage-grotesque-800.woff2") format("woff2");
 }
 
 @font-face {

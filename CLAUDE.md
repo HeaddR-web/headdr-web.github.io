@@ -8,6 +8,26 @@ Statische Website auf **GitHub Pages**, Domain **bethathost.de**.
 Repo: `headdr-web/headdr-web.github.io`. Kein Build-Step — reines HTML/CSS/JS.
 **Einsprachig Deutsch** — BeThatHost ist die einzige aktive Marke.
 
+## Stand seit 02.11.2026: die Domain ist nur noch der Shop
+Das hat Vorrang vor allem, was weiter unten über Anlass-Seiten steht.
+- Die Startseite `/` ist der Shop für eigene 3D-Druck-Teile, zum Start Platzkartenhalter und
+  JGA-Anhänger. Das Motto „Alles lässt sich individualisieren“ ist die Hauptzeile (gewählt von
+  Stefanie am 02.11.2026). Die Produktseiten liegen unter `/shop/`. Eine eigene Kasse gibt es nicht, bestellt wird
+  nur über Etsy. Solange die Etsy-Listings fehlen, ist der Kaufknopf kein Link.
+- Alle alten Anlass-, Ratgeber- und Sonderseiten sind Weiterleitungen auf `/`
+  (`noindex`, Marker `<meta name="bth-weiterleitung">`). Punkt 5 im Konsistenz-Check prüft das.
+- Titel-Form: `… | BeThatHost`, höchstens 60 Zeichen.
+- Auf den verbleibenden Seiten gibt es kein `consent.js`, kein `motion.css`/`motion.js`,
+  keine Werbung und keinen Pinterest-Tag. `sitemap.xml`, `llms.txt` und `feed.xml` führen nur den Shop.
+- `index.html`, `404.html` und `shop/*.html` entstehen aus dem Generator `baue_shop.py`
+  (liegt im Workspace unter `01_aktiv/projekt-kaempf/bethathost-shop/_prozess/generator/`).
+  Nicht von Hand ändern, sonst überschreibt der nächste Lauf die Änderung.
+- Diese Seiten tragen das CSS und die `@font-face`-Blöcke eingebettet im Kopf (Tempo auf dem
+  Handy). Quelle bleibt `assets/style.css`, eine Änderung dort wirkt erst nach einem Generatorlauf.
+- Die Abschnitte unten zu Anlass-Seiten, Pick-Karten, Werbeplätzen, Consent und Pinterest
+  beschreiben den alten Stand und ruhen. Ebenso die Agenten `page-builder`,
+  `consistency-auditor` und `pinterest-manager`.
+
 ## Cozylore (`cozy/**`) — abgekoppelt, seit 2026-07-20
 Cozylore war eine englischsprachige Sub-Marke, ist aber **nicht mehr Teil der Live-Seite**:
 kein Link mehr in Navigation, Startseite oder Cross-Links, nicht in `sitemap.xml`/`llms.txt`.
@@ -18,7 +38,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 
 ## Design-System (BeThatHost) — eiserne Regeln
 - **Eine einzige Stylesheet-Quelle:** `/assets/style.css`. **Niemals** pro-Ordner-Kopien
-  (`style.css`, `../style.css`) anlegen. Alle Seiten binden `/assets/style.css` + `/assets/motion.css` ein.
+  (`style.css`, `../style.css`) anlegen. Alle Seiten binden `/assets/style.css` ein
+  (`/assets/motion.css` seit 02.11.2026 nicht mehr).
 - **Fonts nur über die CSS-Variablen** `--display` (Fraunces) und `--ui` (Hanken Grotesk).
   **Nie** Playfair Display oder Inter auf BeThatHost-Seiten einführen.
 - **Fonts sind self-hosted** (`/assets/fonts/*.woff2` + `@font-face`-Regeln in
@@ -41,8 +62,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   `@font-face` in `fonts.css` ergänzen — nie den CDN-Link selbst einbinden.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
-1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>` (**max. 60 Zeichen inkl.
-   „ — BeThatHost"** — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
+1. `<head>`: charset/viewport, `<title>… | BeThatHost</title>` (**max. 60 Zeichen inkl.
+   „ | BeThatHost"**, Trenner seit 02.11.2026 der senkrechte Strich — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
    hinter dem Schnitt verschwand genau die Marke. Hauptsuchwort nach vorn; die `<h1>` darf
    länger sein), meta description
    (**max. 160 Zeichen** — Google schneidet deutsche Snippets bei rund 155-160 ab;

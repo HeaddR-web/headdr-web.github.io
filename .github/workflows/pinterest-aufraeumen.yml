@@ -5,6 +5,7 @@ name: Pinterest aufraeumen
 # geloeschten Pin vorher in pinterest/geloescht/<datum>.json.
 # Logik und Regel: scripts/pinterest_aufraeumen.py
 
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
   workflow_dispatch:
     inputs:

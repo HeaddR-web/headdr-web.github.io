@@ -2,92 +2,59 @@
 # -*- coding: utf-8 -*-
 """Baut /llms.txt - das Inhaltsverzeichnis der Seite fuer KI-Suchen.
 
-Warum: llms.txt wurde am 20. Juli 2026 von Hand angelegt und danach nie wieder
-angefasst. Im September 2026 standen darin 13 von 37 Seiten: alle Mottopartys,
-alle Anlass-Seiten (brunch, casino, geburtstag, jga, ...) und alle fuenf
-Kaufratgeber fehlten. robots.txt laedt GPTBot, ClaudeBot, PerplexityBot & Co.
-ausdruecklich ein - und schickte sie dann zu einer Liste, die zwei Drittel der
-Seite verschwieg.
-
-Deshalb wird die Datei jetzt erzeugt, und zwar aus den Listen, die es schon
-gibt: Welche Seiten es gibt und wie sie heissen, steht in THEMA und NAME in
-build-related.py (derselbe Ort, der auch den Weiterlesen-Block baut - eine
-Seite ohne Eintrag dort faellt schon in Punkt 14 auf). Die Beschreibung je
-Seite ist ihre meta description. Es gibt also keine zweite Liste, die wieder
-veralten koennte.
+Seit 02.11.2026 ist bethathost.de nur noch ein Shop fuer eigene 3D-Druck-Teile
+(zum Start Platzkartenhalter und JGA-Anhaenger); alle alten Inhaltsseiten sind
+Weiterleitungen. Die
+Datei wird deshalb nicht mehr aus THEMA/NAME (build-related.py) erzeugt,
+sondern aus der kurzen Liste unten. Jede dort verlinkte Seite muss als Datei
+existieren, sonst bricht der Lauf ab. Texte nur mit Fakten aus shop/*.html,
+keine Preise (stehen dort noch nicht fest).
 
 Aufruf: python3 scripts/build-llms.py [--pruefen]
 """
-import html
-import importlib.util
 import os
-import re
 import sys
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-spec = importlib.util.spec_from_file_location(
-    "build_related", os.path.join(WURZEL, "scripts", "build-related.py"))
-br = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(br)
-
 BASIS = "https://bethathost.de/"
 ZIEL = os.path.join(WURZEL, "llms.txt")
 
-KOPF = """# BeThatHost — bethathost.de
+KOPF = """# BeThatHost, bethathost.de
 
-> Deutschsprachige Seite zum Planen von Feiern und Abenden zuhause: Mädelsabend, Cocktailabend, WM-Party, Geburtstag, Mottopartys und mehr. Pro Anlass kuratierte Produktempfehlungen mit direktem Link, ausführliche Guides und Kaufratgeber.
+> Online-Shop für eigene Teile aus dem 3D-Drucker. Manche Entwürfe sind fertig, individualisieren lässt sich jedes, zum Beispiel mit einem Namen oder Text. Zum Start gibt es Platzkartenhalter und JGA-Anhänger. Entworfen von BeThatHost, gedruckt bei einem 3D-Druck-Partner, verschickt von BeThatHost selbst.
 
-Finanziert über Affiliate-Links (Amazon.de) und Display-Werbung; jede Seite legt das offen. Alle Inhalte auf Deutsch.
+Die Seite hat keine eigene Kasse. Bestellt wird über ein Etsy-Listing, dort gibst du den Namen oder Text an. Solange die Listings noch nicht stehen, sind die Produktseiten Platzhalter. Preise, Material und Maße stehen noch nicht fest.
 """
 
-# Reihenfolge und Ueberschrift der Abschnitte. Jeder Schluessel ist ein THEMA
-# aus build-related.py; ein neues Thema ohne Eintrag hier laesst --pruefen rot
-# werden, statt still zu verschwinden.
 ABSCHNITTE = [
-    ("girlsnight", "Mädelsabend"),
-    ("cocktail", "Cocktailabend"),
-    ("watchparty", "WM- und Fußball-Party"),
-    ("anlaesse", "Anlässe"),
-    ("geschenke", "Geschenkideen"),
-    ("mottos", "Mottopartys"),
-    ("ratgeber", "Kaufratgeber"),
+    ("Shop", [
+        ("index.html", "Shop-Startseite",
+         "Alle Produkte im Überblick, jedes lässt sich individualisieren. Dazu der Ablauf der Bestellung."),
+        ("shop/platzkartenhalter.html", "Platzkartenhalter mit Namen",
+         "Ein Halter je Gast, mit dem Namen gedruckt, für Hochzeit und Geburtstag."),
+        ("shop/jga-anhaenger.html", "JGA-Anhänger im Set",
+         "Schlüsselanhänger im Set für die ganze Gruppe beim Junggesellenabschied."),
+    ]),
+    ("Rechtliches", [
+        ("impressum.html", "Impressum", ""),
+        ("datenschutz.html", "Datenschutz", ""),
+    ]),
 ]
-# Nach der llms.txt-Konvention darf ein Leser den Abschnitt "Optional" auslassen.
-OPTIONAL = [
-    ("ueber-uns.html", "Über BeThatHost"),
-    ("girlsnight/disclosure.html", "Offenlegung: Affiliate-Links"),
-    ("datenschutz.html", "Datenschutz"),
-    ("impressum.html", "Impressum"),
-]
-
-DESC_RE = re.compile(r'<meta\s+name="description"\s+content="([^"]*)"', re.S)
 
 
 def url(pfad):
     return BASIS + (pfad[: -len("index.html")] if pfad.endswith("index.html") else pfad)
 
 
-def beschreibung(pfad):
-    text = open(os.path.join(WURZEL, pfad), encoding="utf-8").read()
-    m = DESC_RE.search(text)
-    return " ".join(html.unescape(m.group(1)).split()) if m else ""
-
-
-def eintrag(pfad, name):
-    desc = beschreibung(pfad)
-    return f"- [{name}]({url(pfad)})" + (f": {desc}" if desc else "")
-
-
 def baue():
-    fehlt = [t for t in br.THEMA if t not in dict(ABSCHNITTE)]
-    if fehlt:
-        raise SystemExit(f"THEMA ohne Abschnitt in build-llms.py: {', '.join(fehlt)}")
     teile = [KOPF]
-    for thema, titel in ABSCHNITTE:
-        zeilen = [eintrag(p, br.NAME[p]) for p in br.THEMA[thema]]
+    for titel, eintraege in ABSCHNITTE:
+        zeilen = []
+        for pfad, name, text in eintraege:
+            if not os.path.exists(os.path.join(WURZEL, pfad)):
+                raise SystemExit(f"llms.txt verlinkt {pfad}, die Datei gibt es nicht")
+            zeilen.append(f"- [{name}]({url(pfad)})" + (f": {text}" if text else ""))
         teile.append(f"## {titel}\n\n" + "\n".join(zeilen) + "\n")
-    zeilen = [eintrag(p, n) for p, n in OPTIONAL if os.path.exists(os.path.join(WURZEL, p))]
-    teile.append("## Optional\n\n" + "\n".join(zeilen) + "\n")
     return "\n".join(teile)
 
 
@@ -102,7 +69,7 @@ def main():
         return
     if neu != alt:
         open(ZIEL, "w", encoding="utf-8").write(neu)
-        print(f"llms.txt geschrieben ({neu.count(chr(10) + '- [')} Seiten)")
+        print("llms.txt geschrieben")
     else:
         print("llms.txt unveraendert")
 

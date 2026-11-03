@@ -6,9 +6,10 @@ name: Besucher & Google-Statistik
 # Google ein, falls sie dort fehlt. Logik und noetige Secrets:
 # scripts/web_stats.py
 
+# abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:
-  schedule:
-    - cron: "15 7 * * 1"   # montags ~07:15 UTC, nach der Pinterest-Statistik
+  # schedule:
+  #   - cron: "15 7 * * 1"   # montags ~07:15 UTC, nach der Pinterest-Statistik
   workflow_dispatch: {}
 
 permissions:

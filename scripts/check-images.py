@@ -19,6 +19,7 @@ Drei Fehler:
 
 Beheben mit: python3 scripts/build-images.py
 """
+import glob
 import importlib.util
 import os
 import sys
@@ -73,13 +74,21 @@ def main():
             gebraucht.update(os.path.join(bilder.PRODUKT_DIR, f"{stamm}-{b}.jpg")
                              for b in bilder.produkt_breiten(stamm))
 
-    for datei in bilder.verwaist(gebraucht):
-        offen.append(f"Ableitung verwaist: {datei}")
+    # Seit 02.11.2026 sind die alten Inhaltsseiten Weiterleitungen und verlinken
+    # keine Bilder mehr; die Ableitungen bleiben bewusst liegen (nichts loeschen).
+    # Solange es Weiterleitungsseiten gibt, ist "verwaist" deshalb kein Fehler.
+    # Gibt es keine mehr, gilt die Pruefung wieder voll.
+    abgebaut = any(bilder.ist_weiterleitung(p) for p in glob.glob("**/*.html", recursive=True)
+                    if not p.startswith("cozy/"))
+    if not abgebaut:
+        for datei in bilder.verwaist(gebraucht):
+            offen.append(f"Ableitung verwaist: {datei}")
 
     if offen:
         print("\n".join(offen))
         sys.exit(1)
-    print("Kachel-, Hero-, Lead- und Produktbilder aktuell")
+    print("Kachel-, Hero-, Lead- und Produktbilder aktuell"
+          + (" (Verwaist-Pruefung ausgesetzt: abgebaute Seiten sind Weiterleitungen)" if abgebaut else ""))
 
 
 if __name__ == "__main__":

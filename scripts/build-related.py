@@ -27,6 +27,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 # Kurzer Linktext je Seite. Die <h1> taugen nicht: "Mädelsabend zu Hause mit
 # kleinem Budget: 20 günstige Ideen mit Spaßgarantie" sprengt jede Kachel.
 NAME = {
@@ -195,6 +198,8 @@ def main():
     geaendert = 0
     for seite, ziel_liste in sorted(plan.items()):
         pfad = Path(seite)
+        if ist_weiterleitung(seite):
+            continue
         if not pfad.exists():
             print(f"fehlt: {seite}")
             return 1
