@@ -464,6 +464,32 @@ body.shop .shop-kopf h1 {
 .shop-raster-start .shop-svg-reihe {
   width: min(100%, 560px);
 }
+/* Namensfeld in der Halter-Karte: liegt über der Linkfläche, damit Tippen nicht zur Produktseite führt.
+ * Ohne Skript schreibt es nichts ins Bild, dann bleibt es weg. */
+.shop-karte-probe {
+  position: relative;
+  z-index: 3;
+  /* nah an das Bild, in das es schreibt, mit Luft zum Titel darunter (Kritiker Runde 1, 03.11.2026) */
+  margin: -6px 0 16px;
+}
+.shop-karte-probe .shop-feld {
+  max-width: none;
+}
+html:not(.js) .shop-karte-probe {
+  display: none;
+}
+/* Beim Tippen bleibt das Bild ruhig, auch wenn der Zeiger darüber steht. Die Unterstreichung bleibt, die Karte ist ein Link. */
+.shop-karte:has(.shop-karte-probe:focus-within) .shop-karte-bild svg {
+  transform: none;
+}
+.shop-karte:has(.shop-karte-probe:hover) .shop-karte-titel a,
+.shop-karte:has(.shop-karte-probe:active) .shop-karte-titel a {
+  text-decoration-color: transparent;
+}
+.shop-karte:has(.shop-karte-probe:hover) .shop-karte-bild svg,
+.shop-karte:has(.shop-karte-probe:active) .shop-karte-bild svg {
+  transform: none;
+}
 .shop-karte-text {
   display: grid;
   gap: 6px;
