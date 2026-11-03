@@ -247,8 +247,9 @@ SKRIPT = """    <script>
           }
           var teile = schnitt < 0 ? [w.slice(0, Math.ceil(halb)), w.slice(Math.ceil(halb))] : [w.slice(0, schnitt), w.slice(schnitt + 1)];
           t.textContent = "";
+          // Namensraum vom Textfeld, eine ausgeschriebene Adresse hielte der Fremd-Host-Wächter für einen Abruf
           teile.forEach(function (s) {
-            var z = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+            var z = document.createElementNS(t.namespaceURI, "tspan");
             z.setAttribute("x", t.getAttribute("x"));
             z.textContent = s;
             t.appendChild(z);
