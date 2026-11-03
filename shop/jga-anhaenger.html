@@ -1448,6 +1448,7 @@ body.shop .shop-recht h3 {
           }
           function zeilen(teile) {
             t.textContent = "";
+            // Namensraum vom Textfeld, eine ausgeschriebene Adresse hielte der Fremd-Host-Wächter für einen Abruf
             teile.forEach(function (s) {
               var z = document.createElementNS(t.namespaceURI, "tspan");
               z.setAttribute("x", t.getAttribute("x"));
