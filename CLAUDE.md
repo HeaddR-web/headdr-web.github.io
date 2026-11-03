@@ -615,8 +615,14 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   direkte Vergleich: sechs Foto-Pins (`?pin=foto-…`, 18.–23.10., je als dritter Pin neben zwei
   Text-Karten). Gleiches Skript, gleiche Queue; das Foto liegt unter `pinterest/fotos/`
   (2:3, eigenes Motiv, nie ein Lead- oder og:image-Bild), darauf nur Kicker, Titel und Marke.
-  **Auswertung ab etwa 02.11.:** Impressionen der `foto-`-Pins gegen die Text-Karten derselben
-  Tage. Liegen die Fotos klar vorn, nur noch Foto-Pins bauen.
+  **Ergebnis 02.11.2026:** 6 Foto-Pins 192 Impressionen (32 pro Pin), 4 Klicks zur Seite;
+  25 Text-Karten derselben Tage 17 Impressionen (0,7 pro Pin), 2 Klicks. **Seitdem nur noch
+  Foto-Pins.** Die noch nicht veröffentlichten Text-Karten tragen in `grafik-pins.json`
+  `"pausiert": true` (bleiben als Quelle, kommen nicht in die Queue). Ein Foto-Pin kann seinen
+  Tag direkt als `"freigabe"` im Eintrag tragen — einer pro Tag, Saison zuerst.
+  Achtung: `build-pin-grafiken.py` rendert alle Karten neu; in einer anderen Umgebung weichen
+  die Bytes ab. Danach `git checkout -- assets/pins/` für alles außer den neuen Dateien —
+  bereits veröffentlichte Pin-Bilder nicht verändern.
 - **Kanal:** `"kanal": "rss"` = geht tropfweise über `feed.xml` raus (Standard seit 28.09.2026).
   `"kanal": "api"` = per Bulk-CSV bzw. API, sobald Standard-Zugang da ist, und **nie** im Feed.
   Einträge ohne das Feld sind alt und längst draußen.

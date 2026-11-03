@@ -1,6 +1,6 @@
 {
- "stand": "2026-10-26",
- "von": "2026-07-29",
+ "stand": "2026-11-02",
+ "von": "2026-08-05",
  "pins": [
   {
    "id": "1136877499711133090",
@@ -9,13 +9,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 24,
+    "IMPRESSION": 12,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -28,13 +28,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 7,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -47,13 +47,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 122,
-    "SAVE": 1,
-    "PIN_CLICK": 5,
+    "IMPRESSION": 64,
+    "SAVE": 0,
+    "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -66,13 +66,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 18,
+    "IMPRESSION": 1,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -85,13 +85,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -104,13 +104,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -123,13 +123,13 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -142,7 +142,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -161,9 +161,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 256,
+    "IMPRESSION": 94,
     "SAVE": 0,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -180,9 +180,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 154,
+    "IMPRESSION": 99,
     "SAVE": 0,
-    "PIN_CLICK": 4,
+    "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -199,9 +199,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 111,
+    "IMPRESSION": 36,
     "SAVE": 0,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -218,7 +218,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -237,7 +237,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 21,
+    "IMPRESSION": 12,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -256,9 +256,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 53,
+    "IMPRESSION": 18,
     "SAVE": 0,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -275,7 +275,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 67,
+    "IMPRESSION": 36,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -294,7 +294,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 4,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -313,10 +313,10 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 19,
+    "IMPRESSION": 11,
     "SAVE": 0,
-    "PIN_CLICK": 2,
-    "OUTBOUND_CLICK": 1
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 0
    },
    "30t": {
     "IMPRESSION": 0,
@@ -332,7 +332,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 19,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -351,7 +351,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 28,
+    "IMPRESSION": 13,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -370,7 +370,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 15,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -389,9 +389,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 46,
+    "IMPRESSION": 21,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -408,7 +408,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -427,7 +427,7 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -446,9 +446,9 @@
    "erstellt": "2026-07-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 120,
+    "IMPRESSION": 84,
     "SAVE": 1,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -484,7 +484,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 13,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -503,7 +503,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 16,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -522,7 +522,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 31,
+    "IMPRESSION": 15,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -541,7 +541,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -560,7 +560,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 7,
+    "IMPRESSION": 5,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -579,7 +579,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 67,
+    "IMPRESSION": 64,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -598,7 +598,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 7,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -617,9 +617,9 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 44,
+    "IMPRESSION": 34,
     "SAVE": 1,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -636,7 +636,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 14,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -655,7 +655,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 9,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -674,7 +674,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 99,
+    "IMPRESSION": 88,
     "SAVE": 0,
     "PIN_CLICK": 6,
     "OUTBOUND_CLICK": 0
@@ -693,7 +693,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -731,9 +731,9 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 930,
+    "IMPRESSION": 817,
     "SAVE": 7,
-    "PIN_CLICK": 57,
+    "PIN_CLICK": 50,
     "OUTBOUND_CLICK": 2
    },
    "30t": {
@@ -756,7 +756,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -769,7 +769,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -788,7 +788,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 16,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -807,9 +807,9 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 31,
+    "IMPRESSION": 26,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -826,9 +826,9 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 107,
+    "IMPRESSION": 93,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -845,13 +845,13 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 234,
+    "IMPRESSION": 177,
     "SAVE": 1,
-    "PIN_CLICK": 11,
+    "PIN_CLICK": 9,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -864,7 +864,7 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -883,9 +883,9 @@
    "erstellt": "2026-07-12",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 147,
-    "SAVE": 1,
-    "PIN_CLICK": 6,
+    "IMPRESSION": 5,
+    "SAVE": 0,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -902,7 +902,7 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -921,7 +921,7 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 145,
+    "IMPRESSION": 87,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -940,9 +940,9 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 1,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -959,7 +959,7 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -978,7 +978,7 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 28,
+    "IMPRESSION": 12,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -997,9 +997,9 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 69,
+    "IMPRESSION": 44,
     "SAVE": 0,
-    "PIN_CLICK": 3,
+    "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -1016,7 +1016,7 @@
    "erstellt": "2026-07-08",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 3,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1035,9 +1035,9 @@
    "erstellt": "2026-07-06",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 17,
+    "IMPRESSION": 9,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -1054,7 +1054,7 @@
    "erstellt": "2026-07-05",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1092,7 +1092,7 @@
    "erstellt": "2026-07-03",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1111,7 +1111,7 @@
    "erstellt": "2026-06-30",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1149,7 +1149,7 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 6,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1168,7 +1168,7 @@
    "erstellt": "2026-06-28",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 4,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1187,15 +1187,15 @@
    "erstellt": "2026-06-27",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 763,
+    "IMPRESSION": 783,
     "SAVE": 2,
-    "PIN_CLICK": 9,
+    "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 276,
+    "IMPRESSION": 239,
     "SAVE": 1,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1206,13 +1206,13 @@
    "erstellt": "2026-06-26",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 156,
-    "SAVE": 2,
-    "PIN_CLICK": 4,
+    "IMPRESSION": 147,
+    "SAVE": 1,
+    "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 33,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1225,7 +1225,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1244,7 +1244,7 @@
    "erstellt": "2026-06-25",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1269,7 +1269,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1282,13 +1282,13 @@
    "erstellt": "2026-06-24",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 244,
+    "IMPRESSION": 207,
     "SAVE": 0,
-    "PIN_CLICK": 7,
+    "PIN_CLICK": 6,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 33,
+    "IMPRESSION": 26,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1301,7 +1301,7 @@
    "erstellt": "2026-06-24",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 6,
+    "IMPRESSION": 5,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1320,13 +1320,13 @@
    "erstellt": "2026-06-23",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 88,
+    "IMPRESSION": 102,
     "SAVE": 1,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 54,
+    "IMPRESSION": 69,
     "SAVE": 1,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1339,13 +1339,13 @@
    "erstellt": "2026-06-22",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 38,
+    "IMPRESSION": 41,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 20,
+    "IMPRESSION": 21,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1358,15 +1358,15 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 154,
+    "IMPRESSION": 155,
     "SAVE": 0,
     "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 52,
+    "IMPRESSION": 40,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1377,13 +1377,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 252,
+    "IMPRESSION": 285,
     "SAVE": 0,
-    "PIN_CLICK": 6,
+    "PIN_CLICK": 7,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 94,
+    "IMPRESSION": 129,
     "SAVE": 0,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
@@ -1396,13 +1396,13 @@
    "erstellt": "2026-06-17",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 22,
+    "IMPRESSION": 24,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 17,
+    "IMPRESSION": 11,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1415,13 +1415,13 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 26,
+    "IMPRESSION": 29,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1434,16 +1434,16 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 275,
-    "SAVE": 5,
-    "PIN_CLICK": 11,
-    "OUTBOUND_CLICK": 0
+    "IMPRESSION": 618,
+    "SAVE": 8,
+    "PIN_CLICK": 28,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 205,
-    "SAVE": 5,
-    "PIN_CLICK": 10,
-    "OUTBOUND_CLICK": 0
+    "IMPRESSION": 530,
+    "SAVE": 8,
+    "PIN_CLICK": 27,
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -1453,13 +1453,13 @@
    "erstellt": "2026-06-16",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 2131,
+    "IMPRESSION": 2118,
     "SAVE": 6,
-    "PIN_CLICK": 55,
+    "PIN_CLICK": 48,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 425,
+    "IMPRESSION": 422,
     "SAVE": 0,
     "PIN_CLICK": 8,
     "OUTBOUND_CLICK": 1
@@ -1472,13 +1472,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 5,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1491,16 +1491,16 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1024,
+    "IMPRESSION": 1002,
     "SAVE": 2,
-    "PIN_CLICK": 24,
+    "PIN_CLICK": 26,
     "OUTBOUND_CLICK": 2
    },
    "30t": {
-    "IMPRESSION": 251,
-    "SAVE": 0,
-    "PIN_CLICK": 9,
-    "OUTBOUND_CLICK": 1
+    "IMPRESSION": 272,
+    "SAVE": 1,
+    "PIN_CLICK": 10,
+    "OUTBOUND_CLICK": 0
    }
   },
   {
@@ -1529,13 +1529,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 136,
+    "IMPRESSION": 128,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 26,
+    "IMPRESSION": 18,
     "SAVE": 0,
     "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
@@ -1548,7 +1548,7 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 25,
+    "IMPRESSION": 24,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1567,13 +1567,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 94,
+    "IMPRESSION": 96,
     "SAVE": 1,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 26,
+    "IMPRESSION": 13,
     "SAVE": 1,
     "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
@@ -1586,13 +1586,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 17,
+    "IMPRESSION": 22,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 12,
+    "IMPRESSION": 15,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1605,15 +1605,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1447,
-    "SAVE": 1,
-    "PIN_CLICK": 15,
+    "IMPRESSION": 1666,
+    "SAVE": 2,
+    "PIN_CLICK": 21,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 1002,
-    "SAVE": 0,
-    "PIN_CLICK": 4,
+    "IMPRESSION": 1168,
+    "SAVE": 1,
+    "PIN_CLICK": 9,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1624,15 +1624,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 1438,
+    "IMPRESSION": 1270,
     "SAVE": 2,
-    "PIN_CLICK": 31,
+    "PIN_CLICK": 22,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 238,
+    "IMPRESSION": 213,
     "SAVE": 0,
-    "PIN_CLICK": 5,
+    "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1643,15 +1643,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 401,
-    "SAVE": 2,
-    "PIN_CLICK": 21,
+    "IMPRESSION": 460,
+    "SAVE": 3,
+    "PIN_CLICK": 23,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 137,
-    "SAVE": 1,
-    "PIN_CLICK": 7,
+    "IMPRESSION": 183,
+    "SAVE": 2,
+    "PIN_CLICK": 9,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1662,13 +1662,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 46,
+    "IMPRESSION": 50,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 24,
+    "IMPRESSION": 26,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1681,15 +1681,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 254,
+    "IMPRESSION": 394,
     "SAVE": 3,
-    "PIN_CLICK": 7,
+    "PIN_CLICK": 10,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 154,
+    "IMPRESSION": 291,
     "SAVE": 2,
-    "PIN_CLICK": 6,
+    "PIN_CLICK": 9,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1700,15 +1700,15 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 537,
+    "IMPRESSION": 536,
     "SAVE": 0,
-    "PIN_CLICK": 19,
+    "PIN_CLICK": 18,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 156,
+    "IMPRESSION": 147,
     "SAVE": 0,
-    "PIN_CLICK": 4,
+    "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1719,13 +1719,13 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 169,
+    "IMPRESSION": 163,
     "SAVE": 0,
-    "PIN_CLICK": 4,
+    "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 35,
+    "IMPRESSION": 22,
     "SAVE": 0,
     "PIN_CLICK": 2,
     "OUTBOUND_CLICK": 0
@@ -1738,15 +1738,281 @@
    "erstellt": "2026-06-15",
    "board": "Astethic",
    "summe": {
-    "IMPRESSION": 897,
+    "IMPRESSION": 874,
     "SAVE": 1,
     "PIN_CLICK": 16,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 124,
+    "IMPRESSION": 46,
     "SAVE": 0,
-    "PIN_CLICK": 2,
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719966341",
+   "titel": "Batch-Cocktails für 10 Gläser: Mengen zum Vorbereiten",
+   "link": "https://bethathost.de/cocktailabend/posts/signature-cocktails-vorbereiten.html?pin=batch#mengen-fuer-zehn",
+   "erstellt": "2026-11-01",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719966338",
+   "titel": "Waffelteig für den Brunch: am Vorabend fertig",
+   "link": "https://bethathost.de/brunch/?pin=waffeln#cat-food",
+   "erstellt": "2026-11-01",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719875326",
+   "titel": "Kindergeburtstag zuhause: der Ablauf für drei Stunden",
+   "link": "https://bethathost.de/kindergeburtstag/?pin=ablauf#ablauf",
+   "erstellt": "2026-10-31",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719875325",
+   "titel": "Popcorn aus dem Topf: so poppen fast alle Körner",
+   "link": "https://bethathost.de/girlsnight/posts/girls-night-movie-night.html?pin=popcorn#popcorn-richtig",
+   "erstellt": "2026-10-31",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719783791",
+   "titel": "Sekt öffnen ohne Knall: der Trick für Silvester",
+   "link": "https://bethathost.de/silvester/?pin=sektoeffnen#cat-sekt",
+   "erstellt": "2026-10-30",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719783787",
+   "titel": "Filme für den Mädelsabend – sortiert nach Stimmung",
+   "link": "https://bethathost.de/girlsnight/posts/girls-night-movie-night.html?pin=filme#filmvorschlaege",
+   "erstellt": "2026-10-30",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719695613",
+   "titel": "Silvester-Feuerwerk: was ist erlaubt?",
+   "link": "https://bethathost.de/silvester/?pin=feuerwerk#feuerwerk",
+   "erstellt": "2026-10-29",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719695599",
+   "titel": "Wachsgießen an Silvester: So geht der Brauch ohne Blei",
+   "link": "https://bethathost.de/silvester/?pin=wachs#wachsgiessen",
+   "erstellt": "2026-10-29",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719603978",
+   "titel": "Silvesterparty zuhause: der Zeitplan bis Mitternacht",
+   "link": "https://bethathost.de/silvester/?pin=zeitplan#zeitplan",
+   "erstellt": "2026-10-28",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719603971",
+   "titel": "Kaltes Fingerfood: 6 Häppchen, die man vorbereiten kann",
+   "link": "https://bethathost.de/fingerfood/?pin=kalt#kalt",
+   "erstellt": "2026-10-28",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719514470",
+   "titel": "Mitbringsel selbst gemacht: 3 Ideen in 15 Minuten",
+   "link": "https://bethathost.de/mitbringsel/?pin=selbstgemacht#selbstgemacht",
+   "erstellt": "2026-10-27",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719514461",
+   "titel": "Fingerfood vorbereiten: was schon am Vortag geht",
+   "link": "https://bethathost.de/fingerfood/?pin=vortag#vorbereiten",
+   "erstellt": "2026-10-27",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719426324",
+   "titel": "Wie viel Sekt für Silvester? Die Mengen für jede Runde",
+   "link": "https://bethathost.de/silvester/?pin=sekt#cat-sekt",
+   "erstellt": "2026-10-26",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   }
+  },
+  {
+   "id": "1136877499719426321",
+   "titel": "Raclette-Pfännchen und Fondue reinigen ohne Schrubben",
+   "link": "https://bethathost.de/ratgeber/raclette-fondue-set.html?pin=reinigen#reinigen",
+   "erstellt": "2026-10-26",
+   "board": "Party & Gastgeben Ideen",
+   "summe": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
+   },
+   "30t": {
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1852,13 +2118,13 @@
    "erstellt": "2026-10-23",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1871,15 +2137,15 @@
    "erstellt": "2026-10-23",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 27,
     "SAVE": 0,
-    "PIN_CLICK": 0,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 27,
     "SAVE": 0,
-    "PIN_CLICK": 0,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -1909,13 +2175,13 @@
    "erstellt": "2026-10-22",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 2,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -1947,16 +2213,16 @@
    "erstellt": "2026-10-21",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 38,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 38,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -1966,16 +2232,16 @@
    "erstellt": "2026-10-21",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 7,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 7,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -2004,16 +2270,16 @@
    "erstellt": "2026-10-20",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 7,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 7,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -2042,16 +2308,16 @@
    "erstellt": "2026-10-20",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 85,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 4,
+    "OUTBOUND_CLICK": 2
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 85,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 4,
+    "OUTBOUND_CLICK": 2
    }
   },
   {
@@ -2061,16 +2327,16 @@
    "erstellt": "2026-10-19",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 40,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 0,
+    "IMPRESSION": 40,
     "SAVE": 0,
-    "PIN_CLICK": 0,
-    "OUTBOUND_CLICK": 0
+    "PIN_CLICK": 1,
+    "OUTBOUND_CLICK": 1
    }
   },
   {
@@ -2922,7 +3188,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2941,7 +3207,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2960,7 +3226,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2979,7 +3245,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -2998,7 +3264,7 @@
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3011,13 +3277,13 @@
    "erstellt": "2026-07-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 21,
+    "IMPRESSION": 19,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3030,13 +3296,13 @@
    "erstellt": "2026-07-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 390,
+    "IMPRESSION": 362,
     "SAVE": 1,
     "PIN_CLICK": 5,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3049,7 +3315,7 @@
    "erstellt": "2026-07-03",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 12,
+    "IMPRESSION": 4,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3068,7 +3334,7 @@
    "erstellt": "2026-07-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3087,7 +3353,7 @@
    "erstellt": "2026-07-02",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3106,7 +3372,7 @@
    "erstellt": "2026-07-01",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 11,
+    "IMPRESSION": 10,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3125,7 +3391,7 @@
    "erstellt": "2026-07-01",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 20,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3163,7 +3429,7 @@
    "erstellt": "2026-06-30",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 3,
+    "IMPRESSION": 1,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3182,7 +3448,7 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3201,9 +3467,9 @@
    "erstellt": "2026-06-29",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 6,
-    "SAVE": 1,
-    "PIN_CLICK": 1,
+    "IMPRESSION": 0,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -3258,7 +3524,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3277,7 +3543,7 @@
    "erstellt": "2026-06-27",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3315,7 +3581,7 @@
    "erstellt": "2026-06-26",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 16,
+    "IMPRESSION": 5,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3372,7 +3638,7 @@
    "erstellt": "2026-06-25",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3391,9 +3657,9 @@
    "erstellt": "2026-06-24",
    "board": "Party & Gastgeben Ideen",
    "summe": {
-    "IMPRESSION": 8,
+    "IMPRESSION": 7,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
@@ -3429,15 +3695,15 @@
    "erstellt": "2026-06-21",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 306,
+    "IMPRESSION": 278,
     "SAVE": 1,
     "PIN_CLICK": 4,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 25,
+    "IMPRESSION": 1,
     "SAVE": 0,
-    "PIN_CLICK": 1,
+    "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -3448,13 +3714,13 @@
    "erstellt": "2026-06-20",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 66,
+    "IMPRESSION": 63,
     "SAVE": 1,
     "PIN_CLICK": 3,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 4,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3467,7 +3733,7 @@
    "erstellt": "2026-06-19",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3486,15 +3752,15 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 4195,
+    "IMPRESSION": 4122,
     "SAVE": 19,
-    "PIN_CLICK": 196,
+    "PIN_CLICK": 192,
     "OUTBOUND_CLICK": 1
    },
    "30t": {
-    "IMPRESSION": 664,
-    "SAVE": 3,
-    "PIN_CLICK": 22,
+    "IMPRESSION": 6,
+    "SAVE": 0,
+    "PIN_CLICK": 1,
     "OUTBOUND_CLICK": 0
    }
   },
@@ -3505,13 +3771,13 @@
    "erstellt": "2026-06-18",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 28,
+    "IMPRESSION": 25,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 2,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3524,16 +3790,16 @@
    "erstellt": "2026-06-17",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 24237,
-    "SAVE": 79,
-    "PIN_CLICK": 938,
-    "OUTBOUND_CLICK": 5
+    "IMPRESSION": 22933,
+    "SAVE": 71,
+    "PIN_CLICK": 879,
+    "OUTBOUND_CLICK": 4
    },
    "30t": {
-    "IMPRESSION": 2843,
-    "SAVE": 7,
-    "PIN_CLICK": 105,
-    "OUTBOUND_CLICK": 2
+    "IMPRESSION": 58,
+    "SAVE": 0,
+    "PIN_CLICK": 0,
+    "OUTBOUND_CLICK": 0
    }
   },
   {
@@ -3543,13 +3809,13 @@
    "erstellt": "2026-06-17",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 10,
+    "IMPRESSION": 9,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 1,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3562,13 +3828,13 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 355,
+    "IMPRESSION": 321,
     "SAVE": 1,
-    "PIN_CLICK": 12,
+    "PIN_CLICK": 11,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 15,
+    "IMPRESSION": 0,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3581,7 +3847,7 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 27,
+    "IMPRESSION": 8,
     "SAVE": 0,
     "PIN_CLICK": 0,
     "OUTBOUND_CLICK": 0
@@ -3600,31 +3866,25 @@
    "erstellt": "2026-06-16",
    "board": "WM",
    "summe": {
-    "IMPRESSION": 1179,
-    "SAVE": 3,
-    "PIN_CLICK": 43,
+    "IMPRESSION": 1197,
+    "SAVE": 4,
+    "PIN_CLICK": 45,
     "OUTBOUND_CLICK": 0
    },
    "30t": {
-    "IMPRESSION": 413,
+    "IMPRESSION": 373,
     "SAVE": 1,
-    "PIN_CLICK": 18,
+    "PIN_CLICK": 19,
     "OUTBOUND_CLICK": 0
    }
   }
  ],
  "wochen": {
-  "2026-07-27": {
-   "IMPRESSION": 2216,
-   "SAVE": 7,
-   "PIN_CLICK": 87,
-   "OUTBOUND_CLICK": 1
-  },
   "2026-08-03": {
-   "IMPRESSION": 5037,
-   "SAVE": 20,
-   "PIN_CLICK": 197,
-   "OUTBOUND_CLICK": 4
+   "IMPRESSION": 3814,
+   "SAVE": 14,
+   "PIN_CLICK": 153,
+   "OUTBOUND_CLICK": 3
   },
   "2026-08-10": {
    "IMPRESSION": 3156,
@@ -3687,12 +3947,18 @@
    "OUTBOUND_CLICK": 1
   },
   "2026-10-19": {
-   "IMPRESSION": 904,
+   "IMPRESSION": 1030,
    "SAVE": 5,
-   "PIN_CLICK": 22,
+   "PIN_CLICK": 27,
    "OUTBOUND_CLICK": 0
   },
   "2026-10-26": {
+   "IMPRESSION": 1384,
+   "SAVE": 7,
+   "PIN_CLICK": 46,
+   "OUTBOUND_CLICK": 7
+  },
+  "2026-11-02": {
    "IMPRESSION": 0,
    "SAVE": 0,
    "PIN_CLICK": 0,
