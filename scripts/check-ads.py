@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 """Prueft die Werbeplaetze (<div class="ad-slot">) aller BeThatHost-Seiten.
 
+Stand 16.11.2026: Werbung gibt es auf der Domain nicht mehr, js/consent.js und
+cozy/ sind geloescht, die alten Anlass-Seiten sind Weiterleitungen. Der Check
+haelt seitdem nur noch fest, dass auf den Seiten in OHNE_WERBUNG kein Werbeplatz
+auftaucht. Der Text unten beschreibt, wofuer er gebaut wurde.
+
 Zwei Dinge koennen hier schiefgehen, beide waren schon da:
 
 1. Der Platz fehlt. Im September 2026 hatte genau eine von 46 Seiten einen
@@ -9,7 +14,7 @@ Zwei Dinge koennen hier schiefgehen, beide waren schon da:
    ausliefern, egal wie viele Leser kamen.
 
 2. Der Platz ist nicht leer. Genau ein <div class="ad-slot"></div> gehoert in
-   die Seite - befuellt wird er erst von js/consent.js nach der Einwilligung.
+   die Seite - befuellt wurde er erst von js/consent.js nach der Einwilligung.
    Steht dort Text im Quelltext (frueher "Werbeplatz - im Artikel (responsiv).
    Erscheint, sobald AdSense aktiv ist."), sieht jeder Besucher dauerhaft einen
    Kasten mit einer Baustellen-Notiz darin, weil .ad-slot:empty dann nicht mehr

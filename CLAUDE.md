@@ -84,6 +84,7 @@ aus der Git-Historie. Die Ausnahmen für `cozy/` in den alten Prüfskripten sind
   begründet in `datenschutz.html` Punkt 9.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
+> **Ruht, alter Stand.** `js/consent.js`, die Werbung und die Anlass-Seiten gibt es seit 16.11.2026 nicht mehr (siehe „Stand seit 02.11.2026“ oben). Nichts aus diesem Abschnitt auf den Shop-Seiten einbauen.
 1. `<head>`: charset/viewport, `<title>… | BeThatHost</title>` (**max. 60 Zeichen inkl.
    „ | BeThatHost"**, Trenner seit 02.11.2026 der senkrechte Strich — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
    hinter dem Schnitt verschwand genau die Marke. Hauptsuchwort nach vorn; die `<h1>` darf
@@ -109,6 +110,7 @@ aus der Git-Historie. Die Ausnahmen für `cozy/` in den alten Prüfskripten sind
    `<script ... pinit.js>` mehr im Markup — beide lädt `consent.js` erst nach Opt-in nach.
 
 ## Werbeplätze (`div.ad-slot`) — immer leer im Quelltext
+> **Ruht, alter Stand.** `js/consent.js`, die Werbung und die Anlass-Seiten gibt es seit 16.11.2026 nicht mehr (siehe „Stand seit 02.11.2026“ oben). Nichts aus diesem Abschnitt auf den Shop-Seiten einbauen.
 Jede Inhaltsseite hat **genau einen** `<div class="ad-slot"></div>`, ungefähr in der Mitte des
 Artikels (vor der mittleren `<h2>`). Er steht im Quelltext **leer** und wird erst von
 `js/consent.js` nach der Einwilligung mit einer In-Artikel-Anzeige befüllt.
@@ -132,6 +134,7 @@ Artikels (vor der mittleren `<h2>`). Er steht im Quelltext **leer** und wird ers
 - `scripts/check-ads.py` prüft das mit, Punkt 12 im Konsistenz-Check.
 
 ## Cookie-Consent (DSGVO Art. 13, § 25 TDDDG)
+> **Ruht, alter Stand.** `js/consent.js`, die Werbung und die Anlass-Seiten gibt es seit 16.11.2026 nicht mehr (siehe „Stand seit 02.11.2026“ oben). Nichts aus diesem Abschnitt auf den Shop-Seiten einbauen.
 AdSense (`adsbygoogle.js`) und Pinterest (`pinit.js`) setzen Cookies/übertragen die IP vor jeder
 Einwilligung — deshalb werden beide **nie** direkt im HTML eingebunden, sondern ausschließlich von
 `/js/consent.js` per Script-Injection nachgeladen, und zwar nur nach aktivem Opt-in.
@@ -466,7 +469,7 @@ kostet doppelt.
   getesteten Variante. Gewinn waeren 3–8 KB — dafuer wird die Schrift hier nicht veraendert.
 - Der `cmap` bleibt vollstaendig (ein weiteres Subset koennte aus einem Zeichen ein
   Kaestchen machen). `fraunces-italic.woff2` und `inter.woff2` bleiben unberuehrt
-  (Inter gehoert zu `cozy/**` und wird auf BeThatHost nie geladen).
+  (Inter gehoerte zum geloeschten `cozy/**` und wird auf BeThatHost nie geladen).
 - `scripts/check-fonts.py` prueft das mit, Punkt 18 im Konsistenz-Check: Ableitung nicht
   aktuell, verlinkte Schrift fehlt, vorhandene Schrift verwaist.
 
@@ -648,8 +651,8 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 - **Kanal:** `"kanal": "rss"` = geht tropfweise über `feed.xml` raus (Standard seit 28.09.2026).
   `"kanal": "api"` = per Bulk-CSV bzw. API, sobald Standard-Zugang da ist, und **nie** im Feed.
   Einträge ohne das Feld sind alt und längst draußen.
-- `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
-  `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
+- `cozy/pins/queue.json` gibt es nicht mehr (Cozylore ist seit 16.11.2026 gelöscht, ebenso `scripts/make_feed.py`).
+  `SKIP_SITES` in `scripts/pinterest_publish.py` ist seitdem ohne Wirkung.
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
 - Inhaltlicher Tracker / Single Source of Truth: Notion-DB **„📌 Pinterest Pins"**. Details: `pinterest/README.md`.
 - **Ziel-URL — eiserne Regel:** Jeder Pin braucht eine **serverseitig eindeutige** `link`-URL.
@@ -702,7 +705,7 @@ braucht es die Search Console (Abschnitt oben).
 - Branch je Aufgabe, **kein** Direkt-Push auf `main` ohne PR.
 - Commit-Präfixe: `content:`, `design:`, `feat:`, `fix:`, `chore:`.
 - Keine Secrets committen (API-Keys etc. liegen als GitHub-Secrets).
-- Antworten/Inhalte auf Deutsch (einsprachig — `cozy/**` ist abgekoppelt, siehe oben).
+- Antworten/Inhalte auf Deutsch (einsprachig, `cozy/**` ist gelöscht, siehe oben).
 
 ## Automatisierung auf GitHub
 - `@claude` in einem Issue/PR-Kommentar → der GitHub-Agent (`.github/workflows/claude.yml`) übernimmt.
