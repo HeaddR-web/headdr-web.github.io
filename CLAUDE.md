@@ -29,17 +29,27 @@ Das hat Vorrang vor allem, was weiter unten über Anlass-Seiten steht.
   Handy). Quelle bleibt `assets/style.css`, eine Änderung dort wirkt erst nach einem Generatorlauf.
   Punkt 22 im Konsistenz-Check (`build-shop.py --pruefen`) meldet einen vergessenen Lauf.
 - Keine Statistik und kein Beacon auf den Shop-Seiten (seit 03.11.2026).
+- **Aufgeräumt am 16.11.2026.** Gelöscht sind `ads.txt`, `data/`, `docs/`, `statistik/`, `cozy/`,
+  `assets/motion.css`, `assets/motion.js`, `js/consent.js`, die 250 alten Bildableitungen unter
+  `assets/img/{kachel,lead,produkt,hero}/` samt `scripts/altbilder.txt` und alles unter `pinterest/`
+  außer `STATISTIK.md` und `stats/`. Ebenso die Workflows `feed.yml`, `web-stats.yml`,
+  `pinterest-publish.yml`, `pinterest-aufraeumen.yml` und die Skripte `make_feed.py`, `web_stats.py`,
+  `pinterest_aufraeumen.py`, `build-pin-grafiken.py`, `build-amazon-cards.mjs`.
+- Von Pinterest bleibt nur die Statistik: `pinterest-stats.yml` (Handstart) mit
+  `scripts/pinterest_stats.py`, dazu `pinterest-oauth.yml` für den Zugang.
+  `scripts/pinterest_publish.py` bleibt als Bibliothek liegen, `pinterest_stats.py` lädt daraus die
+  API-Funktionen. Gepostet wird nichts mehr, `feed.xml` ist eine feste Datei.
+- Wo die Abschnitte unten eine der gelöschten Dateien nennen, beschreiben sie Vergangenes.
+- Die Fraunces-Dateien in `assets/fonts/` bleiben, bis der eRecht24-Text in `datenschutz.html` steht
+  (der alte Text nennt Fraunces noch) und Punkt 18 im Konsistenz-Check ohne sie auskommt.
 - Die Abschnitte unten zu Anlass-Seiten, Pick-Karten, Werbeplätzen, Consent und Pinterest
   beschreiben den alten Stand und ruhen. Ebenso die Agenten `page-builder`,
   `consistency-auditor` und `pinterest-manager`.
 
-## Cozylore (`cozy/**`) — abgekoppelt, seit 2026-07-20
-Cozylore war eine englischsprachige Sub-Marke, ist aber **nicht mehr Teil der Live-Seite**:
-kein Link mehr in Navigation, Startseite oder Cross-Links, nicht in `sitemap.xml`/`llms.txt`.
-Die Dateien unter `cozy/**` bleiben unverändert im Repo (nichts gelöscht, könnte später eine
-eigene Domain bekommen), werden aber **nicht mehr gepflegt oder verlinkt**. `cozy/**` bleibt
-weiterhin tabu für BeThatHost-Änderungen (eigenständiges `cozy/style.css`, Fonts Fraunces +
-Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
+## Cozylore (`cozy/**`): entfernt am 16.11.2026
+Cozylore war eine englischsprachige Sub-Marke, seit 20.07.2026 abgekoppelt. Der Ordner `cozy/` ist mit dem
+Aufräum-PR vom 16.11.2026 gelöscht (Entscheidung Stefanie, 03.11.2026). Wer ihn wieder braucht, holt ihn
+aus der Git-Historie. Die Ausnahmen für `cozy/` in den alten Prüfskripten sind seitdem ohne Wirkung.
 
 ## Design-System (BeThatHost) — eiserne Regeln
 - **Eine einzige Stylesheet-Quelle:** `/assets/style.css`. **Niemals** pro-Ordner-Kopien
@@ -65,8 +75,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   `fonts.googleapis.com/css2?family=...` abrufen, die `woff2`-URLs
   (`fonts.gstatic.com`) daraus greifen, nach `/assets/fonts/` herunterladen,
   `@font-face` in `fonts.css` ergänzen — nie den CDN-Link selbst einbinden.
-- **Dasselbe gilt für jede andere Ressource** (Bilder, Hintergründe, Skripte, Videos), auch
-  unter `cozy/`: nie direkt von einem Fremd-Host einbinden, sondern die Datei ins Repo legen
+- **Dasselbe gilt für jede andere Ressource** (Bilder, Hintergründe, Skripte, Videos):
+  nie direkt von einem Fremd-Host einbinden, sondern die Datei ins Repo legen
   (Bilder nach `/assets/img/`) und lokal verlinken. Typischer Fall sind Higgsfield-Links
   (`*.cloudfront.net/user_…/hf_….png`): die gehören nur in `pins/queue.json` und `feed.xml`
   (die holt Pinterest selbst ab), nie in HTML, CSS oder JS. Punkt 23 im Konsistenz-Check

@@ -3,7 +3,8 @@ name: Pinterest-Statistik
 # Holt jede Woche die Zahlen aller Pins (Impressionen, Gemerkt, Klicks,
 # Klicks zur Seite) und schreibt pinterest/STATISTIK.md + stats/latest.json.
 # Nur lesend gegenueber Pinterest; nutzt dieselben drei Secrets wie
-# pinterest-publish.yml. Logik: scripts/pinterest_stats.py
+# pinterest-oauth.yml. Logik: scripts/pinterest_stats.py (laedt die API-Funktionen
+# aus scripts/pinterest_publish.py, deshalb bleibt die Datei im Repo)
 
 # abgeschaltet 02.11.2026: Domain ist nur noch Shop
 on:

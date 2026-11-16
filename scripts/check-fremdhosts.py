@@ -16,7 +16,7 @@ Geprueft wird, was der Browser von selbst abruft:
 - CSS: url(), @import, image-set()
 - JS: absolute URLs in String-Literalen (Heuristik, siehe JS_ERLAUBT)
 
-Gilt auch fuer Cozylore: die DSGVO kennt keine Marke.
+Cozylore (cozy/) ist seit 16.11.2026 aus dem Repo entfernt, geprueft wird alles, was da ist.
 
 Geprueft wird der Repo-Ordner, egal aus welchem Verzeichnis das Skript startet.
 Ein anderer Ordner geht als Argument (fuer Testdateien).
@@ -38,8 +38,9 @@ ERLAUBT = EIGENE | {"static.cloudflareinsights.com"}
 # In JS stehen auch reine Link-Ziele (Affiliate-Links). Die loesen keinen Abruf
 # aus, solange niemand klickt. Kommt ein neues Link-Ziel dazu, hier eintragen.
 JS_ERLAUBT = ERLAUBT | {"www.amazon.de"}
-# Erst nach Einwilligung nachgeladen, deshalb nur in dieser einen Datei erlaubt.
-NACH_OPT_IN = {"js/consent.js": {"pagead2.googlesyndication.com", "assets.pinterest.com"}}
+# Hosts, die eine einzelne Datei erst nach Einwilligung nachlaedt (Datei -> Hosts).
+# Leer seit 16.11.2026: js/consent.js (AdSense, Pinterest) ist entfernt.
+NACH_OPT_IN = {}
 
 LADENDE_REL = {"stylesheet", "preload", "modulepreload", "prefetch", "preconnect",
                "dns-prefetch", "icon", "apple-touch-icon", "manifest", "mask-icon"}
