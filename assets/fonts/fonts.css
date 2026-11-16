@@ -38,10 +38,12 @@
 
 /* Nur im Shop benutzt, @font-face laedt erst, wenn eine Seite die Schrift braucht.
    Bricolage Grotesque (OFL, ohne reservierten Namen, Projekt github.com/ateliertriay/bricolage):
-   statische Instanz ExtraBold 800 (opsz 96, wdth 100), beschnitten auf Latin, Latin-1 und Satzzeichen.
+   statische Instanz ExtraBold 800 (opsz 96, wdth 100), beschnitten auf Latin, Latin-1, Latin Extended-A,
+   rumaenisches S und T mit Komma und Satzzeichen. Gebaut von scripts/build-fonts.py aus
+   assets/fonts/src/bricolage-grotesque.ttf (github.com/google/fonts ofl/bricolagegrotesque), 16.11.2026.
    IBM Plex Mono Medium (OFL mit reserviertem Namen "Plex"): unveraendert, nur als woff2 verpackt,
    denn ein beschnittenes Subset duerfte den Namen nicht mehr tragen.
-   Quelle: Google Fonts (Bricolage Grotesque als variable woff2, Plex aus github.com/google/fonts ofl/ibmplexmono), 02.11.2026. */
+   Quelle: github.com/google/fonts ofl/ibmplexmono, 02.11.2026. */
 @font-face {
   font-family: "Bricolage Grotesque";
   font-style: normal;
