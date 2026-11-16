@@ -421,31 +421,74 @@ body.shop .shop-kopf h1 {
 .shop-raster-start .shop-svg-reihe {
   width: min(100%, 560px);
 }
-/* Namensfeld in der Halter-Karte: liegt über der Linkfläche, damit Tippen nicht zur Produktseite führt.
- * Ohne Skript schreibt es nichts ins Bild, dann bleibt es weg. */
-.shop-karte-probe {
-  position: relative;
-  z-index: 3;
-  /* nah an das Bild, in das es schreibt, mit Luft zum Titel darunter (Kritiker Runde 1, 03.11.2026) */
-  margin: -6px 0 16px;
+/* Zeile unter der Überschrift: kleiner Rahmen, der Name groß in eigener Zeile mit den Schichtlinien der Ablauf-Ziffern.
+ * Eigene Zeile, damit ein langer Name nichts verschiebt (Kritiker Runde 1, 16.11.2026) */
+.shop-kopf-fuer {
+  margin: 18px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--shop-muted);
 }
-.shop-karte-probe .shop-feld {
-  max-width: none;
+.shop-namen-gross {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font: 800 clamp(1.75rem, 4vw, 3rem) / 1.15 var(--shop-display);
+  background: repeating-linear-gradient(to bottom, var(--shop-akzent) 0 5px, #6f9a82 5px 7px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-html:not(.js) .shop-karte-probe {
+/* Namensleiste der Startseite: schreibt in die Zeile unter der Überschrift, in die Bilder und in den Ablauf.
+ * Sie klebt oben, dafür scrollt die Kopfzeile dort mit weg, sonst lägen zwei klebende Flächen übereinander.
+ * Ohne Skript schreibt sie nichts, dann bleibt sie weg. */
+.shop-leiste {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-bottom: clamp(20px, 3vw, 36px);
+  padding-block: 14px;
+  background: var(--shop-akzent-tief);
+  color: var(--paper);
+}
+html:not(.js) .shop-leiste {
   display: none;
 }
-/* Beim Tippen bleibt das Bild ruhig, auch wenn der Zeiger darüber steht. Die Unterstreichung bleibt, die Karte ist ein Link. */
-.shop-karte:has(.shop-karte-probe:focus-within) .shop-karte-bild svg {
-  transform: none;
+body.shop:has(.shop-leiste) header.site {
+  position: relative;
 }
-.shop-karte:has(.shop-karte-probe:hover) .shop-karte-titel a,
-.shop-karte:has(.shop-karte-probe:active) .shop-karte-titel a {
-  text-decoration-color: transparent;
+body.shop:has(.shop-leiste) .shop-kopf {
+  padding-bottom: clamp(20px, 3vw, 32px);
 }
-.shop-karte:has(.shop-karte-probe:hover) .shop-karte-bild svg,
-.shop-karte:has(.shop-karte-probe:active) .shop-karte-bild svg {
-  transform: none;
+.shop-leiste-raster {
+  display: grid;
+  grid-template-columns: auto minmax(0, 26rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px clamp(14px, 2vw, 24px);
+}
+.shop-leiste-kopf {
+  font: 800 1.5rem/1.1 var(--shop-display);
+}
+body.shop .shop-leiste-feld {
+  max-width: none;
+  min-height: 60px;
+  border: 0;
+  font: 800 1.5rem/1.1 var(--shop-display);
+}
+.shop-leiste-feld::placeholder {
+  color: var(--shop-muted);
+  opacity: 1;
+}
+body.shop .shop-leiste-feld:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 3px;
+}
+.shop-leiste-hilfe {
+  margin: 0;
+  justify-self: end;
+  font: 500 0.875rem/1.4 var(--ui);
+  color: #dfe8dc;
 }
 .shop-karte-text {
   display: grid;
@@ -1077,6 +1120,24 @@ body.shop .shop-recht h3 {
   .shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
     aspect-ratio: 16 / 10;
   }
+  /* Leiste am Handy: Beschriftung und Feld in einer Reihe, Hinweis darunter */
+  .shop-leiste {
+    padding-block: 10px;
+  }
+  .shop-leiste-raster {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .shop-leiste-kopf {
+    font-size: 1.15rem;
+  }
+  body.shop .shop-leiste-feld {
+    min-height: 50px;
+    font-size: 1.25rem;
+  }
+  .shop-leiste-hilfe {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
   .shop-ablauf-fuss {
     grid-column: 1;
   }
@@ -1131,5 +1192,18 @@ body.shop .shop-recht h3 {
 @media (max-width: 374px) {
   .shop-spulen-reihe {
     grid-template-columns: repeat(2, max-content);
+  }
+}
+/* Startseite: Fokus und Sprungziele nie unter der klebenden Namensleiste */
+html:has(body.shop .shop-leiste) {
+  scroll-padding-top: 8rem;
+}
+/* Handy quer: die Leiste nähme zu viel Höhe, dort scrollt sie mit */
+@media (max-height: 520px) {
+  .shop-leiste {
+    position: static;
+  }
+  html:has(body.shop .shop-leiste) {
+    scroll-padding-top: 1rem;
   }
 }

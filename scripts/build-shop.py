@@ -199,18 +199,38 @@ def probefeld(f, klasse="shop-option"):
             </div>"""
 
 
-# Startseite: ein Feld für den vorderen Halter und den Anhänger, deshalb nur so lang, wie der Anhänger erlaubt
-# (Stefanie 03.11.2026). Leer, damit Feld und Bild nicht verschiedene Beispielnamen zeigen.
-START_PROBE = {"label": "Name zum Ausprobieren", "wert": "", "max": 10,
-               "hilfe": "Der Name erscheint auf dem vorderen Halter und auf dem Anhänger, bis zu 10 Zeichen. Gespeichert wird nichts."}
+# Startseite: ein Feld für die ganze Seite (Stefanie 16.11.2026, „Dein Name überall“). Es schreibt den
+# vorderen Halter, den Anhänger und jede Textstelle mit data-namen um, deshalb nur so lang, wie der Anhänger erlaubt.
+# Leer, damit Feld und Bild nicht verschiedene Beispielnamen zeigen.
+START_PROBE = {"label": "Dein Name", "wert": "", "max": 10,
+               "hilfe": "Bis zu 10 Zeichen, gespeichert wird nichts."}
 
 
-# Farbwahl färbt das Teil um, das Namensfeld schreibt den Namen in jede Stelle mit data-probe.
+def probeleiste(f):
+    """Namensfeld der Startseite als eigene Leiste zwischen Kopf und Produkten. Sie klebt oben, damit man den Namen
+    auch weiter unten noch ändern kann (Kritiker Runde 1, 16.11.2026). Der Platzhalter zeigt den Namen, der ohne Eingabe dasteht."""
+    return f"""      <div class="shop-leiste">
+        <div class="shop-innen shop-leiste-raster">
+          <label class="shop-leiste-kopf" for="probe-name">{f['label']}</label>
+          <input class="shop-feld shop-leiste-feld" id="probe-name" type="text" maxlength="{f['max']}" value="{f['wert']}" placeholder="{REIHE[-1][0]}" autocomplete="off" spellcheck="false" enterkeyhint="done" aria-describedby="probe-hilfe" />
+          <p class="shop-leiste-hilfe" id="probe-hilfe">{f['hilfe']}</p>
+        </div>
+      </div>"""
+
+
+def namen(klasse=""):
+    """Textstelle, die den Namen aus dem Feld übernimmt. Leer und ohne Skript steht der Name des vorderen Halters da."""
+    vorn = REIHE[-1][0]
+    return f'<span class="shop-namen{" " + klasse if klasse else ""}" data-namen="{vorn}">{vorn}</span>'
+
+
+# Farbwahl färbt das Teil um, das Namensfeld schreibt den Namen in jede Stelle mit data-probe
+# und in jede Textstelle mit data-namen.
 # Beides druckt neu, aber nur die Stelle selbst: in der Reihe der Startseite bleiben Lena und Oma stehen.
 SKRIPT = """    <script>
       (function () {
         var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var stellen = document.querySelectorAll("[data-probe]");
+        var stellen = document.querySelectorAll("[data-probe]"), worte = document.querySelectorAll("[data-namen]");
         function neu(s) {
           var teile = s.querySelectorAll(".t-druck, .t-duese, .t-kopf");
           s.style.setProperty("--verzug", "0s");
@@ -383,6 +403,10 @@ SKRIPT = """    <script>
             Array.prototype.forEach.call(texte, function (t) { schreiben(t, w); });
             anpassen(s, texte);
           });
+          Array.prototype.forEach.call(worte, function (n) {
+            var w = eingabe || n.dataset.namen;
+            if (n.textContent !== w) n.textContent = w;
+          });
         }
         feld.addEventListener("input", function () {
           Array.prototype.forEach.call(stellen, anhalten);
@@ -455,7 +479,8 @@ PRODUKTE = [
     },
 ]
 
-SCHRITTE = [("Auf Etsy bestellen", "Im Etsy-Listing gibst du den Namen oder Text an, bezahlst und bekommst die Bestellbestätigung."),
+# {beispiel}: auf der Startseite steht dort der Name aus dem Feld, auf den Produktseiten nichts
+SCHRITTE = [("Auf Etsy bestellen", "Im Etsy-Listing gibst du den Namen oder Text an{beispiel}, bezahlst und bekommst die Bestellbestätigung."),
             ("Druck und Versand", "Entworfen von BeThatHost, gedruckt bei einem 3D-Druck-Partner. Den Versand an dich übernehmen wir selbst.")]
 
 
@@ -469,15 +494,14 @@ def punkte():
     return f'<p class="shop-punkte"><span aria-hidden="true">{tupfer}</span>{len(SPULEN)} Beispielfarben</p>'
 
 
-def karte(p, id_, ebene="h2", druck=True, quer=False, bild=None, probe=False, feld=""):
-    """Produktkarte wie im Shop-Raster: Bild, Titel, Preis. Der Titel-Link deckt die ganze Karte ab,
-    nur ein Feld unter dem Bild liegt darüber."""
+def karte(p, id_, ebene="h2", druck=True, quer=False, bild=None, probe=False):
+    """Produktkarte wie im Shop-Raster: Bild, Titel, Preis. Der Titel-Link deckt die ganze Karte ab."""
     return f"""          <li class="shop-karte{' shop-karte-quer' if quer else ''}">
             <div class="shop-karte-bild">
               <span class="shop-chip">Gezeichnetes Muster</span>
               {bild or p['bild'](id_, druck, probe)}
             </div>
-{feld + chr(10) if feld else ''}            <div class="shop-karte-text">
+            <div class="shop-karte-text">
               <{ebene} class="shop-karte-titel"><a href="/shop/{p['slug']}.html">{p['titel']}</a></{ebene}>
               <p class="shop-karte-preis">{PREIS}</p>
               <p class="shop-karte-satz">{p['satz']}</p>
@@ -487,7 +511,8 @@ def karte(p, id_, ebene="h2", druck=True, quer=False, bild=None, probe=False, fe
 
 
 def ablauf():
-    schritte = "\n".join(f'            <li><span class="shop-nr" aria-hidden="true">{i}</span><div><h3>{t}</h3><p>{x}</p></div></li>'
+    beispiel = f", zum Beispiel {namen()}"
+    schritte = "\n".join(f'            <li><span class="shop-nr" aria-hidden="true">{i}</span><div><h3>{t}</h3><p>{x.format(beispiel=beispiel)}</p></div></li>'
                          for i, (t, x) in enumerate(SCHRITTE, 1))
     return f"""      <section class="shop-ablauf" id="bestellung" aria-labelledby="ablauf">
         <div class="shop-innen shop-ablauf-streifen">
@@ -579,14 +604,16 @@ seite("index.html", "", "3D-Druck-Teile, individuell für dich",
           <div>
             <p class="shop-mono">3D-Druck-Shop · {len(PRODUKTE)} Produkte</p>
             <h1 id="titel">Alles lässt sich individualisieren</h1>
+            <p class="shop-kopf-fuer">Zum Beispiel für {namen("shop-namen-gross")}</p>
           </div>
-          <p class="shop-lead">Platzkartenhalter und JGA-Anhänger aus dem 3D-Drucker, mit deinem Namen oder Text darauf. BeThatHost entwirft die Teile selbst, individualisieren lässt sich jedes. Was draufsteht, gibst du bei der Bestellung auf Etsy an.</p>
+          <p class="shop-lead">Platzkartenhalter und JGA-Anhänger aus dem 3D-Drucker, mit deinem Namen oder Text darauf. BeThatHost entwirft die Teile selbst. Was draufsteht, gibst du bei der Bestellung auf Etsy an.</p>
         </div>
       </section>
+{probeleiste(START_PROBE)}
       <section class="shop-sortiment" aria-label="Produkte">
         <div class="shop-innen">
           <ul class="shop-raster shop-raster-start">
-{karte(PRODUKTE[0], "k0", bild=halter_reihe("k0", probe=True), feld=probefeld(START_PROBE, "shop-option shop-karte-probe"))}
+{karte(PRODUKTE[0], "k0", bild=halter_reihe("k0", probe=True))}
 {karte(PRODUKTE[1], "k1", probe=True)}
           </ul>
         </div>
@@ -677,7 +704,7 @@ for p in PRODUKTE:
                 <summary>Bestellung und Versand</summary>
                 <div class="shop-akkordeon-inhalt">
                   <ol class="shop-kurzschritte">
-{chr(10).join(f'                    <li><strong>{t}.</strong> {x}</li>' for t, x in SCHRITTE)}
+{chr(10).join(f'                    <li><strong>{t}.</strong> {x.format(beispiel="")}</li>' for t, x in SCHRITTE)}
                   </ol>
                 </div>
               </details>
