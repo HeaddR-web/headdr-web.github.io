@@ -6,7 +6,7 @@ rund 45 Seiten. IndexNow braucht kein Konto: Der Schluessel liegt als
 /<schluessel>.txt im Wurzelverzeichnis und beweist, dass die Meldung von der
 Domain selbst kommt. Bing (und damit DuckDuckGo, Ecosia, ChatGPT-Suche) nimmt
 neue und geaenderte Seiten dann meist innerhalb von Tagen auf. Google nutzt
-IndexNow nicht - dafuer braucht es die Search Console (siehe web_stats.py).
+IndexNow nicht - dafuer braucht es die Search Console (web_stats.py ist seit 16.11.2026 entfernt).
 
 Aufruf: python3 scripts/indexnow.py  (in CI: .github/workflows/indexnow.yml,
 nach jeder Aenderung an sitemap.xml)

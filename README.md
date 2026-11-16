@@ -4,7 +4,7 @@ Statische Website (GitHub Pages) unter **bethathost.de**. Seit 02.11.2026 ist di
 der Shop für eigene Teile aus dem 3D-Drucker, jedes lässt sich individualisieren. Zum Start gibt
 es Platzkartenhalter und JGA-Anhänger. Bestellt wird über Etsy,
 eine eigene Kasse gibt es nicht. Die frühere Anlass- und Ratgeber-Seite ist abgeschaltet, ihre
-Adressen leiten auf den Shop. Cozylore unter `cozy/` ist abgekoppelt und bleibt unberührt.
+Adressen leiten auf den Shop.
 
 > **Für Mitwirkende & Agenten:** Die verbindlichen Regeln stehen in **[`CLAUDE.md`](CLAUDE.md)**,
 > zuerst den Abschnitt „Stand seit 02.11.2026“ lesen.
@@ -18,7 +18,6 @@ datenschutz.html      Datenschutz
 <alter-ordner>/       Weiterleitungen auf den Shop (noindex)
 assets/style.css      zentrale Design-Quelle, der Generator bettet sie in die Shop-Seiten ein
 assets/fonts/         self-hosted Schriften
-cozy/                 Cozylore, abgekoppelt, nicht anfassen
 scripts/              build-shop.py (Shop-Seiten), Hilfsskripte, check-consistency.sh
 .github/workflows/    Automatisierung
 ```

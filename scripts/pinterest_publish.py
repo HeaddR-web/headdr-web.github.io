@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Postet vorbereitete Pins ueber die offizielle Pinterest-API (v5).
 
+Stand 16.11.2026: gepostet wird nicht mehr, der Workflow pinterest-publish.yml,
+pinterest/boards.json und die Pin-Quellen sind entfernt. Die Datei bleibt nur
+als Bibliothek: scripts/pinterest_stats.py laedt daraus API_BASE, _request,
+get_access_token, list_boards, list_board_pins und PinterestError.
+
 Liest alle ``*/pins/queue.json`` (ausser ``cozy/`` — abgekoppelt, siehe
 CLAUDE.md), tauscht den langlebigen Refresh-Token gegen einen kurzlebigen
 Access-Token und veroeffentlicht die naechsten noch nicht geposteten Pins
