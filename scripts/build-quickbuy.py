@@ -30,19 +30,27 @@ ROOT = Path(__file__).resolve().parent.parent
 # Hand gepflegt: aus dem <h1> abgeleitete Formulierungen klingen auf Deutsch
 # regelmaessig schief ("Einkaufsliste fuer Sonntags Family Brunch: planen").
 ANLASS = {
+    "adventskalender": "den Adventskalender",
     "brunch": "deinen Brunch",
     "casino": "deinen Casino-Abend",
+    "fingerfood": "dein Fingerfood-Buffet",
     "gartenparty": "deine Gartenparty",
     "geburtstag": "deinen Geburtstag",
     "grillabend": "deinen Grillabend",
+    "halloween": "deine Halloween-Party",
     "hawaii-tiki": "deine Hawaii-Party",
     "jga": "den JGA",
+    "kindergeburtstag": "den Kindergeburtstag",
     "mexiko-fiesta": "deine Fiesta",
+    "mitbringsel": "dein Mitbringsel",
     "oktoberfest": "deine Wiesn-Party",
     "saison-deko": "die gemuetliche Jahreszeit",
+    "silvester": "deine Silvesterparty",
     "spa-abend": "deinen Spa-Abend",
     "spieleabend": "deinen Spieleabend",
     "valentinstag": "eure Date Night",
+    "weihnachtsfeier": "eure Weihnachtsfeier",
+    "wichtelgeschenke": "die Wichtelrunde",
 }
 
 PICK_OPEN_RE = re.compile(r'<div class="pick">')

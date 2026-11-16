@@ -46,27 +46,41 @@
     "image_url": "https://bethathost.de/assets/pins/saison-deko-kalender.jpg",
     "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 3
+    "kanal": "rss",
+    "prio": 3,
+    "freigabe": "2026-09-30"
   },
   {
     "title": "Gemütliches Licht: Die Drei-Höhen-Regel und die richtige Kelvin-Zahl",
-    "description": "Der schnellste Weg zu einer gemütlichen Wohnung: drei Lichtquellen auf drei Höhen und warmweiße Birnen mit 2.700 Kelvin. Kostet fast nichts. #gemütlichwohnen #lichtideen #hygge #wohnzimmerideen #herbstdeko",
+    "description": "Der schnellste Weg zu einer gemütlichen Wohnung: drei Lichtquellen auf drei Höhen und warmweiße Birnen mit 2.700 Kelvin. Kostet fast nichts. Die ganze Liste findest du auf bethathost.de. #gemütlichwohnen #lichtideen #hygge #wohnzimmerideen #herbstdeko",
     "link": "https://bethathost.de/saison-deko/?pin=licht#cat-light",
     "image_url": "https://bethathost.de/assets/pins/saison-deko-licht.jpg",
     "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 8
+    "kanal": "rss",
+    "prio": 8,
+    "freigabe": "2026-10-02"
   },
   {
     "title": "Kerzen im Advent: 5 Regeln gegen Brände",
-    "description": "Adventskränze und Gestecke gehören zu den häufigsten Brandursachen im Dezember. Fünf einfache Regeln – und wo LED-Kerzen die bessere Wahl sind. #adventskranz #weihnachtsdeko #kerzen #sicherheit #winterdeko",
+    "description": "Adventskränze und Gestecke gehören zu den häufigsten Brandursachen im Dezember. Fünf einfache Regeln – und wo LED-Kerzen die bessere Wahl sind. Die ganze Liste findest du auf bethathost.de. #adventskranz #weihnachtsdeko #kerzen #sicherheit #winterdeko",
     "link": "https://bethathost.de/saison-deko/?pin=kerzen#cat-safe-light",
     "image_url": "https://bethathost.de/assets/pins/saison-deko-kerzen.jpg",
     "published": false,
     "pin_id": "",
-    "kanal": "api",
-    "prio": 16
+    "kanal": "rss",
+    "prio": 16,
+    "freigabe": "2026-10-06"
+  },
+  {
+    "title": "Gemütliches Licht im Herbst: warmweiß statt grell",
+    "description": "Nichts macht einen Raum so schnell gemütlich wie Licht: 2.700 Kelvin statt Bürolicht, dazu Lampen und Kerzen in drei Höhen. So einfach geht die Herbst- und Winter-Stimmung – mehr auf bethathost.de. #gemütlich #wohnideen #herbstdeko #hygge #licht",
+    "link": "https://bethathost.de/saison-deko/?pin=foto-licht#cat-light",
+    "image_url": "https://bethathost.de/assets/pins/saison-deko-foto-licht.jpg",
+    "published": false,
+    "pin_id": "",
+    "kanal": "rss",
+    "prio": 111,
+    "freigabe": "2026-11-06"
   }
 ]

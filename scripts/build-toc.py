@@ -29,6 +29,10 @@ AUSGENOMMEN = {
     "dashboard.html", "produkt-review.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",
+    # Hub-Seiten: Uebersicht mit Kachelgitter, kein Artikel. Seit dem Planungs-
+    # text (.hub-text) haben sie genug <h2> fuer ein Verzeichnis - das landete
+    # aber vor dem ersten <h2>, also mitten im Kopf des Kachelgitters.
+    "cocktailabend/index.html", "girlsnight/index.html", "watchparty/index.html",
 }
 
 H2_RE = re.compile(r'<h2(?P<attr>[^>]*)>(?P<text>.*?)</h2>', re.S)

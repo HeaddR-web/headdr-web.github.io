@@ -19,6 +19,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 MAX = 160
 TITEL_MAX = 60
 MIN = 50
@@ -34,7 +37,7 @@ def seiten():
     for f in sorted(glob.glob("**/*.html", recursive=True)):
         if f.startswith("cozy" + os.sep) or f.startswith("cozy/"):
             continue
-        if f in IGNORIEREN:
+        if f in IGNORIEREN or ist_weiterleitung(f):
             continue
         yield f
 

@@ -18,7 +18,7 @@
         "emoji": "🎲",
         "blurb": "Eisbrecher, Party-Kartenspiele und ein bisschen Chaos.",
         "img": "/assets/img/hf_20260616_102523_ca7d067e-7c56-4964-9625-687b5f931af3.jpg",
-        "guide": "posts/girls-night-games.html",
+        "guide": "/girlsnight/posts/girls-night-games.html",
         "products": [
             {
                 "name": "Party-Kartenspiel (Erwachsene)",
@@ -38,7 +38,7 @@
         "emoji": "🍸",
         "blurb": "Signature-Cocktails, Sekt und alles zum Servieren.",
         "img": "/assets/img/hf_20260616_102525_a7a5a55a-e9b5-4787-9af4-e8c7d02ea6c7.jpg",
-        "guide": "posts/girls-night-drinks.html",
+        "guide": "/girlsnight/posts/girls-night-drinks.html",
         "products": [
             {
                 "name": "Gläser-Set",
@@ -53,7 +53,7 @@
         "emoji": "🍫",
         "blurb": "Grazing-Boards, süße Häppchen und Popcorn ohne Ende.",
         "img": "/assets/img/hf_20260616_102544_022496d0-9c73-4514-b18b-c66f4a3e3c95.jpg",
-        "guide": "posts/girls-night-snacks.html",
+        "guide": "/girlsnight/posts/girls-night-snacks.html",
         "products": [
             {
                 "name": "Snackschalen",
@@ -68,7 +68,7 @@
         "emoji": "🎀",
         "blurb": "Ballon-Girlanden, Lichterketten und ein hübsch gedeckter Tisch.",
         "img": "/assets/img/hf_20260616_102545_a44fca4f-758a-4f44-b4b9-a88dc762ba52.jpg",
-        "guide": "posts/girls-night-themes.html",
+        "guide": "/girlsnight/posts/girls-night-themes.html",
         "products": [
             {
                 "name": "Luftballon-Girlande (Set)",
@@ -88,7 +88,7 @@
         "emoji": "💅",
         "blurb": "Gesichtsmasken, Bademäntel und ein Spa-Moment für daheim.",
         "img": "/assets/img/hf_20260616_102526_b6c7850b-e9ee-4a5a-bf6d-b94f8de50618.jpg",
-        "guide": "posts/girls-night-pamper-spa.html",
+        "guide": "/girlsnight/posts/girls-night-pamper-spa.html",
         "products": [
             {
                 "name": "Gesichtsmasken-Set",
@@ -103,7 +103,7 @@
         "emoji": "📸",
         "blurb": "Sofortbilder, die jede mit nach Hause nimmt, das Must-have für den Mädelsabend.",
         "img": "/assets/img/hf_20260619_132412_f9b8320b-fb24-4b22-81a5-a6e22720dee0.jpg",
-        "guide": "posts/pyjama-party.html",
+        "guide": "/girlsnight/posts/pyjama-party.html",
         "products": [
             {
                 "name": "Sofortbildkamera",

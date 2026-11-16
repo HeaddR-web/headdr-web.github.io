@@ -17,6 +17,7 @@ Aufruf:  python3 scripts/build-article-jsonld.py            (schreibt)
          python3 scripts/build-article-jsonld.py --pruefen  (meldet nur, Exit 1)
 """
 
+import datetime as dt
 import os
 import re
 import sys
@@ -60,6 +61,10 @@ def umbau(text, name):
         if not monat:
             return text, f"Monat unbekannt: {dm.group(2)}"
         datum = f"{dm.group(3)}-{monat:02d}-{int(dm.group(1)):02d}"
+        # Ein "Aktualisiert am" in der Zukunft wertet Google als unglaubwuerdig
+        # (am 28.09.2026 stand kurz der 29. auf vier Seiten).
+        if datum > dt.date.today().isoformat():
+            return text, f"sichtbares Datum {datum} liegt in der Zukunft"
 
         neu = ALT_RE.sub("", block)
         p = PUBL_RE.search(neu)

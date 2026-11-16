@@ -18,22 +18,30 @@
   ],
   "standard": "cozylore-21",
   "seiten": {
+    "adventskalender": "cozylore-21",
     "brunch": "cozylore-21",
     "casino": "cozylore-21",
     "cocktailabend": "cozylore-21",
+    "fingerfood": "cozylore-21",
     "gartenparty": "cozylore-21",
     "geburtstag": "cozylore-21",
     "girlsnight": "cozylore-21",
     "grillabend": "cozylore-21",
+    "halloween": "cozylore-21",
     "hawaii-tiki": "cozylore-21",
     "jga": "cozylore-21",
+    "kindergeburtstag": "cozylore-21",
     "mexiko-fiesta": "cozylore-21",
+    "mitbringsel": "cozylore-21",
     "oktoberfest": "cozylore-21",
     "ratgeber": "cozylore-21",
     "saison-deko": "cozylore-21",
+    "silvester": "cozylore-21",
     "spa-abend": "cozylore-21",
     "spieleabend": "cozylore-21",
     "valentinstag": "cozylore-21",
-    "watchparty": "cozylore-21"
+    "watchparty": "cozylore-21",
+    "weihnachtsfeier": "cozylore-21",
+    "wichtelgeschenke": "cozylore-21"
   }
 }

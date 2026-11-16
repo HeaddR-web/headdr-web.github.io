@@ -12,13 +12,15 @@ Was es tut:
     Bildformat-Regel), in den Farben und Schriften der Seite. Jede Karte ist ein
     eigenes Motiv (Bild-Eindeutigkeit-Regel).
   * traegt jeden Pin einmal in <site>/pins/queue.json ein - mit eindeutiger
-    Ziel-URL (?pin=<id>#<anker>), "kanal": "api" (nicht in feed.xml, sonst
-    Doppelpost) und "prio" fuer die Reihenfolge (REIHENFOLGE unten).
+    Ziel-URL (?pin=<id>#<anker>), "kanal": "rss", "prio" fuer die Reihenfolge
+    (REIHENFOLGE unten) und "freigabe": dem Tag, ab dem der Pin in feed.xml
+    steht - zwei pro Tag, hinter dem letzten schon geplanten.
     Was schon in der Queue steht, bleibt unangetastet.
 
 Braucht Playwright + Chromium (lokal, nicht in CI):
   python3 scripts/build-pin-grafiken.py [--nur-queue]
 """
+import datetime as dt
 import functools
 import html
 import http.server
@@ -47,6 +49,46 @@ REIHENFOLGE = [
     "hawaii-tiki-bowle", "mexiko-fiesta-tacobar", "grillabend-zonen",
     "hawaii-tiki-luau", "mexiko-fiesta-aguafresca", "grillabend-zeitplan",
     "grillabend-fehler",
+    # Nachschub ab 15.10.: Raclette zuerst (Saison), danach im Wechsel der Seiten
+    "ratgeber-raclette", "watchparty-wings", "girlsnight-werwuerde", "cocktailabend-batch",
+    "brunch-zeitplan", "ratgeber-lichterkette", "girlsnight-mitbringliste", "watchparty-nachos",
+    "cocktailabend-flaschen", "geburtstag-runde", "girlsnight-weintemperatur", "ratgeber-shaken",
+    "cocktailabend-verduennung", "watchparty-blumenkohl", "girlsnight-mimosa",
+    # Halloween: bekommt von Hand fruehe Freigabetage (30.09.-02.10., je als dritter
+    # Pin des Tages), sonst laege es hinter dem 22.10. - zu spaet fuer den 31.10.
+    "halloween-kuerbis", "halloween-mumien", "halloween-punsch",
+    # Silvester: Freigabe von Hand auf Mitte November gesetzt (Planungsbeginn)
+    "silvester-sekt", "silvester-wachs", "silvester-zeitplan",
+    # Weihnachtsfeier: Freigabe von Hand auf 08.-10.11. (Planungsbeginn)
+    "weihnachtsfeier-gluehwein", "weihnachtsfeier-wuerfel", "weihnachtsfeier-bratapfel",
+    "kindergeburtstag-ablauf", "kindergeburtstag-schatzsuche", "kindergeburtstag-spiele",
+    # Nachschub ab 24.10.: Halloween zuerst (vor dem 31.10.), dann im Wechsel
+    "halloween-dip", "halloween-muffins", "halloween-spiele", "halloween-tuer",
+    "girlsnight-popcorn", "brunch-waffeln", "kindergeburtstag-mitgebsel", "ratgeber-beamer",
+    "girlsnight-schoko", "geburtstag-planung", "weihnachtsfeier-orangen", "ratgeber-reinigen",
+    "girlsnight-board", "brunch-ruehrei", "kindergeburtstag-essen", "ratgeber-shaken-richtig",
+    "girlsnight-filme", "weihnachtsfeier-plaetzchen",
+    # Lücke 02.-07.11. (Anreißer-Karten)
+    "weihnachtsfeier-termin", "silvester-essen", "kindergeburtstag-gaeste", "ratgeber-fuenf",
+    "cocktailabend-mengen", "girlsnight-reihenfolge", "weihnachtsfeier-kinderpunsch", "brunch-mengen",
+    "silvester-feuerwerk", "cocktailabend-karte", "weihnachtsfeier-spiele", "silvester-sektoeffnen",
+    # Wichtelgeschenke: Freigabe von Hand auf 11.-13.11. (Wichtel-Saison)
+    "wichtelgeschenke-bis10", "wichtelgeschenke-buero", "wichtelgeschenke-regeln",
+    # Adventskalender: Freigabe von Hand auf 25.-27.10. (jeweils dritter Pin des Tages)
+    "adventskalender-genuss", "adventskalender-gutscheine", "adventskalender-plan",
+    "mitbringsel-etikette", "mitbringsel-advent", "mitbringsel-selbstgemacht",
+    "fingerfood-mengen", "fingerfood-kalt", "fingerfood-vortag",
+    # Foto-Pins (Vergleich mit den Text-Karten), Freigabe von Hand 18.-23.10.,
+    # jeweils als dritter Pin des Tages
+    "halloween-foto-buffet", "weihnachtsfeier-foto-gluehwein", "adventskalender-foto-diy",
+    "wichtelgeschenke-foto-bis10", "mitbringsel-foto-advent", "silvester-foto-raclette",
+    # Ab 03.11.: nur noch Foto-Pins (Vergleich: 32 statt 0,7 Impressionen pro Pin),
+    # einer pro Tag, Freigabe steht im Eintrag
+    "adventskalender-foto-genuss", "weihnachtsfeier-foto-buffet", "wichtelgeschenke-foto-buero",
+    "saison-deko-foto-licht", "fingerfood-foto-kalt", "ratgeber-foto-kaese",
+    "weihnachtsfeier-foto-deko", "mitbringsel-foto-selbst", "kindergeburtstag-foto-schatzsuche",
+    "fingerfood-foto-warm", "silvester-foto-sekt", "cocktailabend-foto-alkoholfrei",
+    "silvester-foto-deko", "silvester-foto-wachs",
 ]
 
 FARBEN = {
@@ -86,6 +128,8 @@ li:first-child{{border-top:none}}
 .blk h3{{font-family:Fraunces,serif;font-weight:700;font-size:1.22em;margin:0 0 .18em;color:{fg}}}
 .blk p{{margin:0;color:{mut};font-size:.9em;line-height:1.35}}
 .fuss{{font-size:29px;font-style:italic;color:{mut};margin:26px 0 0;line-height:1.35}}
+.unscharf{{filter:blur(7px);opacity:.6;user-select:none}}
+.mehr{{font-weight:700;font-size:36px;color:{akzent};margin:30px 0 0;line-height:1.3}}
 .band{{height:170px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;border-top:2px solid {linie};margin-top:30px}}
 .marke{{font-family:Fraunces,serif;font-weight:800;font-size:44px}}
 .marke b{{color:{akzent}}}
@@ -102,6 +146,37 @@ li:first-child{{border-top:none}}
   <div class="band"><div class="marke">Be<b>That</b>Host</div>
   <div class="url">Alles dazu auf<br><strong>{url}</strong></div></div>
 </div></body></html>"""
+
+
+# Foto-Pin ("art": "foto"): ein Foto ueber die ganze Karte, oben Kicker und
+# Titel auf einem Verlauf, unten die Marke. Warum es die Variante gibt: Die
+# 35 Text-Karten aus September/Oktober 2026 kamen zusammen auf 26 Impressionen
+# (1 pro Pin), die Foto-Pins aus dem Juni auf 741 pro Pin. Ob das an der Optik
+# liegt oder an einer Drosselung des Kontos, soll der direkte Vergleich zeigen:
+# Foto-Pins laufen in denselben Tagen wie Text-Karten. Das Foto liegt unter
+# pinterest/fotos/ (2:3, eigenes Motiv - nie ein Lead- oder og:image-Bild).
+FOTO_VORLAGE = """<!doctype html><html lang="de"><head><meta charset="utf-8">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+html,body{{margin:0;width:1000px;height:1500px;overflow:hidden}}
+body{{background:#241f1a url('/{foto}') center/cover no-repeat;color:#fbf6ec;
+  font-family:"Hanken Grotesk",sans-serif;-webkit-font-smoothing:antialiased}}
+.verlauf{{position:absolute;left:0;right:0;top:0;height:760px;
+  background:linear-gradient(180deg,rgba(20,16,12,.86) 0%,rgba(20,16,12,.62) 55%,rgba(20,16,12,0) 100%)}}
+.kopf{{position:absolute;left:80px;right:80px;top:84px}}
+.kicker{{font-weight:700;font-size:28px;letter-spacing:.2em;text-transform:uppercase;color:#e9c98a}}
+h1{{font-family:Fraunces,serif;font-weight:800;font-size:var(--h1,104px);line-height:1.02;
+  letter-spacing:-.02em;margin:22px 0 0;hyphens:manual;text-shadow:0 2px 18px rgba(0,0,0,.35)}}
+.marke{{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);white-space:nowrap;
+  background:rgba(251,246,236,.94);color:#241f1a;border-radius:999px;padding:18px 40px;
+  font-size:30px;font-weight:700}}
+.marke b{{font-family:Fraunces,serif;font-weight:800}}
+.marke b i{{font-style:normal;color:#b9543f}}
+</style></head><body>
+<div class="verlauf"></div>
+<div class="kopf"><div class="kicker">{kicker}</div><h1 id="titel">{titel}</h1></div>
+<div class="marke"><b>Be<i>That</i>Host</b> · {url}</div>
+</body></html>"""
 
 
 def e(t):
@@ -133,16 +208,61 @@ def inhalt(pin):
     raise SystemExit(f"Unbekannte Art: {art}")
 
 
+def teaser(pin):
+    """Zeigt nur den Anfang: die ersten Punkte scharf, den naechsten verschwommen,
+    darunter "+ N weitere auf bethathost.de".
+
+    Warum: Bis Oktober 2026 stand auf jeder Karte das komplette Rezept bzw. die
+    ganze Liste. Gemerkt wurde viel, geklickt fast nie - 22.434 Impressionen,
+    8 Klicks zur Seite in 30 Tagen. Wer schon alles auf dem Pin hat, braucht die
+    Seite nicht. Ausnahme ("teaser": false): Pins, die schon draussen sind."""
+    punkte = pin["punkte"]
+    if pin["art"] == "block":
+        k = 1 if len(punkte) <= 3 else 2
+    else:
+        k = 2 if len(punkte) <= 5 else 3
+    k = max(1, min(k, len(punkte) - 2))
+    rest = len(punkte) - k
+    html = inhalt({**pin, "punkte": punkte[:k + 1]})
+    # Den letzten (k+1.) Punkt verschwimmen lassen
+    for tag, neu in (('<li>', '<li class="unscharf">'), ('<div class="blk">', '<div class="blk unscharf">')):
+        i = html.rfind(tag)
+        if i >= 0:
+            html = html[:i] + neu + html[i + len(tag):]
+            break
+    wort = "Schritte" if pin["art"] in ("nummern", "schritte") else ""
+    mehr = f"+ {rest} weitere {wort} auf bethathost.de →".replace("  ", " ")
+    return html, f'<p class="mehr">{e(mehr)}</p>'
+
+
 def seite_html(pin):
+    if pin["art"] == "foto":
+        return FOTO_VORLAGE.format(
+            foto=pin["foto"], kicker=e(pin["kicker"]), titel=e(pin["titel"]),
+            url="bethathost.de" if pin.get("pfad") else f"bethathost.de/{pin['site']}")
     bg, fg, mut, akzent, linie = FARBEN[pin["farbe"]]
+    if pin.get("teaser", True):
+        rumpf, fuss = teaser(pin)
+    else:
+        rumpf = inhalt(pin)
+        fuss = f'<p class="fuss">{e(pin["fuss"])}</p>' if pin.get("fuss") else ""
     return VORLAGE.format(
         bg=bg, fg=fg, mut=mut, akzent=akzent, linie=linie,
         kicker=e(pin["kicker"]), titel=e(pin["titel"]),
         unter=f'<p class="unter">{e(pin["unter"])}</p>' if pin.get("unter") else "",
-        inhalt=inhalt(pin),
-        fuss=f'<p class="fuss">{e(pin["fuss"])}</p>' if pin.get("fuss") else "",
-        url=f"bethathost.de/{pin['site']}",
+        inhalt=rumpf,
+        fuss=fuss,
+        url="bethathost.de" if pin.get("pfad") else f"bethathost.de/{pin['site']}",
     )
+
+
+def zielseite(pin):
+    """Datei und URL-Pfad der Zielseite. Ohne "pfad" ist es <site>/index.html;
+    mit "pfad" (z. B. "posts/wm-snacks-rezepte.html") eine Unterseite im Ordner.
+    Die Queue bleibt in beiden Faellen <site>/pins/queue.json."""
+    if pin.get("pfad"):
+        return ROOT / pin["site"] / pin["pfad"], f"/{pin['site']}/{pin['pfad']}"
+    return ROOT / pin["site"] / "index.html", f"/{pin['site']}/"
 
 
 class StillerHandler(http.server.SimpleHTTPRequestHandler):
@@ -177,10 +297,34 @@ def rendern(pins):
                 tmp.write_text(seite_html(pin), encoding="utf-8")
                 page.goto(f"http://127.0.0.1:{port}/assets/pins/{tmp.name}")
                 page.evaluate("document.fonts.ready")
+                if pin["art"] == "foto":
+                    page.wait_for_load_state("networkidle")
+                    # Titel hoechstens vier Zeilen, damit das Foto sichtbar bleibt.
+                    ok = page.evaluate("""() => {
+                      const t = document.getElementById('titel'), r = document.documentElement.style;
+                      let h1 = 104; r.setProperty('--h1', h1 + 'px');
+                      while (t.getBoundingClientRect().height > 4.2 * h1 && h1 > 64) {
+                        h1 -= 2; r.setProperty('--h1', h1 + 'px'); }
+                      return t.getBoundingClientRect().height <= 4.2 * h1;
+                    }""")
+                    if not ok:
+                        raise SystemExit(f"{pin['site']}-{pin['id']}: Titel zu lang - kuerzen")
+                    png = ZIEL / f"_{pin['site']}-{pin['id']}.png"
+                    page.screenshot(path=str(png))
+                    Image.open(png).convert("RGB").save(
+                        ZIEL / f"{pin['site']}-{pin['id']}.jpg", "JPEG", quality=86, optimize=True, progressive=True)
+                    png.unlink()
+                    tmp.unlink()
+                    tmp = None
+                    continue
                 # Schrift und Titel so lange verkleinern, bis alles in die Karte passt.
                 ok = page.evaluate("""() => {
                   const inh = document.getElementById('inhalt'), r = document.documentElement.style;
-                  const passt = () => inh.scrollHeight <= inh.clientHeight + 1 &&
+                  // Auch in der Breite: Tabellenwerte stehen auf einer Zeile (nowrap)
+                  // und liefen sonst unbemerkt ueber den Rand ("gebacken oder gekau").
+                  const breit = () => [...document.querySelectorAll('.tab li')]
+                    .every(li => li.scrollWidth <= li.clientWidth + 1);
+                  const passt = () => inh.scrollHeight <= inh.clientHeight + 1 && breit() &&
                                       document.querySelector('h1').getBoundingClientRect().height < 420;
                   // Gross anfangen und nur so weit verkleinern, bis alles passt -
                   // auf dem Handy ist eine Pin-Karte rund 180 px breit.
@@ -206,18 +350,54 @@ def rendern(pins):
         srv.shutdown()
 
 
+PRO_TAG = 2
+
+
+def freigabe_tage():
+    """Liefert fortlaufend den naechsten freien Freigabetag (hoechstens PRO_TAG je
+    Tag, fruehestens morgen, erste Luecke zuerst). Warum ueberhaupt gestaffelt: Pinterest liest den
+    Feed am Stueck ein. 30 Pins an einem Tag wirken wie Spam und verbrennen den
+    Nachschub fuer die naechsten Wochen."""
+    belegt = {}
+    for qf in ROOT.glob("*/pins/queue.json"):
+        for q in json.loads(qf.read_text(encoding="utf-8")):
+            if q.get("freigabe"):
+                belegt[q["freigabe"]] = belegt.get(q["freigabe"], 0) + 1
+    # Erste freie Luecke ab morgen, nicht hinter dem spaetesten Tag: Saisonale
+    # Pins werden von Hand weit vorausgeplant (Silvester im November), sonst
+    # rutschte jeder neue Pin hinter diese Termine.
+    tag = dt.date.today() + dt.timedelta(days=1)
+    while True:
+        if belegt.get(tag.isoformat(), 0) < PRO_TAG:
+            belegt[tag.isoformat()] = belegt.get(tag.isoformat(), 0) + 1
+            yield tag.isoformat()
+        else:
+            tag += dt.timedelta(days=1)
+
+
 def queues_fuellen(pins):
+    # "pausiert": true - Karte bleibt in der Quelle, kommt aber nicht in die Queue
+    # (seit 02.11.2026 die Text-Karten, siehe Foto-Pins in CLAUDE.md).
+    pins = [p for p in pins if not p.get("pausiert")]
     rang = {k: i for i, k in enumerate(REIHENFOLGE, 1)}
     fehlt = [f"{p['site']}-{p['id']}" for p in pins if f"{p['site']}-{p['id']}" not in rang]
     if fehlt:
         raise SystemExit("Nicht in REIHENFOLGE: " + ", ".join(fehlt))
     neu = 0
-    for pin in pins:
+    tage = freigabe_tage()
+    for pin in sorted(pins, key=lambda p: rang[f"{p['site']}-{p['id']}"]):
         qf = ROOT / pin["site"] / "pins" / "queue.json"
         qf.parent.mkdir(parents=True, exist_ok=True)
         queue = json.loads(qf.read_text(encoding="utf-8")) if qf.exists() else []
-        link = f"{BASIS}/{pin['site']}/?pin={pin['id']}#{pin['anker']}"
-        if any(q.get("link") == link for q in queue):
+        link = f"{BASIS}{zielseite(pin)[1]}?pin={pin['id']}#{pin['anker']}"
+        alt = next((q for q in queue if q.get("link") == link), None)
+        if alt:
+            # Derselbe Link mit anderem Bild: ein aelterer Pin (oft aus dem Juli,
+            # vor den Grafik-Karten) hat die ?pin=-id schon. Still ueberspringen
+            # hiesse, die neue Karte nie zu posten - deshalb abbrechen.
+            if alt.get("image_url") != f"{BASIS}/assets/pins/{pin['site']}-{pin['id']}.jpg":
+                raise SystemExit(f"{pin['site']}-{pin['id']}: Link {link} gehoert schon einem "
+                                 f"anderen Pin ({alt.get('title')!r}) - andere id waehlen")
             continue
         bild = f"{BASIS}/assets/pins/{pin['site']}-{pin['id']}.jpg"
         if any(q.get("image_url") == bild for q in queue):
@@ -229,8 +409,10 @@ def queues_fuellen(pins):
             "image_url": bild,
             "published": False,
             "pin_id": "",
-            "kanal": "api",
+            "kanal": "rss",
             "prio": rang[f"{pin['site']}-{pin['id']}"],
+            # Fester Tag aus der Quelle (Saison-Planung), sonst die naechste Luecke.
+            "freigabe": pin.get("freigabe") or next(tage),
         })
         qf.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         neu += 1
@@ -240,11 +422,13 @@ def queues_fuellen(pins):
 def pruefen(pins):
     """Ziel-Seite und Anker muessen existieren, sonst landet der Pin im Leeren."""
     for pin in pins:
-        datei = ROOT / pin["site"] / "index.html"
+        datei = zielseite(pin)[0]
         if not datei.exists():
             raise SystemExit(f"Seite fehlt: {datei}")
         if f'id="{pin["anker"]}"' not in datei.read_text(encoding="utf-8"):
             raise SystemExit(f"{pin['site']}: Anker #{pin['anker']} gibt es nicht")
+        if pin["art"] == "foto" and not (ROOT / pin["foto"]).exists():
+            raise SystemExit(f"{pin['site']}-{pin['id']}: Foto fehlt: {pin['foto']}")
     ids = [f"{p['site']}-{p['id']}" for p in pins]
     doppelt = {i for i in ids if ids.count(i) > 1}
     if doppelt:
@@ -255,7 +439,7 @@ def main():
     pins = json.loads(QUELLE.read_text(encoding="utf-8"))["pins"]
     pruefen(pins)
     if "--nur-queue" not in sys.argv:
-        rendern(pins)
+        rendern([p for p in pins if not p.get("pausiert")])
         print(f"{len(pins)} Grafiken in {ZIEL.relative_to(ROOT)}/")
     print(f"{queues_fuellen(pins)} neue Queue-Eintraege")
 

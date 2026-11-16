@@ -87,13 +87,23 @@ def rfc822(date_str):
     return format_datetime(d.replace(tzinfo=dt.timezone.utc))
 
 
+FENSTER = 30  # Tage, die ein freigegebener Pin im Feed bleibt
+
+
 def main():
+    heute_d = dt.datetime.now(dt.timezone.utc).date()
+    heute = heute_d.isoformat()
+    frueheste = (heute_d - dt.timedelta(days=FENSTER)).isoformat()
     lastmod = load_sitemap_lastmod()
     items = []
 
-    # 1) Cover-Pins je Seite
+    # 1) Cover-Pins je Seite - seit 28.09.2026 NICHT mehr im Feed.
+    #    Pinterest hat den Feed am 26./27.09. ploetzlich (wieder) eingelesen und
+    #    66 Pins ein zweites Mal angelegt, die laengst draussen waren. Alles aus
+    #    pins.json ist veroeffentlicht; ein neuer Cover-Pin gehoert als Queue-
+    #    Eintrag mit "kanal": "rss" in die jeweilige queue.json.
     with open(os.path.join(ROOT, "pinterest", "pins.json"), encoding="utf-8") as f:
-        for p in json.load(f):
+        for p in []:
             slug = p["id"] if p["id"] != "home" else "home"
             date = date_from_image(p["image"]) or lastmod.get(slug)
             items.append({
@@ -119,9 +129,24 @@ def main():
                 # "kanal": "api" = nur ueber pinterest_publish.py posten. Stuende
                 # der Pin auch hier, legte Pinterest ihn ein zweites Mal an,
                 # sobald der RSS-Import ihn findet (Doppelpost-Regel, CLAUDE.md).
-                if p.get("kanal") == "api":
+                # Nur, was ausdruecklich fuer RSS gedacht und noch nicht draussen
+                # ist. Alles andere liefe beim naechsten Einlesen doppelt raus
+                # (am 26./27.09.2026 genau so passiert: 66 Doppelte).
+                if p.get("kanal") != "rss" or p.get("published"):
                     continue
-                date = date_from_image(p["image_url"]) or fallback_date
+                # Tropfweise: Pinterest legt alles an, was neu im Feed steht,
+                # und zwar am Stueck. Deshalb erscheint jeder Pin erst an
+                # seinem "freigabe"-Tag (zwei pro Tag, gesetzt von
+                # build-pin-grafiken.py) - feed.yml baut den Feed taeglich neu.
+                # Nach FENSTER Tagen faellt er wieder raus; Pinterest hat ihn
+                # dann laengst eingelesen, und der Feed bleibt klein.
+                freigabe = p.get("freigabe")
+                if freigabe:
+                    if freigabe > heute or freigabe < frueheste:
+                        continue
+                    date = freigabe
+                else:
+                    date = date_from_image(p["image_url"]) or fallback_date
                 items.append({
                     "title": p["title"],
                     "link": p["link"],

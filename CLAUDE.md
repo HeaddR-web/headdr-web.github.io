@@ -8,6 +8,31 @@ Statische Website auf **GitHub Pages**, Domain **bethathost.de**.
 Repo: `headdr-web/headdr-web.github.io`. Kein Build-Step — reines HTML/CSS/JS.
 **Einsprachig Deutsch** — BeThatHost ist die einzige aktive Marke.
 
+## Stand seit 02.11.2026: die Domain ist nur noch der Shop
+Das hat Vorrang vor allem, was weiter unten über Anlass-Seiten steht.
+- Die Startseite `/` ist der Shop für eigene 3D-Druck-Teile, zum Start Platzkartenhalter und
+  JGA-Anhänger. Das Motto „Alles lässt sich individualisieren“ ist die Hauptzeile (gewählt von
+  Stefanie am 02.11.2026). Die Produktseiten liegen unter `/shop/`. Eine eigene Kasse gibt es nicht, bestellt wird
+  nur über Etsy. Solange die Etsy-Listings fehlen, ist der Kaufknopf kein Link.
+- Alle alten Anlass-, Ratgeber- und Sonderseiten sind Weiterleitungen auf `/`
+  (`noindex`, Marker `<meta name="bth-weiterleitung">`). Punkt 5 im Konsistenz-Check prüft das.
+- Titel-Form: `… | BeThatHost`, höchstens 60 Zeichen.
+- Auf den verbleibenden Seiten gibt es kein `consent.js`, kein `motion.css`/`motion.js`,
+  keine Werbung und keinen Pinterest-Tag. `sitemap.xml`, `llms.txt` und `feed.xml` führen nur den Shop.
+- `index.html`, `404.html`, `shop/*.html`, `impressum.html` und `datenschutz.html` entstehen aus dem
+  Generator `scripts/build-shop.py` (`python3 scripts/build-shop.py`). Nicht von Hand ändern,
+  sonst überschreibt der nächste Lauf die Änderung.
+- Den Rechtstext von Impressum und Datenschutz übernimmt der Generator Zeichen für Zeichen aus der
+  vorhandenen Datei, zwischen `<!-- recht-anfang -->` und `<!-- recht-ende -->`. Ein neuer Text kommt
+  genau dorthin, danach den Generator laufen lassen.
+- Diese Seiten tragen das CSS und die `@font-face`-Blöcke eingebettet im Kopf (Tempo auf dem
+  Handy). Quelle bleibt `assets/style.css`, eine Änderung dort wirkt erst nach einem Generatorlauf.
+  Punkt 22 im Konsistenz-Check (`build-shop.py --pruefen`) meldet einen vergessenen Lauf.
+- Keine Statistik und kein Beacon auf den Shop-Seiten (seit 03.11.2026).
+- Die Abschnitte unten zu Anlass-Seiten, Pick-Karten, Werbeplätzen, Consent und Pinterest
+  beschreiben den alten Stand und ruhen. Ebenso die Agenten `page-builder`,
+  `consistency-auditor` und `pinterest-manager`.
+
 ## Cozylore (`cozy/**`) — abgekoppelt, seit 2026-07-20
 Cozylore war eine englischsprachige Sub-Marke, ist aber **nicht mehr Teil der Live-Seite**:
 kein Link mehr in Navigation, Startseite oder Cross-Links, nicht in `sitemap.xml`/`llms.txt`.
@@ -18,7 +43,8 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
 
 ## Design-System (BeThatHost) — eiserne Regeln
 - **Eine einzige Stylesheet-Quelle:** `/assets/style.css`. **Niemals** pro-Ordner-Kopien
-  (`style.css`, `../style.css`) anlegen. Alle Seiten binden `/assets/style.css` + `/assets/motion.css` ein.
+  (`style.css`, `../style.css`) anlegen. Alle Seiten binden `/assets/style.css` ein
+  (`/assets/motion.css` seit 02.11.2026 nicht mehr).
 - **Fonts nur über die CSS-Variablen** `--display` (Fraunces) und `--ui` (Hanken Grotesk).
   **Nie** Playfair Display oder Inter auf BeThatHost-Seiten einführen.
 - **Fonts sind self-hosted** (`/assets/fonts/*.woff2` + `@font-face`-Regeln in
@@ -43,13 +69,13 @@ Inter) — einfach komplett getrennt behandeln, in keine Richtung vermischen.
   unter `cozy/`: nie direkt von einem Fremd-Host einbinden, sondern die Datei ins Repo legen
   (Bilder nach `/assets/img/`) und lokal verlinken. Typischer Fall sind Higgsfield-Links
   (`*.cloudfront.net/user_…/hf_….png`): die gehören nur in `pins/queue.json` und `feed.xml`
-  (die holt Pinterest selbst ab), nie in HTML, CSS oder JS. Punkt 22 im Konsistenz-Check
+  (die holt Pinterest selbst ab), nie in HTML, CSS oder JS. Punkt 23 im Konsistenz-Check
   (`scripts/check-fremdhosts.py`) prüft das. Einzige Ausnahme ist der Cloudflare-Beacon,
   begründet in `datenschutz.html` Punkt 9.
 
 ## Anatomie einer Anlass-/Motto-Seite (`<ordner>/index.html`)
-1. `<head>`: charset/viewport, `<title>… — BeThatHost</title>` (**max. 60 Zeichen inkl.
-   „ — BeThatHost"** — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
+1. `<head>`: charset/viewport, `<title>… | BeThatHost</title>` (**max. 60 Zeichen inkl.
+   „ | BeThatHost"**, Trenner seit 02.11.2026 der senkrechte Strich — Google zeigt rund 580 Pixel; bis September 2026 waren 24 Titel länger,
    hinter dem Schnitt verschwand genau die Marke. Hauptsuchwort nach vorn; die `<h1>` darf
    länger sein), meta description
    (**max. 160 Zeichen** — Google schneidet deutsche Snippets bei rund 155-160 ab;
@@ -171,7 +197,14 @@ Mehrwert — reine Produktlisten reichen nicht). Anlass, Gäste, Dauer rein, Ein
 - Läuft rein im Browser: keine Cookies, kein Speichern, kein Nachladen. Der Zustand steht
   nur in der URL (`?anlass=grill&gaeste=12…`), damit „Link teilen“ die Liste mitnimmt.
   Das muss so bleiben, sonst gehört es in die Datenschutzerklärung und hinter `consent.js`.
-- Drucken zeigt nur die Liste (`@media print` in `/assets/style.css`).
+- Drucken / „Als PDF sichern“ zeigt nur die Liste (`@media print` in `/assets/style.css`):
+  **eine A4-Seite, zweispaltig**, Kopf mit „Einkaufsliste <Anlass>“ und Marke, echte
+  Kästchen zum Abhaken, unten Datum und der Link, der die Liste wieder öffnet
+  (`.rl-druckkopf`/`.rl-druckfuss`, von `rechner.js` gesetzt, am Bildschirm unsichtbar).
+  Jede Gruppe steckt in einer `section.rl-block`, damit Überschrift und Zeilen nicht über den
+  Spaltenrand reißen. Bis September 2026 kam die Bildschirm-Liste 1:1 aufs Papier — eine lange
+  Spalte ohne Titel, die für vier Zeilen auf eine zweite Seite umbrach. Nach Änderungen an
+  der Liste mit einem großen Fall (30 Gäste, Brunch, Kinder) prüfen, dass es eine Seite bleibt.
 - Kein Lead-Bild: oben steht der Rechner, nicht ein Foto. `og:image` ist
   `assets/img/mengenrechner-einkaufsliste.jpg` (aus echten Rechner-Werten gerendert —
   ändern sich die Regeln, Bild neu erzeugen).
@@ -239,8 +272,9 @@ Suche: ohne `BreadcrumbList` zeigt Google unter dem Titel die nackte URL.
   zwischen `<!-- BREADCRUMB:START … -->` und `<!-- BREADCRUMB:END -->` und wird bei jedem Lauf
   komplett ersetzt. Er enthält beides: die sichtbare Zeile **und** das `BreadcrumbList`-JSON-LD.
 - **Die Kategorie kommt aus der Startseite selbst.** In welchem `<section id="…">` die Karte
-  einer Seite steht, das ist ihre Kategorie (`#anlaesse` → „Anlässe", `#mottopartys` →
-  „Mottopartys", `#ratgeber` → „Kaufratgeber"). Verschiebt jemand eine Karte, wandert die
+  einer Seite steht, das ist ihre Kategorie (`#anlaesse` → „Anlässe", `#geschenke` → „Geschenkideen",
+  `#mottopartys` → „Mottopartys", `#ratgeber` → „Kaufratgeber"). Die Saison-Leiste `#saison` steht
+  bewusst **nicht** in `ABSCHNITTE` — sonst landeten die dort verlinkten Seiten in der falschen Kategorie. Verschiebt jemand eine Karte, wandert die
   Brotkrume beim nächsten Lauf mit — es gibt keine zweite Liste, die veralten könnte.
   Der Linktext kommt aus `NAME` in `build-related.py`, damit eine Seite nicht an zwei Stellen
   anders heißt.
@@ -280,7 +314,9 @@ Seiten und zeigten fast alle auf dieselben zwei Ziele.
   Weiterlesen-Block, den sie ersetzen sollten. `ALT_RE` in `build-related.py` räumt
   beide Schreibweisen („Weitere Anlässe:" und „Weitere Ideen:") weg.
 - `scripts/check-related.py` prüft das mit, Punkt 14 im Konsistenz-Check: Block aktuell,
-  keine Waisen, kein interner Link auf eine Datei, die es nicht gibt.
+  keine Waisen, kein interner Link auf eine Datei, die es nicht gibt, **und kein relativer
+  Link** (`href="girls-night-drinks.html"`, `href="posts/…"`). Bis September 2026 standen 124
+  davon auf der Seite, dazu die `guide`-Felder in den drei `app.js`.
 
 ## FAQ-Abschnitt (`section.faq`) — generiert, nie von Hand
 Am Ende des Artikels, vor dem Weiterlesen-Block, steht der sichtbare FAQ-Abschnitt.
@@ -355,6 +391,12 @@ ein Bild von rund 360 × 270 Punkten. Ausgeliefert wurden bis September 2026 die
   Original auch dann wieder, wenn im Markup laengst die Ableitung steht — der Lauf ist
   beliebig oft wiederholbar. Nach jedem neuen oder getauschten Kachelbild:
   `python3 scripts/build-images.py`
+- **Startseiten-Karten brauchen `height: auto`** (`.occ-media img` im `<style>` von `index.html`).
+  Ohne gilt das `height`-Attribut (720) woertlich: Bis Oktober 2026 war jede Karte 720 px hoch,
+  auf dem Handy ein 328 × 720-Streifen statt 4:3. **Grafiken mit Text** (z. B. die selbst
+  gerenderten Titelbilder der Geschenkideen, 3:2) bekommen fuer die Karte eine eigene 4:3-Fassung
+  `<stamm>-karte.jpg` (oben/unten in der Hintergrundfarbe aufgefuellt) — der 4:3-Zuschnitt
+  schnitte sonst den Text ab.
 - **Kacheln sind echte `<img loading="lazy">`, nie CSS-Hintergruende.** Ein Hintergrund laesst
   sich nicht verzoegern; auf `girlsnight/` luden so elf Kacheln sofort mit. Das `alt` bleibt
   leer: die Kachel wiederholt nur die Ueberschrift daneben.
@@ -433,6 +475,12 @@ Gitter stand, verschwand fuer jeden Besucher mit JavaScript** — auf `cocktaila
 weiterhin behauptete. Dazu fehlte den Zweit- und Dritt-Picks im JS-Aufbau die `hp-desc`,
 die im statischen Markup steht.
 
+**Planungstext (`section.hub-text`):** Unter den Guides steht auf `cocktailabend/` und
+`watchparty/` ein Lesetext in Artikelbreite (seit September 2026, AdSense-Ablehnung
+„Minderwertige Inhalte“). Bewusst eine `<section>`, kein `<article>` — `build-faq.py` setzt die
+FAQ sonst in diesen Block. Die Hubs sind in `AUSGENOMMEN` von `build-toc.py`: mit den neuen
+`<h2>` bekaemen sie sonst ein Verzeichnis mitten im Kopf des Kachelgitters.
+
 **Regel:** `render()` baut nur, wenn `#build-grid` noch keine `.cat-card` enthaelt. Was im
 HTML steht, gewinnt. Aendert sich eine Kategorie, gehoert sie in **beides** — in das
 statische Markup und in die Liste in `app.js`.
@@ -493,11 +541,35 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
 6. `scripts/check-consistency.sh` laufen lassen — muss grün sein.
 
 ## Pinterest
-- **RSS-Auto-Publish (Standardweg):** `scripts/make_feed.py` baut `feed.xml` aus `pinterest/pins.json` +
-  `*/pins/queue.json`; Pinterest zieht das selbst, kein API-Token nötig. Details: `pinterest/README.md`.
-- **Live-Posten über die API (aktiv, seit 2026-09):** `.github/workflows/pinterest-publish.yml` +
+- **STAND 28.09.2026 — so kommen Pins raus: tropfweise über den RSS-Feed.** Die Entwickler-App
+  hat nur **Trial-Zugang**; jedes `POST /v5/pins` endet mit `HTTP 403 – Apps with Trial access may
+  not create Pins in production`. Lesen, Statistik und Löschen gehen. Der RSS-Feed dagegen **ist**
+  verbunden (am 26./27.09.2026 hat Pinterest daraus 66 Pins angelegt — leider längst
+  veröffentlichte, danach gelöscht). Deshalb tragen neue Queue-Einträge `"kanal": "rss"` und ein
+  `"freigabe": "JJJJ-MM-TT"`: `make_feed.py` nimmt einen Eintrag erst ab diesem Tag in `feed.xml`
+  auf und nach 30 Tagen (`FENSTER`) wieder heraus, `feed.yml` baut den Feed täglich um 6 Uhr UTC
+  neu. `build-pin-grafiken.py` vergibt die Tage selbst: **zwei pro Tag**, in der ersten freien
+  Lücke ab morgen (nicht hinter dem spätesten Termin, sonst rutschte alles hinter die von Hand
+  vorgeplanten Saison-Pins). Bestätigt am 01.10.2026: Die ersten 5 Feed-Pins kamen je einmal an. **Saisonales darf vorgezogen werden:** Liegt der nächste freie Tag zu nah am Anlass
+  (Halloween-Pins wären am 23.10. drangekommen), den `"freigabe"`-Wert in der Queue von Hand auf
+  einen früheren Tag setzen — höchstens **drei** Pins pro Tag.
+  **Saison schlägt Reihenfolge:** Im Oktober 2026 liefen Grill-, Tiki- und Margarita-Pins,
+  während auf Pinterest Halloween und Advent gesucht wurden — die 21 Pins ab 02.10. kamen
+  zusammen auf 11 Impressionen. Seit 14.10.2026 gilt: Pins zum nächsten Anlass zuerst, Ganzjähriges
+  danach, Sommerthemen (Grill, Terrasse, Tiki, Garten) bekommen eine Freigabe ab April. **Nie** die Freigabe weglassen — ohne sie stünde alles auf einmal im Feed, und
+  Pinterest legt es am Stück an. Weder die API noch die Bulk-CSV fassen `rss`-Einträge an.
+  Die Bulk-CSV (`make_bulk_csv.py --queue`) bleibt als Handweg für `"kanal": "api"`-Einträge;
+  `mark-published-only` erst laufen lassen, **wenn der Upload wirklich passiert ist** (am
+  28.09.2026 lief es auf Zuruf, ohne Upload — 32 Pins standen danach als veröffentlicht da,
+  die es nie gab). Der Zeitplan in `pinterest-publish.yml` ist aus, bis die App Standard-Zugang
+  hat (Antrag im Pinterest-Entwicklerportal, nur durch den Inhaber).
+- **Nie bereits veröffentlichte Pins in den Feed.** Pinterest gleicht den Feed nicht mit Pins aus
+  anderen Quellen (Bulk-CSV, API) ab und legt sie ein zweites Mal an.
+- **RSS-Auto-Publish:** `scripts/make_feed.py` baut `feed.xml` aus den `*/pins/queue.json`
+  (nur `"kanal": "rss"`, nicht `published`); Pinterest zieht das selbst. Details: `pinterest/README.md`.
+- **Live-Posten über die API (vorbereitet, aber blockiert — siehe Trial-Zugang oben):** `.github/workflows/pinterest-publish.yml` +
   `scripts/pinterest_publish.py` posten 2×/Tag aus den `*/pins/queue.json` über die offizielle
-  Pinterest-API v5. Die Entwickler-App ist freigeschaltet; nötig sind nur die drei Secrets
+  Pinterest-API v5. Nötig sind die drei Secrets
   `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`. Token erzeugen wahlweise
   ohne Terminal über den Workflow `pinterest-oauth.yml` (+ `scripts/pinterest_oauth_ci.py`,
   Redirect-URI `https://bethathost.de/`, schreibt das Secret selbst per API) oder lokal mit
@@ -542,13 +614,30 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   `assets/pins/<site>-<id>.jpg` (1000 × 1500, eigene Farben je Karte, kein Credit nötig).
   Das Skript prüft, dass Zielseite und Anker existieren, verkleinert die Schrift, bis alles
   auf die Karte passt, und trägt jeden Pin einmal in `<site>/pins/queue.json` ein — mit
-  `"kanal": "api"` und `"prio"` (Reihenfolge in `REIHENFOLGE`: Saisonales zuerst, danach
-  im Wechsel der Seiten). Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
+  `"kanal": "rss"`, `"prio"` (Reihenfolge in `REIHENFOLGE`: Saisonales zuerst, danach
+  im Wechsel der Seiten) und `"freigabe"` (siehe oben). Ziel ist `<site>/index.html`, mit dem
+  optionalen Feld `"pfad"` eine Unterseite im Ordner (`"posts/wm-snacks-rezepte.html"`,
+  `ratgeber` + `"raclette-fondue-set.html"`); die Queue bleibt `<site>/pins/queue.json`.
+  Neue Karte: Eintrag in der JSON + in `REIHENFOLGE`, dann
   `python3 scripts/build-pin-grafiken.py`. Ist die Queue leer oder fast leer, zeigt der
   Publish-Workflow eine **Warnung** im Actions-Log statt still grün durchzulaufen.
-- **Kanal:** Neue Queue-Einträge tragen `"kanal": "api"` und stehen deshalb **nicht** in
-  `feed.xml` — sonst legt der RSS-Import sie ein zweites Mal an. Die alten 70 Einträge ohne
-  das Feld bleiben im Feed (sie sind längst draußen).
+- **Foto-Pins (`"art": "foto"`) — Vergleich seit 18.10.2026.** Die 35 Text-Karten aus
+  September/Oktober 2026 bekamen zusammen 26 Impressionen (1 pro Pin), die Foto-Pins aus dem
+  Juni 741 pro Pin. Ob das an der Optik liegt oder an einer Drosselung des Kontos, zeigt der
+  direkte Vergleich: sechs Foto-Pins (`?pin=foto-…`, 18.–23.10., je als dritter Pin neben zwei
+  Text-Karten). Gleiches Skript, gleiche Queue; das Foto liegt unter `pinterest/fotos/`
+  (2:3, eigenes Motiv, nie ein Lead- oder og:image-Bild), darauf nur Kicker, Titel und Marke.
+  **Ergebnis 02.11.2026:** 6 Foto-Pins 192 Impressionen (32 pro Pin), 4 Klicks zur Seite;
+  25 Text-Karten derselben Tage 17 Impressionen (0,7 pro Pin), 2 Klicks. **Seitdem nur noch
+  Foto-Pins.** Die noch nicht veröffentlichten Text-Karten tragen in `grafik-pins.json`
+  `"pausiert": true` (bleiben als Quelle, kommen nicht in die Queue). Ein Foto-Pin kann seinen
+  Tag direkt als `"freigabe"` im Eintrag tragen — einer pro Tag, Saison zuerst.
+  Achtung: `build-pin-grafiken.py` rendert alle Karten neu; in einer anderen Umgebung weichen
+  die Bytes ab. Danach `git checkout -- assets/pins/` für alles außer den neuen Dateien —
+  bereits veröffentlichte Pin-Bilder nicht verändern.
+- **Kanal:** `"kanal": "rss"` = geht tropfweise über `feed.xml` raus (Standard seit 28.09.2026).
+  `"kanal": "api"` = per Bulk-CSV bzw. API, sobald Standard-Zugang da ist, und **nie** im Feed.
+  Einträge ohne das Feld sind alt und längst draußen.
 - `cozy/pins/queue.json` wird **nie** gepostet (Cozylore ist abgekoppelt) — die Ausnahme steckt in
   `SKIP_SITES` in `scripts/pinterest_publish.py` und in `scripts/make_feed.py`.
 - **Einmal-Bulk-Upload:** `pinterest/make_bulk_csv.py` erzeugt eine CSV für Pinterests „Bulk-Pins erstellen".
@@ -564,6 +653,27 @@ Für die Hero-Picks der Hub-Seiten (`cocktailabend`, `girlsnight`, `watchparty`)
   Nie dasselbe Motiv für zwei Pins wiederverwenden — auch nicht Startseite + Anlass-Seite.
 - **Bildformat — eiserne Regel:** Jedes neue Pin-Bild ist **vertikal 2:3** (z. B. 848×1264). Nie Quer-Bilder
   (og:image, Hero-Bilder, 3:2/16:9) für neue Pins wiederverwenden oder generieren.
+
+## Besucher & Google-Suche (`statistik/WEB.md`) — generiert
+Bis Oktober 2026 kannte niemand die Besucherzahlen; gemessen wurde nur Pinterest (8 Klicks zur
+Seite in 30 Tagen, ein einziger Amazon-Verkauf). `.github/workflows/web-stats.yml` (montags +
+manuell) ruft `scripts/web_stats.py` auf und schreibt `statistik/WEB.md` + `statistik/web.json`:
+Besuche je Tag, Seite, Herkunft und Gerät (Cloudflare Web Analytics, GraphQL) sowie Klicks,
+Suchbegriffe und den **Indexierungsstatus jeder Sitemap-URL** (Search Console, URL-Prüfung).
+Fehlt die Sitemap in der Search Console, reicht das Skript sie ein.
+- Secrets: `CF_API_TOKEN` (Token mit „Account Analytics: Read“), `CF_ACCOUNT_ID`,
+  `GSC_SERVICE_ACCOUNT` (JSON-Schlüssel eines Google-Dienstkontos, das in der Search Console
+  als Inhaber der Property eingetragen ist). Fehlt eins, steht im Bericht, was fehlt.
+- **Vor jeder Inhalts- oder Pinterest-Entscheidung hier und in `pinterest/STATISTIK.md` schauen.**
+
+## IndexNow (Bing, Yandex & Co.) — automatisch
+Im Oktober 2026 fand eine Websuche nur 2 von rund 45 Seiten. IndexNow meldet neue und geänderte
+URLs **ohne Konto** an Bing (und damit DuckDuckGo, Ecosia, ChatGPT-Suche), Yandex, Seznam.
+Der Schlüssel liegt als `/<32 Hex-Zeichen>.txt` im Wurzelverzeichnis und enthält sich selbst —
+**nicht löschen, nicht umbenennen**, sonst lehnt IndexNow jede Meldung mit 403 ab.
+`.github/workflows/indexnow.yml` ruft nach jeder Änderung an `sitemap.xml` (und manuell)
+`scripts/indexnow.py` auf und meldet alle Sitemap-URLs. Google nutzt IndexNow nicht; dafür
+braucht es die Search Console (Abschnitt oben).
 
 ## Workflow / Konventionen
 - **Vor jedem Push:** `bash scripts/check-consistency.sh` (CI erzwingt es ohnehin) und

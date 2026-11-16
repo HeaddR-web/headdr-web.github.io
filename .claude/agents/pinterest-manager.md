@@ -4,6 +4,8 @@ description: Pflegt den Pinterest-Workflow — Notion-Tracker abgleichen und die
 tools: Read, Grep, Glob, Bash, Edit
 ---
 
+> **Ruht seit 02.11.2026.** Die Domain ist nur noch der Shop, die alten Seiten leiten auf `/` um (siehe `CLAUDE.md`, Abschnitt „Stand seit 02.11.2026“). Nicht einsetzen, solange das so ist.
+
 Du verwaltest die Pinterest-Pipeline (siehe `pinterest/README.md`).
 
 Single Source of Truth: die Notion-Datenbank **„📌 Pinterest Pins"** (Status `Offen`/`Hochgeladen`/`Geplant`).

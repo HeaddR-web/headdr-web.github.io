@@ -26,6 +26,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 from PIL import Image
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -436,7 +439,9 @@ def lead_seiten():
                          and not (rel == "." and d in ("cozy", "assets", "scripts")))
         for name in sorted(dateien):
             if name.endswith(".html"):
-                treffer.append(os.path.normpath(os.path.join(rel, name)))
+                kandidat = os.path.normpath(os.path.join(rel, name))
+                if not ist_weiterleitung(kandidat):
+                    treffer.append(kandidat)
     return treffer
 
 
@@ -507,7 +512,7 @@ def seiten():
         kandidat = os.path.join(eintrag, "index.html")
         if eintrag == "cozy" or not os.path.isdir(os.path.join(WURZEL, eintrag)):
             continue
-        if os.path.exists(os.path.join(WURZEL, kandidat)):
+        if os.path.exists(os.path.join(WURZEL, kandidat)) and not ist_weiterleitung(kandidat):
             treffer.append(kandidat)
     return treffer
 

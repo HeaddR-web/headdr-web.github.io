@@ -26,6 +26,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 spec = importlib.util.spec_from_file_location("build_related", "scripts/build-related.py")
 br = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(br)
@@ -34,6 +37,7 @@ NUR_NAVIGATION = {"index.html", "ueber-uns.html", "datenschutz.html",
                   "impressum.html", "privacy.html", "dashboard.html",
                   "produkt-review.html", "404.html"}
 LINK_RE = re.compile(r'href="(/[^"#?]*)"')
+RELATIV_RE = re.compile(r'<a\b[^>]*?\shref="(?!/|https?:|#|mailto:|tel:|javascript:|\$\{)([^"]+)"')
 
 
 def norm(ziel):
@@ -48,6 +52,8 @@ def main():
     # 1) Block vorhanden und aktuell?
     veraltet = []
     for seite, ziel_liste in sorted(plan.items()):
+        if ist_weiterleitung(seite):
+            continue
         html = open(seite, encoding="utf-8").read()
         block = br.BLOCK_RE.search(html)
         if not block or block.group(0) != br.block_fuer(ziel_liste):
@@ -57,7 +63,8 @@ def main():
 
     # 2) Waisen und tote Links ueber alle Seiten
     seiten = [f for f in sorted(glob.glob("**/*.html", recursive=True))
-              if not f.startswith("cozy/") and not f.endswith("disclosure.html")]
+              if not f.startswith("cozy/") and not f.endswith("disclosure.html")
+              and not ist_weiterleitung(f)]
     ein = collections.Counter()
     for f in seiten:
         html = open(f, encoding="utf-8").read()
@@ -83,6 +90,14 @@ def main():
         b = html.find("<footer", a) if a >= 0 else -1
         if a >= 0 and b > a and html[a + len("</main>"):b].strip():
             fehler.append(f"{f}: Inhalt zwischen </main> und <footer> - ohne Seitenrand")
+
+    # 4) Keine relativen Links. Bis September 2026 standen 124 davon auf der
+    #    Seite (href="girls-night-drinks.html", href="posts/..."). Sie gehen
+    #    kaputt, sobald eine Seite umzieht, und "index.html" war eine zweite URL
+    #    fuer eine Seite, deren Canonical auf den Ordner zeigt.
+    for f in seiten:
+        for ziel in RELATIV_RE.findall(open(f, encoding="utf-8").read()):
+            fehler.append(f"{f}: relativer Link {ziel} - absolut schreiben (/ordner/...)")
 
     if fehler:
         print("\n".join(sorted(set(fehler))))

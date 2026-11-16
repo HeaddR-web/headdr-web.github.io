@@ -26,7 +26,11 @@ import html as H
 import importlib.util
 import json
 import re
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from weiterleitung import ist_weiterleitung  # noqa: E402
 
 spec = importlib.util.spec_from_file_location("build_breadcrumb", "scripts/build-breadcrumb.py")
 bb = importlib.util.module_from_spec(spec)
@@ -56,7 +60,7 @@ def main():
     fehler, veraltet, ohne = [], [], []
 
     for pfad in sorted(glob.glob("**/*.html", recursive=True)):
-        if pfad.startswith("cozy/") or pfad in bb.AUSGENOMMEN:
+        if pfad.startswith("cozy/") or pfad in bb.AUSGENOMMEN or ist_weiterleitung(pfad):
             continue
         html = open(pfad, encoding="utf-8").read()
         block = bb.BLOCK_RE.search(html)

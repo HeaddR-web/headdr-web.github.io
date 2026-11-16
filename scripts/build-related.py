@@ -27,6 +27,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from weiterleitung import ist_weiterleitung  # noqa: E402
+
 # Kurzer Linktext je Seite. Die <h1> taugen nicht: "Mädelsabend zu Hause mit
 # kleinem Budget: 20 günstige Ideen mit Spaßgarantie" sprengt jede Kachel.
 NAME = {
@@ -34,16 +37,24 @@ NAME = {
     "casino/index.html": "Casino-Abend",
     "gartenparty/index.html": "Gartenparty",
     "geburtstag/index.html": "Geburtstag zuhause",
+    "kindergeburtstag/index.html": "Kindergeburtstag",
+    "fingerfood/index.html": "Fingerfood für Partys",
     "grillabend/index.html": "Grillabend",
     "jga/index.html": "JGA",
     "saison-deko/index.html": "Saison-Deko",
     "spa-abend/index.html": "Spa-Abend",
     "spieleabend/index.html": "Spieleabend",
     "valentinstag/index.html": "Valentinstag",
+    "weihnachtsfeier/index.html": "Weihnachtsfeier",
+    "wichtelgeschenke/index.html": "Wichtelgeschenke",
+    "adventskalender/index.html": "Adventskalender befüllen",
+    "mitbringsel/index.html": "Mitbringsel für Gastgeber",
+    "silvester/index.html": "Silvesterparty",
 
     "hawaii-tiki/index.html": "Hawaii-Party",
     "mexiko-fiesta/index.html": "Mexiko-Fiesta",
     "oktoberfest/index.html": "Oktoberfest zuhause",
+    "halloween/index.html": "Halloween-Party",
 
     "girlsnight/index.html": "Mädelsabend",
     "girlsnight/posts/girls-night-budget.html": "Mädelsabend mit kleinem Budget",
@@ -79,15 +90,18 @@ NAME = {
 # beieinander stehen, dann passen die Vorschlaege inhaltlich zueinander.
 THEMA = {
     "anlaesse": [
-        "mengenrechner/index.html",
+        "mengenrechner/index.html", "fingerfood/index.html",
         "brunch/index.html", "gartenparty/index.html", "grillabend/index.html",
-        "geburtstag/index.html", "spieleabend/index.html", "casino/index.html",
+        "geburtstag/index.html", "kindergeburtstag/index.html", "spieleabend/index.html", "casino/index.html",
         "spa-abend/index.html", "valentinstag/index.html",
-        "saison-deko/index.html", "jga/index.html",
+        "saison-deko/index.html", "weihnachtsfeier/index.html", "silvester/index.html", "jga/index.html",
+    ],
+    "geschenke": [
+        "wichtelgeschenke/index.html", "adventskalender/index.html", "mitbringsel/index.html",
     ],
     "mottos": [
         "hawaii-tiki/index.html", "mexiko-fiesta/index.html",
-        "oktoberfest/index.html",
+        "oktoberfest/index.html", "halloween/index.html",
     ],
     "girlsnight": [
         "girlsnight/index.html",
@@ -125,7 +139,8 @@ THEMA = {
 # Wohin der dritte Link zeigt. Die Kette laeuft im Kreis, damit von jedem Thema
 # aus jedes andere in wenigen Klicks erreichbar bleibt.
 PARTNER = {
-    "anlaesse": "girlsnight",
+    "anlaesse": "geschenke",
+    "geschenke": "girlsnight",
     "girlsnight": "cocktail",
     "cocktail": "ratgeber",
     "ratgeber": "watchparty",
@@ -183,6 +198,8 @@ def main():
     geaendert = 0
     for seite, ziel_liste in sorted(plan.items()):
         pfad = Path(seite)
+        if ist_weiterleitung(seite):
+            continue
         if not pfad.exists():
             print(f"fehlt: {seite}")
             return 1
