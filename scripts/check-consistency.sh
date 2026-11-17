@@ -182,9 +182,10 @@ else
   fi
 
 # 23) DSGVO: keine Seite laedt beim Aufruf etwas von einem fremden Host (HTML, CSS,
-#     JS, auch Cozylore). Bis September 2026 zog cozy/style.css sein Hero-Bild direkt
-#     vom Higgsfield-CDN. Einzige Ausnahme ist der Cloudflare-Beacon (datenschutz.html
-#     Punkt 9); AdSense und Pinterest nur aus js/consent.js.
+#     JS). Anlass: bis September 2026 zog das fruehere cozy/style.css sein Hero-Bild
+#     direkt vom Higgsfield-CDN. Einzige Ausnahme ist der Cloudflare-Beacon
+#     (datenschutz.html Punkt 9). cozy/ und js/consent.js (AdSense, Pinterest) sind
+#     seit 16.11.2026 geloescht, eine Ausnahme nach Einwilligung gibt es nicht mehr.
   if out=$(python3 scripts/check-fremdhosts.py 2>&1); then
     echo "  ✓ $out"
   else

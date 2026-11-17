@@ -22,9 +22,9 @@ Geprueft wird der Repo-Ordner, egal aus welchem Verzeichnis das Skript startet.
 Ein anderer Ordner geht als Argument (fuer Testdateien).
 
 Einzige Ausnahme ist der Cloudflare-Beacon, bewusst so entschieden und in
-datenschutz.html Punkt 9 begruendet. AdSense und Pinterest duerfen nur aus
-js/consent.js kommen, das sie erst nach dem Opt-in nachlaedt (Punkt 7 im
-Konsistenz-Check haelt sie aus dem Markup).
+datenschutz.html Punkt 9 begruendet. AdSense und Pinterest laedt keine Seite
+mehr: js/consent.js, das sie frueher nach dem Opt-in nachlud, ist seit
+16.11.2026 geloescht (Punkt 7 im Konsistenz-Check haelt sie aus dem Markup).
 """
 import glob
 import os
