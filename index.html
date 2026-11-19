@@ -10,13 +10,13 @@
     <title>3D-Druck-Teile, individuell für dich | BeThatHost</title>
     <meta
       name="description"
-      content="Eigene Teile aus dem 3D-Drucker, jedes lässt sich individualisieren. Platzkartenhalter und JGA-Anhänger, hier ansehen und auf Etsy kaufen."
+      content="Party-Teile aus dem 3D-Drucker mit deinem Namen, für Hochzeit, JGA und Geburtstag. Platzkartenhalter und JGA-Anhänger, bald mehr. Bestellt wird über Etsy."
     />
     <link rel="canonical" href="https://bethathost.de/" />
     <meta property="og:url" content="https://bethathost.de/" />
     <meta name="p:domain_verify" content="693a9f1da1a65983315cd7e002f9b2e7" />
     <meta property="og:title" content="3D-Druck-Teile, individuell für dich" />
-    <meta property="og:description" content="Eigene Teile aus dem 3D-Drucker, jedes lässt sich individualisieren. Platzkartenhalter und JGA-Anhänger, hier ansehen und auf Etsy kaufen." />
+    <meta property="og:description" content="Party-Teile aus dem 3D-Drucker mit deinem Namen, für Hochzeit, JGA und Geburtstag. Platzkartenhalter und JGA-Anhänger, bald mehr. Bestellt wird über Etsy." />
     <meta property="og:type" content="website" />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/bricolage-grotesque-800.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-grotesk.woff2" crossorigin />
@@ -191,6 +191,9 @@ body.shop {
   --shop-salbei: #e3eadf;
   --shop-salbei-hell: #eef2eb;
   --shop-salbei-tief: #d4e0cf;
+  --shop-ton-sand: #efe6d3;
+  --shop-ton-rose: #f3e1dd;
+  --shop-ton-kreide: #e6e4dc;
   --shop-feld: var(--shop-salbei);
   --shop-muted: #4d5a52;
   --shop-akzent: #2f5d46;
@@ -309,6 +312,10 @@ body.shop footer.site p {
   margin: 0;
 }
 body.shop footer.site a {
+  /* Polster für die Trefferfläche (Wächter-Hinweis 19.11.2026). inline-block, damit das Polster
+     zur Zeilenhöhe zählt: bei 320 px bricht die Zeile um, inline ragte es in die Nachbarzeile */
+  display: inline-block;
+  padding-block: 13px;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -449,22 +456,6 @@ body.shop .shop-kopf h1 {
 }
 .shop-karte-bild svg {
   width: min(100%, 340px);
-}
-/* Startseite: links drei Halter wie auf einem gedeckten Tisch, rechts der Anhänger auf dunklerem Salbei */
-/* beide Bilder 4:3, der Fokus kommt nur über die Breite, sonst ist das Set uneinheitlich (Gate R7, 02.11.2026) */
-.shop-raster-start {
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  align-items: start;
-}
-.shop-raster-start .shop-karte-bild {
-  height: auto;
-  aspect-ratio: 4 / 3;
-}
-.shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
-  background: var(--shop-salbei-tief);
-}
-.shop-raster-start .shop-svg-reihe {
-  width: min(100%, 560px);
 }
 /* Zeile unter der Überschrift: kleiner Rahmen, der Name groß in eigener Zeile mit den Schichtlinien der Ablauf-Ziffern.
  * Eigene Zeile, damit ein langer Name nichts verschiebt (Kritiker Runde 1, 16.11.2026) */
@@ -1021,10 +1012,6 @@ body.shop .t-duese {
   --hub: -38px;
   --weg: 120px;
 }
-.shop-svg-reihe {
-  --hub: -62px;
-  --weg: 148px;
-}
 @media (prefers-reduced-motion: no-preference) {
   /* mit Skript wartet der Name, bis das Bild im Fenster ist, ohne Skript steht er fertig da */
   .js body.shop svg[data-druck]:not(.druckt) .t-druck {
@@ -1114,6 +1101,212 @@ body.shop .shop-recht h3 {
   color: var(--shop-muted);
 }
 
+/* ---------- Katalog der Startseite (Variante A, Stefanie 19.11.2026) ----------
+ * Kopf als Salbei-Band, oben Kategorien und Etsy-Hinweis, Filter nach Anlass, vier Kacheln je Reihe.
+ * Platzhalter sind gekennzeichnet und kein Link, der Etsy-Status ist nirgends ein Knopf. */
+body.shop header.site nav {
+  margin-left: auto;
+}
+.shop-etsy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--shop-salbei);
+  color: var(--shop-akzent-tief);
+  font: 500 0.875rem/1.2 var(--shop-mono);
+  white-space: nowrap;
+}
+.shop-etsy-pill svg {
+  flex: none;
+}
+.shop-kopf-band {
+  background: var(--shop-salbei);
+}
+/* Flacher Kopf der Startseite: Überschrift und Beispielname in einer Zeile, darunter gleich die Muster (Kritiker Runde 1, 19.11.2026) */
+body.shop .shop-kopf.shop-kopf-band {
+  padding-block: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
+}
+.shop-kopf-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px clamp(20px, 3vw, 40px);
+}
+.shop-kopf-zeile .shop-mono {
+  flex-basis: 100%;
+}
+body.shop .shop-kopf-zeile h1 {
+  margin: 0;
+  min-width: 0;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  overflow-wrap: anywhere;
+}
+.shop-kopf-zeile .shop-kopf-fuer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 10px;
+  min-width: 0;
+  margin: 0;
+}
+.shop-katalog .shop-innen {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+}
+/* Anker liegen außerhalb des Rasters, sonst kostet jeder eine eigene Lücke über dem Sortiment */
+.shop-katalog .shop-innen {
+  position: relative;
+}
+.shop-anker {
+  position: absolute;
+  top: 0;
+  height: 0;
+}
+.shop-filterleiste {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px clamp(16px, 2.5vw, 28px);
+}
+body.shop .shop-sortiment-titel {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+.shop-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+html:not(.js) .shop-filter {
+  display: none;
+}
+.shop-filter-knopf {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 2px solid var(--shop-salbei-tief);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 0.95rem/1.2 var(--ui);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.shop-filter-knopf:hover {
+  border-color: var(--shop-akzent);
+}
+.shop-filter-knopf:active {
+  transform: translateY(1px);
+}
+.shop-filter-knopf:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.shop-filter-knopf[aria-pressed="true"] {
+  border-color: var(--shop-akzent-tief);
+  background: var(--shop-akzent-tief);
+  color: var(--paper);
+}
+.shop-anzahl {
+  margin: 0 0 0 auto;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-raster-katalog {
+  gap: clamp(28px, 3vw, 40px) clamp(14px, 2vw, 24px);
+}
+/* Zwei Gruppen statt zwölf gleicher Kacheln: die gezeichneten Muster groß, die Platzhalter klein (Gate R2) */
+.shop-raster-muster {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.shop-raster-bald {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px clamp(12px, 1.6vw, 20px);
+}
+.shop-gruppe {
+  margin: clamp(8px, 2vw, 16px) 0 0;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+/* display: grid an der Karte schlägt sonst das hidden-Attribut des Filters */
+.shop-raster-katalog .shop-karte[hidden] {
+  display: none;
+}
+.shop-raster-katalog .shop-karte {
+  gap: 12px;
+}
+.shop-raster-katalog .shop-karte-bild {
+  aspect-ratio: 5 / 4;
+  padding: 36px 10px 10px;
+}
+.shop-raster-muster .shop-karte-bild {
+  aspect-ratio: 16 / 10;
+  padding: 52px 24px 24px;
+}
+.shop-raster-muster .shop-karte-bild svg {
+  width: min(100%, 420px);
+}
+.shop-raster-katalog .shop-karte-text {
+  gap: 4px;
+}
+body.shop .shop-raster-katalog .shop-karte-titel {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.15;
+}
+body.shop .shop-raster-muster .shop-karte-titel {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+body.shop .shop-raster-bald .shop-karte-titel {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.shop-karte-anlass {
+  margin: 0;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-raster-katalog .shop-karte-preis {
+  font-size: 0.95rem;
+}
+/* Status statt Kaufknopf: ruhige Zeile im Salbei, kein Hover, kein Zeiger */
+.shop-karte-status {
+  justify-self: start;
+  margin: 6px 0 0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--shop-salbei-hell);
+  color: var(--shop-akzent-tief);
+  font: 600 0.875rem/1.3 var(--ui);
+}
+.shop-chip-muster {
+  background: var(--shop-akzent-tief);
+  color: var(--paper);
+}
+/* Jeder Platzhalter liegt auf dem hellen Ton seiner Materialfarbe, so stehen nie mehr als drei gleiche Kacheln im Raster (Gate R2) */
+.shop-raster-bald .shop-karte-bild {
+  background: var(--kachel);
+}
+.shop-ton-waldgruen {
+  --kachel: var(--shop-salbei-tief);
+}
+.shop-ton-sand {
+  --kachel: var(--shop-ton-sand);
+}
+.shop-ton-rose {
+  --kachel: var(--shop-ton-rose);
+}
+.shop-ton-kreide {
+  --kachel: var(--shop-ton-kreide);
+}
+/* Platzhalter sind keine Produkte: kein Anheben beim Darüberfahren, nichts wirkt klickbar */
+.shop-karte-platzhalter:hover .shop-karte-bild svg,
+.shop-karte-platzhalter:active .shop-karte-bild svg {
+  transform: none;
+}
+
 /* ---------- Schmalere Fenster ---------- */
 /* Unter 900 px wäre die Kaufspalte zu schmal für drei Spulen nebeneinander */
 @media (max-width: 900px) {
@@ -1157,13 +1350,8 @@ body.shop .shop-recht h3 {
 @media (max-width: 760px) {
   .shop-kopf-raster,
   .shop-raster,
-  .shop-raster-start,
   .shop-ablauf-streifen {
     grid-template-columns: minmax(0, 1fr);
-  }
-  /* untereinander fällt die Gewichtung über die Breite weg, deshalb wird der Anhänger flacher als der Halter (Stefanie 03.11.2026) */
-  .shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
-    aspect-ratio: 16 / 10;
   }
   /* Leiste am Handy: Beschriftung und Feld in einer Reihe, Hinweis darunter */
   .shop-leiste {
@@ -1252,6 +1440,48 @@ html:has(body.shop .shop-leiste) {
     scroll-padding-top: 1rem;
   }
 }
+/* Katalog: drei Spalten, unter 760 px zwei, die Kopfzeile zeigt dort nur Logo und Etsy-Hinweis */
+@media (max-width: 1000px) {
+  .shop-raster-bald {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .shop-raster-bald {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.shop header.site nav {
+    display: none;
+  }
+  body.shop header.site .inner {
+    justify-content: space-between;
+  }
+  /* Handy: Anzahl neben der Überschrift, die Anlässe als eigene Reihe darunter */
+  .shop-filterleiste {
+    row-gap: 10px;
+  }
+  .shop-anzahl {
+    order: 1;
+  }
+  .shop-filter {
+    order: 2;
+    flex-basis: 100%;
+    gap: 6px;
+  }
+  .shop-filter-knopf {
+    padding-inline: 13px;
+  }
+}
+/* Handy: die Muster untereinander in voller Breite, so bleiben sie größer als die Platzhalter */
+@media (max-width: 560px) {
+  .shop-raster-muster {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shop-raster-muster .shop-karte-bild {
+    aspect-ratio: 4 / 3;
+    padding: 44px 16px 16px;
+  }
+}
     </style>
   </head>
   <body class="shop">
@@ -1259,22 +1489,22 @@ html:has(body.shop .shop-leiste) {
     <header class="site">
       <div class="inner">
         <a class="brand" href="/">BeThatHost</a>
-        <nav aria-label="Produkte">
-          <a href="/shop/platzkartenhalter.html">Platzkartenhalter</a>
-          <a href="/shop/jga-anhaenger.html">JGA-Anhänger</a>
+        <nav aria-label="Sortiment">
+          <a href="/#hochzeit">Hochzeit</a>
+          <a href="/#jga">JGA</a>
+          <a href="/#geburtstag">Geburtstag</a>
+          <a href="/#sortiment">Alle Produkte</a>
         </nav>
+        <span class="shop-etsy-pill"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Etsy-Shop · bald</span>
       </div>
     </header>
 
     <main id="inhalt" tabindex="-1">
-      <section class="shop-kopf" aria-labelledby="titel">
-        <div class="shop-innen shop-kopf-raster">
-          <div>
-            <p class="shop-mono">3D-Druck-Shop · 2 Produkte</p>
-            <h1 id="titel">Alles lässt sich individualisieren</h1>
-            <p class="shop-kopf-fuer">Zum Beispiel für <span class="shop-namen shop-namen-gross" data-namen="Tom">Tom</span></p>
-          </div>
-          <p class="shop-lead">Platzkartenhalter und JGA-Anhänger aus dem 3D-Drucker, mit deinem Namen oder Text darauf. BeThatHost entwirft die Teile selbst. Was draufsteht, gibst du bei der Bestellung auf Etsy an.</p>
+      <section class="shop-kopf shop-kopf-band" aria-labelledby="titel">
+        <div class="shop-innen shop-kopf-zeile">
+          <p class="shop-mono">Hochzeit · JGA · Geburtstag</p>
+          <h1 id="titel">Alles lässt sich individualisieren</h1>
+          <p class="shop-kopf-fuer">Zum Beispiel für <span class="shop-namen shop-namen-gross" data-namen="Tom">Tom</span></p>
         </div>
       </section>
       <div class="shop-leiste">
@@ -1284,63 +1514,49 @@ html:has(body.shop .shop-leiste) {
           <p class="shop-leiste-hilfe" id="probe-hilfe">Bis zu 10 Zeichen, gespeichert wird nichts.</p>
         </div>
       </div>
-      <section class="shop-sortiment" aria-label="Produkte">
+      <section class="shop-sortiment shop-katalog" id="sortiment" aria-labelledby="sortiment-titel">
         <div class="shop-innen">
-          <ul class="shop-raster shop-raster-start">
-          <li class="shop-karte">
-            <div class="shop-karte-bild">
-              <span class="shop-chip">Gezeichnetes Muster</span>
-              <svg class="shop-svg-reihe" data-druck="" viewBox="70 12 460 228" aria-hidden="true" focusable="false">
-              <defs><pattern id="k0s0" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#2f5d46"/><rect y="3" width="8" height="1" fill="#24493a"/></pattern><pattern id="k0s1" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#e8b4b0"/><rect y="3" width="8" height="1" fill="#c98f8a"/></pattern><pattern id="k0s2" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#d9c7a3"/><rect y="3" width="8" height="1" fill="#b9a57f"/></pattern><linearGradient id="k0k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1ebe0"/></linearGradient></defs>
-              <g transform="translate(70 0) scale(0.62)" style="--verzug: 0s">
-                <mask id="k0d0" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="34" width="172" height="62" fill="#fff"/></mask>
-                <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
-                <g transform="translate(150 40) skewX(-4)">
-                  <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#k0k)" stroke="#00000014"/>
-                  <g mask="url(#k0d0)"><text class="t-name" x="0" y="88" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="64.0" font-weight="800" fill="#2a2420" data-max="64" data-feld="150" data-faktor="0.52" data-y="88" data-mitte="65">Lena</text></g>
-                  <g class="t-duese"><rect class="t-kopf" x="-80" y="90" width="12" height="6" rx="1.5" fill="#1d2420"/></g>
-                </g>
-                <path d="M30 168 L270 168 L282 182 L18 182 Z" fill="#5d816f"/>
-                <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#k0s0)"/>
-                <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
+          <span class="shop-anker" id="hochzeit"></span><span class="shop-anker" id="jga"></span><span class="shop-anker" id="geburtstag"></span>
+          <div class="shop-filterleiste">
+            <h2 class="shop-sortiment-titel" id="sortiment-titel">Sortiment</h2>
+            <div class="shop-filter" role="group" aria-label="Nach Anlass filtern">
+              <button type="button" class="shop-filter-knopf" data-filter="alle" aria-pressed="true">Alle</button>
+              <button type="button" class="shop-filter-knopf" data-filter="hochzeit" aria-pressed="false">Hochzeit</button>
+              <button type="button" class="shop-filter-knopf" data-filter="jga" aria-pressed="false">JGA</button>
+              <button type="button" class="shop-filter-knopf" data-filter="geburtstag" aria-pressed="false">Geburtstag</button>
+            </div>
+            <p class="shop-anzahl" id="shop-anzahl" aria-live="polite">12 Teile</p>
+          </div>
+          <!-- Die zwei gezeichneten Muster groß vorn, die Platzhalter kleiner dahinter (Gate R2, 19.11.2026) -->
+          <ul class="shop-raster shop-raster-katalog shop-raster-muster" aria-label="Muster">
+            <li class="shop-karte" data-anlass="hochzeit geburtstag">
+              <div class="shop-karte-bild">
+                <span class="shop-chip shop-chip-muster">Muster</span>
+                <svg class="shop-svg-halter" data-druck="" data-probe="Tom" viewBox="0 0 300 230" aria-hidden="true" focusable="false">
+              <defs><pattern id="k0" width="8" height="4" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="4" fill="#2f5d46"/><rect class="t-linie" y="3" width="8" height="1" fill="#24493a"/></pattern><linearGradient id="k0k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1ebe0"/></linearGradient>
+                <mask id="k0d" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="42" width="172" height="42" fill="#fff"/></mask></defs>
+              <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
+              <g transform="translate(150 40) skewX(-4)">
+                <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#k0k)" stroke="#00000014"/>
+                <g mask="url(#k0d)"><text class="t-name" x="0" y="74" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="34.0" font-weight="800" fill="#2a2420" data-max="34" data-feld="150" data-faktor="0.52" data-y="74" data-mitte="62">Tom</text></g>
+                <g class="t-duese"><rect class="t-kopf" x="-80" y="78" width="12" height="6" rx="1.5" fill="#1d2420"/></g>
               </g>
-              <g transform="translate(344 0) scale(0.62)" style="--verzug: 0.35s">
-                <mask id="k0d1" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="34" width="172" height="62" fill="#fff"/></mask>
-                <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
-                <g transform="translate(150 40) skewX(-4)">
-                  <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#k0k)" stroke="#00000014"/>
-                  <g mask="url(#k0d1)"><text class="t-name" x="0" y="88" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="64.0" font-weight="800" fill="#2a2420" data-max="64" data-feld="150" data-faktor="0.52" data-y="88" data-mitte="65">Oma</text></g>
-                  <g class="t-duese"><rect class="t-kopf" x="-80" y="90" width="12" height="6" rx="1.5" fill="#1d2420"/></g>
-                </g>
-                <path d="M30 168 L270 168 L282 182 L18 182 Z" fill="#edc4c1"/>
-                <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#k0s1)"/>
-                <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
-              </g>
-              <g transform="translate(192 78) scale(0.72)" style="--verzug: 0.7s" data-probe="Tom">
-                <mask id="k0d2" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="34" width="172" height="62" fill="#fff"/></mask>
-                <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
-                <g transform="translate(150 40) skewX(-4)">
-                  <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#k0k)" stroke="#00000014"/>
-                  <g mask="url(#k0d2)"><text class="t-name" x="0" y="88" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="64.0" font-weight="800" fill="#2a2420" data-max="64" data-feld="150" data-faktor="0.52" data-y="88" data-mitte="65">Tom</text></g>
-                  <g class="t-duese"><rect class="t-kopf" x="-80" y="90" width="12" height="6" rx="1.5" fill="#1d2420"/></g>
-                </g>
-                <path d="M30 168 L270 168 L282 182 L18 182 Z" fill="#e1d3b7"/>
-                <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#k0s2)"/>
-                <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
-              </g>
+              <path class="t-hell" d="M30 168 L270 168 L282 182 L18 182 Z" fill="#5d816f"/>
+              <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#k0)"/>
+              <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
             </svg>
-            </div>
-            <div class="shop-karte-text">
-              <h2 class="shop-karte-titel"><a href="/shop/platzkartenhalter.html">Platzkartenhalter mit Namen</a></h2>
-              <p class="shop-karte-preis">Preis folgt</p>
-              <p class="shop-karte-satz">Ein Halter je Gast, mit dem Namen gedruckt. Für Hochzeit und Geburtstag.</p>
-              <p class="shop-punkte"><span aria-hidden="true"><i style="--c: #2f5d46"></i><i style="--c: #9fb59a"></i><i style="--c: #f7f6f1"></i><i style="--c: #d9c7a3"></i><i style="--c: #e8b4b0"></i></span>5 Beispielfarben</p>
-            </div>
-          </li>
-          <li class="shop-karte">
-            <div class="shop-karte-bild">
-              <span class="shop-chip">Gezeichnetes Muster</span>
-              <svg class="shop-svg-anhaenger" data-druck="" data-probe="BRAUT" data-gross="" viewBox="0 0 260 120" aria-hidden="true" focusable="false">
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Hochzeit, Geburtstag</p>
+                <h3 class="shop-karte-titel"><a href="/shop/platzkartenhalter.html">Platzkartenhalter</a></h3>
+                <p class="shop-karte-preis">Preis folgt</p>
+                <p class="shop-karte-status">Bald auf Etsy</p>
+              </div>
+            </li>
+            <li class="shop-karte" data-anlass="jga">
+              <div class="shop-karte-bild">
+                <span class="shop-chip shop-chip-muster">Muster</span>
+                <svg class="shop-svg-anhaenger" data-druck="" data-probe="TOM" data-gross="" viewBox="0 0 260 120" aria-hidden="true" focusable="false">
               <defs><pattern id="k1" width="8" height="3" patternUnits="userSpaceOnUse"><rect class="t-farbe" width="8" height="3" fill="#2f5d46"/><rect class="t-linie" y="2" width="8" height="1" fill="#24493a"/></pattern><linearGradient id="k1m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f2f2"/><stop offset=".5" stop-color="#9a9a9a"/><stop offset="1" stop-color="#dcdcdc"/></linearGradient>
                 <clipPath id="k1c"><rect x="0" y="0" width="260" height="59"/></clipPath>
                 <mask id="k1d" maskUnits="userSpaceOnUse" x="96" y="24" width="150" height="70"><rect class="t-druck" x="96" y="42" width="150" height="38" fill="#fff"/></mask></defs>
@@ -1349,18 +1565,121 @@ html:has(body.shop .shop-leiste) {
               <rect x="50" y="24" width="196" height="70" rx="35" fill="url(#k1)"/>
               <circle cx="80" cy="59" r="9" fill="#00000026"/>
               <circle cx="58" cy="40" r="30" fill="none" stroke="url(#k1m)" stroke-width="5" clip-path="url(#k1c)"/>
-              <g mask="url(#k1d)"><text class="t-name t-linie" x="164" y="70" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="30.0" font-weight="800" fill="#24493a" data-max="30" data-feld="140" data-faktor="0.6" data-y="70" data-mitte="60">BRAUT</text>
-                <text class="t-name t-text" x="163" y="69" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="30.0" font-weight="800" fill="#f7f6f1d9" data-max="30" data-feld="140" data-faktor="0.6" data-y="69" data-mitte="59">BRAUT</text></g>
+              <g mask="url(#k1d)"><text class="t-name t-linie" x="164" y="70" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="30.0" font-weight="800" fill="#24493a" data-max="30" data-feld="140" data-faktor="0.6" data-y="70" data-mitte="60">TOM</text>
+                <text class="t-name t-text" x="163" y="69" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="30.0" font-weight="800" fill="#f7f6f1d9" data-max="30" data-feld="140" data-faktor="0.6" data-y="69" data-mitte="59">TOM</text></g>
               <g class="t-duese"><rect class="t-kopf" x="98" y="74" width="12" height="6" rx="1.5" fill="#1d2420"/></g>
             </svg>
-            </div>
-            <div class="shop-karte-text">
-              <h2 class="shop-karte-titel"><a href="/shop/jga-anhaenger.html">JGA-Anhänger im Set</a></h2>
-              <p class="shop-karte-preis">Preis folgt</p>
-              <p class="shop-karte-satz">Schlüsselanhänger im Set für die ganze Gruppe beim Junggesellenabschied.</p>
-              <p class="shop-punkte"><span aria-hidden="true"><i style="--c: #2f5d46"></i><i style="--c: #9fb59a"></i><i style="--c: #f7f6f1"></i><i style="--c: #d9c7a3"></i><i style="--c: #e8b4b0"></i></span>5 Beispielfarben</p>
-            </div>
-          </li>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">JGA</p>
+                <h3 class="shop-karte-titel"><a href="/shop/jga-anhaenger.html">JGA-Anhänger</a></h3>
+                <p class="shop-karte-preis">Preis folgt</p>
+                <p class="shop-karte-status">Bald auf Etsy</p>
+              </div>
+            </li>
+          </ul>
+          <p class="shop-gruppe" id="gruppe-bald">Bald im Sortiment · Platzhalter, Preise und Etsy-Links folgen</p>
+          <ul class="shop-raster shop-raster-katalog shop-raster-bald" aria-labelledby="gruppe-bald">
+            <li class="shop-karte shop-karte-platzhalter shop-ton-waldgruen" data-anlass="hochzeit">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p0" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#2f5d46"/><rect y="3" width="8" height="1" fill="#24493a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="90" y="30" width="120" height="160" rx="6" fill="url(#p0)"/><rect x="76" y="186" width="148" height="16" rx="3" fill="#24493a"/><text x="150" y="106" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="72" font-weight="800" fill="#f7f6f1">7</text><text class="t-name" x="150" y="160" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="26.0" font-weight="800" fill="#f7f6f1" data-max="26" data-feld="108" data-faktor="0.52" data-y="160" data-mitte="151">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Hochzeit</p>
+                <h3 class="shop-karte-titel">Tischnummer-Aufsteller</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-sand" data-anlass="geburtstag">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p1" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#d9c7a3"/><rect y="3" width="8" height="1" fill="#b9a57f"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><path d="M58 78 H196 L242 120 L196 162 H58 Z" fill="url(#p1)" stroke="#00000018"/><circle cx="208" cy="120" r="8" fill="#e3eadf" style="fill: var(--kachel, #e3eadf)"/><path d="M216 120 C 250 110, 262 72, 286 60" stroke="#9aa39d" stroke-width="3" fill="none"/><text class="t-name" x="124" y="134" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="40.0" font-weight="800" fill="#1d2420" data-max="40" data-feld="118" data-faktor="0.52" data-y="134" data-mitte="120">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Geburtstag</p>
+                <h3 class="shop-karte-titel">Geschenkanhänger mit Namen</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-rose" data-anlass="jga">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p2" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#e8b4b0"/><rect y="3" width="8" height="1" fill="#c98f8a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><circle cx="150" cy="118" r="82" fill="url(#p2)" stroke="#c98f8a" stroke-width="5"/><circle cx="150" cy="118" r="68" fill="none" stroke="#ffffff80" stroke-width="2"/><text class="t-name" x="150" y="126" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="38.0" font-weight="800" fill="#1d2420" data-max="38" data-feld="112" data-faktor="0.52" data-y="126" data-mitte="116">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">JGA</p>
+                <h3 class="shop-karte-titel">Anstecker mit Namen</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-sand" data-anlass="hochzeit">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p3" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#d9c7a3"/><rect y="3" width="8" height="1" fill="#b9a57f"/></pattern><pattern id="p3b" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#2f5d46"/><rect y="3" width="8" height="1" fill="#24493a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="144" y="40" width="12" height="166" rx="2" fill="#b9a57f"/><path d="M58 38 H210 L240 74 L210 110 H58 Z" fill="url(#p3)"/><text class="t-name" x="136" y="85" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="30.0" font-weight="800" fill="#1d2420" data-max="30" data-feld="140" data-faktor="0.52" data-y="85" data-mitte="74">Tom</text><path d="M236 118 H92 L64 144 L92 170 H236 Z" fill="url(#p3b)"/></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Hochzeit</p>
+                <h3 class="shop-karte-titel">Mini-Wegweiser für die Feier</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-waldgruen" data-anlass="geburtstag">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p4" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#2f5d46"/><rect y="3" width="8" height="1" fill="#24493a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="122" y="16" width="56" height="194" rx="6" fill="url(#p4)" transform="rotate(14 150 113)"/><path d="M176 22 C 196 6, 206 30, 222 20" stroke="#b9a57f" stroke-width="3" fill="none"/><g transform="rotate(-76 150 113)"><text class="t-name" x="150" y="125" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="34.0" font-weight="800" fill="#f7f6f1" data-max="34" data-feld="150" data-faktor="0.52" data-y="125" data-mitte="113">Tom</text></g></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Geburtstag</p>
+                <h3 class="shop-karte-titel">Lesezeichen mit Namen</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-kreide" data-anlass="hochzeit">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p5" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#f7f6f1"/><rect y="3" width="8" height="1" fill="#cfcabd"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="92" y="22" width="116" height="84" rx="2" fill="#fffdf8" stroke="#00000024" transform="rotate(-4 150 64)"/><path d="M104 96 L132 66 L152 86 L166 74 L196 96 Z" fill="#9fb59a" transform="rotate(-4 150 64)"/><rect x="146" y="104" width="8" height="46" fill="#9aa39d"/><rect x="64" y="146" width="172" height="60" rx="6" fill="url(#p5)" stroke="#00000024"/><text class="t-name" x="150" y="186" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="28.0" font-weight="800" fill="#1d2420" data-max="28" data-feld="150" data-faktor="0.52" data-y="186" data-mitte="176">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Hochzeit</p>
+                <h3 class="shop-karte-titel">Fotohalter mit Namen</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-rose" data-anlass="jga">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p6" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#e8b4b0"/><rect y="3" width="8" height="1" fill="#c98f8a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><path d="M54 66 Q150 36 246 66 V174 Q150 204 54 174 Z" fill="url(#p6)"/><path d="M126 82 L132 64 L142 76 L150 58 L158 76 L168 64 L174 82 Z" fill="#1d2420" opacity="0.8"/><text class="t-name" x="150" y="142" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="34.0" font-weight="800" fill="#1d2420" data-max="34" data-feld="150" data-faktor="0.52" data-y="142" data-mitte="130">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">JGA</p>
+                <h3 class="shop-karte-titel">JGA-Crew-Schild</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-sand" data-anlass="geburtstag">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p7" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#d9c7a3"/><rect y="3" width="8" height="1" fill="#b9a57f"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><text x="150" y="134" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="116" font-weight="800" fill="url(#p7)" stroke="#b9a57f" stroke-width="2">30</text><rect x="62" y="142" width="176" height="80" rx="4" fill="#1d2420"/><text class="t-name" x="150" y="190" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="24.0" font-weight="800" fill="#f7f6f1" data-max="24" data-feld="156" data-faktor="0.52" data-y="190" data-mitte="182">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Geburtstag</p>
+                <h3 class="shop-karte-titel">Zahlen-Aufsteller zum Geburtstag</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-waldgruen" data-anlass="hochzeit">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p8" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#2f5d46"/><rect y="3" width="8" height="1" fill="#24493a"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="44" y="52" width="212" height="134" rx="67" fill="url(#p8)"/><path d="M150 98 C 136 86, 124 76, 134 66 C 141 60, 148 64, 150 70 C 152 64, 159 60, 166 66 C 176 76, 164 86, 150 98 Z" fill="#f7f6f1"/><text class="t-name" x="150" y="152" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="26.0" font-weight="800" fill="#f7f6f1" data-max="26" data-feld="140" data-faktor="0.52" data-y="152" data-mitte="142">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Hochzeit</p>
+                <h3 class="shop-karte-titel">Danke-Schild als Gastgeschenk</h3>
+              </div>
+            </li>
+            <li class="shop-karte shop-karte-platzhalter shop-ton-kreide" data-anlass="geburtstag">
+              <div class="shop-karte-bild">
+                <span class="shop-chip">Platzhalter</span>
+                <svg class="shop-svg-platz" data-probe="Tom" viewBox="0 0 300 240" aria-hidden="true" focusable="false"><defs><pattern id="p9" width="8" height="4" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#f7f6f1"/><rect y="3" width="8" height="1" fill="#cfcabd"/></pattern></defs><ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/><rect x="50" y="56" width="200" height="128" rx="14" fill="url(#p9)" stroke="#00000024"/><circle cx="72" cy="78" r="5" fill="#e3eadf" style="fill: var(--kachel, #e3eadf)"/><circle cx="228" cy="78" r="5" fill="#e3eadf" style="fill: var(--kachel, #e3eadf)"/><text class="t-name" x="150" y="140" text-anchor="middle" font-family='"Bricolage Grotesque", "Arial Narrow", sans-serif' font-size="52.0" font-weight="800" fill="#1d2420" data-max="52" data-feld="164" data-faktor="0.52" data-y="140" data-mitte="122">Tom</text></svg>
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">Geburtstag</p>
+                <h3 class="shop-karte-titel">Türschild mit Namen</h3>
+              </div>
+            </li>
           </ul>
         </div>
       </section>
@@ -1596,6 +1915,38 @@ html:has(body.shop .shop-leiste) {
         setzen();
         // Erst mit der echten Schrift stimmt die Messung, vorher misst der Browser die Ersatzschrift
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(setzen);
+      })();
+    </script>
+    <script>
+      (function () {
+        var knoepfe = document.querySelectorAll(".shop-filter-knopf"), karten = document.querySelectorAll(".shop-katalog [data-anlass]");
+        var anzahl = document.getElementById("shop-anzahl");
+        if (!knoepfe.length || !anzahl) return;
+        var gueltig = Array.prototype.map.call(knoepfe, function (b) { return b.dataset.filter; });
+        function zeigen(anlass) {
+          var n = 0;
+          Array.prototype.forEach.call(karten, function (k) {
+            var an = anlass === "alle" || k.dataset.anlass.split(" ").indexOf(anlass) >= 0;
+            k.hidden = !an;
+            if (an) n++;
+          });
+          Array.prototype.forEach.call(knoepfe, function (b) { b.setAttribute("aria-pressed", b.dataset.filter === anlass ? "true" : "false"); });
+          anzahl.textContent = n + (n === 1 ? " Teil" : " Teile");
+        }
+        function ausAdresse() {
+          var h = location.hash.slice(1);
+          if (h === "sortiment") zeigen("alle");
+          else if (gueltig.indexOf(h) >= 0) zeigen(h);
+        }
+        Array.prototype.forEach.call(knoepfe, function (b) {
+          b.addEventListener("click", function () {
+            var f = b.dataset.filter;
+            zeigen(f);
+            if (history.replaceState) history.replaceState(null, "", f === "alle" ? location.pathname : "#" + f);
+          });
+        });
+        window.addEventListener("hashchange", ausAdresse);
+        ausAdresse();
       })();
     </script>
   </body>
