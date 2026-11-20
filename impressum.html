@@ -192,6 +192,9 @@ body.shop {
   --shop-salbei: #e3eadf;
   --shop-salbei-hell: #eef2eb;
   --shop-salbei-tief: #d4e0cf;
+  --shop-ton-sand: #efe6d3;
+  --shop-ton-rose: #f3e1dd;
+  --shop-ton-kreide: #e6e4dc;
   --shop-feld: var(--shop-salbei);
   --shop-muted: #4d5a52;
   --shop-akzent: #2f5d46;
@@ -310,6 +313,10 @@ body.shop footer.site p {
   margin: 0;
 }
 body.shop footer.site a {
+  /* Polster für die Trefferfläche (Wächter-Hinweis 19.11.2026). inline-block, damit das Polster
+     zur Zeilenhöhe zählt: bei 320 px bricht die Zeile um, inline ragte es in die Nachbarzeile */
+  display: inline-block;
+  padding-block: 13px;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -450,22 +457,6 @@ body.shop .shop-kopf h1 {
 }
 .shop-karte-bild svg {
   width: min(100%, 340px);
-}
-/* Startseite: links drei Halter wie auf einem gedeckten Tisch, rechts der Anhänger auf dunklerem Salbei */
-/* beide Bilder 4:3, der Fokus kommt nur über die Breite, sonst ist das Set uneinheitlich (Gate R7, 02.11.2026) */
-.shop-raster-start {
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  align-items: start;
-}
-.shop-raster-start .shop-karte-bild {
-  height: auto;
-  aspect-ratio: 4 / 3;
-}
-.shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
-  background: var(--shop-salbei-tief);
-}
-.shop-raster-start .shop-svg-reihe {
-  width: min(100%, 560px);
 }
 /* Zeile unter der Überschrift: kleiner Rahmen, der Name groß in eigener Zeile mit den Schichtlinien der Ablauf-Ziffern.
  * Eigene Zeile, damit ein langer Name nichts verschiebt (Kritiker Runde 1, 16.11.2026) */
@@ -1022,10 +1013,6 @@ body.shop .t-duese {
   --hub: -38px;
   --weg: 120px;
 }
-.shop-svg-reihe {
-  --hub: -62px;
-  --weg: 148px;
-}
 @media (prefers-reduced-motion: no-preference) {
   /* mit Skript wartet der Name, bis das Bild im Fenster ist, ohne Skript steht er fertig da */
   .js body.shop svg[data-druck]:not(.druckt) .t-druck {
@@ -1115,6 +1102,212 @@ body.shop .shop-recht h3 {
   color: var(--shop-muted);
 }
 
+/* ---------- Katalog der Startseite (Variante A, Stefanie 19.11.2026) ----------
+ * Kopf als Salbei-Band, oben Kategorien und Etsy-Hinweis, Filter nach Anlass, vier Kacheln je Reihe.
+ * Platzhalter sind gekennzeichnet und kein Link, der Etsy-Status ist nirgends ein Knopf. */
+body.shop header.site nav {
+  margin-left: auto;
+}
+.shop-etsy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--shop-salbei);
+  color: var(--shop-akzent-tief);
+  font: 500 0.875rem/1.2 var(--shop-mono);
+  white-space: nowrap;
+}
+.shop-etsy-pill svg {
+  flex: none;
+}
+.shop-kopf-band {
+  background: var(--shop-salbei);
+}
+/* Flacher Kopf der Startseite: Überschrift und Beispielname in einer Zeile, darunter gleich die Muster (Kritiker Runde 1, 19.11.2026) */
+body.shop .shop-kopf.shop-kopf-band {
+  padding-block: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
+}
+.shop-kopf-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px clamp(20px, 3vw, 40px);
+}
+.shop-kopf-zeile .shop-mono {
+  flex-basis: 100%;
+}
+body.shop .shop-kopf-zeile h1 {
+  margin: 0;
+  min-width: 0;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  overflow-wrap: anywhere;
+}
+.shop-kopf-zeile .shop-kopf-fuer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 10px;
+  min-width: 0;
+  margin: 0;
+}
+.shop-katalog .shop-innen {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+}
+/* Anker liegen außerhalb des Rasters, sonst kostet jeder eine eigene Lücke über dem Sortiment */
+.shop-katalog .shop-innen {
+  position: relative;
+}
+.shop-anker {
+  position: absolute;
+  top: 0;
+  height: 0;
+}
+.shop-filterleiste {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px clamp(16px, 2.5vw, 28px);
+}
+body.shop .shop-sortiment-titel {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+.shop-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+html:not(.js) .shop-filter {
+  display: none;
+}
+.shop-filter-knopf {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 2px solid var(--shop-salbei-tief);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 0.95rem/1.2 var(--ui);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.shop-filter-knopf:hover {
+  border-color: var(--shop-akzent);
+}
+.shop-filter-knopf:active {
+  transform: translateY(1px);
+}
+.shop-filter-knopf:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.shop-filter-knopf[aria-pressed="true"] {
+  border-color: var(--shop-akzent-tief);
+  background: var(--shop-akzent-tief);
+  color: var(--paper);
+}
+.shop-anzahl {
+  margin: 0 0 0 auto;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-raster-katalog {
+  gap: clamp(28px, 3vw, 40px) clamp(14px, 2vw, 24px);
+}
+/* Zwei Gruppen statt zwölf gleicher Kacheln: die gezeichneten Muster groß, die Platzhalter klein (Gate R2) */
+.shop-raster-muster {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.shop-raster-bald {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px clamp(12px, 1.6vw, 20px);
+}
+.shop-gruppe {
+  margin: clamp(8px, 2vw, 16px) 0 0;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+/* display: grid an der Karte schlägt sonst das hidden-Attribut des Filters */
+.shop-raster-katalog .shop-karte[hidden] {
+  display: none;
+}
+.shop-raster-katalog .shop-karte {
+  gap: 12px;
+}
+.shop-raster-katalog .shop-karte-bild {
+  aspect-ratio: 5 / 4;
+  padding: 36px 10px 10px;
+}
+.shop-raster-muster .shop-karte-bild {
+  aspect-ratio: 16 / 10;
+  padding: 52px 24px 24px;
+}
+.shop-raster-muster .shop-karte-bild svg {
+  width: min(100%, 420px);
+}
+.shop-raster-katalog .shop-karte-text {
+  gap: 4px;
+}
+body.shop .shop-raster-katalog .shop-karte-titel {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.15;
+}
+body.shop .shop-raster-muster .shop-karte-titel {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+body.shop .shop-raster-bald .shop-karte-titel {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.shop-karte-anlass {
+  margin: 0;
+  font: 500 0.875rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-raster-katalog .shop-karte-preis {
+  font-size: 0.95rem;
+}
+/* Status statt Kaufknopf: ruhige Zeile im Salbei, kein Hover, kein Zeiger */
+.shop-karte-status {
+  justify-self: start;
+  margin: 6px 0 0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--shop-salbei-hell);
+  color: var(--shop-akzent-tief);
+  font: 600 0.875rem/1.3 var(--ui);
+}
+.shop-chip-muster {
+  background: var(--shop-akzent-tief);
+  color: var(--paper);
+}
+/* Jeder Platzhalter liegt auf dem hellen Ton seiner Materialfarbe, so stehen nie mehr als drei gleiche Kacheln im Raster (Gate R2) */
+.shop-raster-bald .shop-karte-bild {
+  background: var(--kachel);
+}
+.shop-ton-waldgruen {
+  --kachel: var(--shop-salbei-tief);
+}
+.shop-ton-sand {
+  --kachel: var(--shop-ton-sand);
+}
+.shop-ton-rose {
+  --kachel: var(--shop-ton-rose);
+}
+.shop-ton-kreide {
+  --kachel: var(--shop-ton-kreide);
+}
+/* Platzhalter sind keine Produkte: kein Anheben beim Darüberfahren, nichts wirkt klickbar */
+.shop-karte-platzhalter:hover .shop-karte-bild svg,
+.shop-karte-platzhalter:active .shop-karte-bild svg {
+  transform: none;
+}
+
 /* ---------- Schmalere Fenster ---------- */
 /* Unter 900 px wäre die Kaufspalte zu schmal für drei Spulen nebeneinander */
 @media (max-width: 900px) {
@@ -1158,13 +1351,8 @@ body.shop .shop-recht h3 {
 @media (max-width: 760px) {
   .shop-kopf-raster,
   .shop-raster,
-  .shop-raster-start,
   .shop-ablauf-streifen {
     grid-template-columns: minmax(0, 1fr);
-  }
-  /* untereinander fällt die Gewichtung über die Breite weg, deshalb wird der Anhänger flacher als der Halter (Stefanie 03.11.2026) */
-  .shop-raster-start .shop-karte + .shop-karte .shop-karte-bild {
-    aspect-ratio: 16 / 10;
   }
   /* Leiste am Handy: Beschriftung und Feld in einer Reihe, Hinweis darunter */
   .shop-leiste {
@@ -1253,6 +1441,48 @@ html:has(body.shop .shop-leiste) {
     scroll-padding-top: 1rem;
   }
 }
+/* Katalog: drei Spalten, unter 760 px zwei, die Kopfzeile zeigt dort nur Logo und Etsy-Hinweis */
+@media (max-width: 1000px) {
+  .shop-raster-bald {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .shop-raster-bald {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.shop header.site nav {
+    display: none;
+  }
+  body.shop header.site .inner {
+    justify-content: space-between;
+  }
+  /* Handy: Anzahl neben der Überschrift, die Anlässe als eigene Reihe darunter */
+  .shop-filterleiste {
+    row-gap: 10px;
+  }
+  .shop-anzahl {
+    order: 1;
+  }
+  .shop-filter {
+    order: 2;
+    flex-basis: 100%;
+    gap: 6px;
+  }
+  .shop-filter-knopf {
+    padding-inline: 13px;
+  }
+}
+/* Handy: die Muster untereinander in voller Breite, so bleiben sie größer als die Platzhalter */
+@media (max-width: 560px) {
+  .shop-raster-muster {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shop-raster-muster .shop-karte-bild {
+    aspect-ratio: 4 / 3;
+    padding: 44px 16px 16px;
+  }
+}
     </style>
   </head>
   <body class="shop">
@@ -1260,10 +1490,13 @@ html:has(body.shop .shop-leiste) {
     <header class="site">
       <div class="inner">
         <a class="brand" href="/">BeThatHost</a>
-        <nav aria-label="Produkte">
-          <a href="/shop/platzkartenhalter.html">Platzkartenhalter</a>
-          <a href="/shop/jga-anhaenger.html">JGA-Anhänger</a>
+        <nav aria-label="Sortiment">
+          <a href="/#hochzeit">Hochzeit</a>
+          <a href="/#jga">JGA</a>
+          <a href="/#geburtstag">Geburtstag</a>
+          <a href="/#sortiment">Alle Produkte</a>
         </nav>
+        <span class="shop-etsy-pill"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Etsy-Shop · bald</span>
       </div>
     </header>
 

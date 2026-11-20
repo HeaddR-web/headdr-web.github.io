@@ -1,6 +1,8 @@
 """Schreibt den Shop ins Repo: die Startseite ist der Shop, dazu zwei Produktseiten (Stefanie, 02.11.2026).
 Ziel: Shop für eigene 3D-Druck-Teile, verkauft über Etsy. Motto "alles kann individualisiert werden" ist die H1 der Startseite.
 Aufbau wie ein Shopify-Shop: Produktraster, Produktseite mit Bild links, Farbwahl, Namensvorschau und Akkordeon.
+Seit 19.11.2026 ist die Startseite ein Katalog (Variante A, Stefanie): Filter nach Anlass, zwölf Kacheln, davon zwei
+gezeichnete Muster mit Produktseite und zehn gekennzeichnete Platzhalter ohne Seite und ohne Link.
 Aufbau aus Richtung A "Schicht für Schicht", Farbe und Schrift seit 02.11.2026 "Salbei" mit Bricolage Grotesque.
 Die Druck-Animation läuft nur noch klein im Produktbild.
 Nur Platzhalter: keine Preise, keine Fotos, keine Etsy-Links. Die Teile sind gezeichnet, die Farben Beispiele.
@@ -129,34 +131,94 @@ def halter(id_, name="Lena", druck=True, probe=False):
             </svg>"""
 
 
-# Startseite: drei Halter wie auf einem gedeckten Tisch, sie drucken nacheinander (Kritiker Runde 1, 02.11.2026).
-# Je Halter: Name, Lage im Bild, Maßstab, Verzögerung, Beispielfarbe. Tom steht vorn und wird zuletzt gezeichnet.
-# Tom nimmt den Probenamen und ist deshalb etwas größer, sonst bräche am Handy schon ein Name mit neun Buchstaben um.
-REIHE = [("Lena", 70, 0, 0.62, 0, SPULEN[0]), ("Oma", 344, 0, 0.62, 0.35, SPULEN[4]),
-         ("Tom", 192, 78, 0.72, 0.7, SPULEN[3])]
+# Beispielname der Startseite: steht ohne Eingabe in jeder Kachel, im Kopf und im Ablauf
+BEISPIEL = "Tom"
+
+# Platzhalter fürs Sortiment (Stefanie 19.11.2026: „platzhalter dürfen live“). Beispiele, bis ihre echte Liste steht:
+# gezeichnet wie die Muster, Name aus der Namensleiste, kein Druck im Bild, keine Produktseite, kein Link.
+# Je Teil: Titel, Anlässe (Schlüssel aus ANLAESSE), Form, Beispielfarbe aus SPULEN.
+ANLAESSE = [("hochzeit", "Hochzeit"), ("jga", "JGA"), ("geburtstag", "Geburtstag")]
+PLATZHALTER = [
+    ("Tischnummer-Aufsteller", ["hochzeit"], "nummer", "Waldgrün"),
+    ("Geschenkanhänger mit Namen", ["geburtstag"], "tag", "Sand"),
+    ("Anstecker mit Namen", ["jga"], "anstecker", "Rosé"),
+    ("Mini-Wegweiser für die Feier", ["hochzeit"], "pfeil", "Sand"),
+    ("Lesezeichen mit Namen", ["geburtstag"], "lesezeichen", "Waldgrün"),
+    ("Fotohalter mit Namen", ["hochzeit"], "foto", "Kreide"),
+    ("JGA-Crew-Schild", ["jga"], "crew", "Rosé"),
+    ("Zahlen-Aufsteller zum Geburtstag", ["geburtstag"], "zahl", "Sand"),
+    ("Danke-Schild als Gastgeschenk", ["hochzeit"], "danke", "Waldgrün"),
+    ("Türschild mit Namen", ["geburtstag"], "tuer", "Kreide"),
+]
+# Fläche der Kachel, Löcher und Ösen zeigen sie
+KACHEL = "#e3eadf"
 
 
-def halter_reihe(id_, druck=True, probe=False):
-    teile = []
-    vorn = len(REIHE) - 1
-    for i, (name, tx, ty, mass, verzug, (_, grund, dunkel, _t)) in enumerate(REIHE):
-        teile.append(f"""<g transform="translate({tx} {ty}) scale({mass})" style="--verzug: {verzug}s"{probe_attr(probe and i == vorn, name)}>
-                <mask id="{id_}d{i}" maskUnits="userSpaceOnUse" x="-86" y="0" width="172" height="128"><rect class="t-druck" x="-86" y="34" width="172" height="62" fill="#fff"/></mask>
-                <ellipse cx="150" cy="214" rx="132" ry="10" fill="#000" opacity="0.10"/>
-                <g transform="translate(150 40) skewX(-4)">
-                  <rect x="-86" y="0" width="172" height="128" rx="3" fill="url(#{id_}k)" stroke="#00000014"/>
-                  <g mask="url(#{id_}d{i})">{name_text(name, 64, 150, 0.52, 0, 88, "#2a2420", mitte=65)}</g>
-                  {duese(-80, 90)}
-                </g>
-                <path d="M30 168 L270 168 L282 182 L18 182 Z" fill="{hell(grund)}"/>
-                <rect x="18" y="182" width="264" height="28" rx="3" fill="url(#{id_}s{i})"/>
-                <rect x="58" y="166" width="184" height="5" rx="2" fill="#00000030"/>
-              </g>""")
-    muster = "".join(schichten(f"{id_}s{i}", 4, (s[1], s[2])) for i, (*_, s) in enumerate(REIHE))
-    return f"""<svg class="shop-svg-reihe"{druck_attr(druck)} viewBox="70 12 460 228" aria-hidden="true" focusable="false">
-              <defs>{muster}{VERLAUF.format(id_)}</defs>
-              {(chr(10) + '              ').join(teile)}
-            </svg>"""
+def platz_bild(form, farbe, id_, name=BEISPIEL):
+    """Gezeichneter Platzhalter auf 300 x 240. Jeder Name trägt data-mitte, sonst setzt das Skript zwei Zeilen ins Leere."""
+    _, grund, linie, _t = next(s for s in SPULEN if s[0] == farbe)
+    schrift = "#f7f6f1" if farbe == "Waldgrün" else "#1d2420"
+    fuellung = f"url(#{id_})"
+    muster = [schichten(id_, 4, (grund, linie))]
+
+    def n(maximal, feld, x, y, mitte, fill=schrift):
+        return name_text(name, maximal, feld, 0.52, x, y, fill, mitte=mitte)
+
+    def wort(x, y, size, inhalt, fill=schrift, extra=""):
+        return (f'<text x="{x}" y="{y}" text-anchor="middle" font-family=\'{DISPLAY}\' font-size="{size}" '
+                f'font-weight="800" fill="{fill}"{extra}>{inhalt}</text>')
+
+    if form == "nummer":
+        teile = [f'<rect x="90" y="30" width="120" height="160" rx="6" fill="{fuellung}"/>',
+                 f'<rect x="76" y="186" width="148" height="16" rx="3" fill="{linie}"/>',
+                 wort(150, 106, 72, "7"), n(26, 108, 150, 160, 151)]
+    elif form == "tag":
+        teile = [f'<path d="M58 78 H196 L242 120 L196 162 H58 Z" fill="{fuellung}" stroke="#00000018"/>',
+                 f'<circle cx="208" cy="120" r="8" fill="{KACHEL}" style="fill: var(--kachel, {KACHEL})"/>',
+                 '<path d="M216 120 C 250 110, 262 72, 286 60" stroke="#9aa39d" stroke-width="3" fill="none"/>',
+                 n(40, 118, 124, 134, 120)]
+    elif form == "anstecker":
+        teile = [f'<circle cx="150" cy="118" r="82" fill="{fuellung}" stroke="{linie}" stroke-width="5"/>',
+                 '<circle cx="150" cy="118" r="68" fill="none" stroke="#ffffff80" stroke-width="2"/>',
+                 n(38, 112, 150, 126, 116)]
+    elif form == "pfeil":
+        muster.append(schichten(id_ + "b", 4, SPULEN[0][1:3]))
+        teile = ['<rect x="144" y="40" width="12" height="166" rx="2" fill="#b9a57f"/>',
+                 f'<path d="M58 38 H210 L240 74 L210 110 H58 Z" fill="{fuellung}"/>',
+                 n(30, 140, 136, 85, 74),
+                 f'<path d="M236 118 H92 L64 144 L92 170 H236 Z" fill="url(#{id_}b)"/>']
+    elif form == "lesezeichen":
+        teile = [f'<rect x="122" y="16" width="56" height="194" rx="6" fill="{fuellung}" transform="rotate(14 150 113)"/>',
+                 '<path d="M176 22 C 196 6, 206 30, 222 20" stroke="#b9a57f" stroke-width="3" fill="none"/>',
+                 f'<g transform="rotate(-76 150 113)">{n(34, 150, 150, 125, 113)}</g>']
+    elif form == "foto":
+        teile = ['<rect x="92" y="22" width="116" height="84" rx="2" fill="#fffdf8" stroke="#00000024" transform="rotate(-4 150 64)"/>',
+                 '<path d="M104 96 L132 66 L152 86 L166 74 L196 96 Z" fill="#9fb59a" transform="rotate(-4 150 64)"/>',
+                 '<rect x="146" y="104" width="8" height="46" fill="#9aa39d"/>',
+                 f'<rect x="64" y="146" width="172" height="60" rx="6" fill="{fuellung}" stroke="#00000024"/>',
+                 n(28, 150, 150, 186, 176)]
+    elif form == "crew":
+        teile = [f'<path d="M54 66 Q150 36 246 66 V174 Q150 204 54 174 Z" fill="{fuellung}"/>',
+                 f'<path d="M126 82 L132 64 L142 76 L150 58 L158 76 L168 64 L174 82 Z" fill="{schrift}" opacity="0.8"/>',
+                 n(34, 150, 150, 142, 130)]
+    elif form == "zahl":
+        teile = [wort(150, 134, 116, "30", fuellung, f' stroke="{linie}" stroke-width="2"'),
+                 '<rect x="62" y="142" width="176" height="80" rx="4" fill="#1d2420"/>',
+                 n(24, 156, 150, 190, 182, "#f7f6f1")]
+    elif form == "danke":
+        teile = [f'<rect x="44" y="52" width="212" height="134" rx="67" fill="{fuellung}"/>',
+                 f'<path d="M150 98 C 136 86, 124 76, 134 66 C 141 60, 148 64, 150 70 C 152 64, 159 60, 166 66 C 176 76, 164 86, 150 98 Z" fill="{schrift}"/>',
+                 n(26, 140, 150, 152, 142)]
+    elif form == "tuer":
+        teile = [f'<rect x="50" y="56" width="200" height="128" rx="14" fill="{fuellung}" stroke="#00000024"/>',
+                 f'<circle cx="72" cy="78" r="5" fill="{KACHEL}" style="fill: var(--kachel, {KACHEL})"/><circle cx="228" cy="78" r="5" fill="{KACHEL}" style="fill: var(--kachel, {KACHEL})"/>',
+                 n(52, 164, 150, 140, 122)]
+    else:
+        raise SystemExit(f"Platzhalter-Form {form} unbekannt, nichts geschrieben")
+    return (f'<svg class="shop-svg-platz"{probe_attr(True, name)} viewBox="0 0 300 240" aria-hidden="true" focusable="false">'
+            f'<defs>{"".join(muster)}</defs>'
+            '<ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/>'
+            + "".join(teile) + "</svg>")
 
 
 def anhaenger(id_, name="BRAUT", druck=True, probe=False):
@@ -212,21 +274,20 @@ def probeleiste(f):
     return f"""      <div class="shop-leiste">
         <div class="shop-innen shop-leiste-raster">
           <label class="shop-leiste-kopf" for="probe-name">{f['label']}</label>
-          <input class="shop-feld shop-leiste-feld" id="probe-name" type="text" maxlength="{f['max']}" value="{f['wert']}" placeholder="{REIHE[-1][0]}" autocomplete="off" spellcheck="false" enterkeyhint="done" aria-describedby="probe-hilfe" />
+          <input class="shop-feld shop-leiste-feld" id="probe-name" type="text" maxlength="{f['max']}" value="{f['wert']}" placeholder="{BEISPIEL}" autocomplete="off" spellcheck="false" enterkeyhint="done" aria-describedby="probe-hilfe" />
           <p class="shop-leiste-hilfe" id="probe-hilfe">{f['hilfe']}</p>
         </div>
       </div>"""
 
 
 def namen(klasse=""):
-    """Textstelle, die den Namen aus dem Feld übernimmt. Leer und ohne Skript steht der Name des vorderen Halters da."""
-    vorn = REIHE[-1][0]
-    return f'<span class="shop-namen{" " + klasse if klasse else ""}" data-namen="{vorn}">{vorn}</span>'
+    """Textstelle, die den Namen aus dem Feld übernimmt. Leer und ohne Skript steht der Beispielname da."""
+    return f'<span class="shop-namen{" " + klasse if klasse else ""}" data-namen="{BEISPIEL}">{BEISPIEL}</span>'
 
 
 # Farbwahl färbt das Teil um, das Namensfeld schreibt den Namen in jede Stelle mit data-probe
 # und in jede Textstelle mit data-namen.
-# Beides druckt neu, aber nur die Stelle selbst: in der Reihe der Startseite bleiben Lena und Oma stehen.
+# Beides druckt neu, aber nur die Stelle selbst. Platzhalter haben keine Druckmaske, dort steht der Name sofort.
 SKRIPT = """    <script>
       (function () {
         var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -510,6 +571,108 @@ def karte(p, id_, ebene="h2", druck=True, quer=False, bild=None, probe=False):
           </li>"""
 
 
+# Kachelton der Platzhalter nach Materialfarbe: höchstens drei gleiche Kacheln nebeneinander (Gate R2, 19.11.2026)
+TOENE = {"Waldgrün": "waldgruen", "Sand": "sand", "Rosé": "rose", "Kreide": "kreide"}
+
+
+def katalog_karte(titel, anlaesse, bild, slug=None, ton=None):
+    """Kachel im Katalog der Startseite. Mit slug ein gezeichnetes Muster mit Produktseite, ohne ein Platzhalter:
+    kein Link, kein Hover, der Status ist eine ruhige Zeile statt eines Knopfs, damit nichts einen Kauf vortäuscht."""
+    muster = slug is not None
+    unbekannt = [a for a in anlaesse if a not in dict(ANLAESSE)]
+    if unbekannt:
+        raise SystemExit(f"Anlass {unbekannt} unbekannt, nichts geschrieben")
+    anlass = ", ".join(n for k, n in ANLAESSE if k in anlaesse)
+    titel_html = f'<a href="/shop/{slug}.html">{titel}</a>' if muster else titel
+    # Preis und Etsy-Status nur an den Mustern, für die Platzhalter steht beides einmal über ihrer Gruppe
+    kauf = (f'\n                <p class="shop-karte-preis">{PREIS}</p>'
+            '\n                <p class="shop-karte-status">Bald auf Etsy</p>') if muster else ""
+    if ton is not None and ton not in TOENE:
+        raise SystemExit(f"Kachelton {ton} unbekannt, nichts geschrieben")
+    klasse = "" if muster else " shop-karte-platzhalter" + (f" shop-ton-{TOENE[ton]}" if ton else "")
+    return f"""            <li class="shop-karte{klasse}" data-anlass="{' '.join(anlaesse)}">
+              <div class="shop-karte-bild">
+                <span class="shop-chip{' shop-chip-muster' if muster else ''}">{'Muster' if muster else 'Platzhalter'}</span>
+                {bild}
+              </div>
+              <div class="shop-karte-text">
+                <p class="shop-karte-anlass">{anlass}</p>
+                <h3 class="shop-karte-titel">{titel_html}</h3>{kauf}
+              </div>
+            </li>"""
+
+
+def katalog():
+    # Kurzname im Katalog: der klickbare Titel bleibt einzeilig (Gate 49), der volle Name steht auf der Produktseite
+    muster = [katalog_karte(PRODUKTE[0]["kurz"], ["hochzeit", "geburtstag"],
+                            halter("k0", name=BEISPIEL, probe=True), PRODUKTE[0]["slug"]),
+              katalog_karte(PRODUKTE[1]["kurz"], ["jga"], anhaenger("k1", name=BEISPIEL.upper(), probe=True), PRODUKTE[1]["slug"])]
+    platz = [katalog_karte(t, a, platz_bild(form, farbe, f"p{i}"), ton=farbe) for i, (t, a, form, farbe) in enumerate(PLATZHALTER)]
+    karten = muster + platz
+    knoepfe = "\n".join(
+        f'              <button type="button" class="shop-filter-knopf" data-filter="{k}" aria-pressed="{"true" if k == "alle" else "false"}">{n}</button>'
+        for k, n in [("alle", "Alle")] + ANLAESSE)
+    # Sprungziele der Kopfzeile: ein Anker je Anlass, das Filterskript liest ihn aus der Adresse
+    anker = "".join(f'<span class="shop-anker" id="{k}"></span>' for k, _ in ANLAESSE)
+    return f"""      <section class="shop-sortiment shop-katalog" id="sortiment" aria-labelledby="sortiment-titel">
+        <div class="shop-innen">
+          {anker}
+          <div class="shop-filterleiste">
+            <h2 class="shop-sortiment-titel" id="sortiment-titel">Sortiment</h2>
+            <div class="shop-filter" role="group" aria-label="Nach Anlass filtern">
+{knoepfe}
+            </div>
+            <p class="shop-anzahl" id="shop-anzahl" aria-live="polite">{len(karten)} Teile</p>
+          </div>
+          <!-- Die zwei gezeichneten Muster groß vorn, die Platzhalter kleiner dahinter (Gate R2, 19.11.2026) -->
+          <ul class="shop-raster shop-raster-katalog shop-raster-muster" aria-label="Muster">
+{chr(10).join(muster)}
+          </ul>
+          <p class="shop-gruppe" id="gruppe-bald">Bald im Sortiment · Platzhalter, Preise und Etsy-Links folgen</p>
+          <ul class="shop-raster shop-raster-katalog shop-raster-bald" aria-labelledby="gruppe-bald">
+{chr(10).join(platz)}
+          </ul>
+        </div>
+      </section>"""
+
+
+# Filter nach Anlass: blendet Kacheln aus, zählt mit und folgt der Adresse (/#jga aus der Kopfzeile).
+# Eine fremde Adresse wie #bestellung lässt den Filter stehen, nur #sortiment zeigt wieder alles.
+FILTER = """    <script>
+      (function () {
+        var knoepfe = document.querySelectorAll(".shop-filter-knopf"), karten = document.querySelectorAll(".shop-katalog [data-anlass]");
+        var anzahl = document.getElementById("shop-anzahl");
+        if (!knoepfe.length || !anzahl) return;
+        var gueltig = Array.prototype.map.call(knoepfe, function (b) { return b.dataset.filter; });
+        function zeigen(anlass) {
+          var n = 0;
+          Array.prototype.forEach.call(karten, function (k) {
+            var an = anlass === "alle" || k.dataset.anlass.split(" ").indexOf(anlass) >= 0;
+            k.hidden = !an;
+            if (an) n++;
+          });
+          Array.prototype.forEach.call(knoepfe, function (b) { b.setAttribute("aria-pressed", b.dataset.filter === anlass ? "true" : "false"); });
+          anzahl.textContent = n + (n === 1 ? " Teil" : " Teile");
+        }
+        function ausAdresse() {
+          var h = location.hash.slice(1);
+          if (h === "sortiment") zeigen("alle");
+          else if (gueltig.indexOf(h) >= 0) zeigen(h);
+        }
+        Array.prototype.forEach.call(knoepfe, function (b) {
+          b.addEventListener("click", function () {
+            var f = b.dataset.filter;
+            zeigen(f);
+            if (history.replaceState) history.replaceState(null, "", f === "alle" ? location.pathname : "#" + f);
+          });
+        });
+        window.addEventListener("hashchange", ausAdresse);
+        ausAdresse();
+      })();
+    </script>
+"""
+
+
 def ablauf():
     beispiel = f", zum Beispiel {namen()}"
     schritte = "\n".join(f'            <li><span class="shop-nr" aria-hidden="true">{i}</span><div><h3>{t}</h3><p>{x.format(beispiel=beispiel)}</p></div></li>'
@@ -525,13 +688,19 @@ def ablauf():
       </section>"""
 
 
-def nav(aktiv):
-    return "\n".join(
-        f'          <a href="/shop/{p["slug"]}.html"{" aria-current=\"page\"" if p["slug"] == aktiv else ""}>{p["kurz"]}</a>'
-        for p in PRODUKTE)
+def nav():
+    """Kategorien wie im Shop: jeder Anlass springt in den gefilterten Katalog der Startseite."""
+    ziele = [(f"/#{k}", n) for k, n in ANLAESSE] + [("/#sortiment", "Alle Produkte")]
+    return "\n".join(f'          <a href="{h}">{n}</a>' for h, n in ziele)
 
 
-def seite(pfad, url_pfad, titel, beschreibung, koerper, aktiv=None, skript="", kopf="", robots=None, titel_voll=None):
+# Etsy-Hinweis oben rechts: kein Link, solange es den Etsy-Shop nicht gibt (Plan: Kaufknopf täuscht nichts vor)
+TASCHE = ('<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">'
+          '<path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" '
+          'stroke-width="1.8" stroke-linejoin="round"/></svg>')
+
+
+def seite(pfad, url_pfad, titel, beschreibung, koerper, skript="", kopf="", robots=None, titel_voll=None):
     # url_pfad None: Fehlerseite, ohne Canonical und nicht im Index
     if url_pfad is None:
         adresse = '    <meta name="robots" content="noindex" />'
@@ -569,9 +738,10 @@ def seite(pfad, url_pfad, titel, beschreibung, koerper, aktiv=None, skript="", k
     <header class="site">
       <div class="inner">
         <a class="brand" href="/">BeThatHost</a>
-        <nav aria-label="Produkte">
-{nav(aktiv)}
+        <nav aria-label="Sortiment">
+{nav()}
         </nav>
+        <span class="shop-etsy-pill">{TASCHE}Etsy-Shop · bald</span>
       </div>
     </header>
 
@@ -596,29 +766,21 @@ def seite(pfad, url_pfad, titel, beschreibung, koerper, aktiv=None, skript="", k
 
 # ---------- Startseite = Shop ----------
 # Motto von Stefanie (02.11.2026): alles kann individualisiert werden
+# Seit 19.11.2026 Katalog (Variante A): Kopf als Salbei-Band, Namensleiste, Filter nach Anlass, zwölf Kacheln.
+# Der Kopf ist flach, damit die Muster über der Falz stehen; die Platzhalter erklärt nur die Zeile über ihrem Raster (Kritiker Runde 1)
 seite("index.html", "", "3D-Druck-Teile, individuell für dich",
-      "Eigene Teile aus dem 3D-Drucker, jedes lässt sich individualisieren. "
-      "Platzkartenhalter und JGA-Anhänger, hier ansehen und auf Etsy kaufen.",
-      f"""      <section class="shop-kopf" aria-labelledby="titel">
-        <div class="shop-innen shop-kopf-raster">
-          <div>
-            <p class="shop-mono">3D-Druck-Shop · {len(PRODUKTE)} Produkte</p>
-            <h1 id="titel">Alles lässt sich individualisieren</h1>
-            <p class="shop-kopf-fuer">Zum Beispiel für {namen("shop-namen-gross")}</p>
-          </div>
-          <p class="shop-lead">Platzkartenhalter und JGA-Anhänger aus dem 3D-Drucker, mit deinem Namen oder Text darauf. BeThatHost entwirft die Teile selbst. Was draufsteht, gibst du bei der Bestellung auf Etsy an.</p>
+      "Party-Teile aus dem 3D-Drucker mit deinem Namen, für Hochzeit, JGA und Geburtstag. "
+      "Platzkartenhalter und JGA-Anhänger, bald mehr. Bestellt wird über Etsy.",
+      f"""      <section class="shop-kopf shop-kopf-band" aria-labelledby="titel">
+        <div class="shop-innen shop-kopf-zeile">
+          <p class="shop-mono">{" · ".join(n for _, n in ANLAESSE)}</p>
+          <h1 id="titel">Alles lässt sich individualisieren</h1>
+          <p class="shop-kopf-fuer">Zum Beispiel für {namen("shop-namen-gross")}</p>
         </div>
       </section>
 {probeleiste(START_PROBE)}
-      <section class="shop-sortiment" aria-label="Produkte">
-        <div class="shop-innen">
-          <ul class="shop-raster shop-raster-start">
-{karte(PRODUKTE[0], "k0", bild=halter_reihe("k0", probe=True))}
-{karte(PRODUKTE[1], "k1", probe=True)}
-          </ul>
-        </div>
-      </section>
-{ablauf()}""", kopf=PINTEREST, skript=SKRIPT)
+{katalog()}
+{ablauf()}""", kopf=PINTEREST, skript=SKRIPT + FILTER)
 
 # Fehlerseite: unbekannte Adressen zeigen gleich die Produkte, ohne Zeitschaltung
 seite("404.html", None, "Seite nicht gefunden",
@@ -725,7 +887,7 @@ for p in PRODUKTE:
 {chr(10).join(karte(q, f"w{i}", "h3", druck=False, quer=True) for i, q in enumerate(andere))}
           </ul>
         </div>
-      </section>""", aktiv=p["slug"], skript=SKRIPT)
+      </section>""", skript=SKRIPT)
 
 # ---------- Impressum und Datenschutz ----------
 # Kopf und Fuß wie im Shop (Kritiker Runde 1, 02.11.2026). Der Rechtstext wird nur umgehängt, nie geändert:
