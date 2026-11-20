@@ -43,9 +43,12 @@ OHNE_WERBUNG = {
     "girlsnight/disclosure.html": "Affiliate-Offenlegung",
     "watchparty/disclosure.html": "Affiliate-Offenlegung",
     "index.html": "Shop-Startseite, fremde Werbung neben dem Etsy-Kaufweg",
-    "shop/platzkartenhalter.html": "Shop-Produktseite",
-    "shop/jga-anhaenger.html": "Shop-Produktseite",
+    "merkliste.html": "Shop-Merkliste, fremde Werbung neben dem Etsy-Kaufweg",
 }
+# jede Shop-Produktseite aus build-shop.py, auch künftige
+_WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OHNE_WERBUNG.update({"shop/" + n: "Shop-Produktseite"
+                     for n in os.listdir(os.path.join(_WURZEL, "shop")) if n.endswith(".html")})
 
 SLOT_RE = re.compile(r'<div class="ad-slot[^"]*">(.*?)</div>', re.S)
 
