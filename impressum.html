@@ -183,7 +183,7 @@ footer.site a {
  * Waldgrün als einziger Akzent, Tinte für Text. Kein Schwarz- oder Graphitblock, kein Weiß auf hellen Feldern.
  * Aufbau wie ein Shop: Produktraster, Produktseite mit Bild links und Kaufspalte rechts, Akkordeon.
  * Signaturmotiv bleibt klein im Produktbild: der Name druckt sich Lage für Lage, die Düse fährt mit.
- * Gilt nur unter body.shop. Bis zu echten Listings ist der Kaufweg ein Status (.shop-etsy als span), kein Link. */
+ * Gilt nur unter body.shop. Bis zu echten Listings führt der Kaufweg in die Merkliste (nur dieser Browser, kein Versand). */
 body.shop {
   --bg: #f8f7f2;
   --ink: #1d2420;
@@ -192,6 +192,8 @@ body.shop {
   --shop-salbei: #e3eadf;
   --shop-salbei-hell: #eef2eb;
   --shop-salbei-tief: #d4e0cf;
+  /* Druckton für Salbei-Knöpfe, einen Schritt dunkler als Hover (Wächter-Hinweis 20.11.2026) */
+  --shop-salbei-druck: #c5d4bf;
   --shop-ton-sand: #efe6d3;
   --shop-ton-rose: #f3e1dd;
   --shop-ton-kreide: #e6e4dc;
@@ -205,6 +207,7 @@ body.shop {
   --teil: #2f5d46;
   --teil-dunkel: #24493a;
   --teil-text: #f7f6f1d9;
+  --teil-schrift: #f7f6f1;
   background: var(--bg);
   color: var(--ink);
   accent-color: var(--ink);
@@ -717,7 +720,8 @@ body.shop .shop-schritte h3 {
 .shop-galerie .shop-svg-halter {
   width: min(100%, 460px);
 }
-.shop-galerie .shop-svg-anhaenger {
+.shop-galerie .shop-svg-anhaenger,
+.shop-galerie .shop-svg-platz {
   width: min(100%, 440px);
 }
 .shop-info {
@@ -834,19 +838,78 @@ body.shop .shop-info h1 {
   display: grid;
   gap: 10px;
 }
-.shop-etsy {
+/* Merken ist bis zum Etsy-Shop die einzige Handlung auf der Seite, deshalb voller Akzent */
+.shop-merken {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   width: 100%;
   min-height: 56px;
   padding: 14px 20px;
-  border-radius: 4px;
-  /* kein Knopf, solange das Listing fehlt: ruhige Fläche statt Akzentgrün, kein Hover (Kritiker Runde 1) */
-  background: var(--shop-salbei);
-  color: var(--shop-akzent-tief);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--shop-akzent);
+  color: var(--paper);
   font: 600 1rem/1.2 var(--ui);
-  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.shop-merken svg {
+  flex: none;
+}
+.shop-merken:hover {
+  background: var(--shop-akzent-tief);
+}
+.shop-merken:active {
+  background: var(--ink-strong);
+  transform: translateY(1px);
+}
+.shop-merken:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.shop-merken:disabled {
+  background: var(--shop-salbei);
+  color: var(--shop-muted);
+  cursor: not-allowed;
+}
+.shop-merken-status {
+  margin: 0;
+  min-height: 1.5em;
+  font: 500 0.95rem/1.5 var(--ui);
+  color: var(--ink);
+}
+.shop-merken-status a {
+  color: var(--shop-akzent-tief);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+.shop-merken-status a:hover {
+  color: var(--ink-strong);
+}
+.shop-merken-status a:active {
+  color: var(--ink);
+}
+.shop-merken-status a[hidden] {
+  display: none;
+}
+/* ohne JavaScript gibt es keine Merkliste: Knopf weg, ehrlicher Satz statt dessen */
+.shop-ohne-js {
+  display: none;
+  margin: 0;
+  font: 500 0.95rem/1.5 var(--ui);
+  color: var(--ink);
+}
+html:not(.js) .shop-ohne-js {
+  display: block;
+}
+html:not(.js) .shop-merken,
+html:not(.js) .shop-merken-status {
+  display: none;
 }
 .shop-etsy-hinweis {
   margin: 0;
@@ -1108,20 +1171,47 @@ body.shop .shop-recht h3 {
 body.shop header.site nav {
   margin-left: auto;
 }
-.shop-etsy-pill {
+/* Merkliste oben rechts, mit Zahl, sobald etwas drin liegt */
+.shop-korb {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 36px;
+  min-height: 44px;
   padding: 6px 14px;
   border-radius: 999px;
   background: var(--shop-salbei);
-  color: var(--shop-akzent-tief);
-  font: 500 0.875rem/1.2 var(--shop-mono);
+  color: var(--ink);
+  font: 600 0.95rem/1.2 var(--ui);
   white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 }
-.shop-etsy-pill svg {
+.shop-korb svg {
   flex: none;
+}
+.shop-korb:hover {
+  background: var(--shop-salbei-tief);
+}
+.shop-korb:active {
+  background: var(--shop-salbei-druck);
+  transform: translateY(1px);
+}
+body.shop .shop-korb:focus-visible {
+  border-radius: 999px;
+}
+.shop-korb-zahl {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--shop-akzent);
+  color: var(--paper);
+  font: 600 0.875rem/1 var(--shop-mono);
+  font-variant-numeric: tabular-nums;
+}
+.shop-korb-zahl[hidden] {
+  display: none;
 }
 .shop-kopf-band {
   background: var(--shop-salbei);
@@ -1272,22 +1362,29 @@ body.shop .shop-raster-bald .shop-karte-titel {
 .shop-raster-katalog .shop-karte-preis {
   font-size: 0.95rem;
 }
-/* Status statt Kaufknopf: ruhige Zeile im Salbei, kein Hover, kein Zeiger */
+/* Status statt Kaufknopf: nur Text mit Punkt, ohne Fläche, damit er nicht wie ein toter Knopf wirkt (Kritiker Runde 1, 20.11.2026) */
 .shop-karte-status {
-  justify-self: start;
-  margin: 6px 0 0;
-  padding: 6px 12px;
-  border-radius: 4px;
-  background: var(--shop-salbei-hell);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
   color: var(--shop-akzent-tief);
-  font: 600 0.875rem/1.3 var(--ui);
+  font: 500 0.875rem/1.4 var(--shop-mono);
+}
+.shop-karte-status::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
 }
 .shop-chip-muster {
   background: var(--shop-akzent-tief);
   color: var(--paper);
 }
 /* Jeder Platzhalter liegt auf dem hellen Ton seiner Materialfarbe, so stehen nie mehr als drei gleiche Kacheln im Raster (Gate R2) */
-.shop-raster-bald .shop-karte-bild {
+.shop-karte-platzhalter .shop-karte-bild {
   background: var(--kachel);
 }
 .shop-ton-waldgruen {
@@ -1302,10 +1399,9 @@ body.shop .shop-raster-bald .shop-karte-titel {
 .shop-ton-kreide {
   --kachel: var(--shop-ton-kreide);
 }
-/* Platzhalter sind keine Produkte: kein Anheben beim Darüberfahren, nichts wirkt klickbar */
-.shop-karte-platzhalter:hover .shop-karte-bild svg,
-.shop-karte-platzhalter:active .shop-karte-bild svg {
-  transform: none;
+/* „Auch im Shop“: drei Teile nebeneinander, am Handy als Querkarte untereinander */
+.shop-raster-weitere {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 /* ---------- Schmalere Fenster ---------- */
@@ -1341,11 +1437,13 @@ body.shop .shop-raster-bald .shop-karte-titel {
       -40px 0 0 8px var(--bg),
       40px 0 0 8px var(--bg);
   }
-  /* beide Teile in derselben Bildbox, sonst ist die Galerie je Produkt verschieden hoch (Gate R7) */
+  /* alle drei Teile in derselben Bildbox (Seitenverhältnis des Ansteckers 300/240), sonst ist die Galerie
+   * je Produkt verschieden hoch. 300/230 gegen 300/240 gab 1,5 bis 3 px Unterschied (Gate R7, 20.11.2026) */
   .shop-galerie .shop-svg-halter,
-  .shop-galerie .shop-svg-anhaenger {
+  .shop-galerie .shop-svg-anhaenger,
+  .shop-galerie .shop-svg-platz {
     width: min(70%, 260px);
-    aspect-ratio: 300 / 230;
+    aspect-ratio: 300 / 240;
   }
 }
 @media (max-width: 760px) {
@@ -1417,8 +1515,10 @@ body.shop .shop-raster-bald .shop-karte-titel {
   .shop-daten dd {
     margin-bottom: 10px;
   }
+  /* eine Breite für alle drei, sonst ist die Galerie wieder je Produkt verschieden hoch (Gate R7) */
   .shop-galerie .shop-svg-halter,
-  .shop-galerie .shop-svg-anhaenger {
+  .shop-galerie .shop-svg-anhaenger,
+  .shop-galerie .shop-svg-platz {
     width: min(86%, 240px);
   }
 }
@@ -1474,6 +1574,21 @@ html:has(body.shop .shop-leiste) {
   }
 }
 /* Handy: die Muster untereinander in voller Breite, so bleiben sie größer als die Platzhalter */
+@media (max-width: 760px) {
+  .shop-raster-weitere .shop-karte {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 16px;
+  }
+  .shop-raster-weitere .shop-karte-bild {
+    aspect-ratio: 4 / 3;
+    padding: 34px 8px 8px;
+  }
+  /* So klein läge der Name unter 14 px, das Teil bleibt auch ohne ihn erkennbar */
+  .shop-raster-weitere .t-name {
+    display: none;
+  }
+}
 @media (max-width: 560px) {
   .shop-raster-muster {
     grid-template-columns: minmax(0, 1fr);
@@ -1481,6 +1596,280 @@ html:has(body.shop .shop-leiste) {
   .shop-raster-muster .shop-karte-bild {
     aspect-ratio: 4 / 3;
     padding: 44px 16px 16px;
+  }
+}
+
+/* ---------- Merkliste: liegt nur in diesem Browser, verschickt nichts ---------- */
+.shop-merkseite {
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+.shop-merkseite h1 {
+  margin: 8px 0 12px;
+}
+.shop-lead {
+  margin: 0 0 clamp(24px, 4vw, 40px);
+  max-width: 56ch;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--shop-muted);
+}
+.shop-merkseite .shop-ohne-js,
+.shop-merk-hinweis {
+  margin: 0 0 24px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: var(--shop-salbei-hell);
+}
+.shop-merkseite [hidden] {
+  display: none;
+}
+.shop-merkseite p a {
+  color: var(--shop-akzent-tief);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+.shop-merkseite p a:hover {
+  color: var(--ink-strong);
+}
+.shop-merkseite p a:active {
+  color: var(--ink);
+}
+/* Leer: ein Satz, was Merken macht, daneben die zwei gezeichneten Muster als Einstieg */
+.shop-merk-leer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 8px;
+  background: var(--shop-salbei-hell);
+}
+.shop-merk-leer-text {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+.shop-merk-leer h2 {
+  margin: 0;
+  font: 800 clamp(1.6rem, 3vw, 2.25rem)/1.1 var(--shop-display);
+  color: var(--ink);
+}
+.shop-merk-leer-text p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--shop-muted);
+}
+.shop-raster-leer {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.shop-merk-sortiment {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  background: var(--shop-akzent);
+  color: var(--paper);
+  font: 600 1rem/1.2 var(--ui);
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.shop-merk-sortiment:hover {
+  background: var(--shop-akzent-tief);
+}
+.shop-merk-sortiment:active {
+  background: var(--ink-strong);
+  transform: translateY(1px);
+}
+.shop-merk-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.shop-merk-zeile {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px clamp(16px, 3vw, 32px);
+  padding: 12px;
+  padding-right: clamp(12px, 2vw, 20px);
+  border-radius: 8px;
+  background: var(--paper);
+}
+/* Die Vorschau liegt auf einem hellen Ton der gemerkten Farbe, so liest man die Farbe schon am Bild */
+.shop-merk-bild {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  padding: 10px;
+  border-radius: 6px;
+  background: var(--shop-salbei);
+  background: color-mix(in oklab, var(--teil) 24%, var(--paper));
+}
+.shop-merk-bild svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+.shop-merk-text {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  min-width: 0;
+  container-type: inline-size;
+}
+.shop-merk-titel {
+  justify-self: start;
+  font: 500 0.875rem/1.3 var(--shop-mono);
+  color: var(--shop-muted);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+  /* Trefferfläche 44 px, die Zeile bleibt gleich hoch (Wächter-Hinweis 20.11.2026) */
+  padding-block: 13px;
+  margin-block: -13px;
+}
+.shop-merk-titel:hover {
+  color: var(--shop-akzent-tief);
+  text-decoration-thickness: 2px;
+}
+.shop-merk-titel:active {
+  color: var(--ink-strong);
+}
+/* Der Name ist das, was man sich gemerkt hat: groß, einzeilig, lange Namen werden kleiner statt umzubrechen */
+.shop-merk-name {
+  margin: 6px 0 4px;
+  font: 800 1.5rem/1.05 var(--shop-display);
+  font-size: clamp(1.125rem, calc(100cqi / (var(--zeichen, 8) * 0.7)), 2rem);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow-x: clip;
+}
+.shop-merk-name-bricht {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.shop-merk-was {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font: 500 0.95rem/1.4 var(--shop-mono);
+  color: var(--ink);
+}
+.shop-merk-was i {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--teil);
+  border: 2px solid var(--teil-dunkel);
+}
+.shop-merk-weg,
+.shop-merk-alle {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--shop-salbei-hell);
+  color: var(--ink);
+  font: 600 0.95rem/1.2 var(--ui);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.shop-merk-weg:hover,
+.shop-merk-alle:hover {
+  background: var(--shop-salbei-tief);
+}
+.shop-merk-weg:active,
+.shop-merk-alle:active {
+  background: var(--shop-salbei-druck);
+  transform: translateY(1px);
+}
+.shop-merk-weg:focus-visible,
+.shop-merk-alle:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.shop-merk-fuss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 20px;
+}
+.shop-merkseite .shop-merk-fuss[hidden] {
+  display: none;
+}
+.shop-merk-summe {
+  margin: 0;
+  font: 500 0.95rem/1.4 var(--shop-mono);
+  color: var(--shop-muted);
+}
+.shop-merk-status {
+  margin: 12px 0 0;
+  min-height: 1.5em;
+  font: 500 0.95rem/1.5 var(--ui);
+}
+/* Etsy-Block: eigene Fläche mit Überschrift, der Status als Text mit Punkt wie im Katalog */
+.shop-merk-bestellen {
+  margin-top: clamp(32px, 5vw, 56px);
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 8px;
+  background: var(--shop-salbei);
+}
+.shop-merk-bestellen h2 {
+  margin: 0;
+  font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.15 var(--shop-display);
+  color: var(--ink);
+}
+.shop-merk-bestellen p:not(.shop-karte-status) {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.shop-merk-bestellen p:last-child {
+  color: var(--shop-muted);
+}
+@media (max-width: 760px) {
+  .shop-merk-leer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shop-raster-leer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .shop-merk-zeile {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+  .shop-merk-weg {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shop-merken,
+  .shop-korb,
+  .shop-merk-sortiment,
+  .shop-merk-weg,
+  .shop-merk-alle {
+    transition: none;
   }
 }
     </style>
@@ -1496,7 +1885,7 @@ html:has(body.shop .shop-leiste) {
           <a href="/#geburtstag">Geburtstag</a>
           <a href="/#sortiment">Alle Produkte</a>
         </nav>
-        <span class="shop-etsy-pill"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Etsy-Shop · bald</span>
+        <a class="shop-korb" href="/merkliste.html" aria-label="Merkliste"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="shop-korb-text">Merkliste</span><span class="shop-korb-zahl" data-merk-anzahl hidden>0</span></a>
       </div>
     </header>
 
@@ -1584,6 +1973,220 @@ html:has(body.shop .shop-leiste) {
           });
         }, { threshold: 0.4 });
         Array.prototype.forEach.call(bilder, function (b) { beobachter.observe(b); });
+      })();
+    </script>
+    <script>
+      (function () {
+        var TEILE = {"platzkartenhalter": {"kurz": "Platzkartenhalter", "max": 14, "gross": false, "angabe": "den Namen", "url": "/shop/platzkartenhalter.html"}, "jga-anhaenger": {"kurz": "JGA-Anhänger", "max": 10, "gross": true, "angabe": "den Text", "url": "/shop/jga-anhaenger.html"}, "tischnummer-aufsteller": {"kurz": "Tischnummer", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/tischnummer-aufsteller.html"}, "geschenkanhaenger": {"kurz": "Geschenkanhänger", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/geschenkanhaenger.html"}, "anstecker": {"kurz": "Namens-Anstecker", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/anstecker.html"}, "mini-wegweiser": {"kurz": "Mini-Wegweiser", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/mini-wegweiser.html"}, "lesezeichen": {"kurz": "Lesezeichen", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/lesezeichen.html"}, "fotohalter": {"kurz": "Fotohalter", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/fotohalter.html"}, "jga-crew-schild": {"kurz": "JGA-Crew-Schild", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/jga-crew-schild.html"}, "zahlen-aufsteller": {"kurz": "Zahlen-Aufsteller", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/zahlen-aufsteller.html"}, "danke-schild": {"kurz": "Danke-Schild", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/danke-schild.html"}, "tuerschild": {"kurz": "Türschild", "max": 12, "gross": false, "angabe": "den Namen", "url": "/shop/tuerschild.html"}}, FARBEN = {"Waldgrün": ["#2f5d46", "#24493a", "#f7f6f1d9", "#f7f6f1"], "Salbei": ["#9fb59a", "#7f9a7a", "#0000008c", "#1d2420"], "Kreide": ["#f7f6f1", "#cfcabd", "#0000008c", "#1d2420"], "Sand": ["#d9c7a3", "#b9a57f", "#0000008c", "#1d2420"], "Rosé": ["#e8b4b0", "#c98f8a", "#0000008c", "#1d2420"]}, SCHLUESSEL = "bth-merkliste", HOECHSTENS = 30;
+        var eigen = Object.prototype.hasOwnProperty, jede = Array.prototype.forEach;
+        var KEIN_SPEICHER = "Dein Browser lässt die Seite nichts speichern, deshalb kann die Merkliste nichts behalten.";
+        function q(s) { return document.querySelector(s); }
+        var lager = (function () {
+          try {
+            var l = window.localStorage, p = "bth-probe";
+            l.setItem(p, "1");
+            l.removeItem(p);
+            return l;
+          } catch (e) { return null; }
+        })();
+        function putzen(n) {
+          return typeof n === "string" ? n.replace(/[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g, "").replace(/\s+/g, " ").trim() : "";
+        }
+        function zeige(e) { return TEILE[e.s].gross ? e.n.toUpperCase() : e.n; }
+        function schluessel(e) { return e.s + "|" + e.f + "|" + zeige(e); }
+        // Was im Speicher liegt, kann jeder geändert haben: nur bekannte Teile und Farben, Namen in ihrer Länge, keine Dubletten
+        function sauber(roh) {
+          var aus = [], gesehen = Object.create(null);
+          if (!Array.isArray(roh)) return aus;
+          roh.forEach(function (e) {
+            if (aus.length >= HOECHSTENS || !e || typeof e !== "object") return;
+            if (typeof e.s !== "string" || !eigen.call(TEILE, e.s)) return;
+            if (typeof e.f !== "string" || !eigen.call(FARBEN, e.f)) return;
+            var n = putzen(e.n);
+            if (!n || n.length > TEILE[e.s].max) return;
+            var r = { s: e.s, n: n, f: e.f }, k = schluessel(r);
+            if (gesehen[k]) return;
+            gesehen[k] = 1;
+            aus.push(r);
+          });
+          return aus;
+        }
+        function lesen() {
+          if (!lager) return [];
+          try { return sauber(JSON.parse(lager.getItem(SCHLUESSEL) || "[]")); } catch (e) { return []; }
+        }
+        function sichern(liste) {
+          if (!lager) return false;
+          try { lager.setItem(SCHLUESSEL, JSON.stringify(liste)); return true; } catch (e) { return false; }
+        }
+        function zaehlen() {
+          var n = lesen().length;
+          jede.call(document.querySelectorAll("[data-merk-anzahl]"), function (z) {
+            z.textContent = n;
+            z.hidden = n === 0;
+            var korb = z.closest("a");
+            if (korb) korb.setAttribute("aria-label", n ? "Merkliste, " + n + (n === 1 ? " Teil" : " Teile") : "Merkliste");
+          });
+        }
+        // Gleicher Text zweimal hintereinander: erst leeren, sonst liest der Bildschirmleser ihn nicht noch einmal vor
+        function ansagen(ziel, text, danach) {
+          ziel.textContent = "";
+          setTimeout(function () {
+            ziel.textContent = text;
+            if (danach) danach();
+          }, 60);
+        }
+
+        var knopf = q("[data-merken]");
+        if (knopf) {
+          var meldung = q("[data-merken-meldung]"), link = q("[data-merken-link]");
+          var melden = function (text, mitLink) {
+            link.hidden = true;
+            ansagen(meldung, text, function () { link.hidden = !mitLink; });
+          };
+          knopf.addEventListener("click", function () {
+            var teil = TEILE[knopf.dataset.merken], feld = document.getElementById("probe-name");
+            var spule = q('.shop-spule[aria-pressed="true"]');
+            if (!teil) return;
+            if (!lager) return melden(KEIN_SPEICHER, false);
+            var n = putzen(feld ? feld.value : "");
+            if (!n) {
+              melden("Gib erst " + teil.angabe + " ein, dann kommt er in die Merkliste.", false);
+              if (feld) feld.focus();
+              return;
+            }
+            var neu = sauber([{ s: knopf.dataset.merken, n: n, f: spule ? spule.dataset.farbe : "" }])[0];
+            if (!neu) return melden("Das passt so nicht in die Merkliste, höchstens " + teil.max + " Zeichen.", false);
+            var liste = lesen(), wer = zeige(neu) + " in " + neu.f;
+            if (liste.some(function (e) { return schluessel(e) === schluessel(neu); }))
+              return melden(wer + " steht schon in der Merkliste.", true);
+            if (liste.length >= HOECHSTENS)
+              return melden("Die Merkliste ist voll, mehr als " + HOECHSTENS + " Teile passen nicht hinein.", true);
+            liste.push(neu);
+            if (!sichern(liste)) return melden(KEIN_SPEICHER, false);
+            zaehlen();
+            melden(wer + " ist gemerkt.", true);
+          });
+        }
+
+        var ul = q("[data-merk-liste]");
+        var bilder = Object.create(null);
+        jede.call(document.querySelectorAll("template[data-merk-bild]"), function (t) { bilder[t.dataset.merkBild] = t; });
+        // Jede Zeile bekommt eigene IDs, sonst zeigten zwei Zeilen desselben Teils beide auf das erste Füllmuster
+        function eigeneIds(svg, n) {
+          var neu = Object.create(null);
+          jede.call(svg.querySelectorAll("[id]"), function (el) {
+            neu[el.id] = el.id + "-" + n;
+            el.id = neu[el.id];
+          });
+          jede.call(svg.querySelectorAll("*"), function (el) {
+            ["fill", "stroke", "mask", "clip-path"].forEach(function (a) {
+              var v = el.getAttribute(a), m = v && /^url\(#([^)]+)\)$/.exec(v);
+              if (m && neu[m[1]]) el.setAttribute(a, "url(#" + neu[m[1]] + ")");
+            });
+          });
+        }
+        // Der Name bleibt einzeilig: gemessen wird die echte Breite, erst unter 16 px darf er umbrechen
+        function einpassen() {
+          if (!ul) return;
+          jede.call(ul.querySelectorAll(".shop-merk-name"), function (el) {
+            el.style.fontSize = "";
+            el.classList.remove("shop-merk-name-bricht");
+            var breit = el.clientWidth, voll = el.scrollWidth;
+            if (!breit || voll <= breit) return;
+            var px = Math.floor(parseFloat(getComputedStyle(el).fontSize) * breit / voll * 10) / 10;
+            el.style.fontSize = Math.max(px, 16) + "px";
+            if (px < 16 || el.scrollWidth > el.clientWidth) el.classList.add("shop-merk-name-bricht");
+          });
+        }
+        var takt = 0;
+        window.addEventListener("resize", function () {
+          if (takt) return;
+          takt = requestAnimationFrame(function () { takt = 0; einpassen(); });
+        });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(einpassen);
+        function zeichnen(fokus) {
+          if (!ul) return;
+          var liste = lesen(), leer = q("[data-merk-leer]"), fuss = q("[data-merk-fuss]");
+          q("[data-merk-kein-speicher]").hidden = !!lager;
+          leer.hidden = !lager || liste.length > 0;
+          ul.hidden = fuss.hidden = liste.length === 0;
+          q("[data-merk-summe]").textContent = liste.length + (liste.length === 1 ? " Teil" : " Teile") + " gemerkt";
+          ul.textContent = "";
+          liste.forEach(function (e, i) {
+            var teil = TEILE[e.s], farbe = FARBEN[e.f], li = document.createElement("li");
+            li.className = "shop-merk-zeile";
+            ["--teil", "--teil-dunkel", "--teil-text", "--teil-schrift"].forEach(function (v, j) { li.style.setProperty(v, farbe[j]); });
+            // Das Bild führt auch zum Teil, zählt aber nicht als zweiter Halt beim Tabben
+            var bild = document.createElement("a");
+            bild.className = "shop-merk-bild";
+            bild.href = teil.url;
+            bild.tabIndex = -1;
+            bild.setAttribute("aria-hidden", "true");
+            if (bilder[e.s]) {
+              var svg = bilder[e.s].content.firstElementChild.cloneNode(true);
+              jede.call(svg.querySelectorAll(".t-name, .t-duese"), function (x) { x.parentNode.removeChild(x); });
+              eigeneIds(svg, i);
+              bild.appendChild(svg);
+            }
+            // Name groß, das Teil als Link darüber, die Farbe mit echtem Farbpunkt darunter
+            var text = document.createElement("div"), titel = document.createElement("a"),
+                name = document.createElement("p"), was = document.createElement("p"), punkt = document.createElement("i"),
+                farbname = document.createElement("span");
+            text.className = "shop-merk-text";
+            titel.className = "shop-merk-titel";
+            titel.href = teil.url;
+            titel.textContent = teil.kurz;
+            name.className = "shop-merk-name";
+            name.textContent = zeige(e);
+            name.style.setProperty("--zeichen", Math.max(zeige(e).length, 4));
+            was.className = "shop-merk-was";
+            punkt.setAttribute("aria-hidden", "true");
+            farbname.className = "shop-merk-farbe";
+            farbname.textContent = e.f;
+            was.appendChild(punkt);
+            was.appendChild(farbname);
+            text.appendChild(titel);
+            text.appendChild(name);
+            text.appendChild(was);
+            var weg = document.createElement("button");
+            weg.type = "button";
+            weg.className = "shop-merk-weg";
+            weg.textContent = "Entfernen";
+            weg.setAttribute("aria-label", zeige(e) + " in " + e.f + ", " + teil.kurz + " entfernen");
+            weg.addEventListener("click", function () {
+              var rest = lesen().filter(function (x) { return schluessel(x) !== schluessel(e); });
+              if (!sichern(rest)) return ansagen(q("[data-merk-meldung]"), KEIN_SPEICHER);
+              zaehlen();
+              zeichnen(i);
+              ansagen(q("[data-merk-meldung]"), zeige(e) + " in " + e.f + " ist entfernt.");
+            });
+            li.appendChild(bild);
+            li.appendChild(text);
+            li.appendChild(weg);
+            ul.appendChild(li);
+          });
+          einpassen();
+          if (fokus === undefined) return;
+          var knoepfe = ul.querySelectorAll(".shop-merk-weg");
+          if (knoepfe.length) knoepfe[Math.min(fokus, knoepfe.length - 1)].focus();
+          else leer.querySelector(".shop-merk-sortiment").focus();
+        }
+        if (ul) {
+          q("[data-merk-alle]").addEventListener("click", function () {
+            if (!sichern([])) return ansagen(q("[data-merk-meldung]"), KEIN_SPEICHER);
+            zaehlen();
+            zeichnen(0);
+            ansagen(q("[data-merk-meldung]"), "Merkliste geleert.");
+          });
+        }
+        window.addEventListener("storage", function (ev) {
+          if (ev.key !== null && ev.key !== SCHLUESSEL) return;
+          zaehlen();
+          zeichnen();
+        });
+        zaehlen();
+        zeichnen();
       })();
     </script>
   </body>

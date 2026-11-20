@@ -57,9 +57,11 @@ AUSGENOMMEN = {
     "dashboard.html", "produkt-review.html", "ueber-uns.html",
     "cocktailabend/disclosure.html", "girlsnight/disclosure.html",
     "watchparty/disclosure.html",
-    # Shop-Schaufenster: keine Karte auf der Startseite, bis der Shop live geht
-    "shop/index.html", "shop/platzkartenhalter.html", "shop/jga-anhaenger.html",
+    # Shop: eigene Brotkrume (.shop-pfad) aus build-shop.py, deshalb alle Shop-Seiten und die Merkliste
+    "merkliste.html",
 }
+_WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+AUSGENOMMEN |= {"shop/" + n for n in os.listdir(os.path.join(_WURZEL, "shop")) if n.endswith(".html")}
 
 BLOCK_RE = re.compile(r'[ \t]*<!-- BREADCRUMB:START.*?<!-- BREADCRUMB:END -->\n?', re.S)
 # Der alte, handgepflegte Einzellink, den dieser Block ersetzt.

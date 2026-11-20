@@ -2,7 +2,10 @@
 Ziel: Shop für eigene 3D-Druck-Teile, verkauft über Etsy. Motto "alles kann individualisiert werden" ist die H1 der Startseite.
 Aufbau wie ein Shopify-Shop: Produktraster, Produktseite mit Bild links, Farbwahl, Namensvorschau und Akkordeon.
 Seit 19.11.2026 ist die Startseite ein Katalog (Variante A, Stefanie): Filter nach Anlass, zwölf Kacheln, davon zwei
-gezeichnete Muster mit Produktseite und zehn gekennzeichnete Platzhalter ohne Seite und ohne Link.
+gezeichnete Muster und zehn gekennzeichnete Platzhalter.
+Seit 20.11.2026 hat jedes der zwölf Teile eine Produktseite (Platzhalter auf noindex), dazu die Merkliste
+(Stefanie: „Merkliste ohne Bestellung“): merkt Teil, Name und Farbe nur in diesem Browser, bestellt und verschickt nichts.
+Mit dem Etsy-Shop wird aus dem Merken der Etsy-Knopf.
 Aufbau aus Richtung A "Schicht für Schicht", Farbe und Schrift seit 02.11.2026 "Salbei" mit Bricolage Grotesque.
 Die Druck-Animation läuft nur noch klein im Produktbild.
 Nur Platzhalter: keine Preise, keine Fotos, keine Etsy-Links. Die Teile sind gezeichnet, die Farben Beispiele.
@@ -12,6 +15,7 @@ Shop-HTML nur hier ändern, nie von Hand im Repo.
 Aufruf: python3 scripts/build-shop.py [--pruefen]
 --pruefen schreibt nichts und endet mit 1, wenn eine Seite nicht zum Generator passt
 (Konsistenz-Check Punkt 22, fängt eine Änderung an style.css ohne Generatorlauf)."""
+import json
 import re
 import sys
 from pathlib import Path
@@ -46,11 +50,14 @@ PREIS = "Preis folgt"
 PREIS_HINWEIS = "Endpreis, Versand laut Etsy-Listing"
 
 
-# Ein Hinweis unter dem Kaufknopf statt dreier verstreuter (Kritiker Runde 1, 02.11.2026)
-def hinweis(angabe):
-    return ('<p class="shop-etsy-hinweis">Das Bild ist gezeichnet und die Farben sind Beispiele, Fotos und echte '
-            'Farben folgen nach dem Musterdruck. Sobald das Etsy-Listing steht, führt der Knopf dorthin, '
-            f'{angabe} gibst du dort bei der Bestellung an.</p>')
+# Ein Hinweis unter dem Merkknopf statt dreier verstreuter (Kritiker Runde 1, 02.11.2026)
+def hinweis(platzhalter):
+    if platzhalter:
+        anfang = "Das Bild ist gezeichnet und zeigt einen Platzhalter, die Farben sind Beispiele."
+    else:
+        anfang = "Das Bild ist gezeichnet und die Farben sind Beispiele, Fotos und echte Farben folgen nach dem Musterdruck."
+    # Bestellweg steht schon in den Stichpunkten darunter, hier nur noch der Satz zum Bild (Kritiker Runde 1, 20.11.2026)
+    return f'<p class="shop-etsy-hinweis">{anfang}</p>'
 
 
 # Beispielfarben bis zum Musterdruck: Name, Grundfarbe, dunkle Schichtlinie, Text auf dem Anhänger
@@ -63,6 +70,11 @@ SPULEN = [
 ]
 
 DISPLAY = '"Bricolage Grotesque", "Arial Narrow", sans-serif'
+
+
+def schrift_von(farbe):
+    """Farbe von Name und Zeichen auf dem Teil: hell auf Waldgrün, sonst dunkel."""
+    return "#f7f6f1" if farbe == "Waldgrün" else "#1d2420"
 
 
 def schichten(id_, abstand, fest=None):
@@ -85,10 +97,12 @@ def groesse(name, maximal, feld, faktor):
     return min(maximal, feld / (len(name) * faktor))
 
 
-def name_text(name, maximal, feld, faktor, x, y, fill, klasse="t-name", mitte=None):
-    """data-y ist die Grundlinie für eine Zeile, data-mitte die Mitte, um die das Skript zwei Zeilen setzt."""
+def name_text(name, maximal, feld, faktor, x, y, fill, klasse="t-name", mitte=None, stil=""):
+    """data-y ist die Grundlinie für eine Zeile, data-mitte die Mitte, um die das Skript zwei Zeilen setzt.
+    stil: Farbe aus einer CSS-Variable, die Farbwahl der Produktseite setzt sie."""
+    stil = f' style="{stil}"' if stil else ""
     return (f'<text class="{klasse}" x="{x}" y="{y}" text-anchor="middle" font-family=\'{DISPLAY}\' '
-            f'font-size="{groesse(name, maximal, feld, faktor):.1f}" font-weight="800" fill="{fill}" '
+            f'font-size="{groesse(name, maximal, feld, faktor):.1f}" font-weight="800" fill="{fill}"{stil} '
             f'data-max="{maximal}" data-feld="{feld}" data-faktor="{faktor}" data-y="{y}" data-mitte="{mitte}">{name}</text>')
 
 
@@ -135,34 +149,51 @@ def halter(id_, name="Lena", druck=True, probe=False):
 BEISPIEL = "Tom"
 
 # Platzhalter fürs Sortiment (Stefanie 19.11.2026: „platzhalter dürfen live“). Beispiele, bis ihre echte Liste steht:
-# gezeichnet wie die Muster, Name aus der Namensleiste, kein Druck im Bild, keine Produktseite, kein Link.
-# Je Teil: Titel, Anlässe (Schlüssel aus ANLAESSE), Form, Beispielfarbe aus SPULEN.
+# gezeichnet wie die Muster, Name aus der Namensleiste, kein Druck im Bild.
+# Seit 20.11.2026 mit eigener Produktseite (noindex, nicht in Sitemap und llms.txt), damit alles anklickbar ist.
+# Je Teil: Slug, Titel, Kurzname (Kachel und Brotkrume), Satz, Anlässe (Schlüssel aus ANLAESSE), Form, Beispielfarbe aus SPULEN.
 ANLAESSE = [("hochzeit", "Hochzeit"), ("jga", "JGA"), ("geburtstag", "Geburtstag")]
 PLATZHALTER = [
-    ("Tischnummer-Aufsteller", ["hochzeit"], "nummer", "Waldgrün"),
-    ("Geschenkanhänger mit Namen", ["geburtstag"], "tag", "Sand"),
-    ("Anstecker mit Namen", ["jga"], "anstecker", "Rosé"),
-    ("Mini-Wegweiser für die Feier", ["hochzeit"], "pfeil", "Sand"),
-    ("Lesezeichen mit Namen", ["geburtstag"], "lesezeichen", "Waldgrün"),
-    ("Fotohalter mit Namen", ["hochzeit"], "foto", "Kreide"),
-    ("JGA-Crew-Schild", ["jga"], "crew", "Rosé"),
-    ("Zahlen-Aufsteller zum Geburtstag", ["geburtstag"], "zahl", "Sand"),
-    ("Danke-Schild als Gastgeschenk", ["hochzeit"], "danke", "Waldgrün"),
-    ("Türschild mit Namen", ["geburtstag"], "tuer", "Kreide"),
+    ("tischnummer-aufsteller", "Tischnummer-Aufsteller", "Tischnummer",
+     "Aufsteller mit Tischnummer und Namen, damit jeder Gast seinen Tisch findet.", ["hochzeit"], "nummer", "Waldgrün"),
+    ("geschenkanhaenger", "Geschenkanhänger mit Namen", "Geschenkanhänger",
+     "Anhänger fürs Geschenk, mit dem Namen gedruckt statt geschrieben.", ["geburtstag"], "tag", "Sand"),
+    ("anstecker", "Anstecker mit Namen", "Namens-Anstecker",
+     "Runder Anstecker mit Namen, damit sich die JGA-Gruppe gleich kennt.", ["jga"], "anstecker", "Rosé"),
+    ("mini-wegweiser", "Mini-Wegweiser für die Feier", "Mini-Wegweiser",
+     "Kleiner Wegweiser mit Namen, zeigt den Gästen den Weg zur Feier.", ["hochzeit"], "pfeil", "Sand"),
+    ("lesezeichen", "Lesezeichen mit Namen", "Lesezeichen",
+     "Lesezeichen mit Namen, als kleines Geschenk zum Geburtstag.", ["geburtstag"], "lesezeichen", "Waldgrün"),
+    ("fotohalter", "Fotohalter mit Namen", "Fotohalter",
+     "Halter für ein Foto, im Sockel steht der Name.", ["hochzeit"], "foto", "Kreide"),
+    ("jga-crew-schild", "JGA-Crew-Schild", "JGA-Crew-Schild",
+     "Schild mit Krone und Namen für die JGA-Crew.", ["jga"], "crew", "Rosé"),
+    ("zahlen-aufsteller", "Zahlen-Aufsteller zum Geburtstag", "Zahlen-Aufsteller",
+     "Große Zahl zum runden Geburtstag, darunter der Name.", ["geburtstag"], "zahl", "Sand"),
+    ("danke-schild", "Danke-Schild als Gastgeschenk", "Danke-Schild",
+     "Kleines Schild mit Herz und Namen, als Dank an die Gäste.", ["hochzeit"], "danke", "Waldgrün"),
+    ("tuerschild", "Türschild mit Namen", "Türschild",
+     "Türschild mit Namen, fürs Kinderzimmer oder als Geschenk zum Geburtstag.", ["geburtstag"], "tuer", "Kreide"),
 ]
 # Fläche der Kachel, Löcher und Ösen zeigen sie
 KACHEL = "#e3eadf"
 
 
-def platz_bild(form, farbe, id_, name=BEISPIEL):
-    """Gezeichneter Platzhalter auf 300 x 240. Jeder Name trägt data-mitte, sonst setzt das Skript zwei Zeilen ins Leere."""
+def platz_bild(form, farbe, id_, name=BEISPIEL, variabel=False, probe=True):
+    """Gezeichneter Platzhalter auf 300 x 240. Jeder Name trägt data-mitte, sonst setzt das Skript zwei Zeilen ins Leere.
+    variabel: Teil, Linie und Schrift folgen der Farbwahl (--teil, --teil-dunkel, --teil-schrift), sonst bleibt farbe fest."""
     _, grund, linie, _t = next(s for s in SPULEN if s[0] == farbe)
-    schrift = "#f7f6f1" if farbe == "Waldgrün" else "#1d2420"
+    schrift = schrift_von(farbe)
     fuellung = f"url(#{id_})"
-    muster = [schichten(id_, 4, (grund, linie))]
+    muster = [schichten(id_, 4) if variabel else schichten(id_, 4, (grund, linie))]
 
-    def n(maximal, feld, x, y, mitte, fill=schrift):
-        return name_text(name, maximal, feld, 0.52, x, y, fill, mitte=mitte)
+    def v(eigenschaft, variable, wert):
+        return f' style="{eigenschaft}: var({variable}, {wert})"' if variabel else ""
+    s_fill = v("fill", "--teil-schrift", schrift)
+
+    def n(maximal, feld, x, y, mitte, fill=schrift, fest=False):
+        stil = "" if fest or not variabel else f"fill: var(--teil-schrift, {schrift})"
+        return name_text(name, maximal, feld, 0.52, x, y, fill, mitte=mitte, stil=stil)
 
     def wort(x, y, size, inhalt, fill=schrift, extra=""):
         return (f'<text x="{x}" y="{y}" text-anchor="middle" font-family=\'{DISPLAY}\' font-size="{size}" '
@@ -170,15 +201,15 @@ def platz_bild(form, farbe, id_, name=BEISPIEL):
 
     if form == "nummer":
         teile = [f'<rect x="90" y="30" width="120" height="160" rx="6" fill="{fuellung}"/>',
-                 f'<rect x="76" y="186" width="148" height="16" rx="3" fill="{linie}"/>',
-                 wort(150, 106, 72, "7"), n(26, 108, 150, 160, 151)]
+                 f'<rect x="76" y="186" width="148" height="16" rx="3" fill="{linie}"{v("fill", "--teil-dunkel", linie)}/>',
+                 wort(150, 106, 72, "7", extra=s_fill), n(26, 108, 150, 160, 151)]
     elif form == "tag":
         teile = [f'<path d="M58 78 H196 L242 120 L196 162 H58 Z" fill="{fuellung}" stroke="#00000018"/>',
                  f'<circle cx="208" cy="120" r="8" fill="{KACHEL}" style="fill: var(--kachel, {KACHEL})"/>',
                  '<path d="M216 120 C 250 110, 262 72, 286 60" stroke="#9aa39d" stroke-width="3" fill="none"/>',
                  n(40, 118, 124, 134, 120)]
     elif form == "anstecker":
-        teile = [f'<circle cx="150" cy="118" r="82" fill="{fuellung}" stroke="{linie}" stroke-width="5"/>',
+        teile = [f'<circle cx="150" cy="118" r="82" fill="{fuellung}" stroke="{linie}" stroke-width="5"{v("stroke", "--teil-dunkel", linie)}/>',
                  '<circle cx="150" cy="118" r="68" fill="none" stroke="#ffffff80" stroke-width="2"/>',
                  n(38, 112, 150, 126, 116)]
     elif form == "pfeil":
@@ -199,15 +230,15 @@ def platz_bild(form, farbe, id_, name=BEISPIEL):
                  n(28, 150, 150, 186, 176)]
     elif form == "crew":
         teile = [f'<path d="M54 66 Q150 36 246 66 V174 Q150 204 54 174 Z" fill="{fuellung}"/>',
-                 f'<path d="M126 82 L132 64 L142 76 L150 58 L158 76 L168 64 L174 82 Z" fill="{schrift}" opacity="0.8"/>',
+                 f'<path d="M126 82 L132 64 L142 76 L150 58 L158 76 L168 64 L174 82 Z" fill="{schrift}"{s_fill} opacity="0.8"/>',
                  n(34, 150, 150, 142, 130)]
     elif form == "zahl":
-        teile = [wort(150, 134, 116, "30", fuellung, f' stroke="{linie}" stroke-width="2"'),
+        teile = [wort(150, 134, 116, "30", fuellung, f' stroke="{linie}" stroke-width="2"' + v("stroke", "--teil-dunkel", linie)),
                  '<rect x="62" y="142" width="176" height="80" rx="4" fill="#1d2420"/>',
-                 n(24, 156, 150, 190, 182, "#f7f6f1")]
+                 n(24, 156, 150, 190, 182, "#f7f6f1", fest=True)]
     elif form == "danke":
         teile = [f'<rect x="44" y="52" width="212" height="134" rx="67" fill="{fuellung}"/>',
-                 f'<path d="M150 98 C 136 86, 124 76, 134 66 C 141 60, 148 64, 150 70 C 152 64, 159 60, 166 66 C 176 76, 164 86, 150 98 Z" fill="{schrift}"/>',
+                 f'<path d="M150 98 C 136 86, 124 76, 134 66 C 141 60, 148 64, 150 70 C 152 64, 159 60, 166 66 C 176 76, 164 86, 150 98 Z" fill="{schrift}"{s_fill}/>',
                  n(26, 140, 150, 152, 142)]
     elif form == "tuer":
         teile = [f'<rect x="50" y="56" width="200" height="128" rx="14" fill="{fuellung}" stroke="#00000024"/>',
@@ -215,7 +246,7 @@ def platz_bild(form, farbe, id_, name=BEISPIEL):
                  n(52, 164, 150, 140, 122)]
     else:
         raise SystemExit(f"Platzhalter-Form {form} unbekannt, nichts geschrieben")
-    return (f'<svg class="shop-svg-platz"{probe_attr(True, name)} viewBox="0 0 300 240" aria-hidden="true" focusable="false">'
+    return (f'<svg class="shop-svg-platz"{probe_attr(probe, name)} viewBox="0 0 300 240" aria-hidden="true" focusable="false">'
             f'<defs>{"".join(muster)}</defs>'
             '<ellipse cx="150" cy="212" rx="106" ry="9" fill="#000" opacity="0.09"/>'
             + "".join(teile) + "</svg>")
@@ -239,13 +270,15 @@ def anhaenger(id_, name="BRAUT", druck=True, probe=False):
             </svg>"""
 
 
-def spulen():
+def spulen(start=SPULEN[0][0]):
+    """Farbwahl, start ist die gedrückte Spule (die Beispielfarbe des Teils)."""
     knoepfe = "\n".join(
-        f'              <button type="button" class="shop-spule" aria-pressed="{"true" if i == 0 else "false"}" '
-        f'data-farbe="{name}" data-teil="{f}" data-dunkel="{d}" data-text="{t}" style="--c: {f}"><i></i>{name}</button>'
-        for i, (name, f, d, t) in enumerate(SPULEN))
+        f'              <button type="button" class="shop-spule" aria-pressed="{"true" if name == start else "false"}" '
+        f'data-farbe="{name}" data-teil="{f}" data-dunkel="{d}" data-text="{t}" data-schrift="{schrift_von(name)}" '
+        f'style="--c: {f}"><i></i>{name}</button>'
+        for name, f, d, t in SPULEN)
     return f"""            <div class="shop-option" role="group" aria-labelledby="farbe-titel">
-              <p class="shop-option-kopf"><span id="farbe-titel">Farbe</span> <span id="farbe-wahl" class="shop-wahl">{SPULEN[0][0]}</span></p>
+              <p class="shop-option-kopf"><span id="farbe-titel">Farbe</span> <span id="farbe-wahl" class="shop-wahl">{start}</span></p>
               <div class="shop-spulen-reihe">
 {knoepfe}
               </div>
@@ -346,10 +379,12 @@ SKRIPT = """    <script>
           k.addEventListener("click", function () {
             if (k.getAttribute("aria-pressed") === "true") return;
             Array.prototype.forEach.call(knoepfe, function (x) { x.setAttribute("aria-pressed", x === k ? "true" : "false"); });
-            var s = document.body.style;
+            // Nur das Produkt färbt um, die Karten in „Auch im Shop“ behalten ihre Farbe
+            var s = (document.querySelector(".shop-pdp") || document.body).style;
             s.setProperty("--teil", k.dataset.teil);
             s.setProperty("--teil-dunkel", k.dataset.dunkel);
             s.setProperty("--teil-text", k.dataset.text);
+            s.setProperty("--teil-schrift", k.dataset.schrift);
             if (wahl) wahl.textContent = k.dataset.farbe;
             alleNachdrucken();
           });
@@ -518,8 +553,11 @@ PRODUKTE = [
         "daten": [("Anlass", "Hochzeit, Geburtstag"), ("Personalisierung", "ein Name je Halter"),
                   HERSTELLUNG],
         "offen": "Material, Maße und Set folgen nach dem Musterdruck.",
+        "anlaesse": ["hochzeit", "geburtstag"],
+        "farbe": "Waldgrün",
+        "platzhalter": False,
         "probe": {"label": "Name zum Ausprobieren", "wert": "Lena", "max": 14,
-                  "hilfe": "Nur eine Vorschau, nichts wird gespeichert. Lange Namen bricht die Vorschau um, der Musterdruck zeigt, wie sie auf dem Halter stehen."},
+                  "hilfe": "Die Vorschau speichert nichts, erst „In die Merkliste“ legt Name und Farbe in diesem Browser ab. Lange Namen bricht die Vorschau um, der Musterdruck zeigt, wie sie auf dem Halter stehen."},
         "angabe": "den Namen",
         "bild": lambda id_, druck=True, probe=False: halter(id_, druck=druck, probe=probe),
     },
@@ -533,12 +571,62 @@ PRODUKTE = [
                         "Ansehen bei BeThatHost, bestellen über Etsy.",
         "daten": [("Anlass", "Junggesellenabschied"), HERSTELLUNG],
         "offen": "Personalisierung, Material, Maße und Set folgen nach dem Musterdruck. Geplant ist ein Ring aus Metall.",
+        "anlaesse": ["jga"],
+        "farbe": "Waldgrün",
+        "platzhalter": False,
+        "gross": True,
         "probe": {"label": "Text zum Ausprobieren", "wert": "BRAUT", "max": 10,
-                  "hilfe": "Nur eine Vorschau, nichts wird gespeichert. Wie viel Text auf den Anhänger passt, steht nach dem Musterdruck fest."},
+                  "hilfe": "Die Vorschau speichert nichts, erst „In die Merkliste“ legt Text und Farbe in diesem Browser ab. Wie viel Text auf den Anhänger passt, steht nach dem Musterdruck fest."},
         "angabe": "den Text",
         "bild": lambda id_, druck=True, probe=False: anhaenger(id_, druck=druck, probe=probe),
     },
 ]
+
+
+
+def platz_produkt(slug, titel, kurz, satz, anlaesse, form, farbe):
+    namen_ = ", ".join(n for k, n in ANLAESSE if k in anlaesse)
+    return {
+        "slug": slug, "titel": titel, "kurz": kurz, "satz": satz, "anlaesse": anlaesse, "form": form,
+        "farbe": farbe, "platzhalter": True, "seitentitel": titel,
+        "beschreibung": f"{titel} aus dem 3D-Drucker, noch ein Platzhalter im Sortiment. "
+                        "Ansehen bei BeThatHost, bestellen später über Etsy.",
+        "daten": [("Anlass", namen_), ("Status", "Platzhalter im Sortiment"), HERSTELLUNG],
+        "offen": "Das Teil ist ein Platzhalter. Ob es so kommt, dazu Material, Maße und Preis, steht nach dem Musterdruck fest.",
+        "probe": {"label": "Name zum Ausprobieren", "wert": BEISPIEL, "max": 12,
+                  "hilfe": "Die Vorschau speichert nichts. Erst „In die Merkliste“ legt Name und Farbe in diesem Browser ab."},
+        "angabe": "den Namen",
+        "bild": lambda id_, druck=True, probe=False: platz_bild(form, farbe, id_, variabel=True, probe=probe),
+    }
+
+
+ALLE = PRODUKTE + [platz_produkt(*t) for t in PLATZHALTER]
+if len({p["slug"] for p in ALLE}) != len(ALLE):
+    raise SystemExit("Slug doppelt, nichts geschrieben")
+
+
+def vorschau(p, id_, variabel=False):
+    """Bild ohne Druck und ohne Namensfeld, für „Auch im Shop“ und die Merkliste.
+    variabel: Platzhalter folgen --teil (Merkliste färbt je Zeile), sonst behalten sie ihre Beispielfarbe."""
+    if p["slug"] == "platzkartenhalter":
+        return halter(id_, name=BEISPIEL, druck=False)
+    if p["slug"] == "jga-anhaenger":
+        return anhaenger(id_, name=BEISPIEL.upper(), druck=False)
+    return platz_bild(p["form"], p["farbe"], id_, variabel=variabel, probe=False)
+
+
+def farb_stil(farbe):
+    """--teil-Variablen einer Spule, damit Bild und Sockel in dieser Farbe starten."""
+    _, f, d, t = next(x for x in SPULEN if x[0] == farbe)
+    return f"--teil: {f}; --teil-dunkel: {d}; --teil-text: {t}; --teil-schrift: {schrift_von(farbe)}"
+
+
+def weitere(p):
+    """Bis zu drei andere Teile, zuerst die mit gemeinsamem Anlass."""
+    andere = [q for q in ALLE if q is not p]
+    andere.sort(key=lambda q: 0 if set(q["anlaesse"]) & set(p["anlaesse"]) else 1)
+    return andere[:3]
+
 
 # {beispiel}: auf der Startseite steht dort der Name aus dem Feld, auf den Produktseiten nichts
 SCHRITTE = [("Auf Etsy bestellen", "Im Etsy-Listing gibst du den Namen oder Text an{beispiel}, bezahlst und bekommst die Bestellbestätigung."),
@@ -575,39 +663,38 @@ def karte(p, id_, ebene="h2", druck=True, quer=False, bild=None, probe=False):
 TOENE = {"Waldgrün": "waldgruen", "Sand": "sand", "Rosé": "rose", "Kreide": "kreide"}
 
 
-def katalog_karte(titel, anlaesse, bild, slug=None, ton=None):
-    """Kachel im Katalog der Startseite. Mit slug ein gezeichnetes Muster mit Produktseite, ohne ein Platzhalter:
-    kein Link, kein Hover, der Status ist eine ruhige Zeile statt eines Knopfs, damit nichts einen Kauf vortäuscht."""
-    muster = slug is not None
-    unbekannt = [a for a in anlaesse if a not in dict(ANLAESSE)]
+def katalog_karte(p, bild, ton=None, kauf=True):
+    """Kachel im Katalog. Jede führt auf ihre Produktseite. Preis und Etsy-Status nur an den Mustern,
+    für die Platzhalter steht beides einmal über ihrer Gruppe, der Chip sagt, was sie sind."""
+    muster = not p["platzhalter"]
+    unbekannt = [a for a in p["anlaesse"] if a not in dict(ANLAESSE)]
     if unbekannt:
         raise SystemExit(f"Anlass {unbekannt} unbekannt, nichts geschrieben")
-    anlass = ", ".join(n for k, n in ANLAESSE if k in anlaesse)
-    titel_html = f'<a href="/shop/{slug}.html">{titel}</a>' if muster else titel
-    # Preis und Etsy-Status nur an den Mustern, für die Platzhalter steht beides einmal über ihrer Gruppe
+    anlass = ", ".join(n for k, n in ANLAESSE if k in p["anlaesse"])
+    # kauf=False: unter „Auch im Shop“ und in der leeren Merkliste sehen alle Karten gleich aus (Kritiker Runde 1, 20.11.2026)
     kauf = (f'\n                <p class="shop-karte-preis">{PREIS}</p>'
-            '\n                <p class="shop-karte-status">Bald auf Etsy</p>') if muster else ""
+            '\n                <p class="shop-karte-status">Bald auf Etsy</p>') if muster and kauf else ""
     if ton is not None and ton not in TOENE:
         raise SystemExit(f"Kachelton {ton} unbekannt, nichts geschrieben")
     klasse = "" if muster else " shop-karte-platzhalter" + (f" shop-ton-{TOENE[ton]}" if ton else "")
-    return f"""            <li class="shop-karte{klasse}" data-anlass="{' '.join(anlaesse)}">
+    return f"""            <li class="shop-karte{klasse}" data-anlass="{' '.join(p['anlaesse'])}">
               <div class="shop-karte-bild">
                 <span class="shop-chip{' shop-chip-muster' if muster else ''}">{'Muster' if muster else 'Platzhalter'}</span>
                 {bild}
               </div>
               <div class="shop-karte-text">
                 <p class="shop-karte-anlass">{anlass}</p>
-                <h3 class="shop-karte-titel">{titel_html}</h3>{kauf}
+                <h3 class="shop-karte-titel"><a href="/shop/{p['slug']}.html">{p['kurz']}</a></h3>{kauf}
               </div>
             </li>"""
 
 
 def katalog():
     # Kurzname im Katalog: der klickbare Titel bleibt einzeilig (Gate 49), der volle Name steht auf der Produktseite
-    muster = [katalog_karte(PRODUKTE[0]["kurz"], ["hochzeit", "geburtstag"],
-                            halter("k0", name=BEISPIEL, probe=True), PRODUKTE[0]["slug"]),
-              katalog_karte(PRODUKTE[1]["kurz"], ["jga"], anhaenger("k1", name=BEISPIEL.upper(), probe=True), PRODUKTE[1]["slug"])]
-    platz = [katalog_karte(t, a, platz_bild(form, farbe, f"p{i}"), ton=farbe) for i, (t, a, form, farbe) in enumerate(PLATZHALTER)]
+    muster = [katalog_karte(PRODUKTE[0], halter("k0", name=BEISPIEL, probe=True)),
+              katalog_karte(PRODUKTE[1], anhaenger("k1", name=BEISPIEL.upper(), probe=True))]
+    platz = [katalog_karte(p, platz_bild(p["form"], p["farbe"], f"p{i}"), ton=p["farbe"])
+             for i, p in enumerate(q for q in ALLE if q["platzhalter"])]
     karten = muster + platz
     knoepfe = "\n".join(
         f'              <button type="button" class="shop-filter-knopf" data-filter="{k}" aria-pressed="{"true" if k == "alle" else "false"}">{n}</button>'
@@ -694,7 +781,229 @@ def nav():
     return "\n".join(f'          <a href="{h}">{n}</a>' for h, n in ziele)
 
 
-# Etsy-Hinweis oben rechts: kein Link, solange es den Etsy-Shop nicht gibt (Plan: Kaufknopf täuscht nichts vor)
+MERK_JS = r"""    <script>
+      (function () {
+        var TEILE = __TEILE__, FARBEN = __FARBEN__, SCHLUESSEL = "bth-merkliste", HOECHSTENS = 30;
+        var eigen = Object.prototype.hasOwnProperty, jede = Array.prototype.forEach;
+        var KEIN_SPEICHER = "Dein Browser lässt die Seite nichts speichern, deshalb kann die Merkliste nichts behalten.";
+        function q(s) { return document.querySelector(s); }
+        var lager = (function () {
+          try {
+            var l = window.localStorage, p = "bth-probe";
+            l.setItem(p, "1");
+            l.removeItem(p);
+            return l;
+          } catch (e) { return null; }
+        })();
+        function putzen(n) {
+          return typeof n === "string" ? n.replace(/[\u0000-\u001f\u007f-\u009f\u2028\u2029]/g, "").replace(/\s+/g, " ").trim() : "";
+        }
+        function zeige(e) { return TEILE[e.s].gross ? e.n.toUpperCase() : e.n; }
+        function schluessel(e) { return e.s + "|" + e.f + "|" + zeige(e); }
+        // Was im Speicher liegt, kann jeder geändert haben: nur bekannte Teile und Farben, Namen in ihrer Länge, keine Dubletten
+        function sauber(roh) {
+          var aus = [], gesehen = Object.create(null);
+          if (!Array.isArray(roh)) return aus;
+          roh.forEach(function (e) {
+            if (aus.length >= HOECHSTENS || !e || typeof e !== "object") return;
+            if (typeof e.s !== "string" || !eigen.call(TEILE, e.s)) return;
+            if (typeof e.f !== "string" || !eigen.call(FARBEN, e.f)) return;
+            var n = putzen(e.n);
+            if (!n || n.length > TEILE[e.s].max) return;
+            var r = { s: e.s, n: n, f: e.f }, k = schluessel(r);
+            if (gesehen[k]) return;
+            gesehen[k] = 1;
+            aus.push(r);
+          });
+          return aus;
+        }
+        function lesen() {
+          if (!lager) return [];
+          try { return sauber(JSON.parse(lager.getItem(SCHLUESSEL) || "[]")); } catch (e) { return []; }
+        }
+        function sichern(liste) {
+          if (!lager) return false;
+          try { lager.setItem(SCHLUESSEL, JSON.stringify(liste)); return true; } catch (e) { return false; }
+        }
+        function zaehlen() {
+          var n = lesen().length;
+          jede.call(document.querySelectorAll("[data-merk-anzahl]"), function (z) {
+            z.textContent = n;
+            z.hidden = n === 0;
+            var korb = z.closest("a");
+            if (korb) korb.setAttribute("aria-label", n ? "Merkliste, " + n + (n === 1 ? " Teil" : " Teile") : "Merkliste");
+          });
+        }
+        // Gleicher Text zweimal hintereinander: erst leeren, sonst liest der Bildschirmleser ihn nicht noch einmal vor
+        function ansagen(ziel, text, danach) {
+          ziel.textContent = "";
+          setTimeout(function () {
+            ziel.textContent = text;
+            if (danach) danach();
+          }, 60);
+        }
+
+        var knopf = q("[data-merken]");
+        if (knopf) {
+          var meldung = q("[data-merken-meldung]"), link = q("[data-merken-link]");
+          var melden = function (text, mitLink) {
+            link.hidden = true;
+            ansagen(meldung, text, function () { link.hidden = !mitLink; });
+          };
+          knopf.addEventListener("click", function () {
+            var teil = TEILE[knopf.dataset.merken], feld = document.getElementById("probe-name");
+            var spule = q('.shop-spule[aria-pressed="true"]');
+            if (!teil) return;
+            if (!lager) return melden(KEIN_SPEICHER, false);
+            var n = putzen(feld ? feld.value : "");
+            if (!n) {
+              melden("Gib erst " + teil.angabe + " ein, dann kommt er in die Merkliste.", false);
+              if (feld) feld.focus();
+              return;
+            }
+            var neu = sauber([{ s: knopf.dataset.merken, n: n, f: spule ? spule.dataset.farbe : "" }])[0];
+            if (!neu) return melden("Das passt so nicht in die Merkliste, höchstens " + teil.max + " Zeichen.", false);
+            var liste = lesen(), wer = zeige(neu) + " in " + neu.f;
+            if (liste.some(function (e) { return schluessel(e) === schluessel(neu); }))
+              return melden(wer + " steht schon in der Merkliste.", true);
+            if (liste.length >= HOECHSTENS)
+              return melden("Die Merkliste ist voll, mehr als " + HOECHSTENS + " Teile passen nicht hinein.", true);
+            liste.push(neu);
+            if (!sichern(liste)) return melden(KEIN_SPEICHER, false);
+            zaehlen();
+            melden(wer + " ist gemerkt.", true);
+          });
+        }
+
+        var ul = q("[data-merk-liste]");
+        var bilder = Object.create(null);
+        jede.call(document.querySelectorAll("template[data-merk-bild]"), function (t) { bilder[t.dataset.merkBild] = t; });
+        // Jede Zeile bekommt eigene IDs, sonst zeigten zwei Zeilen desselben Teils beide auf das erste Füllmuster
+        function eigeneIds(svg, n) {
+          var neu = Object.create(null);
+          jede.call(svg.querySelectorAll("[id]"), function (el) {
+            neu[el.id] = el.id + "-" + n;
+            el.id = neu[el.id];
+          });
+          jede.call(svg.querySelectorAll("*"), function (el) {
+            ["fill", "stroke", "mask", "clip-path"].forEach(function (a) {
+              var v = el.getAttribute(a), m = v && /^url\(#([^)]+)\)$/.exec(v);
+              if (m && neu[m[1]]) el.setAttribute(a, "url(#" + neu[m[1]] + ")");
+            });
+          });
+        }
+        // Der Name bleibt einzeilig: gemessen wird die echte Breite, erst unter 16 px darf er umbrechen
+        function einpassen() {
+          if (!ul) return;
+          jede.call(ul.querySelectorAll(".shop-merk-name"), function (el) {
+            el.style.fontSize = "";
+            el.classList.remove("shop-merk-name-bricht");
+            var breit = el.clientWidth, voll = el.scrollWidth;
+            if (!breit || voll <= breit) return;
+            var px = Math.floor(parseFloat(getComputedStyle(el).fontSize) * breit / voll * 10) / 10;
+            el.style.fontSize = Math.max(px, 16) + "px";
+            if (px < 16 || el.scrollWidth > el.clientWidth) el.classList.add("shop-merk-name-bricht");
+          });
+        }
+        var takt = 0;
+        window.addEventListener("resize", function () {
+          if (takt) return;
+          takt = requestAnimationFrame(function () { takt = 0; einpassen(); });
+        });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(einpassen);
+        function zeichnen(fokus) {
+          if (!ul) return;
+          var liste = lesen(), leer = q("[data-merk-leer]"), fuss = q("[data-merk-fuss]");
+          q("[data-merk-kein-speicher]").hidden = !!lager;
+          leer.hidden = !lager || liste.length > 0;
+          ul.hidden = fuss.hidden = liste.length === 0;
+          q("[data-merk-summe]").textContent = liste.length + (liste.length === 1 ? " Teil" : " Teile") + " gemerkt";
+          ul.textContent = "";
+          liste.forEach(function (e, i) {
+            var teil = TEILE[e.s], farbe = FARBEN[e.f], li = document.createElement("li");
+            li.className = "shop-merk-zeile";
+            ["--teil", "--teil-dunkel", "--teil-text", "--teil-schrift"].forEach(function (v, j) { li.style.setProperty(v, farbe[j]); });
+            // Das Bild führt auch zum Teil, zählt aber nicht als zweiter Halt beim Tabben
+            var bild = document.createElement("a");
+            bild.className = "shop-merk-bild";
+            bild.href = teil.url;
+            bild.tabIndex = -1;
+            bild.setAttribute("aria-hidden", "true");
+            if (bilder[e.s]) {
+              var svg = bilder[e.s].content.firstElementChild.cloneNode(true);
+              jede.call(svg.querySelectorAll(".t-name, .t-duese"), function (x) { x.parentNode.removeChild(x); });
+              eigeneIds(svg, i);
+              bild.appendChild(svg);
+            }
+            // Name groß, das Teil als Link darüber, die Farbe mit echtem Farbpunkt darunter
+            var text = document.createElement("div"), titel = document.createElement("a"),
+                name = document.createElement("p"), was = document.createElement("p"), punkt = document.createElement("i"),
+                farbname = document.createElement("span");
+            text.className = "shop-merk-text";
+            titel.className = "shop-merk-titel";
+            titel.href = teil.url;
+            titel.textContent = teil.kurz;
+            name.className = "shop-merk-name";
+            name.textContent = zeige(e);
+            name.style.setProperty("--zeichen", Math.max(zeige(e).length, 4));
+            was.className = "shop-merk-was";
+            punkt.setAttribute("aria-hidden", "true");
+            farbname.className = "shop-merk-farbe";
+            farbname.textContent = e.f;
+            was.appendChild(punkt);
+            was.appendChild(farbname);
+            text.appendChild(titel);
+            text.appendChild(name);
+            text.appendChild(was);
+            var weg = document.createElement("button");
+            weg.type = "button";
+            weg.className = "shop-merk-weg";
+            weg.textContent = "Entfernen";
+            weg.setAttribute("aria-label", zeige(e) + " in " + e.f + ", " + teil.kurz + " entfernen");
+            weg.addEventListener("click", function () {
+              var rest = lesen().filter(function (x) { return schluessel(x) !== schluessel(e); });
+              if (!sichern(rest)) return ansagen(q("[data-merk-meldung]"), KEIN_SPEICHER);
+              zaehlen();
+              zeichnen(i);
+              ansagen(q("[data-merk-meldung]"), zeige(e) + " in " + e.f + " ist entfernt.");
+            });
+            li.appendChild(bild);
+            li.appendChild(text);
+            li.appendChild(weg);
+            ul.appendChild(li);
+          });
+          einpassen();
+          if (fokus === undefined) return;
+          var knoepfe = ul.querySelectorAll(".shop-merk-weg");
+          if (knoepfe.length) knoepfe[Math.min(fokus, knoepfe.length - 1)].focus();
+          else leer.querySelector(".shop-merk-sortiment").focus();
+        }
+        if (ul) {
+          q("[data-merk-alle]").addEventListener("click", function () {
+            if (!sichern([])) return ansagen(q("[data-merk-meldung]"), KEIN_SPEICHER);
+            zaehlen();
+            zeichnen(0);
+            ansagen(q("[data-merk-meldung]"), "Merkliste geleert.");
+          });
+        }
+        window.addEventListener("storage", function (ev) {
+          if (ev.key !== null && ev.key !== SCHLUESSEL) return;
+          zaehlen();
+          zeichnen();
+        });
+        zaehlen();
+        zeichnen();
+      })();
+    </script>
+"""
+MERKLISTE = (MERK_JS
+             .replace("__TEILE__", json.dumps({q["slug"]: {"kurz": q["kurz"], "max": q["probe"]["max"], "gross": bool(q.get("gross")),
+                                                          "angabe": q["angabe"], "url": f"/shop/{q['slug']}.html"} for q in ALLE},
+                                              ensure_ascii=False).replace("</", "<\\/"))
+             .replace("__FARBEN__", json.dumps({n: [f, d, t, schrift_von(n)] for n, f, d, t in SPULEN}, ensure_ascii=False)))
+
+
+# Oben rechts die Merkliste (20.11.2026): sie bestellt nichts, mit dem Etsy-Shop wird daraus der Etsy-Knopf
 TASCHE = ('<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">'
           '<path d="M4 7h12l-1 10H5z M7.5 7V5.5a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" '
           'stroke-width="1.8" stroke-linejoin="round"/></svg>')
@@ -741,7 +1050,7 @@ def seite(pfad, url_pfad, titel, beschreibung, koerper, skript="", kopf="", robo
         <nav aria-label="Sortiment">
 {nav()}
         </nav>
-        <span class="shop-etsy-pill">{TASCHE}Etsy-Shop · bald</span>
+        <a class="shop-korb" href="/merkliste.html" aria-label="Merkliste">{TASCHE}<span class="shop-korb-text">Merkliste</span><span class="shop-korb-zahl" data-merk-anzahl hidden>0</span></a>
       </div>
     </header>
 
@@ -758,7 +1067,7 @@ def seite(pfad, url_pfad, titel, beschreibung, koerper, skript="", kopf="", robo
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
     </script>
-{DRUCKSTART}{skript}  </body>
+{DRUCKSTART}{skript}{MERKLISTE}  </body>
 </html>
 """
     AUSGABE[pfad] = html
@@ -822,8 +1131,11 @@ AUSGABE["shop/index.html"] = ("""<!doctype html>
 """)
 
 # ---------- Produktseiten ----------
-for p in PRODUKTE:
-    andere = [q for q in PRODUKTE if q is not p]
+# Seit 20.11.2026 alle zwölf Teile. Platzhalter tragen noindex und stehen nicht in Sitemap und llms.txt.
+for p in ALLE:
+    platz = p["platzhalter"]
+    weiter = "\n".join(katalog_karte(q, vorschau(q, f"w{i}"), ton=q["farbe"] if q["platzhalter"] else None, kauf=False)
+                        for i, q in enumerate(weitere(p)))
     seite(f"shop/{p['slug']}.html", f"shop/{p['slug']}.html", p["seitentitel"], p["beschreibung"],
           f"""      <div class="shop-innen">
         <nav class="shop-pfad" aria-label="Brotkrume">
@@ -832,22 +1144,24 @@ for p in PRODUKTE:
             <li aria-current="page">{p['kurz']}</li>
           </ol>
         </nav>
-        <div class="shop-pdp">
+        <div class="shop-pdp" style="{farb_stil(p['farbe'])}">
           <figure class="shop-galerie">
-            <span class="shop-chip">Gezeichnetes Muster</span>
+            <span class="shop-chip{'' if platz else ' shop-chip-muster'}">{'Platzhalter' if platz else 'Gezeichnetes Muster'}</span>
             {p['bild']("g0", probe=True)}
           </figure>
           <div class="shop-info">
-            <p class="shop-mono">Eigener Entwurf · BeThatHost</p>
+            <p class="shop-mono">{'Platzhalter · noch nicht bestellbar' if platz else 'Eigener Entwurf · BeThatHost'}</p>
             <h1 id="titel">{p['titel']}</h1>
             <p class="shop-preis">{PREIS}</p>
             <p class="shop-preis-hinweis">{PREIS_HINWEIS}</p>
             <p class="shop-satz">{p['satz']}</p>
-{spulen()}
+{spulen(p['farbe'])}
 {probefeld(p["probe"])}
             <div class="shop-kauf">
-              <span class="shop-etsy">Etsy-Link folgt</span>
-              {hinweis(p['angabe'])}
+              <button type="button" class="shop-merken" data-merken="{p['slug']}">{TASCHE}In die Merkliste</button>
+              <p class="shop-merken-status" role="status"><span data-merken-meldung></span> <a href="/merkliste.html" hidden data-merken-link>Zur Merkliste</a></p>
+              <p class="shop-ohne-js">Die Merkliste braucht JavaScript.</p>
+              {hinweis(platz)}
             </div>
             <ul class="shop-fakten">
               <li>Bestellung und Bezahlung über Etsy</li>
@@ -883,11 +1197,56 @@ for p in PRODUKTE:
       <section class="shop-weitere" aria-labelledby="weitere">
         <div class="shop-innen">
           <h2 id="weitere">Auch im Shop</h2>
-          <ul class="shop-raster shop-raster-eins">
-{chr(10).join(karte(q, f"w{i}", "h3", druck=False, quer=True) for i, q in enumerate(andere))}
+          <ul class="shop-raster shop-raster-katalog shop-raster-weitere">
+{weiter}
           </ul>
         </div>
-      </section>""", skript=SKRIPT)
+      </section>""", skript=SKRIPT, robots="noindex, follow" if platz else None)
+
+# ---------- Merkliste ----------
+# Nur in diesem Browser, nichts wird verschickt. Die Zeilen baut MERKLISTE aus den Vorlagen je Teil.
+vorlagen = "\n".join(f'        <template data-merk-bild="{q["slug"]}">{vorschau(q, f"m{i}", variabel=True)}</template>'
+                      for i, q in enumerate(ALLE))
+# Leer-Zustand: die zwei gezeichneten Muster als Einstieg (Kritiker Runde 1, 20.11.2026)
+leer_karten = "\n".join(katalog_karte(q, vorschau(q, f"l{i}"), kauf=False) for i, q in enumerate(PRODUKTE[:2]))
+seite("merkliste.html", "merkliste.html", "Merkliste",
+      "Deine Merkliste bei BeThatHost: Teile aus dem 3D-Drucker mit Name und Farbe. "
+      "Sie liegt nur in diesem Browser, bestellt wird später über Etsy.",
+      f"""      <div class="shop-innen shop-merkseite">
+        <nav class="shop-pfad" aria-label="Brotkrume">
+          <ol>
+            <li><a href="/">Shop</a></li>
+            <li aria-current="page">Merkliste</li>
+          </ol>
+        </nav>
+        <h1 id="titel">Merkliste</h1>
+        <p class="shop-lead">Hier liegen die Teile, die du dir mit Name und Farbe gemerkt hast.</p>
+        <p class="shop-ohne-js">Die Merkliste braucht JavaScript. <a href="/#sortiment">Zum Sortiment</a></p>
+        <p class="shop-merk-hinweis" data-merk-kein-speicher hidden>Dein Browser lässt die Seite nichts speichern, deshalb kann die Merkliste nichts behalten. <a href="/#sortiment">Zum Sortiment</a></p>
+        <div class="shop-merk-leer" data-merk-leer hidden>
+          <div class="shop-merk-leer-text">
+            <h2>Noch nichts gemerkt</h2>
+            <p>Such dir ein Teil aus, gib Name und Farbe ein und tipp auf In die Merkliste. Dann wartet es hier, bis der Etsy-Shop offen ist.</p>
+            <a class="shop-merk-sortiment" href="/#sortiment">Zum Sortiment</a>
+          </div>
+          <ul class="shop-raster shop-raster-katalog shop-raster-weitere shop-raster-leer" aria-label="Zum Anfangen">
+{leer_karten}
+          </ul>
+        </div>
+        <ul class="shop-merk-liste" data-merk-liste hidden></ul>
+        <div class="shop-merk-fuss" data-merk-fuss hidden>
+          <p class="shop-merk-summe" data-merk-summe></p>
+          <button type="button" class="shop-merk-alle" data-merk-alle>Alle entfernen</button>
+        </div>
+        <p class="shop-merk-status" role="status" data-merk-meldung></p>
+        <section class="shop-merk-bestellen" aria-labelledby="bestellen">
+          <p class="shop-karte-status">Bald auf Etsy</p>
+          <h2 id="bestellen">Bestellen kommt mit Etsy</h2>
+          <p>Sobald der Etsy-Shop offen ist, bekommt jede Zeile hier einen Knopf zum passenden Listing. Bis dahin bestellt die Merkliste nichts.</p>
+          <p>Sie liegt nur in diesem Browser und wird nicht verschickt.</p>
+        </section>
+{vorlagen}
+      </div>""", robots="noindex, follow")
 
 # ---------- Impressum und Datenschutz ----------
 # Kopf und Fuß wie im Shop (Kritiker Runde 1, 02.11.2026). Der Rechtstext wird nur umgehängt, nie geändert:
